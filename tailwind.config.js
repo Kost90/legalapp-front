@@ -1,0 +1,82 @@
+import defaultTheme from 'tailwindcss/defaultTheme';
+
+const config = {
+  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      },
+      colors: {
+        transparent: 'transparent',
+        current: 'currentColor',
+        white: '#FFFFFF',
+        black: '#000000',
+        primary: '#0057B8',
+        secondary: '#F5F7FA',
+        accent: '#FFDD00',
+        redbtn: '#ff5a5f',
+        text: {
+          DEFAULT: '#1A1A1A',
+          muted: '#6B7280',
+        },
+        background: {
+          DEFAULT: '#FFFFFF',
+          muted: '#F5F7FA',
+          mutedcard: '#F5F9FF',
+          muted: '#FFF9DC',
+          redBtn: '#ff5a5f',
+        },
+        border: {
+          DEFAULT: '#E5E7EB',
+        },
+      },
+      fontSize: {
+        base: ['16px', { lineHeight: '24px' }],
+        lg: ['18px', { lineHeight: '28px' }],
+        xl: ['20px', { lineHeight: '28px' }],
+        '2xl': ['24px', { lineHeight: '32px' }],
+        '3xl': ['30px', { lineHeight: '36px' }],
+        '4xl': ['36px', { lineHeight: '40px' }],
+      },
+      borderRadius: {
+        none: '0',
+        sm: '4px',
+        DEFAULT: '8px',
+        lg: '12px',
+        full: '9999px',
+      },
+      spacing: {
+        px: '1px',
+        0: '0px',
+        1: '4px',
+        2: '8px',
+        3: '12px',
+        4: '16px',
+        5: '20px',
+        6: '24px',
+        8: '32px',
+        10: '40px',
+        12: '48px',
+        16: '64px',
+        20: '80px',
+        24: '96px',
+        32: '128px',
+        40: '160px',
+        48: '192px',
+        56: '224px',
+        64: '256px',
+      },
+      boxShadow: {
+        sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+        DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+        md: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+        lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;
