@@ -1,0 +1,165 @@
+{
+  "header": {
+    "nav_online_generation": "Online Document Generation",
+    "nav_contacts": "Contacts",
+    "button_generate": "Generate Document",
+    "button_consultation": "Get Consultation",
+    "nav_main": "Home",
+    "nav_about_us": "About Us",
+    "nav_services_page": "Services",
+    "nav_contact_us_page": "Contact Us",
+    "aria_close_menu": "Close main menu",
+    "aria_open_menu": "Open main menu",
+    "sr_close_menu": "Close menu",
+    "sr_open_menu": "Open menu"
+  },
+  "hero": {
+    "title": "UDocument — New Generation Legal Services",
+    "subtitle_line1": "Over 8 years of experience in real estate, corporate, and contract law, as well as in document certification in the UK (notary, apostille, translation). UDocument is a team of lawyers and attorneys combining expertise with innovation.",
+    "feature_highlight": "Our specialty — <strong>AI-powered online legal document generation</strong>: professional documents quickly, conveniently, and with high legal accuracy.",
+    "benefits_intro": "With UDocument you get:",
+    "benefits": [
+      { "text": "Legal security for real estate transactions." },
+      { "text": "A transparent business structure." },
+      { "text": "Flawless contract drafting." },
+      { "text": "Document certification in the UK (notary, apostille, translation)." }
+    ],
+    "closing_statement": "UDocument — your reliable legal partner, combining experience and modern technologies.",
+    "cta_button": "Get a Lawyer's Consultation"
+  },
+  "why_choose_us": {
+    "title": "Why Choose UDocument?",
+    "advantages": [
+      {
+        "title": "Experience + AI Innovations",
+        "text": "8+ years of legal practice and advanced AI technologies for reliable, fast, and modern solutions."
+      },
+      {
+        "title": "Accurate Online Document Generation",
+        "text": "Create legally sound documents online. Developed by lawyers, optimized by AI. Compliant with legislation, tailored to your needs."
+      },
+      {
+        "title": "Comprehensive Approach",
+        "text": "A-to-Z support: real estate, corporate, contract law, document processing in the UK. One partner for all your legal tasks."
+      },
+      {
+        "title": "We Work Online Everywhere",
+        "text": "Services available throughout Ukraine and for foreign clients. Saving your time without compromising on quality."
+      },
+      {
+        "title": "Individual Approach",
+        "text": "Every solution is a personal response to your specific request."
+      }
+    ]
+  },
+  "legal_support": {
+    "title": "Legal Support for Businesses and Individuals",
+    "intro_text": "Full range of legal services. Real solutions and support at all stages.",
+    "services_heading": "Main Areas:",
+    "services": [
+      {
+        "name": "Turnkey Business Support",
+        "desc": "from registration to interest protection.",
+        "cta": "Order Business Support"
+      },
+      {
+        "name": "Business Registration",
+        "desc": "Ukraine and abroad (LLC, Sole Proprietorship, representative offices)."
+      },
+      {
+        "name": "Contract Development and Analysis",
+        "desc": "sales and purchase, lease, services, etc."
+      },
+      {
+        "name": "Transaction Support",
+        "desc": "from negotiations to registration."
+      },
+      {
+        "name": "Tax Planning",
+        "desc": "optimization and consultations."
+      },
+      {
+        "name": "Document Certification in the UK",
+        "desc": "notarization, apostille, translation."
+      },
+      {
+        "name": "Representation in State Bodies",
+        "desc": "courts, tax authorities, AMCU (Antimonopoly Committee of Ukraine)."
+      },
+      {
+        "name": "Licensing and Permits",
+        "desc": ""
+      }
+    ]
+  },
+  "real_estate_services": {
+    "title": "Real Estate Legal Services in Ukraine",
+    "intro_text": "Comprehensive legal support for real estate matters: from documents to transaction support. Residential and commercial properties.",
+    "services_heading": "Our Services:",
+    "services": [
+      {
+        "name": "Registration of Property Rights",
+        "desc": "preparation and submission of documents, registration in registries."
+      },
+      {
+        "name": "Real Estate Consolidation/Division",
+        "desc": "technical documentation, new addresses, registration of rights."
+      },
+      {
+        "name": "Technical Passports and Reports",
+        "desc": "for residential/non-residential premises, for transactions and registration."
+      },
+      {
+        "name": "Legal Analysis of Real Estate Transactions",
+        "desc": "document verification, property history checks for investment security."
+      }
+    ],
+    "cta_button": "Learn More About Real Estate Services"
+  },
+  "online_generation": {
+    "title": "AI-Powered Online Legal Document Generation",
+    "how_it_works_title": "How Does It Work?",
+    "how_it_works_text": "A convenient service for quickly creating legally correct documents online. Templates by experienced lawyers, enhanced by AI. Enter data, confirm email – get PDF.",
+    "generator_advantages_title": "Advantages of UDocument Online Generator:",
+    "generator_advantages": [
+      {
+        "highlight": "1 free document per week:",
+        "text": "Generate after simple email verification. Try it!"
+      },
+      {
+        "highlight": "Up to 3 free documents/week for registered users:",
+        "text": "Plus access to generation history in your personal account."
+      },
+      {
+        "highlight": "Quality Guarantee:",
+        "text": "Documents from leading lawyers, notaries, updated by AI in accordance with Ukrainian legislation."
+      },
+      {
+        "highlight": "Confidentiality and Security:",
+        "text": "Your data is protected (GDPR)."
+      },
+      {
+        "highlight": "Extended Templates and Packages:",
+        "text": "Access to more complex documents at a favorable price."
+      }
+    ],
+    "coming_soon_title": "Templates Coming Soon:",
+    "coming_soon_templates": [
+      { "name": "Powers of Attorney" },
+      { "name": "Lease Agreements (real estate, other property)" },
+      { "name": "Sales and Purchase Agreements (cars, real estate, etc.)" },
+      { "name": "Cover Letters and Applications" }
+    ],
+    "strong_cta_button": "Create Your First Document for Free!"
+  },
+  "meta": {
+    "title": "UDocument - Online Legal Documents & Lawyer Consultations",
+    "description": "Create legal documents online with AI, get consultations from experienced lawyers. Real estate, business, contracts, UK document services.",
+    "keywords": "online legal documents, document generator, lawyer consultation, attorney, real estate, business registration, contracts, apostille UK, UDocument",
+    "ogTitle": "UDocument: Fast Legal Document Generation & Expert Support",
+    "ogDescription": "UDocument's innovative service for online legal document creation and comprehensive legal support. Try for free!",
+    "twitterTitle": "UDocument: New Generation Legal Solutions",
+    "twitterDescription": "Generate documents, get consultations. UDocument – your reliable legal partner.",
+    "appleWebAppTitle": "UDocument"
+  }
+}
