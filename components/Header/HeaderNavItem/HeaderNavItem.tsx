@@ -1,9 +1,9 @@
 'use client';
 
 import { cn } from '@/utils/cn';
-import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { HEADER_NAV_VARIANTS } from './variants';
 
 interface HeaderNavItemProps {
   href: string;
@@ -11,9 +11,10 @@ interface HeaderNavItemProps {
   icon?: React.ReactNode;
   onClick?: () => void;
   className?: string;
+  variant?: HEADER_NAV_VARIANTS;
 }
 
-export default function HeaderNavItem({ href, label, icon, onClick, className }: HeaderNavItemProps) {
+export default function HeaderNavItem({ href, label, icon, onClick, className, variant }: HeaderNavItemProps) {
   const pathname = usePathname();
   const isActive = pathname === href || (href !== '/' && pathname.startsWith(href) && href.length > 1);
 
@@ -25,7 +26,9 @@ export default function HeaderNavItem({ href, label, icon, onClick, className }:
         `block px-3 py-2 rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2  hover:bg-gray-700 hover:text-white lg:inline-block`,
         className,
         {
-          // isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+          // 'bg-gray-900 text-white': isActive,
+          'bg-blue-500 px-3 py-1': variant === HEADER_NAV_VARIANTS.BUTTON,
+          'text-primary': variant === HEADER_NAV_VARIANTS.INLINE,
         },
       )}
       aria-current={isActive ? 'page' : undefined}

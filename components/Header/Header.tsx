@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -9,8 +9,9 @@ import HeaderNavItem from './HeaderNavItem/HeaderNavItem';
 import Logo from './Logo/Logo';
 import { Menu, X } from 'lucide-react';
 import { SiteContent } from '@/types/dictionaries';
-import Button from '../Button/Button';
 import { MenuVariants } from './animation-variants';
+import LanguageSwitcher from '../LanguagesSwitcher/LanguagesSwitcher';
+import { HEADER_NAV_VARIANTS } from './HeaderNavItem/variants';
 
 export type NavItemType = {
   label: string;
@@ -56,15 +57,19 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
           {/* Desktop Navigation */}
           {isClient && isDesktop && (
             <nav className="hidden lg:flex lg:space-x-4">
-              {navItems.map((item) => (
-                <HeaderNavItem key={`${item.href}${item.label}`} href={item.href} label={item.label} />
+              {navItems.map((item, i) => (
+                <HeaderNavItem key={`${item.href}+${i}`} href={item.href} label={item.label} />
               ))}
-              <div className="flex flex-row items-center">
-                <HeaderNavItem href="/ua" className={params === 'ua' ? 'text-accent' : 'text-gray-300'} label="UA" />
+              {lang.header.login && (
+                <HeaderNavItem
+                  key={`login-${params}desc`}
+                  href={`/${params}/login`}
+                  label={lang.header.login}
+                  variant={HEADER_NAV_VARIANTS.BUTTON}
+                />
+              )}
 
-                <div className="h-6 w-[1px] bg-white" />
-                <HeaderNavItem href="/en" className={params === 'en' ? 'text-accent' : 'text-gray-300'} label="EN" />
-              </div>
+              <LanguageSwitcher currentLang={params} specialKey={'desc'} />
             </nav>
           )}
 
@@ -100,21 +105,21 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
             className="lg:hidden absolute w-full bg-gray-800 shadow-lg mx-auto flex flex-col"
             id="mobile-menu"
           >
-            <nav className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navItems.map((item) => (
-                <HeaderNavItem
-                  key={`${item.href}${item.label}`}
-                  href={item.href}
-                  label={item.label}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                />
+            <nav className="flex flex-col justify-center items-center gap-1 px-2 pt-2 pb-3 space-y-1 sm:px-3 mx-auto">
+              {navItems.map((item, i) => (
+                <HeaderNavItem key={`${item.href}+${i}mob`} href={item.href} label={item.label} onClick={toggleMobileMenu} />
               ))}
-              <div className="flex flex-row items-center">
-                <HeaderNavItem href="/ua" className={params === 'ua' ? 'text-accent' : 'text-gray-300'} label="UA" />
+              {lang.header.login && (
+                <HeaderNavItem
+                  key={`login-${params}mob`}
+                  href={`/${params}/login`}
+                  label={lang.header.login}
+                  variant={HEADER_NAV_VARIANTS.BUTTON}
+                  onClick={toggleMobileMenu}
+                />
+              )}
 
-                <div className="h-6 w-[1px] bg-white" />
-                <HeaderNavItem href="/en" className={params === 'en' ? 'text-accent' : 'text-gray-300'} label="EN" />
-              </div>
+              <LanguageSwitcher currentLang={params} specialKey={'mob'} />
             </nav>
           </motion.div>
         )}

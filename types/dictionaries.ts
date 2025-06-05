@@ -71,7 +71,7 @@ interface OnlineGenerationData {
 
 // --- Оновлені та нові інтерфейси ---
 interface HeaderData {
-  nav_online_generation: string;
+  login: string;
   nav_contacts: string; // Загальний контакт або кнопка, не пункт меню сторінки "Контакти"
   button_generate: string;
   button_consultation: string;
