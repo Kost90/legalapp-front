@@ -11,14 +11,10 @@
   --color-text-muted: #6b7280;
   --color-background: #ffffff;
   --color-border: #e5e7eb;
-  --font-sans: 'Inter', sans-serif;
 }
 
 body {
   background-color: var(--color-background);
-  color: var(--color-text);
-  font-family: var(--font-sans);
-  font-size: 16px;
   line-height: 1.5;
   margin: 0;
   padding: 0;

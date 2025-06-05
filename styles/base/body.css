@@ -16,8 +16,6 @@
 
 body {
   overflow-x: hidden;
-  background-color: var(--color-background);
-  color: var(--color-text);
 }
 
 img {
@@ -32,12 +30,6 @@ button,
 textarea,
 select {
   font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  color: inherit;
-  background-color: transparent;
-  border: none;
-  outline: none;
 }
 
 button {
