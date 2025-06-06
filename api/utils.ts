@@ -79,8 +79,7 @@ export const makeRequest = async ({
     headers.set('Authorization', `Bearer ${accessToken}`);
   }
 
-  // TODO: Change for url from env
-  const res = await fetch(`http://localhost:3030/api${url}`, {
+  const res = await fetch(`${BASE_URL}${url}`, {
     headers,
     ...options,
     body,
@@ -102,7 +101,7 @@ export const refreshToken = async ({
   setToken: (name: string, value: string) => any | Promise<any>;
 }) => {
   if (refreshToken) {
-    const refreshRes = await fetch(`http://localhost:3030/api/auth/refresh-token`, {
+    const refreshRes = await fetch(`${BASE_URL}/auth/refresh-token`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: refreshToken }),

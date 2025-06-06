@@ -12,9 +12,7 @@ export const requestAdmin = async <Request, Body = any>(
     noAdminTag?: boolean;
   },
 ): Promise<Request> => {
-  console.log('base url in request admin', BASE_URL);
-
-  const res = await fetch(`http://localhost:3030/api${!options.noAdminTag ? '/admin' : ''}${url}`, {
+  const res = await fetch(`${BASE_URL}/${url}`, {
     ...options,
     headers: {
       'Content-Type': options.body ? 'application/json' : '',

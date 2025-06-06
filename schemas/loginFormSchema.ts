@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
-export const demoFormSchema = z.object({
-  name: z.string().min(2, 'Імʼя повинно містити щонайменше 2 символи'),
+// TODO: Update validation schema
+export const loginFormSchema = z.object({
+  password: z.string().min(2, 'Password invalid validation'),
   email: z.string().email('Невірний формат email'),
-  role: z.string().min(1, 'Оберіть роль'),
 });
 
-export type DemoFormSchema = z.infer<typeof demoFormSchema>;
+export type typeLoginFormSchema = z.infer<typeof loginFormSchema>;

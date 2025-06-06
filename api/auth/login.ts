@@ -8,7 +8,15 @@ type LoginBody = {
 };
 
 export const login = async (body: LoginBody) =>
-  await request<{ data: Tokens }, LoginBody>('/auth/login', {
-    method: 'POST',
-    body: body,
-  });
+  await request<{ data: Tokens }, LoginBody>(
+    '/auth/login',
+    {
+      method: 'POST',
+      body: body,
+    },
+    {
+      email: {
+        'Email is not verified': 'Please verify your email.',
+      },
+    },
+  );
