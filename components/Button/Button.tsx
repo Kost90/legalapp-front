@@ -4,6 +4,7 @@ import { ReactNode, useRef } from 'react';
 import { useFormState } from 'react-hook-form';
 
 import { cn } from '@/utils/cn';
+import Spinner from '../Spinner/Spinner';
 
 type Props = {
   type?: 'default' | 'critical' | 'ghost';
@@ -39,20 +40,13 @@ export default function Button({
     <button
       {...attrs}
       className={cn(
-        'min-w-32 py-2 px-8 mt-3 border border-gray-200 inline-block text-center hover:bg-blue-100 rounded-md',
+        'flex justify-center items-center min-w-32 py-2 px-8 mt-3 border border-gray-200 text-center hover:bg-blue-100 rounded-md gap-1',
         attrs.className,
         {
           'bg-redbtn text-white hover:bg-red-500': type === 'critical',
           'bg-white text-blue-500': type === 'default',
+          'bg-blue-300! text-gray-200': disabledOrLoading,
         },
-        // disabledOrLoading
-        //   ? [{ 'bg-neutral-2': type !== 'ghost' }, 'before:bg-border-faint text-text-disabled']
-        //   : {
-        //       'button-critical bg-accent-crimson-faint before:bg-border-button-critical text-accent-crimson-base': type === 'critical',
-        //       'text-text-loud button-default bg-neutral-2 hover:bg-neutral-4 active:bg-neutral-2 before:bg-border-button-default hover:text-neutral-body shadow-glass-s':
-        //         type === 'default',
-        //       'before:bg-border-faint hover:before:bg-border-default': type === 'ghost',
-        //     },
       )}
       disabled={disabledOrLoading}
       ref={ref}
@@ -61,7 +55,11 @@ export default function Button({
     >
       {children}
 
-      {loadingOrSubmitting && <div className="overlay flex-center backdrop-blur-sm">{/* <Spinner /> */}</div>}
+      {loadingOrSubmitting && (
+        <div className="overlay flex-center backdrop-blur-sm">
+          <Spinner />
+        </div>
+      )}
     </button>
   );
 }
