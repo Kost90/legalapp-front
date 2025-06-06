@@ -63,7 +63,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
               {lang.header.login && (
                 <HeaderNavItem
                   key={`login-${params}desc`}
-                  href={`/${params}/login`}
+                  href={`/${params}/auth/login`}
                   label={lang.header.login}
                   variant={HEADER_NAV_VARIANTS.BUTTON}
                 />
@@ -112,7 +112,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
               {lang.header.login && (
                 <HeaderNavItem
                   key={`login-${params}mob`}
-                  href={`/${params}/login`}
+                  href={`/${params}/auth/login`}
                   label={lang.header.login}
                   variant={HEADER_NAV_VARIANTS.BUTTON}
                   onClick={toggleMobileMenu}
