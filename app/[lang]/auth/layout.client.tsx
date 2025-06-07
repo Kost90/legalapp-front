@@ -11,7 +11,7 @@ export default function DashboardLayoutClient(props: Readonly<{ children: ReactN
   const pathname = usePathname();
 
   return (
-    <div className="w-full mx-auto relative auth-layout-box max-w-592">
+    <div className="w-full mx-auto relative max-w-592">
       <AuthErrorProvider>
         <AnimatePresence initial={false} mode="popLayout">
           <motion.div className="relative" key={pathname}>
