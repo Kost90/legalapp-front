@@ -34,7 +34,7 @@ export default function LanguageSwitcher({ currentLang, specialKey }: LanguageSw
           <HeaderNavItem
             href={getLocalizedPath(lang.code)}
             label={lang.label}
-            className={currentLang === lang.code ? 'text-accent font-semibold' : 'text-gray-300 hover:text-white'}
+            className={currentLang === lang.code ? 'text-color-footer-link-yellow-brt font-semibold' : 'text-gray-300 hover:text-white'}
           />
           {index < supportedLanguages.length - 1 && <div className="h-4 w-[1px] bg-gray-400 mx-1" />}
         </React.Fragment>
