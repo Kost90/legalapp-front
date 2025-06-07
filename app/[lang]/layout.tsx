@@ -43,6 +43,9 @@ export async function generateMetadata({ params }: { params: { lang: string } })
       locale: lang.replace('-', '_'),
       type: 'website',
     },
+    appleWebApp: {
+      title: 'UDocument',
+    },
     // alternates: {
     //   canonical: `/${params.lang}`,
     //   languages: {
@@ -76,17 +79,14 @@ export default async function RootLayout({
 
   return (
     <html lang={currentLang} className="h-full">
-      <head>
-        <meta content="UDocument" name="apple-mobile-web-app-title" />
-      </head>
-
-      <body className={clsx(roboto.className, 'antialiased bg-gray-100 text-gray-900 flex flex-col h-full')}>
+      <body className={clsx(roboto.className, 'antialiased bg-gray-100 text-main-black min-h-screen')}>
         <QueryProvider>
           <DeviceProvider>
-            <div className="flex flex-col min-h-screen">
+            <div className="relative flex flex-col overflow-hidden isolate z-[1]">
               <Header lang={t} params={currentLang} />
               <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main>
             </div>
+            <div className="body-overlay overlay !fixed pointer-events-none z-[13]" />
           </DeviceProvider>
         </QueryProvider>
       </body>

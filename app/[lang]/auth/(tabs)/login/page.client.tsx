@@ -10,6 +10,8 @@ import { useAuthError } from '@/app/[lang]/auth/auth-error-context';
 import { login } from '@/api/auth/login';
 import { useRouter, useParams } from 'next/navigation';
 import Button from '@/components/Button/Button';
+import { useAuthTabs } from '@/components/Authtabs/context';
+import PageTitle from '@/components/PageTitle/PageTitle';
 
 type FormValues = {
   email: string;
@@ -19,6 +21,7 @@ type FormValues = {
 export default function LoginForm() {
   const router = useRouter();
   const params = useParams();
+  const { setHideTabs } = useAuthTabs();
   const { setError } = useAuthError();
   const methods = useForm<typeLoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
@@ -40,6 +43,9 @@ export default function LoginForm() {
       router.push(`/${lang}/redirect`);
     } catch (error: any) {
       const parsedError = JSON.parse(error.message);
+      if (parsedError.message === 'email_is_not_verified') {
+        setHideTabs(true);
+      }
       setError(parsedError.message);
       methods.setError('root', { message: parsedError.message });
     }
@@ -47,6 +53,7 @@ export default function LoginForm() {
 
   return (
     <FormProvider {...methods}>
+      <PageTitle className="mb-6 max-w-md mx-auto" title="Log In" />
       <form onSubmit={methods.handleSubmit(onSubmit)} className="max-w-md mx-auto p-4 bg-secondary shadow rounded">
         <FormInput name="email" label="Email" placeholder="Your email" />
         <FormInput name="password" label="Password" placeholder="password" />
