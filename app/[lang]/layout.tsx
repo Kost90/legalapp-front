@@ -79,12 +79,13 @@ export default async function RootLayout({
 
   return (
     <html lang={currentLang} className="h-full">
-      <body className={clsx(roboto.className, 'antialiased bg-gray-100 text-main-black min-h-screen')}>
+      <body className={clsx(roboto.className, 'antialiased bg-gray-100 text-main-black min-h-screen w-full')}>
         <QueryProvider>
           <DeviceProvider>
-            <div className="relative flex flex-col overflow-hidden isolate z-[1]">
+            <div className="relative flex flex-col overflow-hidden isolate z-[1] w-full">
               <Header lang={t} params={currentLang} />
-              <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main>
+              {/* <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main> */}
+              <main className="flex-grow w-full">{children}</main>
             </div>
             <div className="body-overlay overlay !fixed pointer-events-none z-[13]" />
           </DeviceProvider>

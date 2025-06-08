@@ -4,7 +4,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import Cookies from 'js-cookie';
 
 import FormInput from '@/components/Input/Input';
-import { loginFormSchema, typeLoginFormSchema } from '@/schemas/loginFormSchema';
+import { getLoginFormSchema, LoginFormSchema } from '@/schemas/loginFormSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuthError } from '@/app/[lang]/auth/auth-error-context';
 import { login } from '@/api/auth/login';
@@ -18,13 +18,13 @@ type FormValues = {
   password: string;
 };
 
-export default function LoginForm() {
+export default function LoginForm({ lang }: { lang: string }) {
   const router = useRouter();
   const params = useParams();
   const { setHideTabs } = useAuthTabs();
   const { setError } = useAuthError();
-  const methods = useForm<typeLoginFormSchema>({
-    resolver: zodResolver(loginFormSchema),
+  const methods = useForm<LoginFormSchema>({
+    resolver: zodResolver(getLoginFormSchema(lang)),
     defaultValues: {
       email: '',
       password: '',
@@ -39,7 +39,6 @@ export default function LoginForm() {
       Cookies.set('refresh_token', res.data.refreshToken);
       Cookies.set('action_token', res.data.actionToken);
       const lang = (params.lang as string) || ('ua' as string);
-
       router.push(`/${lang}/redirect`);
     } catch (error: any) {
       const parsedError = JSON.parse(error.message);
@@ -53,12 +52,12 @@ export default function LoginForm() {
 
   return (
     <FormProvider {...methods}>
-      <PageTitle className="mb-6 max-w-md mx-auto" title="Log In" />
-      <form onSubmit={methods.handleSubmit(onSubmit)} className="max-w-md mx-auto p-4 bg-secondary shadow rounded">
-        <FormInput name="email" label="Email" placeholder="Your email" />
+      <PageTitle className="mb-6 max-w-md mx-auto" title={lang === 'ua' ? 'Увійти до аккаунту' : 'Log In'} />
+      <form onSubmit={methods.handleSubmit(onSubmit)} className="max-w-md mx-auto p-4 shadow rounded-sm border-btn-border-color bg-white">
+        <FormInput name="email" label="Email" placeholder={lang === 'ua' ? 'Твій email' : 'Your email'} />
         <FormInput name="password" label="Password" placeholder="password" />
         <Button buttonType="submit" loading={methods.formState.isSubmitting || methods.formState.isSubmitSuccessful}>
-          Submit
+          {lang === 'ua' ? 'Увійти' : 'Submit'}
         </Button>
         {/* {methods.formState.errors.root?.message && <p className="text-red-500 mt-2 text-center">{methods.formState.errors.root.message}</p>} */}
       </form>
