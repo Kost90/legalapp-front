@@ -11,6 +11,7 @@ import PageTitle from '@/components/PageTitle/PageTitle';
 import { getSignUpFormSchema } from '@/schemas/signUpFormSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import FormInput from '@/components/Input/Input';
+import { SiteContent } from '@/types/dictionaries';
 
 type FormValues = {
   firstName: string;
@@ -21,7 +22,7 @@ type FormValues = {
   callingCode: string;
 };
 
-export default function SignupPageClient({ lang }: { lang: string }) {
+export default function SignupPageClient({ lang, dictionary }: { lang: string; dictionary: SiteContent }) {
   const { setHideTabs } = useAuthTabs();
   const { setError } = useAuthError();
 
@@ -52,6 +53,7 @@ export default function SignupPageClient({ lang }: { lang: string }) {
     <FormProvider {...form}>
       {formState.isSubmitSuccessful ? (
         <VerifyYourEmail
+          t={dictionary}
           onBack={() => {
             form.reset();
             setHideTabs(false);
