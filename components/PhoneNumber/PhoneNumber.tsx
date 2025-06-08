@@ -59,7 +59,7 @@ export default function PhoneNumber({ occupyErrorSpace = true }: { occupyErrorSp
           label=""
           placeholder="234 567 890"
           type="tel"
-          {...form.register('phoneNumber', {
+          {...form.register('phone', {
             required: 'Phone number is required',
             pattern: {
               value: /^[0-9]+$/,

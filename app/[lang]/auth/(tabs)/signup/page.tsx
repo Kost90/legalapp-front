@@ -4,6 +4,7 @@ import SignupPageClient from './page.client';
 
 export const metadata: Metadata = { title: 'Signup' };
 
-export default function SignupPage() {
-  return <SignupPageClient />;
+export default async function SignupPage(props: Readonly<{ params: { lang: string } }>) {
+  const { lang } = await props.params;
+  return <SignupPageClient lang={lang} />;
 }

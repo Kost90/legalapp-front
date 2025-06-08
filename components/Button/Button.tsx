@@ -40,11 +40,12 @@ export default function Button({
     <button
       {...attrs}
       className={cn(
-        'flex justify-center items-center min-w-32 py-2 px-8 mt-3 border border-gray-200 text-center hover:bg-blue-100 rounded-md gap-1',
+        'flex justify-center items-center min-w-32 py-2 px-8 mt-3 border border-gray-200 text-center rounded-md gap-1',
         attrs.className,
         {
+          'bg-main-black text-headerfooterwhite hover:bg-black': buttonType === 'submit',
+          'bg-white text-link-btn-text hover:bg-base-btn-hover-bg': type === 'default' && buttonType === 'button',
           'bg-redbtn text-white hover:bg-red-500': type === 'critical',
-          'bg-white text-blue-500': type === 'default',
           'bg-blue-300! text-gray-200': disabledOrLoading,
         },
       )}

@@ -24,7 +24,7 @@ export default function FormInput({ name, label, description, labelClassName, ..
         {...register(name)}
         {...rest}
         className={cn(
-          'mt-1 block w-full px-3 py-2 border border-btn-border-color bg-white rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+          'mt-1 block w-full px-3 py-2 border border-btn-border-color bg-white rounded-md focus:outline-none focus:ring-link-btn-text focus:border-link-btn-text sm:text-sm',
           {
             'border-red-500': error,
           },

@@ -6,7 +6,7 @@ type SignUpBody = {
   lastName: string;
   email: string;
   password: string;
-  phoneNumber: string;
+  phone: string;
 };
 
 export const signUp = async (body: SignUpBody) =>
