@@ -13,6 +13,12 @@
     "sr_close_menu": "Close menu",
     "sr_open_menu": "Open menu"
   },
+  "verify_email": {
+    "title": "Thank you for registering!",
+    "subtitle": "To complete your account setup, please check your email.",
+    "instructions": "We’ve sent a confirmation link. Don’t see it? Check your spam folder.",
+    "back_button": "Back"
+  },
   "hero": {
     "title": "UDocument — New Generation Legal Services",
     "subtitle_line1": "Over 8 years of experience in real estate, corporate, and contract law, as well as in document certification in the UK (notary, apostille, translation). UDocument is a team of lawyers and attorneys combining expertise with innovation.",
