@@ -1,16 +1,26 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @config "../tailwind.config.js";
 @import './base/_index.css';
 
 :root {
-  --color-primary: #0057b8;
+  --color-headerFooterWhite: #fff;
+  --color-mainBlack: #333;
+  --color-linkBtn-text: #087dc1;
+  --color-btn-border-color: #dbe5ea;
+  --color-crimson-bg: #ff5a5f;
+  --color-base-btn-hover-bg: #ecf4ff;
+  --color-btn-hover-border: #dbe5ea;
+  --color-yellow-bg: #ffe27b;
   --color-secondary: #f5f7fa;
-  --color-accent: #ffdd00;
-  --color-text: #1a1a1a;
-  --color-text-muted: #6b7280;
-  --color-background: #ffffff;
-  --color-border: #e5e7eb;
+  --color-red-bg: #ff9498;
+  --color-footer-link-yellow-brt: #fff200;
+  --color-footer-link-blue-brt: #00c5ff;
+  --color-footer-link-pink-brt: #e579ff;
+  --color-footer-link-purple-brt: #b97fff;
+  --color-footer-link-red-brt: #fa5801;
+  --color-footer-link-ligth-green: #70e3d3;
+  --color-footer-link-green: #46d75a;
 }
 
 body {

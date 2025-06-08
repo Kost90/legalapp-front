@@ -1,15 +1,15 @@
-'use client';
 import { ReactNode } from 'react';
 
-// import AuthTabs from '@/components/AuthTabs/AuthTabs';
-// import { AuthTabsProvider } from '@/components/AuthTabs/context';
+import { AuthTabsProvider } from '@/components/Authtabs/context';
+import AuthTabs from '@/components/Authtabs/AuthTabs';
 
-export default function AuthLayout(props: Readonly<{ children: ReactNode }>) {
+export default async function AuthLayout(props: Readonly<{ children: ReactNode; params: { lang: string } }>) {
+  const { lang } = await props.params;
   return (
-    // <AuthTabsProvider>
-    //   <AuthTabs />
+    <AuthTabsProvider>
+      <AuthTabs lang={lang} />
 
-    <div className="px-24 md:px-76 pb-24 md:pb-48">{props.children}</div>
-    // </AuthTabsProvider>
+      <div className="pb-24 md:pb-48 container mx-auto ">{props.children}</div>
+    </AuthTabsProvider>
   );
 }

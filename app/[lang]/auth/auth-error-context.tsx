@@ -56,7 +56,7 @@ export const AuthErrorProvider = ({ children }: { children: ReactNode }) => {
     >
       <AnimatePresence mode="popLayout">
         {error && (
-          <motion.div className="absolute w-full gap-4 py-8 flex items-center justify-center z-50 top-60">
+          <motion.div className="absolute w-full gap-4 py-8 flex items-center justify-center z-50 top-34">
             <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 8.33333V11.3333M10 12.9933V13M10 4L3.5 15H16.5L10 4Z" stroke="#FF587A" strokeLinecap="square" />
             </svg>
