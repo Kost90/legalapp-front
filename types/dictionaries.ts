@@ -3,6 +3,13 @@ interface BenefitItem {
   text: string;
 }
 
+interface IVerifyEmail {
+  title: string;
+  subtitle: string;
+  instructions: string;
+  back_button: string;
+}
+
 interface HeroData {
   title: string;
   subtitle_line1: string;
@@ -72,7 +79,7 @@ interface OnlineGenerationData {
 // --- Оновлені та нові інтерфейси ---
 interface HeaderData {
   login: string;
-  nav_contacts: string; // Загальний контакт або кнопка, не пункт меню сторінки "Контакти"
+  nav_contacts: string;
   button_generate: string;
   button_consultation: string;
   // Ключі для навігаційних посилань
@@ -90,21 +97,21 @@ interface HeaderData {
 interface MetaData {
   title: string;
   description: string;
-  keywords: string; // Або string[] якщо ви вирішите зберігати як масив
+  keywords: string;
   ogTitle: string;
   ogDescription: string;
-  twitterTitle?: string; // Може бути опціональним, якщо використовується fallback
-  twitterDescription?: string; // Може бути опціональним
-  appleWebAppTitle?: string; // Може бути опціональним
+  twitterTitle?: string;
+  twitterDescription?: string;
+  appleWebAppTitle?: string;
 }
 
-// Головний інтерфейс, що описує всю структуру JSON
 export interface SiteContent {
   header: HeaderData;
+  verify_email: IVerifyEmail;
   hero: HeroData;
   why_choose_us: WhyChooseUsData;
   legal_support: LegalSupportData;
   real_estate_services: RealEstateServicesData;
   online_generation: OnlineGenerationData;
-  meta: MetaData; // Додано нову секцію meta
+  meta: MetaData;
 }
