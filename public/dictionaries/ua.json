@@ -1,6 +1,7 @@
 {
   "header": {
     "login": "Увійти",
+    "logout":"Вийти",
     "nav_contacts": "Контакти",
     "button_generate": "Згенерувати документ",
     "button_consultation": "Консультація",

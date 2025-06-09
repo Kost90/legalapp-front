@@ -12,6 +12,7 @@ import { useRouter, useParams } from 'next/navigation';
 import Button from '@/components/Button/Button';
 import { useAuthTabs } from '@/components/Authtabs/context';
 import PageTitle from '@/components/PageTitle/PageTitle';
+import { useAuth } from '@/context/AuthProvider';
 
 type FormValues = {
   email: string;
@@ -23,6 +24,7 @@ export default function LoginForm({ lang }: { lang: string }) {
   const params = useParams();
   const { setHideTabs } = useAuthTabs();
   const { setError } = useAuthError();
+  const { loginFun } = useAuth();
   const methods = useForm<LoginFormSchema>({
     resolver: zodResolver(getLoginFormSchema(lang)),
     defaultValues: {
@@ -39,6 +41,7 @@ export default function LoginForm({ lang }: { lang: string }) {
       Cookies.set('refresh_token', res.data.refreshToken);
       Cookies.set('action_token', res.data.actionToken);
       const lang = (params.lang as string) || ('ua' as string);
+      loginFun();
       router.push(`/${lang}/redirect`);
     } catch (error: any) {
       const parsedError = JSON.parse(error.message);

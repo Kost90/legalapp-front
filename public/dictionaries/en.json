@@ -1,6 +1,7 @@
 {
   "header": {
     "login": "Login",
+    "logout":"Log out",
     "nav_contacts": "Contacts",
     "button_generate": "Generate Document",
     "button_consultation": "Get Consultation",
