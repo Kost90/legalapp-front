@@ -89,7 +89,7 @@ export default async function RootLayout({
       <body className={clsx(roboto.className, 'antialiased bg-gray-100 text-main-black min-h-screen w-full')}>
         <QueryProvider>
           <DeviceProvider>
-            <AuthProvider isAuth={accessToken && refreshToken ? true : false}>
+            <AuthProvider isAuth={accessToken && refreshToken ? true : false} lang={lang}>
               <div className="relative flex flex-col overflow-hidden isolate z-[1] w-full min-h-screen">
                 <Header lang={t} params={currentLang} />
                 {/* <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main> */}
