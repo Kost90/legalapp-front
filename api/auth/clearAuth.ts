@@ -12,8 +12,8 @@ export const clearAuth = async () => {
   ck.delete('action_token');
 };
 
-export const clearAuthAndRedirect = async (lang: string): Promise<never> => {
+export const clearAuthAndRedirect = async (lang: string): Promise<void> => {
   await clearAuth();
 
-  redirect(`/${lang}/auth/login`);
+  // redirect(`/${lang}/auth/login`);
 };

@@ -1,6 +1,7 @@
 'use client';
 
 import { clearAuthAndRedirect } from '@/api/auth/clearAuth';
+import { redirect } from 'next/navigation';
 import { createContext, ReactNode, useContext, useMemo, useCallback, useEffect, useState } from 'react';
 
 type AuthContextType = {
@@ -22,9 +23,10 @@ export const AuthProvider = ({ children, isAuth, lang }: { children: ReactNode; 
     setIsAuthenticated(true);
   }, []);
 
-  const logout = useCallback(() => {
-    clearAuthAndRedirect(lang);
+  const logout = useCallback(async () => {
+    await clearAuthAndRedirect(lang);
     setIsAuthenticated(false);
+    redirect(`/${lang}/auth/login`);
   }, []);
 
   const value = useMemo(
