@@ -1,5 +1,3 @@
-import { useWatch } from 'react-hook-form';
-
 import Button from '@/components/Button/Button';
 import PageTitle from '../PageTitle/PageTitle';
 import { SiteContent } from '@/types/dictionaries';
@@ -7,8 +5,6 @@ import { SiteContent } from '@/types/dictionaries';
 type VerifyYourEmailProps = { onBack: () => void; t: SiteContent };
 
 export default function VerifyYourEmail({ onBack, t }: VerifyYourEmailProps) {
-  const email = useWatch({ name: 'email' });
-
   return (
     <div className="mx-auto max-w-xl">
       <PageTitle className="mb-6" index={2} title={t.verify_email.title} />

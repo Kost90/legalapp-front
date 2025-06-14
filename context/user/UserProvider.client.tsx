@@ -44,7 +44,7 @@ export function UserProviderClient({ user: _user, children }: UserProviderProps)
         user,
         setUser,
         refreshUser: useCallback(async () => {
-          const { data } = await fetchCurrentUser();
+          const data = await fetchCurrentUser();
 
           setUser(data);
 

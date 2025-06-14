@@ -2,6 +2,7 @@
   "header": {
     "login": "Увійти",
     "logout":"Вийти",
+    "dashboard":"Кабінет",
     "nav_contacts": "Контакти",
     "button_generate": "Згенерувати документ",
     "button_consultation": "Консультація",

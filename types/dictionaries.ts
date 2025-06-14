@@ -80,6 +80,7 @@ interface OnlineGenerationData {
 interface HeaderData {
   login: string;
   logout: string;
+  dashboard: string;
   nav_contacts: string;
   button_generate: string;
   button_consultation: string;

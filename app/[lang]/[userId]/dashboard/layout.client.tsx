@@ -8,7 +8,7 @@ import { DashboardErrorProvider } from './dashboard-error-context';
 
 export default function DashboardLayoutClient(props: Readonly<{ children: ReactNode }>) {
   const pathname = usePathname();
-// TODO: Think about animation when changing tabs
+
   return (
     <AnimatePresence initial={false} mode="popLayout">
       <DashboardErrorProvider>
