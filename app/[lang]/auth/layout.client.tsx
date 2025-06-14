@@ -7,7 +7,7 @@ import { ReactNode } from 'react';
 
 import { AuthErrorProvider } from './auth-error-context';
 
-export default function DashboardLayoutClient(props: Readonly<{ children: ReactNode }>) {
+export default function AuthLayoutClient(props: Readonly<{ children: ReactNode }>) {
   const pathname = usePathname();
 
   return (

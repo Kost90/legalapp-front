@@ -5,6 +5,7 @@ import { createContext, useContext, ReactNode, Dispatch, SetStateAction, useStat
 import { fetchCurrentUser } from '@/api/user/fetchCurrentUser';
 import { userInformationData } from '@/types/user';
 
+// TODO:Make correct interface for user
 interface UserContextType {
   user: userInformationData;
   setUser: Dispatch<SetStateAction<userInformationData>>;
@@ -43,7 +44,7 @@ export function UserProviderClient({ user: _user, children }: UserProviderProps)
         user,
         setUser,
         refreshUser: useCallback(async () => {
-          const { data } = await fetchCurrentUser();
+          const data = await fetchCurrentUser();
 
           setUser(data);
 

@@ -32,3 +32,9 @@ export type userInformationData = {
   phone: string;
   documents?: IDocuments[];
 };
+
+export type CurrentUserResponse = {
+  data: userInformationData;
+  message: string;
+  statusCode: string;
+};

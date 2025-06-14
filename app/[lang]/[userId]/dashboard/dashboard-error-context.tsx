@@ -4,27 +4,27 @@ import { AnimatePresence, motion } from 'motion/react';
 import { usePathname } from 'next/navigation';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
-type AuthErrorContextType = {
+type DashboardErrorContextType = {
   error: string;
   setError: (error: string) => void;
 };
 
-const AuthErrorContext = createContext<AuthErrorContextType>({
+const DashboardErrorContext = createContext<DashboardErrorContextType>({
   error: '',
   setError: () => {},
 });
 
-export const useAuthError = () => {
-  const context = useContext(AuthErrorContext);
+export const useDashboardError = () => {
+  const context = useContext(DashboardErrorContext);
 
   if (!context) {
-    throw new Error('useAuthError must be used within an AuthErrorProvider');
+    throw new Error('DashboardErrorProvider must be used within an AuthErrorProvider');
   }
 
   return context;
 };
 
-export const AuthErrorProvider = ({ children }: { children: ReactNode }) => {
+export const DashboardErrorProvider = ({ children }: { children: ReactNode }) => {
   const [error, setError] = useState('');
 
   const pathname = usePathname();
@@ -33,8 +33,9 @@ export const AuthErrorProvider = ({ children }: { children: ReactNode }) => {
     setError('');
   }, [pathname]);
 
+  // TODO: Change styles
   return (
-    <AuthErrorContext.Provider
+    <DashboardErrorContext.Provider
       value={{
         error,
         setError: (error: string) => {
@@ -57,6 +58,6 @@ export const AuthErrorProvider = ({ children }: { children: ReactNode }) => {
       </AnimatePresence>
 
       {children}
-    </AuthErrorContext.Provider>
+    </DashboardErrorContext.Provider>
   );
 };
