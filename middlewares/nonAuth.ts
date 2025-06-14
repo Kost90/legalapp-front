@@ -18,6 +18,6 @@ export async function handleNonAuth(request: NextRequest) {
       clearAuth();
       return NextResponse.redirect(new URL(`/${lang}/auth/login`, request.url));
     }
-    return NextResponse.redirect(new URL(`/${lang}/${userId}/dashboard`, request.url));
+    return NextResponse.redirect(new URL(`/${lang}/${userId}/dashboard/generate`, request.url));
   }
 }

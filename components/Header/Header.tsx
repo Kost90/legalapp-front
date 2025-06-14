@@ -12,6 +12,8 @@ import { SiteContent } from '@/types/dictionaries';
 import { MenuVariants } from './animation-variants';
 import LanguageSwitcher from '../LanguagesSwitcher/LanguagesSwitcher';
 import { HEADER_NAV_VARIANTS } from './HeaderNavItem/variants';
+import { useAuth } from '@/context/AuthProvider';
+import Button from '../Button/Button';
 
 export type NavItemType = {
   label: string;
@@ -21,6 +23,7 @@ export type NavItemType = {
 
 export default function Header({ lang, params }: { lang: SiteContent; params: string }) {
   const deviceContext = useDevice();
+  const { isAuthenticated, logout } = useAuth();
   const [isClient, setIsClient] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -60,13 +63,25 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
               {navItems.map((item, i) => (
                 <HeaderNavItem key={`${item.href}+${i}`} href={item.href} label={item.label} />
               ))}
-              {lang.header.login && (
+              {lang.header.login && !isAuthenticated ? (
                 <HeaderNavItem
                   key={`login-${params}desc`}
                   href={`/${params}/auth/login`}
                   label={lang.header.login}
                   variant={HEADER_NAV_VARIANTS.BUTTON}
                 />
+              ) : (
+                <>
+                  <HeaderNavItem
+                    key={`login-${params}desc`}
+                    href={`/${params}/auth/login`}
+                    label={lang.header.dashboard}
+                    variant={HEADER_NAV_VARIANTS.BUTTON}
+                  />
+                  <Button onClick={logout} className="!px-2 !py-0 !mt-0">
+                    {lang.header.logout}
+                  </Button>
+                </>
               )}
 
               <LanguageSwitcher currentLang={params} specialKey={'desc'} />
@@ -109,7 +124,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
               {navItems.map((item, i) => (
                 <HeaderNavItem key={`${item.href}+${i}mob`} href={item.href} label={item.label} onClick={toggleMobileMenu} />
               ))}
-              {lang.header.login && (
+              {lang.header.login && !isAuthenticated ? (
                 <HeaderNavItem
                   key={`login-${params}mob`}
                   href={`/${params}/auth/login`}
@@ -117,6 +132,10 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
                   variant={HEADER_NAV_VARIANTS.BUTTON}
                   onClick={toggleMobileMenu}
                 />
+              ) : (
+                <Button onClick={logout} className="!px-3 !py-1">
+                  {lang.header.logout}
+                </Button>
               )}
 
               <LanguageSwitcher currentLang={params} specialKey={'mob'} />

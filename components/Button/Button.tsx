@@ -41,13 +41,14 @@ export default function Button({
       {...attrs}
       className={cn(
         'flex justify-center items-center min-w-32 py-2 px-8 mt-3 border border-gray-200 text-center rounded-md gap-1',
-        attrs.className,
         {
-          'bg-main-black text-headerfooterwhite hover:bg-black': buttonType === 'submit',
-          'bg-white text-link-btn-text hover:bg-base-btn-hover-bg': type === 'default' && buttonType === 'button',
-          'bg-redbtn text-white hover:bg-red-500': type === 'critical',
-          'bg-blue-300! text-gray-200': disabledOrLoading,
+          'bg-main-black text-headerfooterwhite hover:bg-black': buttonType === 'submit' && !disabledOrLoading,
+          'bg-white text-link-btn-text hover:bg-base-btn-hover-bg': type === 'default' && buttonType === 'button' && !disabledOrLoading,
+          'bg-redbtn text-white hover:bg-red-500': type === 'critical' && !disabledOrLoading,
+          '!bg-black !text-headerfooterwhite': buttonType === 'submit' && disabledOrLoading,
+          'bg-base-btn-hover-bg text-main-black': buttonType !== 'submit' && disabledOrLoading,
         },
+        attrs.className,
       )}
       disabled={disabledOrLoading}
       ref={ref}
@@ -57,7 +58,7 @@ export default function Button({
       {children}
 
       {loadingOrSubmitting && (
-        <div className="overlay flex-center backdrop-blur-sm">
+        <div className="overlay flex justify-center items-center backdrop-blur-sm">
           <Spinner />
         </div>
       )}
