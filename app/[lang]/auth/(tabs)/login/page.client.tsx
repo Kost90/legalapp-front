@@ -58,7 +58,7 @@ export default function LoginForm({ lang }: { lang: string }) {
       <PageTitle className="mb-6 max-w-md mx-auto" title={lang === 'ua' ? 'Увійти до аккаунту' : 'Log In'} />
       <form onSubmit={methods.handleSubmit(onSubmit)} className="max-w-md mx-auto p-4 shadow rounded-sm border-btn-border-color bg-white">
         <FormInput name="email" label="Email" placeholder={lang === 'ua' ? 'Твій email' : 'Your email'} />
-        <FormInput name="password" label="Password" placeholder="password" />
+        <FormInput name="password" label="Password" placeholder="password" type="password" />
         <Button buttonType="submit" loading={methods.formState.isSubmitting || methods.formState.isSubmitSuccessful}>
           {lang === 'ua' ? 'Увійти' : 'Submit'}
         </Button>

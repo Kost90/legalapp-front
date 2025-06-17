@@ -80,7 +80,7 @@ const SignUpForm = ({ form, handleSubmit, lang }: { form: UseFormReturn<any>; ha
         placeholder={lang === 'ua' ? 'твоє прізвище' : 'your lastname'}
       />
       <FormInput name="email" label="Email" placeholder={lang === 'ua' ? 'твій email' : 'your email'} />
-      <FormInput name="password" label="Password" placeholder="password" />
+      <FormInput name="password" label="Password" placeholder="password" type="password" />
       <PhoneNumber occupyErrorSpace={false} />
       <Button buttonType="submit" loading={formState.isSubmitting || formState.isSubmitSuccessful}>
         {lang === 'ua' ? 'Зареєструватись' : 'Submit'}
