@@ -133,9 +133,17 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
                   onClick={toggleMobileMenu}
                 />
               ) : (
-                <Button onClick={logout} className="!px-3 !py-1">
-                  {lang.header.logout}
-                </Button>
+                <>
+                  <HeaderNavItem
+                    key={`login-${params}desc`}
+                    href={`/${params}/auth/login`}
+                    label={lang.header.dashboard}
+                    variant={HEADER_NAV_VARIANTS.BUTTON}
+                  />
+                  <Button onClick={logout} className="!px-2 !py-0 !mt-0">
+                    {lang.header.logout}
+                  </Button>
+                </>
               )}
 
               <LanguageSwitcher currentLang={params} specialKey={'mob'} />

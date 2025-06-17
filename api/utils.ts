@@ -57,13 +57,14 @@ export const makeRequest = async ({
   url,
   options,
   accessToken,
+  responseType = 'json',
 }: {
   url: string;
   options: Omit<RequestInit, 'body'> & { body?: any };
   accessToken?: string;
+  responseType?: 'json' | 'blob' | 'text';
 }) => {
   const headers = new Headers(options.headers);
-
   let body = undefined;
 
   if (options.body) {
@@ -85,11 +86,18 @@ export const makeRequest = async ({
     body,
   });
 
-  const json = await res.json();
+  let data: any;
+  if (responseType === 'json') {
+    data = await res.json();
+  } else if (responseType === 'blob') {
+    data = await res.blob();
+  } else if (responseType === 'text') {
+    data = await res.text();
+  }
 
   return {
     res,
-    json,
+    json: data,
   };
 };
 
@@ -137,31 +145,30 @@ export const createRequestClient = ({
 }) => {
   const doRequest = async <TResult, TBody = undefined>(
     url: string,
-    options: Omit<RequestInit, 'body'> & { body?: TBody },
+    options: Omit<RequestInit, 'body'> & { body?: TBody; responseType?: 'json' | 'blob' | 'text' },
     errorMatchers?: Record<string, Record<string, string>>,
-  ) => {
+  ): Promise<TResult> => {
     const accessToken = await getAccessToken();
 
     const { res, json } = await makeRequest({
       url,
       options,
       accessToken,
+      responseType: options.responseType ?? 'json',
     });
 
-    if (res.status === 401 && ['TOKEN_EXPIRED', 'INVALID_TOKEN', 'NO_TOKEN'].includes(json.error)) {
+    if (res.status === 401 && ['TOKEN_EXPIRED', 'INVALID_TOKEN', 'NO_TOKEN'].includes(json?.error)) {
       const r = await refreshToken({
         refreshToken: await getRefreshToken(),
         setToken,
       });
 
-      if (!r) {
-        redirect('/auth/login');
-      }
+      if (!r) redirect('/auth/login');
 
       return doRequest(url, options, errorMatchers);
     }
 
-    if (!res.ok) {
+    if (!res.ok && options.responseType === 'json') {
       handleError(json, errorMatchers);
     }
 
