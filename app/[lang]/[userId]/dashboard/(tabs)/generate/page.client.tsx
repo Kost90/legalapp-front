@@ -3,8 +3,8 @@ import DocumentFlow from '@/components/Container/DocumentFlowSteper/DocumentFlow
 import { SiteContent } from '@/types/dictionaries';
 import React from 'react';
 
-function GenerateDocumentClientPage({ dictionary }: { dictionary: SiteContent }) {
-  return <DocumentFlow />;
+function GenerateDocumentClientPage({ dictionary, language }: { dictionary: SiteContent; language: string }) {
+  return <DocumentFlow lang={language} dictionary={dictionary} />;
 }
 
 export default GenerateDocumentClientPage;

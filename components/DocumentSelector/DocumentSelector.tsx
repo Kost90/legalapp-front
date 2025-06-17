@@ -3,13 +3,14 @@ import { FC } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 
 interface DocumentSelectorProps {
-  options: string[];
+  options: Record<string, string>[];
   value: string;
   onChange: (value: string) => void;
   onNext: () => void;
   onBack: () => void;
 }
 
+//TODO:Add dictionary
 const DocumentSelector: FC<DocumentSelectorProps> = ({ options, value, onChange, onNext, onBack }) => {
   return (
     <div className="space-y-4">
@@ -19,13 +20,19 @@ const DocumentSelector: FC<DocumentSelectorProps> = ({ options, value, onChange,
         className="w-full border border-btn-border-color rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-link-btn-text"
       >
         <option value="" disabled>
-          Выберите документ
+          Оберіть документ
         </option>
-        {options.map((doc) => (
-          <option key={doc} value={doc}>
-            {doc}
-          </option>
-        ))}
+        {options.map((doc) => {
+          const entries = Object.entries(doc);
+          if (entries.length !== 1) return null;
+
+          const [key, value] = entries[0];
+          return (
+            <option key={value} value={key}>
+              {value}
+            </option>
+          );
+        })}
       </select>
 
       <div className="flex justify-between">
