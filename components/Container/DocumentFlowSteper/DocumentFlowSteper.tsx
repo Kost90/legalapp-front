@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm, UseFormReturn, useFormState } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import z from 'zod';
 
 import CardCategory from '@/components/CardCategory/CardCategory';
 import DocumentSelector from '@/components/DocumentSelector/DocumentSelector';
@@ -12,23 +11,16 @@ import Button from '@/components/Button/Button';
 
 import { useUser } from '@/context/user/UserProvider.client';
 import { generatePowerOfAttorney } from '@/api/documents/generatePowerOfAttorney';
-import { formFieldsSchemas, propertyPowerOfAttorneySchema } from '@/schemas/generateDocuments/powerOfAttorneySchema';
+import { getPropertyPowerOfAttorneySchema, PropertyPowerOfAttorneyFormData } from '@/schemas/generateDocuments/powerOfAttorneySchema';
 import { DOCUMENT_TYPE } from '@/lib/constans';
-import { SiteContent } from '@/types/dictionaries';
 import { PowerOfAttorney } from '@/types/documents/power-of-attorney';
 import { zodToFieldSchema } from '@/utils/zodToFieldSchema';
+import { IGenerateDocumentsContent } from '@/types/documents/generate-documents-dictionaries';
+import { formFieldsSchemas } from '@/lib/formsFields/powerOfAttorneyProperty';
 
-type PropertyPowerOfAttorneyFormData = z.infer<typeof propertyPowerOfAttorneySchema>;
 type Step = 'category' | 'select' | 'form' | 'result';
 
-const DOCUMENT_CATEGORIES: Record<string, Record<string, string>[]> = {
-  'Нотаріальні документи': [{ [DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY]: 'Довіренність з оформлення нерухомості' }],
-  'Семейное право': [],
-  'Корпоративное право': [],
-  Договора: [],
-};
-
-export default function DocumentFlow({ lang, dictionary }: { lang: string; dictionary: SiteContent }) {
+export default function DocumentFlow({ lang, dictionary }: { lang: string; dictionary: IGenerateDocumentsContent }) {
   const { user } = useUser();
   const [step, setStep] = useState<Step>('category');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -37,7 +29,7 @@ export default function DocumentFlow({ lang, dictionary }: { lang: string; dicti
   const [formFieldsSchema, setFormFieldsSchema] = useState<FieldSchema[] | null>(null);
 
   const form = useForm<PropertyPowerOfAttorneyFormData>({
-    resolver: zodResolver(propertyPowerOfAttorneySchema),
+    resolver: zodResolver(getPropertyPowerOfAttorneySchema(lang)),
   });
 
   const handleCategoryClick = (category: string) => {
@@ -100,11 +92,12 @@ export default function DocumentFlow({ lang, dictionary }: { lang: string; dicti
     }
   };
 
+  // TODO: Change lang for inputs, placeholders, labels, make errors from validation visible
   return (
     <div className="max-w-4xl mx-auto p-6">
       {step === 'category' && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-          {Object.entries(DOCUMENT_CATEGORIES).map(([category, docs]) => (
+          {Object.entries(dictionary.documentsCategories).map(([category, docs]) => (
             <CardCategory
               key={category}
               title={category}
@@ -117,7 +110,7 @@ export default function DocumentFlow({ lang, dictionary }: { lang: string; dicti
 
       {step === 'select' && (
         <DocumentSelector
-          options={DOCUMENT_CATEGORIES[selectedCategory]}
+          options={dictionary.documentsCategories[selectedCategory]}
           value={selectedDocument}
           onChange={setSelectedDocument}
           onBack={() => setStep('category')}
