@@ -20,6 +20,23 @@ import { formFieldsSchemas } from '@/lib/formsFields/powerOfAttorneyProperty';
 
 type Step = 'category' | 'select' | 'form' | 'result';
 
+// const FORM_STEPS = ['person', 'representative', 'property', 'meta'] as const;
+// type FormStep = (typeof FORM_STEPS)[number];
+
+// const formStepFields: Record<FormStep, string[]> = {
+//   person: ['fullName', 'birthDate', 'tin', 'address', 'passport', 'passportIssueDate'],
+//   representative: ['representativeName', 'representativeBirthDate', 'representativeTIN', 'representativeAddress'],
+//   property: [
+//     'city',
+//     'propertyAddress.city',
+//     'propertyAddress.street',
+//     'propertyAddress.buildNumber',
+//     'propertyAddress.apartment',
+//     'propertyAddress.postCode',
+//   ],
+//   meta: ['date', 'validUntil'],
+// };
+
 export default function DocumentFlow({ lang, dictionary }: { lang: string; dictionary: IGenerateDocumentsContent }) {
   const { user } = useUser();
   const [step, setStep] = useState<Step>('category');
@@ -53,9 +70,8 @@ export default function DocumentFlow({ lang, dictionary }: { lang: string; dicti
 
   const handleGenerate = async (formData: PropertyPowerOfAttorneyFormData) => {
     try {
-      const { details } = formData;
-      const { propertyAddress, ...restDetails } = details;
-
+      const { propertyAddress, ...rest } = formData;
+      // TODO: Think to maove peace of code with construction data for send to util
       const hasAddress = propertyAddress?.city || propertyAddress?.street || propertyAddress?.buildNumber;
 
       const cleanedAddress = hasAddress
@@ -74,15 +90,17 @@ export default function DocumentFlow({ lang, dictionary }: { lang: string; dicti
         documentType: DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY,
         isPaid: true,
         details: {
-          ...restDetails,
+          ...rest,
           ...(cleanedAddress ? { propertyAddress: cleanedAddress } : {}),
         },
       };
+
       const documentBlob = await generatePowerOfAttorney(user.id, dataForSend);
       const fileURL = window.URL.createObjectURL(documentBlob);
 
       setGeneratedPdfUrl(fileURL);
       setStep('result');
+      // TODO: Think about error message
     } catch (error: any) {
       const parsedError = JSON.parse(error.message);
       if (parsedError.field) {
@@ -101,7 +119,7 @@ export default function DocumentFlow({ lang, dictionary }: { lang: string; dicti
             <CardCategory
               key={category}
               title={category}
-              description={`Документов: ${docs.length}`}
+              description={lang === 'ua' ? `Документів: ${docs.length}` : `Documents: ${docs.length}`}
               onClick={() => handleCategoryClick(category)}
             />
           ))}
@@ -115,6 +133,7 @@ export default function DocumentFlow({ lang, dictionary }: { lang: string; dicti
           onChange={setSelectedDocument}
           onBack={() => setStep('category')}
           onNext={() => setStep('form')}
+          lang={lang}
         />
       )}
 
@@ -162,3 +181,43 @@ const DynamicForm = ({
     </form>
   );
 };
+
+// const DynamicForm = ({
+//   form,
+//   handleSubmit,
+//   lang,
+//   formSchema,
+// }: {
+//   form: UseFormReturn<PropertyPowerOfAttorneyFormData>;
+//   handleSubmit: (data: PropertyPowerOfAttorneyFormData) => void;
+//   lang: string;
+//   formSchema: FieldSchema[];
+// }) => {
+//   const [currentFormStep, setCurrentFormStep] = useState<FormStep>('person');
+//   const { isSubmitting, isSubmitSuccessful } = useFormState({ control: form.control });
+
+//   const currentFields = formSchema.filter((field) => formStepFields[currentFormStep].includes(field.name));
+
+//   return (
+//     <form onSubmit={form.handleSubmit(handleSubmit)} className="relative max-w-md mx-auto p-4 bg-white shadow rounded space-y-4">
+//       <DynamicFormFields schema={currentFields} />
+
+//       <div className="flex justify-between">
+//         {currentFormStep !== 'person' && (
+//           <Button buttonType="button" onClick={() => setCurrentFormStep(FORM_STEPS[FORM_STEPS.indexOf(currentFormStep) - 1])}>
+//             Назад
+//           </Button>
+//         )}
+//         {currentFormStep !== 'meta' ? (
+//           <Button buttonType="button" onClick={() => setCurrentFormStep(FORM_STEPS[FORM_STEPS.indexOf(currentFormStep) + 1])}>
+//             Далі
+//           </Button>
+//         ) : (
+//           <Button buttonType="submit" loading={isSubmitting || isSubmitSuccessful}>
+//             {lang === 'ua' ? 'Згенерувати' : 'Generate'}
+//           </Button>
+//         )}
+//       </div>
+//     </form>
+//   );
+// };

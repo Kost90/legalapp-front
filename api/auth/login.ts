@@ -13,6 +13,7 @@ export const login = async (body: LoginBody) =>
     {
       method: 'POST',
       body: body,
+      responseType: 'json',
     },
     {
       email: {

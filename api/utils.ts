@@ -148,6 +148,8 @@ export const createRequestClient = ({
     options: Omit<RequestInit, 'body'> & { body?: TBody; responseType?: 'json' | 'blob' | 'text' },
     errorMatchers?: Record<string, Record<string, string>>,
   ): Promise<TResult> => {
+    options.responseType = options.responseType ?? 'json';
+
     const accessToken = await getAccessToken();
 
     const { res, json } = await makeRequest({
