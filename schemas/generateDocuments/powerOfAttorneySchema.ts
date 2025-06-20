@@ -22,9 +22,9 @@ export const getPropertyPowerOfAttorneySchema = (lang: string) =>
 
     propertyAddress: z
       .object({
-        city: z.string().optional(),
-        street: z.string().optional(),
-        buildNumber: z.string().optional(),
+        city: z.string(),
+        street: z.string(),
+        buildNumber: z.string(),
         apartment: z.string().optional(),
         postCode: z.string().optional(),
       })
