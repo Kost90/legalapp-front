@@ -4,7 +4,7 @@ import { ChevronRight, ChevronLeft } from 'lucide-react';
 
 interface DocumentSelectorProps {
   options: Record<string, string>[];
-  value: string;
+  value: string | null;
   lang: string;
   onChange: (value: string) => void;
   onNext: () => void;
@@ -16,7 +16,7 @@ const DocumentSelector: FC<DocumentSelectorProps> = ({ options, value, lang, onC
   return (
     <div className="space-y-4">
       <select
-        value={value}
+        value={value ?? ''}
         onChange={(e) => onChange(e.target.value)}
         className="w-full border border-btn-border-color rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-link-btn-text"
       >

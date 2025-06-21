@@ -15,11 +15,13 @@ type GenerateDocumentContext = {
   //TODO:Add more types
   documentDetails: PowerOfAttorney | null;
   generatedPdfUrl: string;
+  selectedDocument: string;
 };
 
 const FormStateContext = createContext<GenerateDocumentContext | null>(null);
 
 export type GenerateStep = (typeof FORM_STEPS)[number];
+// TODO: Think about make it automation by choose different doc
 export const FORM_STEPS = [
   {
     label: 'Данні особи яка надає доручення',
@@ -48,16 +50,19 @@ export function GenerateDocumentProvider({
   step,
   setStep,
   lang,
+  selectedDocument,
 }: {
   children: ReactNode;
   step: GenerateStep;
   setStep: (value: GenerateStep) => void;
   lang: string;
+  selectedDocument: string;
 }) {
   const [documentDetails, setDocumentDetails] = useState<PowerOfAttorney | null>(null);
   const { user } = useUser();
   const [generatedPdfUrl, setGeneratedPdfUrl] = useState('');
 
+  // TODO: Think about make form reusable
   const form = useForm<PropertyPowerOfAttorneyFormData>({
     resolver: zodResolver(getPropertyPowerOfAttorneySchema(lang)),
   });
@@ -107,6 +112,7 @@ export function GenerateDocumentProvider({
         onSubmit,
         documentDetails,
         generatedPdfUrl,
+        selectedDocument,
       }}
     >
       <FormProvider {...form}>{children}</FormProvider>
