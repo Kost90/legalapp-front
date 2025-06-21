@@ -1,137 +1,44 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { FormProvider, useForm, UseFormReturn, useFormState } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import z from 'zod';
+import { useEffect, useMemo, useState } from 'react';
+import { FormProvider, UseFormReturn, useFormState, useWatch } from 'react-hook-form';
 
-import CardCategory from '@/components/CardCategory/CardCategory';
-import DocumentSelector from '@/components/DocumentSelector/DocumentSelector';
-import DynamicFormFields, { FieldSchema } from '@/components/DynamicFormFields/DynamicFormFields';
+import DynamicFormFields from '@/components/DynamicFormFields/DynamicFormFields';
 import Button from '@/components/Button/Button';
 
-import { useUser } from '@/context/user/UserProvider.client';
-import { generatePowerOfAttorney } from '@/api/documents/generatePowerOfAttorney';
-import { formFieldsSchemas, propertyPowerOfAttorneySchema } from '@/schemas/generateDocuments/powerOfAttorneySchema';
-import { DOCUMENT_TYPE } from '@/lib/constans';
-import { SiteContent } from '@/types/dictionaries';
-import { PowerOfAttorney } from '@/types/documents/power-of-attorney';
-import { zodToFieldSchema } from '@/utils/zodToFieldSchema';
+import { IGenerateDocumentsContent } from '@/types/documents/generate-documents-dictionaries';
+import { formFieldsSchemas } from '@/lib/formsFields/powerOfAttorneyProperty';
+import { FORM_STEPS, GenerateStep, useGenerateDocument, useGenerateDocumentForm } from '@/context/generateStepper/GenerateDocumentStepper';
+import Stepper from '@/components/Stepper/Stepper';
+import { FieldSchema } from '@/types/documents/formInput';
 
-type PropertyPowerOfAttorneyFormData = z.infer<typeof propertyPowerOfAttorneySchema>;
-type Step = 'category' | 'select' | 'form' | 'result';
-
-const DOCUMENT_CATEGORIES: Record<string, Record<string, string>[]> = {
-  'Нотаріальні документи': [{ [DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY]: 'Довіренність з оформлення нерухомості' }],
-  'Семейное право': [],
-  'Корпоративное право': [],
-  Договора: [],
-};
-
-export default function DocumentFlow({ lang, dictionary }: { lang: string; dictionary: SiteContent }) {
-  const { user } = useUser();
-  const [step, setStep] = useState<Step>('category');
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedDocument, setSelectedDocument] = useState('');
-  const [generatedPdfUrl, setGeneratedPdfUrl] = useState('');
+export default function DocumentFlow({ lang, dictionary }: { lang: string; dictionary: IGenerateDocumentsContent }) {
+  const { step, setStep, onSubmit, generatedPdfUrl, selectedDocument } = useGenerateDocument();
+  const form = useGenerateDocumentForm();
   const [formFieldsSchema, setFormFieldsSchema] = useState<FieldSchema[] | null>(null);
 
-  const form = useForm<PropertyPowerOfAttorneyFormData>({
-    resolver: zodResolver(propertyPowerOfAttorneySchema),
-  });
-
-  const handleCategoryClick = (category: string) => {
-    setSelectedCategory(category);
-    setStep('select');
-  };
-
   useEffect(() => {
-    if (selectedDocument) {
-      setFormFieldsSchema(formFieldsSchemas[selectedDocument]?.[lang] ?? null);
+    if (selectedDocument && lang) {
+      setFormFieldsSchema(formFieldsSchemas[selectedDocument]?.[lang]?.[step.key] ?? null);
     }
-  }, [selectedDocument, lang]);
-
-  // useEffect(() => {
-  //   if (selectedDocument) {
-  //     //TODO: Think about atomation choosing schema
-  //     const schema = propertyPowerOfAttorneySchema;
-  //     setFormFieldsSchema(zodToFieldSchema(schema, lang as 'ua'));
-  //   }
-  // }, [selectedDocument, lang]);
-
-  const handleGenerate = async (formData: PropertyPowerOfAttorneyFormData) => {
-    try {
-      const { details } = formData;
-      const { propertyAddress, ...restDetails } = details;
-
-      const hasAddress = propertyAddress?.city || propertyAddress?.street || propertyAddress?.buildNumber;
-
-      const cleanedAddress = hasAddress
-        ? {
-            city: propertyAddress?.city || '',
-            street: propertyAddress?.street || '',
-            buildNumber: propertyAddress?.buildNumber || '',
-            ...(propertyAddress?.apartment ? { apartment: propertyAddress.apartment } : {}),
-            ...(propertyAddress?.postCode ? { postCode: propertyAddress.postCode } : {}),
-          }
-        : undefined;
-
-      const dataForSend: PowerOfAttorney = {
-        email: user.email,
-        documentLang: lang,
-        documentType: DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY,
-        isPaid: true,
-        details: {
-          ...restDetails,
-          ...(cleanedAddress ? { propertyAddress: cleanedAddress } : {}),
-        },
-      };
-      const documentBlob = await generatePowerOfAttorney(user.id, dataForSend);
-      const fileURL = window.URL.createObjectURL(documentBlob);
-
-      setGeneratedPdfUrl(fileURL);
-      setStep('result');
-    } catch (error: any) {
-      const parsedError = JSON.parse(error.message);
-      if (parsedError.field) {
-        form.setError(parsedError.field, { message: parsedError.message });
-      }
-      form.setError('root', { message: parsedError.message });
-    }
-  };
-
+  }, [selectedDocument, lang, step.key]);
   return (
     <div className="max-w-4xl mx-auto p-6">
-      {step === 'category' && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-          {Object.entries(DOCUMENT_CATEGORIES).map(([category, docs]) => (
-            <CardCategory
-              key={category}
-              title={category}
-              description={`Документов: ${docs.length}`}
-              onClick={() => handleCategoryClick(category)}
-            />
-          ))}
-        </div>
-      )}
+      <div className="before:border-b before:overlay before:pointer-events-none before:border-border-faint z-[2]">
+        {selectedDocument && (
+          <div className="z-10 top-0 bg-white">
+            <GenerateDocumentsStepper />
+          </div>
+        )}
+      </div>
 
-      {step === 'select' && (
-        <DocumentSelector
-          options={DOCUMENT_CATEGORIES[selectedCategory]}
-          value={selectedDocument}
-          onChange={setSelectedDocument}
-          onBack={() => setStep('category')}
-          onNext={() => setStep('form')}
-        />
-      )}
-
-      {step === 'form' && formFieldsSchema && (
+      {selectedDocument && formFieldsSchema && (
         <FormProvider {...form}>
-          <DynamicForm form={form} formSchema={formFieldsSchema} handleSubmit={handleGenerate} lang={lang} />
+          <DynamicForm formSchema={formFieldsSchema} handleSubmit={onSubmit} lang={lang} currentStep={step} setStep={setStep} />
         </FormProvider>
       )}
 
-      {step === 'result' && (
+      {step.key === 'result' && (
         <div className="text-center space-y-4">
           <p className="text-lg font-semibold">Документ успешно сгенерирован!</p>
           <iframe src={generatedPdfUrl} className="w-full h-[80vh] border rounded" />
@@ -149,23 +56,152 @@ export default function DocumentFlow({ lang, dictionary }: { lang: string; dicti
 }
 
 const DynamicForm = ({
-  form,
   handleSubmit,
   lang,
   formSchema,
+  currentStep,
+  setStep,
 }: {
-  form: UseFormReturn<PropertyPowerOfAttorneyFormData>;
-  handleSubmit: (data: PropertyPowerOfAttorneyFormData) => void;
+  handleSubmit: ReturnType<UseFormReturn['handleSubmit']>;
   lang: string;
   formSchema: FieldSchema[];
+  currentStep: GenerateStep;
+  setStep: (value: GenerateStep) => void;
 }) => {
-  const { isSubmitting, isSubmitSuccessful } = useFormState({ control: form.control });
+  const activeIndex = FORM_STEPS.indexOf(currentStep);
+  const previousStep = FORM_STEPS[activeIndex - 1];
+
   return (
-    <form onSubmit={form.handleSubmit(handleSubmit)} className="relative max-w-md mx-auto p-4 bg-white shadow rounded">
+    <form onSubmit={handleSubmit} className="relative max-w-md mx-auto p-4 bg-white shadow rounded">
       <DynamicFormFields schema={formSchema} />
-      <Button buttonType="submit" loading={isSubmitting || isSubmitSuccessful}>
-        {lang === 'ua' ? 'Згенерувати' : 'Generate'}
-      </Button>
+
+      <div className="flex justify-between">
+        {previousStep && (
+          <Button onClick={() => setStep(previousStep)}>
+            <span>Back</span>
+          </Button>
+        )}
+
+        <SubmitButton />
+      </div>
     </form>
   );
 };
+
+const GenerateDocumentsStepper = () => {
+  const { step, setStep, documentDetails } = useGenerateDocument();
+
+  const form = useGenerateDocumentForm();
+  const values = useWatch({ control: form.control });
+
+  // TODO: Think about making it reusable
+  const filledStepIndex = useMemo(() => {
+    if (!values.fullName && !values.birthDate && !values.tin && !values.address && !values.passport && !values.passportIssueDate) return 0;
+    if (!values.representativeName && !values.representativeBirthDate && !values.representativeTIN && !values.representativeAddress)
+      return 1;
+    if (
+      !values.city &&
+      !values.propertyAddress?.city &&
+      !values.propertyAddress?.street &&
+      !values.propertyAddress?.buildNumber &&
+      !values.propertyAddress?.apartment &&
+      !values.propertyAddress?.postCode
+    )
+      return 2;
+    if (!values.date && !values.validUntil) return 3;
+
+    return 4;
+  }, [values, documentDetails]);
+
+  return (
+    <Stepper
+      activeStep={step.key}
+      filledStepIndex={filledStepIndex}
+      setActiveStep={(value: string) => setStep(FORM_STEPS.find((step) => step.key === value)!)}
+      steps={
+        FORM_STEPS as unknown as {
+          label: string;
+          key: string;
+        }[]
+      }
+    />
+  );
+};
+
+function SubmitButton() {
+  const form = useGenerateDocumentForm();
+  const { setStep, step, onSubmit } = useGenerateDocument();
+
+  const activeIndex = FORM_STEPS.indexOf(step);
+  const nextStep = FORM_STEPS[activeIndex + 1];
+
+  const values = useWatch({ control: form.control });
+  const isHidden = useMemo(() => {
+    if (
+      step.key === 'person' &&
+      !values.fullName &&
+      !values.birthDate &&
+      !values.tin &&
+      !values.address &&
+      !values.passport &&
+      !values.passportIssueDate
+    )
+      return true;
+    if (
+      step.key === 'representative' &&
+      !values.representativeName &&
+      !values.representativeBirthDate &&
+      !values.representativeTIN &&
+      !values.representativeAddress
+    )
+      return true;
+    if (
+      step.key === 'property' &&
+      !values.propertyAddress?.city &&
+      !values.propertyAddress?.street &&
+      !values.propertyAddress?.buildNumber &&
+      !values.propertyAddress?.apartment &&
+      !values.propertyAddress?.postCode
+    )
+      return true;
+    if (step.key === 'meta' && !values.date && !values.validUntil) return true;
+
+    return false;
+  }, [step.key, values]);
+
+  const formState = useFormState(form);
+
+  if (isHidden) return null;
+
+  //   if (step.key === 'result') {
+  //     return (
+  //       <Link
+  //         className="contents"
+  //         href={'/'}
+  //         tabIndex={-1}
+  //       >
+  //         <Button className="px-32 md-max:flex-1">
+  //           <span>Go to Dashboard</span>
+  //         </Button>
+  //       </Link>
+  //     );
+  //   }
+
+  return (
+    <div className="relative">
+      <Button
+        buttonType="submit"
+        loading={formState.isSubmitting}
+        onClick={async () => {
+          if (step.key === 'meta') {
+            onSubmit();
+          } else {
+            setStep(nextStep!);
+          }
+        }}
+      >
+        <span>Continue</span>
+      </Button>
+    </div>
+  );
+}

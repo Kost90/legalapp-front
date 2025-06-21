@@ -76,6 +76,7 @@ export default function FormInput({ name, label, description, labelClassName, ..
             },
           )}
         />
+
         {isPasswordType && (
           <button
             type="button"
