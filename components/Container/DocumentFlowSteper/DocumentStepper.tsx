@@ -8,7 +8,7 @@ export default function GenerateDocumentsStepper() {
 
   const form = useGenerateDocumentForm();
   const values = useWatch({ control: form.control });
-
+  console.log({ values });
   // TODO: Think about making it reusable
   const filledStepIndex = useMemo(() => {
     if (!values.fullName && !values.birthDate && !values.tin && !values.address && !values.passport && !values.passportIssueDate) return 0;
@@ -27,7 +27,7 @@ export default function GenerateDocumentsStepper() {
 
     return 4;
   }, [values, documentDetails]);
-
+  console.log({ filledStepIndex });
   return (
     <Stepper
       activeStep={step.key}

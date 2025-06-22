@@ -61,7 +61,7 @@ export default function FormInput({ name, label, description, labelClassName, ..
   const isPasswordType = rest.type === 'password';
   const type = isPasswordType && isShowPassword ? 'text' : rest.type;
   const error = errors[name]?.message as string | undefined;
-
+  console.log(error);
   return (
     <FormGroup label={label} description={description} error={error} labelClassName={labelClassName}>
       <div className="relative">

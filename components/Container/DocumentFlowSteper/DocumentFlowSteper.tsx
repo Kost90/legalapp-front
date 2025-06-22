@@ -83,7 +83,7 @@ const DynamicForm = ({
           </Button>
         )}
 
-        <SubmitButton lang={lang} />
+        <SubmitButton lang={lang} fieldsToValidate={formSchema} />
       </div>
     </form>
   );

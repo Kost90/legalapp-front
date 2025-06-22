@@ -1,14 +1,17 @@
 import Button from '@/components/Button/Button';
 import { FORM_STEPS, useGenerateDocument, useGenerateDocumentForm } from '@/context/generateStepper/GenerateDocumentStepper';
+import { FieldSchema } from '@/types/documents/formInput';
 import { useMemo } from 'react';
 import { useFormState, useWatch } from 'react-hook-form';
 
-export default function SubmitButton({ lang }: { lang: string }) {
+export default function SubmitButton({ lang, fieldsToValidate }: { lang: string; fieldsToValidate: FieldSchema[] }) {
   const form = useGenerateDocumentForm();
   const { setStep, step, onSubmit } = useGenerateDocument();
 
   const activeIndex = FORM_STEPS.indexOf(step);
   const nextStep = FORM_STEPS[activeIndex + 1];
+
+  const FieldsNames = fieldsToValidate.map((field) => field.name);
 
   const values = useWatch({ control: form.control });
   const isHidden = useMemo(() => {
