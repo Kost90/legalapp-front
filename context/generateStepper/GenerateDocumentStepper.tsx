@@ -16,6 +16,8 @@ type GenerateDocumentContext = {
   documentDetails: PowerOfAttorney | null;
   generatedPdfUrl: string;
   selectedDocument: string;
+  completedStepIndex: number;
+  setCompletedStepIndex: (value: number) => void;
 };
 
 const FormStateContext = createContext<GenerateDocumentContext | null>(null);
@@ -61,10 +63,12 @@ export function GenerateDocumentProvider({
   const [documentDetails, setDocumentDetails] = useState<PowerOfAttorney | null>(null);
   const { user } = useUser();
   const [generatedPdfUrl, setGeneratedPdfUrl] = useState('');
+  const [completedStepIndex, setCompletedStepIndex] = useState(-1);
 
   // TODO: Think about make form reusable
   const form = useForm<PropertyPowerOfAttorneyFormData>({
     resolver: zodResolver(getPropertyPowerOfAttorneySchema(lang)),
+    mode: 'onChange',
   });
 
   const onSubmit = form.handleSubmit(async (e) => {
@@ -113,6 +117,8 @@ export function GenerateDocumentProvider({
         documentDetails,
         generatedPdfUrl,
         selectedDocument,
+        completedStepIndex,
+        setCompletedStepIndex,
       }}
     >
       <FormProvider {...form}>{children}</FormProvider>

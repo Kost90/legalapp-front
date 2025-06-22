@@ -1,7 +1,8 @@
 import Button from '@/components/Button/Button';
 import { FORM_STEPS, useGenerateDocument, useGenerateDocumentForm } from '@/context/generateStepper/GenerateDocumentStepper';
+import { PropertyPowerOfAttorneyFormData } from '@/schemas/generateDocuments/powerOfAttorneySchema';
 import { FieldSchema } from '@/types/documents/formInput';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useFormState, useWatch } from 'react-hook-form';
 
 export default function SubmitButton({ lang, fieldsToValidate }: { lang: string; fieldsToValidate: FieldSchema[] }) {
@@ -10,60 +11,23 @@ export default function SubmitButton({ lang, fieldsToValidate }: { lang: string;
 
   const activeIndex = FORM_STEPS.indexOf(step);
   const nextStep = FORM_STEPS[activeIndex + 1];
+  const isLastStepBeforeResult = step.key === 'meta';
 
-  const FieldsNames = fieldsToValidate.map((field) => field.name);
+  const fieldsNames = fieldsToValidate.map((field) => field.name);
 
-  const values = useWatch({ control: form.control });
-  const isHidden = useMemo(() => {
-    if (
-      step.key === 'person' &&
-      !values.fullName &&
-      !values.birthDate &&
-      !values.tin &&
-      !values.address &&
-      !values.passport &&
-      !values.passportIssueDate
-    )
-      return true;
-    if (
-      step.key === 'representative' &&
-      !values.representativeName &&
-      !values.representativeBirthDate &&
-      !values.representativeTIN &&
-      !values.representativeAddress
-    )
-      return true;
-    if (
-      step.key === 'property' &&
-      !values.propertyAddress?.city &&
-      !values.propertyAddress?.street &&
-      !values.propertyAddress?.buildNumber &&
-      !values.propertyAddress?.apartment &&
-      !values.propertyAddress?.postCode
-    )
-      return true;
-    if (step.key === 'meta' && !values.date && !values.validUntil) return true;
+  const handelNextStep = useCallback(async () => {
+    if (!fieldsNames) {
+      setStep(nextStep);
+    }
 
-    return false;
-  }, [step.key, values]);
+    // TODO: think how to make it type anotation automate
+    const isValid = await form.trigger(fieldsNames as any);
+    if (isValid) {
+      setStep(nextStep);
+    }
+  }, [step]);
 
   const formState = useFormState(form);
-
-  if (isHidden) return null;
-
-  //   if (step.key === 'result') {
-  //     return (
-  //       <Link
-  //         className="contents"
-  //         href={'/'}
-  //         tabIndex={-1}
-  //       >
-  //         <Button className="px-32 md-max:flex-1">
-  //           <span>Go to Dashboard</span>
-  //         </Button>
-  //       </Link>
-  //     );
-  //   }
 
   return (
     <div className="relative">
@@ -74,11 +38,11 @@ export default function SubmitButton({ lang, fieldsToValidate }: { lang: string;
           if (step.key === 'meta') {
             onSubmit();
           } else {
-            setStep(nextStep!);
+            handelNextStep();
           }
         }}
       >
-        <span>{lang === 'ua' ? 'Далі' : 'Continue'}</span>
+        <span>{isLastStepBeforeResult ? (lang === 'ua' ? 'Згенерувати' : 'Generate') : lang === 'ua' ? 'Далі' : 'Continue'}</span>
       </Button>
     </div>
   );
