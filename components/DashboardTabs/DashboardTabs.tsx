@@ -19,7 +19,7 @@ export default function DashboardTabs({ lang }: { lang: string }) {
 
   return (
     <div className="flex w-full justify-center mx-auto max-w-md px-5 pt-5 relative">
-      <div className="inline-flex gap-x-6 pb-2">
+      <div className="inline-flex flex-col sm:flex-row items-center gap-y-2 gap-x-6 pb-2">
         {tabs.map((tab, index) => {
           const tabPath = `/${user.id}${tab.href}`;
           const isActive = pathnameWithoutLang === tabPath;
@@ -48,7 +48,9 @@ export default function DashboardTabs({ lang }: { lang: string }) {
                   </div>
                 </div>
               </Link>
-              {index < tabs.length - 1 && <div className="absolute top-1/2 right-0 -translate-y-1/2 h-6 w-px bg-muted-text" />}
+              {index < tabs.length - 1 && (
+                <div className="hidden sm:block absolute top-1/2 right-0 -translate-y-1/2 h-6 w-px bg-muted-text" />
+              )}
             </div>
           );
         })}

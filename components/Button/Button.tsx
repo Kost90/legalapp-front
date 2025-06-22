@@ -15,6 +15,7 @@ type Props = {
   disabled?: boolean;
   loading?: boolean;
   className?: string;
+  fullWidth?: boolean;
 };
 
 export default function Button({
@@ -25,6 +26,7 @@ export default function Button({
   onClick,
   loading,
   buttonType = 'button',
+  fullWidth,
   ...attrs
 }: Props) {
   const loadingOrSubmitting = useButtonLoading({
@@ -42,6 +44,9 @@ export default function Button({
       className={cn(
         'flex justify-center items-center min-w-32 py-2 px-8 mt-3 border border-gray-200 text-center rounded-md gap-1',
         {
+          'w-full': fullWidth,
+          'py-1 px-4 text-sm min-w-24': size === 'small',
+          'py-2 px-8 text-base min-w-32': size === 'medium',
           'bg-main-black text-headerfooterwhite hover:bg-black': buttonType === 'submit' && !disabledOrLoading,
           'bg-white text-link-btn-text hover:bg-base-btn-hover-bg': type === 'default' && buttonType === 'button' && !disabledOrLoading,
           'bg-redbtn text-white hover:bg-red-500': type === 'critical' && !disabledOrLoading,

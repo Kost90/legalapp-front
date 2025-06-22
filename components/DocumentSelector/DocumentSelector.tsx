@@ -11,10 +11,9 @@ interface DocumentSelectorProps {
   onBack: () => void;
 }
 
-//TODO:Add dictionary and validation
 const DocumentSelector: FC<DocumentSelectorProps> = ({ options, value, lang, onChange, onNext, onBack }) => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 my-10 md:my-20">
       <select
         value={value ?? ''}
         onChange={(e) => onChange(e.target.value)}

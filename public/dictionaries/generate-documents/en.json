@@ -1,11 +1,14 @@
 {
   "documentsCategories": {
-    "Notary documents": [
+    "pageTitle": "Select Document Category",
+    "pageDescription": "Each document category contains documents relevant to the chosen category.",
+    "resultMessage": "Document succsessfully generated.",
+    "Notarial Documents": [
       {
-        "power-of-attorney-property": "Power of attorney for real estate registration"
+        "power-of-attorney-property": "Power of Attorney for Property Registration"
       }
     ],
-    "Family law": [],
-    "Corporate law": []
+    "Family Law": [],
+    "Corporate Law": []
   }
 }
