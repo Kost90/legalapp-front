@@ -1,14 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { FormProvider, UseFormReturn } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 
 import DynamicFormFields from '@/components/DynamicFormFields/DynamicFormFields';
 import Button from '@/components/Button/Button';
 
 import { IGenerateDocumentsContent } from '@/types/documents/generate-documents-dictionaries';
 import { formFieldsSchemas } from '@/lib/formsFields/powerOfAttorneyProperty';
-import { GenerateStep, useGenerateDocument, useGenerateDocumentForm } from '@/context/generateStepper/GenerateDocumentStepper';
+import { GenerateStep, useGenerateDocument } from '@/context/generateStepper/GenerateDocumentStepper';
 import { FieldSchema } from '@/types/documents/formInput';
 import SubmitButton from './SubmmitButton';
 import GenerateDocumentsStepper from './DocumentStepper';
@@ -16,7 +16,6 @@ import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 
 export default function DocumentFlow({ lang, dictionary }: { lang: string; dictionary: IGenerateDocumentsContent }) {
   const { step, setStep, generatedPdfUrl, selectedDocument, onSubmit } = useGenerateDocument();
-  const form = useGenerateDocumentForm();
   const [formFieldsSchema, setFormFieldsSchema] = useState<FieldSchema[] | null>(null);
 
   useEffect(() => {
@@ -36,9 +35,7 @@ export default function DocumentFlow({ lang, dictionary }: { lang: string; dicti
       </div>
 
       {selectedDocument && formFieldsSchema && (
-        <FormProvider {...form}>
-          <DynamicForm formSchema={formFieldsSchema} lang={lang} currentStep={step} setStep={setStep} handleSubmit={onSubmit} />
-        </FormProvider>
+        <DynamicForm formSchema={formFieldsSchema} lang={lang} currentStep={step} setStep={setStep} handleSubmit={onSubmit} />
       )}
 
       {step.key === 'result' && (

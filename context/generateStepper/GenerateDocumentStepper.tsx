@@ -70,7 +70,8 @@ export function GenerateDocumentProvider({
       const fileURL = window.URL.createObjectURL(documentBlob);
 
       setGeneratedPdfUrl(fileURL);
-      //   await refreshUser();
+      // TODO: Think how to make setCompletedStepIndex(3) - automated
+      setCompletedStepIndex(3);
       setStep(FORM_STEPS[4]);
       // TODO: Think about error message
     } catch (error: any) {

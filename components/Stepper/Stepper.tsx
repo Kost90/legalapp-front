@@ -76,8 +76,8 @@ export default function Stepper({ steps, activeStep, filledStepIndex, setActiveS
                     'group-hover:shadow-md transition-all duration-300',
                   )}
                   animate={{
-                    backgroundColor: isActive ? '#6B8091' : isFilled ? '#46d75a' : '#FFFFFF',
-                    borderColor: isActive ? '#6B8091' : isFilled ? 'transparent' : '#E5E7EB',
+                    backgroundColor: activeStep === 'result' ? '#46d75a' : isActive ? '#6B8091' : isFilled ? '#46d75a' : '#FFFFFF',
+                    borderColor: activeStep === 'result' ? '#46d75a' : isActive ? '#6B8091' : isFilled ? 'transparent' : '#E5E7EB',
                     color: isActive || isFilled ? '#FFFFFF' : '#6B7280',
                   }}
                   whileHover={isClickable ? { scale: 1.1 } : {}}
