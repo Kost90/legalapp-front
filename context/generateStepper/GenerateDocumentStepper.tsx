@@ -7,6 +7,7 @@ import { useUser } from '../user/UserProvider.client';
 import { DOCUMENT_TYPE } from '@/lib/constans';
 import { generatePowerOfAttorney } from '@/api/documents/generatePowerOfAttorney';
 import { cleanPropertyAddress } from '@/utils/cleanPropertyAddress';
+import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 
 type GenerateDocumentContext = {
   step: GenerateStep;
@@ -23,29 +24,6 @@ type GenerateDocumentContext = {
 const FormStateContext = createContext<GenerateDocumentContext | null>(null);
 
 export type GenerateStep = (typeof FORM_STEPS)[number];
-// TODO: Think about make it automation by choose different doc
-export const FORM_STEPS = [
-  {
-    label: 'Данні особи яка надає доручення',
-    key: 'person',
-  },
-  {
-    label: 'Данні представника (на кого надається доручення)',
-    key: 'representative',
-  },
-  {
-    label: 'Данні обєкту нерухомості',
-    key: 'property',
-  },
-  {
-    label: 'Місце складання, строк дії доручення',
-    key: 'meta',
-  },
-  {
-    label: 'Документ успішно згенеровано',
-    key: 'result',
-  },
-] as const;
 
 export function GenerateDocumentProvider({
   children,

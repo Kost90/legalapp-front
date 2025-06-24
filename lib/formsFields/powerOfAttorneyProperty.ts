@@ -49,7 +49,7 @@ export const formFieldsSchemas: Record<string, Record<string, any>> = {
       property: [
         { name: 'propertyAddress.city', label: 'City of property', type: 'text', required: false },
         { name: 'propertyAddress.street', label: 'Street', type: 'text', required: false },
-        { name: 'propertyAddress.buildNumber', label: 'Number of Building', type: 'text', required: false }, // Changed from 'Number of Aprt.' for consistency
+        { name: 'propertyAddress.buildNumber', label: 'Number of Building', type: 'text', required: false },
         { name: 'propertyAddress.apartment', label: 'Apartment', type: 'text', required: false },
         { name: 'propertyAddress.postCode', label: 'Post Code', type: 'text', required: false },
       ],

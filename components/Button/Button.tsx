@@ -16,6 +16,7 @@ type Props = {
   loading?: boolean;
   className?: string;
   fullWidth?: boolean;
+  isInStepper?: boolean;
 };
 
 export default function Button({
@@ -27,11 +28,13 @@ export default function Button({
   loading,
   buttonType = 'button',
   fullWidth,
+  isInStepper,
   ...attrs
 }: Props) {
   const loadingOrSubmitting = useButtonLoading({
     loading,
     isFormSubmit: buttonType === 'submit',
+    isInStepper,
   });
 
   const ref = useRef<HTMLButtonElement>(null);
@@ -71,7 +74,23 @@ export default function Button({
   );
 }
 
-const useButtonLoading = ({ loading, isFormSubmit }: { loading: boolean | undefined; isFormSubmit: boolean | undefined }) => {
+const useButtonLoading = ({
+  loading,
+  isFormSubmit,
+  isInStepper,
+}: {
+  loading: boolean | undefined;
+  isFormSubmit: boolean | undefined;
+  isInStepper?: boolean;
+}) => {
+  if (isInStepper) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const formState = useFormState();
+    if (!isFormSubmit) return loading;
+
+    return loading || formState.isSubmitting;
+  }
+
   if (!isFormSubmit) return loading;
 
   // eslint-disable-next-line react-hooks/rules-of-hooks

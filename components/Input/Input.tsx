@@ -1,6 +1,6 @@
 'use client';
 import { InputHTMLAttributes, useState } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { FieldErrors, useFormContext } from 'react-hook-form';
 import FormGroup from '@/components/FormGroup/FormGroup';
 import { cn } from '@/utils/cn';
 import { Eye, EyeOff } from 'lucide-react';
@@ -11,6 +11,11 @@ interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   description?: string;
   labelClassName?: string;
 }
+// TODO: Think how to improve type anotation in accumulator
+const getNestedError = (errors: FieldErrors, path: string) => {
+  const pathParts = path.split('.');
+  return pathParts.reduce((acc, part) => acc && acc[part], errors as Record<string, any>);
+};
 
 export default function FormInput({ name, label, description, labelClassName, ...rest }: FormInputProps) {
   const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
@@ -20,7 +25,9 @@ export default function FormInput({ name, label, description, labelClassName, ..
   } = useFormContext();
   const isPasswordType = rest.type === 'password';
   const type = isPasswordType && isShowPassword ? 'text' : rest.type;
-  const error = errors[name]?.message as string | undefined;
+  const errorObject = getNestedError(errors, name);
+  const error = errorObject?.message as string | undefined;
+
   return (
     <FormGroup label={label} description={description} error={error} labelClassName={labelClassName}>
       <div className="relative">

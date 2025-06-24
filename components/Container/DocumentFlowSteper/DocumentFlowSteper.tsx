@@ -8,13 +8,14 @@ import Button from '@/components/Button/Button';
 
 import { IGenerateDocumentsContent } from '@/types/documents/generate-documents-dictionaries';
 import { formFieldsSchemas } from '@/lib/formsFields/powerOfAttorneyProperty';
-import { FORM_STEPS, GenerateStep, useGenerateDocument, useGenerateDocumentForm } from '@/context/generateStepper/GenerateDocumentStepper';
+import { GenerateStep, useGenerateDocument, useGenerateDocumentForm } from '@/context/generateStepper/GenerateDocumentStepper';
 import { FieldSchema } from '@/types/documents/formInput';
 import SubmitButton from './SubmmitButton';
 import GenerateDocumentsStepper from './DocumentStepper';
+import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 
 export default function DocumentFlow({ lang, dictionary }: { lang: string; dictionary: IGenerateDocumentsContent }) {
-  const { step, setStep, onSubmit, generatedPdfUrl, selectedDocument } = useGenerateDocument();
+  const { step, setStep, generatedPdfUrl, selectedDocument, onSubmit } = useGenerateDocument();
   const form = useGenerateDocumentForm();
   const [formFieldsSchema, setFormFieldsSchema] = useState<FieldSchema[] | null>(null);
 
@@ -23,6 +24,7 @@ export default function DocumentFlow({ lang, dictionary }: { lang: string; dicti
       setFormFieldsSchema(formFieldsSchemas[selectedDocument]?.[lang]?.[step.key] ?? null);
     }
   }, [selectedDocument, lang, step.key]);
+
   return (
     <div className="max-w-4xl mx-auto p-6">
       <div className="before:border-b before:overlay before:pointer-events-none before:border-border-faint z-[2]">
@@ -35,7 +37,7 @@ export default function DocumentFlow({ lang, dictionary }: { lang: string; dicti
 
       {selectedDocument && formFieldsSchema && (
         <FormProvider {...form}>
-          <DynamicForm formSchema={formFieldsSchema} handleSubmit={onSubmit} lang={lang} currentStep={step} setStep={setStep} />
+          <DynamicForm formSchema={formFieldsSchema} lang={lang} currentStep={step} setStep={setStep} handleSubmit={onSubmit} />
         </FormProvider>
       )}
 
@@ -63,7 +65,7 @@ const DynamicForm = ({
   currentStep,
   setStep,
 }: {
-  handleSubmit: ReturnType<UseFormReturn['handleSubmit']>;
+  handleSubmit?: ReturnType<UseFormReturn['handleSubmit']>;
   lang: string;
   formSchema: FieldSchema[];
   currentStep: GenerateStep;
@@ -73,7 +75,7 @@ const DynamicForm = ({
   const previousStep = FORM_STEPS[activeIndex - 1];
 
   return (
-    <form onSubmit={handleSubmit} className="relative max-w-md mx-auto p-4 bg-white shadow rounded">
+    <form className="relative max-w-md mx-auto p-4 bg-white shadow rounded">
       <DynamicFormFields schema={formSchema} />
 
       <div className="flex justify-between">

@@ -1,8 +1,9 @@
 import Stepper from '@/components/Stepper/Stepper';
-import { FORM_STEPS, useGenerateDocument, useGenerateDocumentForm } from '@/context/generateStepper/GenerateDocumentStepper';
+import { useGenerateDocument } from '@/context/generateStepper/GenerateDocumentStepper';
+import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 
 export default function GenerateDocumentsStepper() {
-  const { step, setStep, completedStepIndex, setCompletedStepIndex } = useGenerateDocument();
+  const { step, setStep, completedStepIndex } = useGenerateDocument();
 
   const handleStepClick = (newStepKey: string) => {
     const newStepIndex = FORM_STEPS.findIndex((s) => s.key === newStepKey);
