@@ -1,12 +1,9 @@
-import { getDictionary } from '@/app/[lang]/dictionaries';
-import { SiteContent } from '@/types/dictionaries';
-import { Metadata } from 'next';
-import GenerateDocumentClientPage from './page.client';
-
-export const metadata: Metadata = { title: 'Generate document' };
+import { getGenerateDocumentsDictionary } from './generate-documents-dictionaries';
+import { IGenerateDocumentsContent } from '@/types/documents/generate-documents-dictionaries';
+import DocumentFlow from '@/components/Container/DocumentFlowSteper/DocumentFlowSteper';
 
 export default async function GeneratePage(props: Readonly<{ params: { lang: string } }>) {
   const { lang } = await props.params;
-  const dictionary: SiteContent = await getDictionary(lang);
-  return <GenerateDocumentClientPage dictionary={dictionary} language={lang} />;
+  const dictionary: IGenerateDocumentsContent = await getGenerateDocumentsDictionary(lang);
+  return <DocumentFlow lang={lang} dictionary={dictionary} />;
 }

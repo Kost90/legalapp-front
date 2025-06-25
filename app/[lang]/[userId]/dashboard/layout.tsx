@@ -4,8 +4,8 @@ import DashboardLayoutClient from './layout.client';
 
 export default function AuthenticatedDashboardLayout(props: { children: ReactNode }) {
   return (
-    <main className="flex-1 overflow-hidden">
+    <div className="flex-1 overflow-hidden px-5">
       <DashboardLayoutClient>{props.children}</DashboardLayoutClient>
-    </main>
+    </div>
   );
 }

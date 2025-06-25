@@ -11,9 +11,9 @@ interface PageTitleProps extends HTMLAttributes<HTMLDivElement> {
 export default function PageTitle({ title, description, index, className, ...props }: PageTitleProps) {
   return (
     <div className={cn('pt-10 pb-5', className)} {...props}>
-      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+      <div className="flex flex-col sm:items-start sm:justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="h-5 w-5 rounded-full bg-color-footer-link-blue-brt" />
+          <div className="h-3.5 sm:h-5 w-5 rounded-full bg-color-footer-link-blue-brt" />
 
           <h1 className="text-3xl font-semibold text-main-black tracking-tight">{title}</h1>
         </div>
