@@ -11,7 +11,7 @@ export default function AuthLayoutClient(props: Readonly<{ children: ReactNode }
   const pathname = usePathname();
 
   return (
-    <div className="w-full relative bg-bg-primary min-h-screen px-5">
+    <div className="bg-bg-primary relative min-h-screen w-full px-5">
       <AuthErrorProvider>
         <AnimatePresence initial={false} mode="popLayout">
           <motion.div className="relative" key={pathname}>

@@ -1,6 +1,6 @@
 'use client';
+import FormInput from '@/components/Input/Input';
 import { FieldSchema } from '@/types/documents/formInput';
-import FormInput from '../Input/Input';
 
 export default function DynamicFormFields({ schema }: { schema: FieldSchema[] }) {
   return (

@@ -4,6 +4,7 @@ import { AnimatePresence } from 'motion/react';
 import { motion } from 'motion/react';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
+
 import { DashboardErrorProvider } from './dashboard-error-context';
 
 export default function DashboardLayoutClient(props: Readonly<{ children: ReactNode }>) {

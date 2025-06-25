@@ -39,7 +39,7 @@ const config = {
         },
         background: {
           DEFAULT: '#FFFFFF',
-          muted: '#F5F7FA',
+          // muted: '#F5F7FA',
           mutedcard: '#F5F9FF',
           muted: '#FFF9DC',
           redBtn: '#ff5a5f',

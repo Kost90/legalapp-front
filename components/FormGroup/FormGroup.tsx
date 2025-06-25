@@ -1,5 +1,6 @@
-import { cn } from '@/utils/cn';
 import { ReactNode } from 'react';
+
+import { cn } from '@/utils/cn';
 
 interface FormGroupProps {
   label: string;
@@ -12,8 +13,8 @@ interface FormGroupProps {
 export default function FormGroup({ label, description, error, children, labelClassName }: FormGroupProps) {
   return (
     <div className="mb-4">
-      <label className={cn('block text-sm font-medium text-main-black mb-1', labelClassName)}>{label}</label>
-      {description && <p className="text-xs text-gray-500 mb-1">{description}</p>}
+      <label className={cn('text-main-black mb-1 block text-sm font-medium', labelClassName)}>{label}</label>
+      {description && <p className="mb-1 text-xs text-gray-500">{description}</p>}
       {children}
       {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
     </div>

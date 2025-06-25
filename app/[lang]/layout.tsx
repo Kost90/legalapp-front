@@ -1,15 +1,16 @@
+import clsx from 'clsx';
 import type { Metadata, Viewport } from 'next';
 import { Roboto } from 'next/font/google';
-import clsx from 'clsx';
 import { cookies } from 'next/headers';
 
-import { getDictionary } from './dictionaries';
+import Header from '@/components/Header/Header';
+import { AuthProvider } from '@/context/AuthProvider';
 import DeviceProvider from '@/context/DeviceProvider';
 import QueryProvider from '@/context/QueryProvider';
-import Header from '@/components/Header/Header';
 import '@/styles/globals.css';
 import { SiteContent } from '@/types/dictionaries';
-import { AuthProvider } from '@/context/AuthProvider';
+
+import { getDictionary } from './dictionaries';
 
 const roboto = Roboto({
   subsets: ['latin', 'cyrillic'],
@@ -86,16 +87,16 @@ export default async function RootLayout({
 
   return (
     <html lang={currentLang} className="h-full">
-      <body className={clsx(roboto.className, 'antialiased bg-gray-100 text-main-black min-h-screen w-full')}>
+      <body className={clsx(roboto.className, 'text-main-black min-h-screen w-full bg-gray-100 antialiased')}>
         <QueryProvider>
           <DeviceProvider>
             <AuthProvider isAuth={accessToken && refreshToken ? true : false} lang={lang}>
-              <div className="relative flex flex-col overflow-hidden isolate z-[1] w-full min-h-screen">
+              <div className="relative isolate z-[1] flex min-h-screen w-full flex-col overflow-hidden">
                 <Header lang={t} params={currentLang} />
                 {/* <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main> */}
-                <main className="flex-grow w-full">{children}</main>
+                <main className="w-full flex-grow">{children}</main>
               </div>
-              <div className="body-overlay overlay !fixed pointer-events-none z-[13]" />
+              <div className="body-overlay overlay pointer-events-none !fixed z-[13]" />
             </AuthProvider>
           </DeviceProvider>
         </QueryProvider>

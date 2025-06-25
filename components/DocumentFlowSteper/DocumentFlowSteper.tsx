@@ -3,16 +3,16 @@
 import { useEffect, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
-import DynamicFormFields from '@/components/DynamicFormFields/DynamicFormFields';
 import Button from '@/components/Button/Button';
-
-import { IGenerateDocumentsContent } from '@/types/documents/generate-documents-dictionaries';
-import { formFieldsSchemas } from '@/lib/formsFields/powerOfAttorneyProperty';
+import DynamicFormFields from '@/components/DynamicFormFields/DynamicFormFields';
 import { GenerateStep, useGenerateDocument } from '@/context/generateStepper/GenerateDocumentStepper';
-import { FieldSchema } from '@/types/documents/formInput';
-import SubmitButton from './SubmmitButton';
-import GenerateDocumentsStepper from './DocumentStepper';
+import { formFieldsSchemas } from '@/lib/formsFields/powerOfAttorneyProperty';
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
+import { FieldSchema } from '@/types/formInput';
+import { IGenerateDocumentsContent } from '@/types/generate-documents-dictionaries';
+
+import GenerateDocumentsStepper from './DocumentStepper';
+import SubmitButton from './SubmmitButton';
 
 export default function DocumentFlow({ lang, dictionary }: { lang: string; dictionary: IGenerateDocumentsContent }) {
   const { step, setStep, generatedPdfUrl, selectedDocument, onSubmit } = useGenerateDocument();
@@ -25,10 +25,10 @@ export default function DocumentFlow({ lang, dictionary }: { lang: string; dicti
   }, [selectedDocument, lang, step.key]);
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="before:border-b before:overlay before:pointer-events-none before:border-border-faint z-[2]">
+    <div className="mx-auto max-w-4xl p-6">
+      <div className="before:overlay before:border-border-faint z-[2] before:pointer-events-none before:border-b">
         {selectedDocument && (
-          <div className="z-10 top-0 bg-white">
+          <div className="top-0 z-10 bg-white">
             <GenerateDocumentsStepper />
           </div>
         )}
@@ -39,13 +39,13 @@ export default function DocumentFlow({ lang, dictionary }: { lang: string; dicti
       )}
 
       {step.key === 'result' && (
-        <div className="text-center space-y-4">
+        <div className="space-y-4 text-center">
           <p className="text-lg font-semibold">{dictionary.documentsCategories.resultMessage}</p>
-          <iframe src={generatedPdfUrl} className="w-full h-[80vh] border rounded" />
+          <iframe src={generatedPdfUrl} className="h-[80vh] w-full rounded border" />
           <a
             href={generatedPdfUrl}
             download="generated.pdf"
-            className="inline-block px-6 py-2 bg-link-btn-text text-white rounded-md hover:opacity-90"
+            className="bg-link-btn-text inline-block rounded-md px-6 py-2 text-white hover:opacity-90"
           >
             {lang === 'ua' ? 'Завантажити' : 'Download'}
           </a>
@@ -56,6 +56,7 @@ export default function DocumentFlow({ lang, dictionary }: { lang: string; dicti
 }
 
 const DynamicForm = ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleSubmit,
   lang,
   formSchema,
@@ -72,7 +73,7 @@ const DynamicForm = ({
   const previousStep = FORM_STEPS[activeIndex - 1];
 
   return (
-    <form className="relative max-w-md mx-auto p-4 bg-white shadow rounded">
+    <form className="relative mx-auto max-w-md rounded bg-white p-4 shadow">
       <DynamicFormFields schema={formSchema} />
 
       <div className="flex justify-between">

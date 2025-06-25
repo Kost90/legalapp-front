@@ -6,5 +6,6 @@
   "bracketSpacing": true,
   "trailingComma": "all",
   "arrowParens": "always",
-  "proseWrap": "never"
+  "proseWrap": "never",
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
