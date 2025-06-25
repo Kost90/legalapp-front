@@ -1,4 +1,3 @@
-// components/modals/ModalProvider.tsx
 'use client';
 
 import { AnimatePresence } from 'framer-motion';
@@ -77,7 +76,8 @@ export function ModalProvider({ children }: { children: ReactNode }) {
     if (modals.length > 0) {
       closeAll();
     }
-  }, [closeAll, modals.length, pathname]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {

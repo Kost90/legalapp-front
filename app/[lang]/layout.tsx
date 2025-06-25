@@ -4,6 +4,7 @@ import { Roboto } from 'next/font/google';
 import { cookies } from 'next/headers';
 
 import Header from '@/components/Header/Header';
+import { ModalProvider } from '@/components/Modals/ModalProvider';
 import { AuthProvider } from '@/context/AuthProvider';
 import DeviceProvider from '@/context/DeviceProvider';
 import QueryProvider from '@/context/QueryProvider';
@@ -90,14 +91,16 @@ export default async function RootLayout({
       <body className={clsx(roboto.className, 'text-main-black min-h-screen w-full bg-gray-100 antialiased')}>
         <QueryProvider>
           <DeviceProvider>
-            <AuthProvider isAuth={accessToken && refreshToken ? true : false} lang={lang}>
-              <div className="relative isolate z-[1] flex min-h-screen w-full flex-col overflow-hidden">
-                <Header lang={t} params={currentLang} />
-                {/* <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main> */}
-                <main className="w-full flex-grow">{children}</main>
-              </div>
-              <div className="body-overlay overlay pointer-events-none !fixed z-[13]" />
-            </AuthProvider>
+            <ModalProvider>
+              <AuthProvider isAuth={accessToken && refreshToken ? true : false} lang={lang}>
+                <div className="relative isolate z-[1] flex min-h-screen w-full flex-col overflow-hidden">
+                  <Header lang={t} params={currentLang} />
+                  {/* <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main> */}
+                  <main className="w-full flex-grow">{children}</main>
+                </div>
+                <div className="body-overlay overlay pointer-events-none !fixed z-[13]" />
+              </AuthProvider>
+            </ModalProvider>
           </DeviceProvider>
         </QueryProvider>
       </body>
