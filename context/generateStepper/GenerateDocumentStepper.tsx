@@ -7,6 +7,7 @@ import { useUser } from '../user/UserProvider.client';
 import { DOCUMENT_TYPE } from '@/lib/constans';
 import { generatePowerOfAttorney } from '@/api/documents/generatePowerOfAttorney';
 import { cleanPropertyAddress } from '@/utils/cleanPropertyAddress';
+import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 
 type GenerateDocumentContext = {
   step: GenerateStep;
@@ -16,34 +17,13 @@ type GenerateDocumentContext = {
   documentDetails: PowerOfAttorney | null;
   generatedPdfUrl: string;
   selectedDocument: string;
+  completedStepIndex: number;
+  setCompletedStepIndex: (value: number) => void;
 };
 
 const FormStateContext = createContext<GenerateDocumentContext | null>(null);
 
 export type GenerateStep = (typeof FORM_STEPS)[number];
-// TODO: Think about make it automation by choose different doc
-export const FORM_STEPS = [
-  {
-    label: 'Данні особи яка надає доручення',
-    key: 'person',
-  },
-  {
-    label: 'Данні представника (на кого надається доручення)',
-    key: 'representative',
-  },
-  {
-    label: 'Данні обєкту нерухомості',
-    key: 'property',
-  },
-  {
-    label: 'Місце складання, строк дії доручення',
-    key: 'meta',
-  },
-  {
-    label: 'Документ успішно згенеровано',
-    key: 'result',
-  },
-] as const;
 
 export function GenerateDocumentProvider({
   children,
@@ -61,10 +41,12 @@ export function GenerateDocumentProvider({
   const [documentDetails, setDocumentDetails] = useState<PowerOfAttorney | null>(null);
   const { user } = useUser();
   const [generatedPdfUrl, setGeneratedPdfUrl] = useState('');
+  const [completedStepIndex, setCompletedStepIndex] = useState(-1);
 
   // TODO: Think about make form reusable
   const form = useForm<PropertyPowerOfAttorneyFormData>({
     resolver: zodResolver(getPropertyPowerOfAttorneySchema(lang)),
+    mode: 'onChange',
   });
 
   const onSubmit = form.handleSubmit(async (e) => {
@@ -88,7 +70,8 @@ export function GenerateDocumentProvider({
       const fileURL = window.URL.createObjectURL(documentBlob);
 
       setGeneratedPdfUrl(fileURL);
-      //   await refreshUser();
+      // TODO: Think how to make setCompletedStepIndex(3) - automated
+      setCompletedStepIndex(3);
       setStep(FORM_STEPS[4]);
       // TODO: Think about error message
     } catch (error: any) {
@@ -113,6 +96,8 @@ export function GenerateDocumentProvider({
         documentDetails,
         generatedPdfUrl,
         selectedDocument,
+        completedStepIndex,
+        setCompletedStepIndex,
       }}
     >
       <FormProvider {...form}>{children}</FormProvider>
