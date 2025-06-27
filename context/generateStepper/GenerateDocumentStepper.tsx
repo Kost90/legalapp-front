@@ -11,6 +11,7 @@ import { DOCUMENT_TYPE } from '@/lib/constans';
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 import { MODALS_MESSAGES_EN, MODALS_MESSAGES_UA } from '@/lib/modals-messages';
 import { getPropertyPowerOfAttorneySchema, PropertyPowerOfAttorneyFormData } from '@/schemas/generateDocuments/powerOfAttorneySchema';
+import { formatDateToString } from '@/schemas/utils/formatDateToString';
 import { PowerOfAttorney } from '@/types/power-of-attorney';
 import { cleanPropertyAddress } from '@/utils/cleanPropertyAddress';
 
@@ -59,17 +60,23 @@ export function GenerateDocumentProvider({
   const onSubmit = form.handleSubmit(async (e) => {
     try {
       const { propertyAddress, ...rest } = e;
-      const cleanedAddress = cleanPropertyAddress(propertyAddress);
+
+      const formattedData = {
+        ...rest,
+        birthDate: formatDateToString(rest.birthDate),
+        passportIssueDate: formatDateToString(rest.passportIssueDate),
+        representativeBirthDate: formatDateToString(rest.representativeBirthDate),
+        date: formatDateToString(rest.date),
+        validUntil: formatDateToString(rest.validUntil),
+        ...(cleanPropertyAddress(propertyAddress) ? { propertyAddress: cleanPropertyAddress(propertyAddress) } : {}),
+      };
 
       const dataForSend: PowerOfAttorney = {
         email: user.email,
         documentLang: lang,
         documentType: DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY,
         isPaid: true,
-        details: {
-          ...rest,
-          ...(cleanedAddress ? { propertyAddress: cleanedAddress } : {}),
-        },
+        details: formattedData,
       };
 
       setDocumentDetails(dataForSend);

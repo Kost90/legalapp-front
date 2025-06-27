@@ -74,7 +74,7 @@ const DynamicForm = ({
 
   return (
     <form className="relative mx-auto max-w-md rounded bg-white p-4 shadow">
-      <DynamicFormFields schema={formSchema} />
+      <DynamicFormFields schema={formSchema} lang={lang} />
 
       <div className="flex justify-between">
         {previousStep && (
