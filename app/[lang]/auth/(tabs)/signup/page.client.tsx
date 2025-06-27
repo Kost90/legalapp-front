@@ -1,16 +1,16 @@
 'use client';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm, UseFormReturn, useFormState } from 'react-hook-form';
 
 import { signUp } from '@/api/auth/signUp';
 import { useAuthError } from '@/app/[lang]/auth/auth-error-context';
 import { useAuthTabs } from '@/components/Authtabs/context';
 import Button from '@/components/Button/Button';
+import FormInput from '@/components/Input/Input';
+import PageTitle from '@/components/PageTitle/PageTitle';
 import PhoneNumber, { mergePhoneNumber } from '@/components/PhoneNumber/PhoneNumber';
 import VerifyYourEmail from '@/components/VerifyYourEmail/VerifyYourEmail';
-import PageTitle from '@/components/PageTitle/PageTitle';
 import { getSignUpFormSchema } from '@/schemas/signUpFormSchema';
-import { zodResolver } from '@hookform/resolvers/zod';
-import FormInput from '@/components/Input/Input';
 import { SiteContent } from '@/types/dictionaries';
 
 type FormValues = {
@@ -61,7 +61,7 @@ export default function SignupPageClient({ lang, dictionary }: { lang: string; d
         />
       ) : (
         <>
-          <PageTitle className="mb-6 max-w-md mx-auto" title={lang === 'ua' ? 'Створи свій аккаунт' : 'Create your account'} />
+          <PageTitle className="mx-auto mb-6 max-w-md" title={lang === 'ua' ? 'Створи свій аккаунт' : 'Create your account'} />
           <SignUpForm form={form} handleSubmit={onSubmit} lang={lang} />
         </>
       )}
@@ -72,7 +72,7 @@ export default function SignupPageClient({ lang, dictionary }: { lang: string; d
 const SignUpForm = ({ form, handleSubmit, lang }: { form: UseFormReturn<any>; handleSubmit: (e: any) => void; lang: string }) => {
   const formState = useFormState({ control: form.control });
   return (
-    <form onSubmit={form.handleSubmit(handleSubmit)} className="relative max-w-md mx-auto p-4 bg-white shadow rounded">
+    <form onSubmit={form.handleSubmit(handleSubmit)} className="relative mx-auto max-w-md rounded bg-white p-4 shadow">
       <FormInput name="firstName" label={lang === 'ua' ? 'Імя' : 'Firstname'} placeholder={lang === 'ua' ? 'твоє імя' : 'your firstname'} />
       <FormInput
         name="lastName"

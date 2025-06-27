@@ -1,12 +1,13 @@
 'use client';
 
 import { ReactNode, useCallback, useState } from 'react';
-import { GenerateDocumentProvider, GenerateStep } from '@/context/generateStepper/GenerateDocumentStepper';
-import { IGenerateDocumentsContent } from '@/types/documents/generate-documents-dictionaries';
+
 import CardCategory from '@/components/CardCategory/CardCategory';
 import DocumentSelector from '@/components/DocumentSelector/DocumentSelector';
 import PageTitle from '@/components/PageTitle/PageTitle';
+import { GenerateDocumentProvider, GenerateStep } from '@/context/generateStepper/GenerateDocumentStepper';
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
+import { IGenerateDocumentsContent } from '@/types/documents/generate-documents-dictionaries';
 
 export default function GenerateDocumentLayoutClient(
   props: Readonly<{ children: ReactNode; lang: string; dictionary: IGenerateDocumentsContent }>,
@@ -32,7 +33,7 @@ export default function GenerateDocumentLayoutClient(
             title={props.dictionary.documentsCategories.pageTitle}
             description={props.dictionary.documentsCategories.pageDescription}
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 my-10 md:my-20">
+          <div className="my-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:my-20 lg:grid-cols-2">
             {Object.entries(props.dictionary.documentsCategories)
               .filter(([category, docs]) => category !== 'pageTitle' && category !== 'pageDescription' && category !== 'resultMessage')
               .map(([category, docs]) => (

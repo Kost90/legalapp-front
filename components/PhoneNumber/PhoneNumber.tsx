@@ -3,9 +3,9 @@ import { useFormContext, useWatch } from 'react-hook-form';
 
 import Dropdown from '@/components/Dropdown/Dropdown';
 import Flag from '@/components/Flag/Flag';
+import FormInput from '@/components/Input/Input';
 
 import countryCallingCodes from './countryCallingCodes.json';
-import FormInput from '@/components/Input/Input';
 
 const items = countryCallingCodes.map(({ code, name, callingCode }) => ({
   icon: () => <Flag value={code.toLowerCase()} />,

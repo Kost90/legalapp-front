@@ -1,13 +1,19 @@
-import { getPropertyPowerOfAttorneySchema, PropertyPowerOfAttorneyFormData } from '@/schemas/generateDocuments/powerOfAttorneySchema';
-import { PowerOfAttorney } from '@/types/documents/power-of-attorney';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
 import { FormProvider, useForm, useFormContext, UseFormReturn } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useUser } from '../user/UserProvider.client';
-import { DOCUMENT_TYPE } from '@/lib/constans';
+
 import { generatePowerOfAttorney } from '@/api/documents/generatePowerOfAttorney';
-import { cleanPropertyAddress } from '@/utils/cleanPropertyAddress';
+import { ErrorModal } from '@/components/Modals/ErrorModal';
+import { useModals } from '@/components/Modals/ModalProvider';
+import { SuccessModal } from '@/components/Modals/SuccessModal';
+import { useUser } from '@/context/user/UserProvider.client';
+import { DOCUMENT_TYPE } from '@/lib/constans';
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
+import { MODALS_MESSAGES_EN, MODALS_MESSAGES_UA } from '@/lib/modals-messages';
+import { getPropertyPowerOfAttorneySchema, PropertyPowerOfAttorneyFormData } from '@/schemas/generateDocuments/powerOfAttorneySchema';
+import { formatDateToString } from '@/schemas/utils/formatDateToString';
+import { PowerOfAttorney } from '@/types/power-of-attorney';
+import { cleanPropertyAddress } from '@/utils/cleanPropertyAddress';
 
 type GenerateDocumentContext = {
   step: GenerateStep;
@@ -38,6 +44,8 @@ export function GenerateDocumentProvider({
   lang: string;
   selectedDocument: string;
 }) {
+  // const { setError } = useDashboardError();
+  const { open } = useModals();
   const [documentDetails, setDocumentDetails] = useState<PowerOfAttorney | null>(null);
   const { user } = useUser();
   const [generatedPdfUrl, setGeneratedPdfUrl] = useState('');
@@ -46,23 +54,29 @@ export function GenerateDocumentProvider({
   // TODO: Think about make form reusable
   const form = useForm<PropertyPowerOfAttorneyFormData>({
     resolver: zodResolver(getPropertyPowerOfAttorneySchema(lang)),
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
   const onSubmit = form.handleSubmit(async (e) => {
     try {
       const { propertyAddress, ...rest } = e;
-      const cleanedAddress = cleanPropertyAddress(propertyAddress);
+
+      const formattedData = {
+        ...rest,
+        birthDate: formatDateToString(rest.birthDate),
+        passportIssueDate: formatDateToString(rest.passportIssueDate),
+        representativeBirthDate: formatDateToString(rest.representativeBirthDate),
+        date: formatDateToString(rest.date),
+        validUntil: formatDateToString(rest.validUntil),
+        ...(cleanPropertyAddress(propertyAddress) ? { propertyAddress: cleanPropertyAddress(propertyAddress) } : {}),
+      };
 
       const dataForSend: PowerOfAttorney = {
         email: user.email,
         documentLang: lang,
         documentType: DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY,
         isPaid: true,
-        details: {
-          ...rest,
-          ...(cleanedAddress ? { propertyAddress: cleanedAddress } : {}),
-        },
+        details: formattedData,
       };
 
       setDocumentDetails(dataForSend);
@@ -71,15 +85,45 @@ export function GenerateDocumentProvider({
 
       setGeneratedPdfUrl(fileURL);
       // TODO: Think how to make setCompletedStepIndex(3) - automated
+      // const nextStepIndex = FORM_STEPS.findIndex((s) => s.key === 'result'); // Находим индекс шага "result"
+
+      // if (nextStepIndex !== -1) {
+      //   // Устанавливаем "выполненный" индекс на шаг *перед* результатом
+      //   setCompletedStepIndex(nextStepIndex - 1);
+      //   setStep(FORM_STEPS[nextStepIndex]);
+      // } else {
+      //   // Обработка случая, если шаг 'result' не найден
+      //   // Можно просто перейти на последний шаг как запасной вариант
+      //   setCompletedStepIndex(FORM_STEPS.length - 1);
+      //   setStep(FORM_STEPS[FORM_STEPS.length - 1]);
+      // }
       setCompletedStepIndex(3);
       setStep(FORM_STEPS[4]);
-      // TODO: Think about error message
+      open(SuccessModal, {
+        title: lang === 'ua' ? 'Вітаємо!' : 'Congratulation!',
+        message: lang === 'ua' ? MODALS_MESSAGES_UA.SUCCESSFULL_GENERATE_DOCUMENT : MODALS_MESSAGES_EN.SUCCESSFULL_GENERATE_DOCUMENT,
+        lang: lang,
+      });
     } catch (error: any) {
-      const parsedError = JSON.parse(error.message);
+      let parsedError;
+      try {
+        parsedError = JSON.parse(error.message);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (e: any) {
+        parsedError = { message: error.message || (lang === 'ua' ? 'Сталася невідома помилка' : 'An unknown error occurred') };
+      }
+
       if (parsedError.field) {
         form.setError(parsedError.field, { message: parsedError.message });
       }
+
       form.setError('root', { message: parsedError.message });
+
+      open(ErrorModal, {
+        title: lang === 'ua' ? 'Нажаль сталась помилка' : 'Sorry, an error occurred',
+        message: lang === 'ua' ? MODALS_MESSAGES_UA.ERROR_GENERATE_DOCUMENT : MODALS_MESSAGES_EN.ERROR_GENERATE_DOCUMENT,
+        lang: lang,
+      });
     }
   });
 

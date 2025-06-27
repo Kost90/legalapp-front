@@ -1,9 +1,10 @@
+import { useCallback } from 'react';
+import { useFormState } from 'react-hook-form';
+
 import Button from '@/components/Button/Button';
 import { useGenerateDocument, useGenerateDocumentForm } from '@/context/generateStepper/GenerateDocumentStepper';
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 import { FieldSchema } from '@/types/documents/formInput';
-import { useCallback } from 'react';
-import { useFormState } from 'react-hook-form';
 
 export default function SubmitButton({ lang, fieldsToValidate }: { lang: string; fieldsToValidate: FieldSchema[] }) {
   const form = useGenerateDocumentForm();

@@ -1,4 +1,4 @@
-import { DOCUMENT_TYPE } from '../constans';
+import { DOCUMENT_TYPE } from '@/lib/constans';
 
 export const formFieldsSchemas: Record<string, Record<string, any>> = {
   [DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY]: {

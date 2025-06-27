@@ -1,8 +1,8 @@
 'use client';
-import { useState } from 'react';
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions, Transition } from '@headlessui/react';
-import { ChevronsUpDownIcon } from 'lucide-react';
 import clsx from 'clsx';
+import { ChevronsUpDownIcon } from 'lucide-react';
+import { useState } from 'react';
 
 type DropdownItem = {
   label: string;
@@ -37,19 +37,19 @@ export default function Dropdown({ items, value, onChange, searchInput = false, 
 
   return (
     <Listbox value={value} onChange={onChange}>
-      <div className={clsx('relative mb-1 mt-1', popoverAttributes?.wrapperClassName)}>
+      <div className={clsx('relative mt-1 mb-1', popoverAttributes?.wrapperClassName)}>
         <ListboxButton
           type="button"
           className={clsx(
-            'relative border border-btn-border-color rounded-md bg-white flex items-center justify-center gap-1 px-2 text-sm transition-colors h-full w-full p-2',
+            'border-btn-border-color relative flex h-full w-full items-center justify-center gap-1 rounded-md border bg-white p-2 px-2 text-sm transition-colors',
             buttonClassName,
           )}
         >
-          <div className="flex items-center flex-1 gap-1 min-w-0 truncate">
+          <div className="flex min-w-0 flex-1 items-center gap-1 truncate">
             {selectedItem.icon && selectedItem.icon()}
             <span className={clsx(!selectedItem && 'text-gray-400', 'truncate')}>{selectedItem.activeLabel || selectedItem.label}</span>
           </div>
-          <ChevronsUpDownIcon className="w-3 h-3 text-gray-400" />
+          <ChevronsUpDownIcon className="h-3 w-3 text-gray-400" />
         </ListboxButton>
 
         <Transition
@@ -62,7 +62,7 @@ export default function Dropdown({ items, value, onChange, searchInput = false, 
         >
           <ListboxOptions
             className={clsx(
-              'absolute z-10 mt-2 max-h-60 min-w-[300px] w-full overflow-auto rounded-md bg-white py-1 shadow-lg border border-btn-border-color text-sm focus:outline-none',
+              'border-btn-border-color absolute z-10 mt-2 max-h-60 w-full min-w-[300px] overflow-auto rounded-md border bg-white py-1 text-sm shadow-lg focus:outline-none',
               popoverAttributes?.wrapperClassName,
             )}
           >
@@ -72,7 +72,7 @@ export default function Dropdown({ items, value, onChange, searchInput = false, 
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  className="w-full border border-border-muted rounded px-2 py-1 text-sm focus:outline-none"
+                  className="border-border-muted w-full rounded border px-2 py-1 text-sm focus:outline-none"
                   placeholder="Search..."
                 />
               </div>
@@ -83,7 +83,7 @@ export default function Dropdown({ items, value, onChange, searchInput = false, 
                 key={item.value}
                 value={item.value}
                 className={({ selected }) =>
-                  clsx('cursor-pointer px-4 py-2 flex items-center justify-between', selected ? 'bg-gray-100 text-black' : 'text-gray-700')
+                  clsx('flex cursor-pointer items-center justify-between px-4 py-2', selected ? 'bg-gray-100 text-black' : 'text-gray-700')
                 }
               >
                 <div className="flex items-center gap-2">

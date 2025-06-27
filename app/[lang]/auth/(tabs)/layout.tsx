@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
-import { AuthTabsProvider } from '@/components/Authtabs/context';
 import AuthTabs from '@/components/Authtabs/AuthTabs';
+import { AuthTabsProvider } from '@/components/Authtabs/context';
 
 export default async function AuthLayout(props: Readonly<{ children: ReactNode; params: { lang: string } }>) {
   const { lang } = await props.params;
@@ -9,7 +9,7 @@ export default async function AuthLayout(props: Readonly<{ children: ReactNode; 
     <AuthTabsProvider>
       <AuthTabs lang={lang} />
 
-      <div className="pb-24 md:pb-48 container mx-auto ">{props.children}</div>
+      <div className="container mx-auto pb-24 md:pb-48">{props.children}</div>
     </AuthTabsProvider>
   );
 }

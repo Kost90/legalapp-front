@@ -1,7 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
 
 export const clearAuth = async () => {
   const ck = await cookies();
@@ -12,6 +12,7 @@ export const clearAuth = async () => {
   ck.delete('action_token');
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const clearAuthAndRedirect = async (lang: string): Promise<void> => {
   await clearAuth();
 

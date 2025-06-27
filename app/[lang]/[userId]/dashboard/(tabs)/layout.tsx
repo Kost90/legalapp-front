@@ -8,7 +8,7 @@ export default async function AuthLayout(props: Readonly<{ children: ReactNode; 
     <>
       <DashboardTabs lang={lang} />
 
-      <div className="pb-24 md:pb-48 container mx-auto ">{props.children}</div>
+      <div className="container mx-auto pb-24 md:pb-48">{props.children}</div>
     </>
   );
 }

@@ -1,5 +1,6 @@
 'use client';
 import { FC } from 'react';
+
 import { cn } from '@/utils/cn';
 
 interface CardCategoryProps {
@@ -14,11 +15,11 @@ const CardCategory: FC<CardCategoryProps> = ({ title, description, onClick, clas
     <button
       onClick={onClick}
       className={cn(
-        'rounded-2xl p-6 text-left bg-white border border-btn-border-color shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-link-btn-text',
+        'border-btn-border-color focus:ring-link-btn-text cursor-pointer rounded-2xl border bg-white p-6 text-left shadow-sm transition-all duration-200 hover:shadow-md focus:ring-2 focus:outline-none',
         className,
       )}
     >
-      <h3 className="text-xl font-semibold mb-2 text-main-black">{title}</h3>
+      <h3 className="text-main-black mb-2 text-xl font-semibold">{title}</h3>
       <p className="text-muted-text text-sm">{description}</p>
     </button>
   );

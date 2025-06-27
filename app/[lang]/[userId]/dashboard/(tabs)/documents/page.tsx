@@ -1,5 +1,6 @@
-import PageTitle from '@/components/PageTitle/PageTitle';
 import { Metadata } from 'next';
+
+import PageTitle from '@/components/PageTitle/PageTitle';
 
 export const metadata: Metadata = { title: 'Your documents' };
 

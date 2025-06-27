@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
 import { usePathname } from 'next/navigation';
+import React from 'react';
+
 import HeaderNavItem from '@/components/Header/HeaderNavItem/HeaderNavItem';
 
 interface LanguageOption {
@@ -36,7 +37,7 @@ export default function LanguageSwitcher({ currentLang, specialKey }: LanguageSw
             label={lang.label}
             className={currentLang === lang.code ? 'text-color-footer-link-yellow-brt font-semibold' : 'text-gray-300 hover:text-white'}
           />
-          {index < supportedLanguages.length - 1 && <div className="h-4 w-[1px] bg-gray-400 mx-1" />}
+          {index < supportedLanguages.length - 1 && <div className="mx-1 h-4 w-[1px] bg-gray-400" />}
         </React.Fragment>
       ))}
     </div>

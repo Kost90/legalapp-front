@@ -1,5 +1,5 @@
 import Button from '@/components/Button/Button';
-import PageTitle from '../PageTitle/PageTitle';
+import PageTitle from '@/components/PageTitle/PageTitle';
 import { SiteContent } from '@/types/dictionaries';
 
 type VerifyYourEmailProps = { onBack: () => void; t: SiteContent };
