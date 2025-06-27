@@ -1,8 +1,7 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import LogoSvg from '@/public/Print_Transparent.svg';
-import glob from '@/public/globe.svg';
 
 export default function Logo() {
   return (

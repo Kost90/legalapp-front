@@ -1,9 +1,10 @@
 'use client';
+import { Eye, EyeOff } from 'lucide-react';
 import { InputHTMLAttributes, useState } from 'react';
 import { FieldErrors, useFormContext } from 'react-hook-form';
+
 import FormGroup from '@/components/FormGroup/FormGroup';
 import { cn } from '@/utils/cn';
-import { Eye, EyeOff } from 'lucide-react';
 
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -36,7 +37,7 @@ export default function FormInput({ name, label, description, labelClassName, ..
           {...rest}
           type={type}
           className={cn(
-            'mt-1 block w-full px-3 py-2 pr-10 border border-btn-border-color bg-white rounded-md focus:outline-none focus:ring-link-btn-text focus:border-link-btn-text sm:text-sm',
+            'border-btn-border-color focus:ring-link-btn-text focus:border-link-btn-text mt-1 block w-full rounded-md border bg-white px-3 py-2 pr-10 focus:outline-none sm:text-sm',
             {
               'border-red-500': error,
             },

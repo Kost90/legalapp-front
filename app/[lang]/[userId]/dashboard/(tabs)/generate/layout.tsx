@@ -3,9 +3,10 @@ import React, { ReactNode } from 'react';
 
 export const metadata: Metadata = { title: 'Generate Doocument' };
 
-import GenerateDocumentLayoutClient from './layout.client';
-import { getGenerateDocumentsDictionary } from './generate-documents-dictionaries';
 import { IGenerateDocumentsContent } from '@/types/documents/generate-documents-dictionaries';
+
+import { getGenerateDocumentsDictionary } from './generate-documents-dictionaries';
+import GenerateDocumentLayoutClient from './layout.client';
 
 export default async function GenerateDocumentLayout(props: Readonly<{ children: ReactNode; params: { lang: string } }>) {
   const { lang } = await props.params;

@@ -1,5 +1,6 @@
 import { SelectHTMLAttributes } from 'react';
 import { useFormContext } from 'react-hook-form';
+
 import FormGroup from '@/components/FormGroup/FormGroup';
 import { cn } from '@/utils/cn';
 
@@ -29,7 +30,7 @@ export default function FormSelect({ name, label, options, description, ...rest 
         {...register(name)}
         {...rest}
         className={cn(
-          'mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md',
+          'mt-1 block w-full rounded-md border border-gray-300 py-2 pr-10 pl-3 text-base focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none sm:text-sm',
           {
             'mt-1 text-xs text-red-600': error,
           },

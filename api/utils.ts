@@ -86,6 +86,11 @@ export const makeRequest = async ({
     body,
   });
 
+  if (!res.ok) {
+    const json = await res.json();
+    handleError(json);
+  }
+
   let data: any;
   if (responseType === 'json') {
     data = await res.json();
@@ -123,12 +128,12 @@ export const refreshToken = async ({
 
       return tokens;
     } else {
-      clearAuth();
+      await clearAuth();
 
       throw new Error('Failed to refresh token');
     }
   } else {
-    clearAuth();
+    await clearAuth();
 
     throw new Error('No refresh token found');
   }
@@ -170,7 +175,7 @@ export const createRequestClient = ({
       return doRequest(url, options, errorMatchers);
     }
 
-    if (!res.ok && options.responseType === 'json') {
+    if (!res.ok) {
       handleError(json, errorMatchers);
     }
 

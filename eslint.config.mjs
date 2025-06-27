@@ -44,12 +44,13 @@ export default [
           allowSameFolder: true,
         },
       ],
-      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
       'unused-imports/no-unused-imports': 'error',
       'import/no-extraneous-dependencies': 'off',
       'import/no-unresolved': 'off',
       'import/extensions': 'off',
       'import/no-anonymous-default-export': 'off',
+      '@typescript-eslint/no-floating-promises': 'error',
       'import/order': [
         'error',
         {

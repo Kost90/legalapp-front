@@ -1,8 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
 import { useUser } from '@/context/user/UserProvider.client';
 import { cn } from '@/utils/cn';
 
@@ -18,8 +19,8 @@ export default function DashboardTabs({ lang }: { lang: string }) {
   const pathnameWithoutLang = pathname.startsWith(langPrefix) ? pathname.slice(langPrefix.length) : pathname;
 
   return (
-    <div className="flex w-full justify-center mx-auto max-w-md px-5 pt-5 relative">
-      <div className="inline-flex flex-col sm:flex-row items-center gap-y-2 gap-x-6 pb-2">
+    <div className="relative mx-auto flex w-full max-w-md justify-center px-5 pt-5">
+      <div className="inline-flex flex-col items-center gap-x-6 gap-y-2 pb-2 sm:flex-row">
         {tabs.map((tab, index) => {
           const tabPath = `/${user.id}${tab.href}`;
           const isActive = pathnameWithoutLang === tabPath;
@@ -30,18 +31,18 @@ export default function DashboardTabs({ lang }: { lang: string }) {
                 <div className="flex flex-col items-center">
                   <span
                     className={cn(
-                      'text-xl font-semibold transition-colors duration-300 whitespace-nowrap px-2.5',
+                      'px-2.5 text-xl font-semibold whitespace-nowrap transition-colors duration-300',
                       isActive ? 'text-main-black' : 'text-link-btn-text',
                     )}
                   >
                     {lang === 'ua' ? tab.labelUa : tab.labelEn}
                   </span>
 
-                  <div className="h-[2px] w-full mt-1 rounded-full">
+                  <div className="mt-1 h-[2px] w-full rounded-full">
                     {isActive && (
                       <motion.div
                         layoutId="underline"
-                        className="h-full w-1/2 bg-main-black rounded-full mx-auto"
+                        className="bg-main-black mx-auto h-full w-1/2 rounded-full"
                         transition={{ duration: 0.3 }}
                       />
                     )}
@@ -49,7 +50,7 @@ export default function DashboardTabs({ lang }: { lang: string }) {
                 </div>
               </Link>
               {index < tabs.length - 1 && (
-                <div className="hidden sm:block absolute top-1/2 right-0 -translate-y-1/2 h-6 w-px bg-muted-text" />
+                <div className="bg-muted-text absolute top-1/2 right-0 hidden h-6 w-px -translate-y-1/2 sm:block" />
               )}
             </div>
           );

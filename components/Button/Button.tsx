@@ -3,8 +3,8 @@
 import { ReactNode, useRef } from 'react';
 import { useFormState } from 'react-hook-form';
 
+import Spinner from '@/components/Spinner/Spinner';
 import { cn } from '@/utils/cn';
-import Spinner from '../Spinner/Spinner';
 
 type Props = {
   type?: 'default' | 'critical' | 'ghost';
@@ -45,15 +45,15 @@ export default function Button({
     <button
       {...attrs}
       className={cn(
-        'flex justify-center items-center min-w-32 py-2 px-8 mt-3 border border-gray-200 text-center rounded-md gap-1',
+        'mt-3 flex min-w-32 items-center justify-center gap-1 rounded-md border border-gray-200 px-8 py-2 text-center',
         {
           'w-full': fullWidth,
-          'py-1 px-4 text-sm min-w-24': size === 'small',
-          'py-2 px-8 text-base min-w-32': size === 'medium',
+          'min-w-24 px-4 py-1 text-sm': size === 'small',
+          'min-w-32 px-8 py-2 text-base': size === 'medium',
           'bg-main-black text-headerfooterwhite hover:bg-black': buttonType === 'submit' && !disabledOrLoading,
-          'bg-white text-link-btn-text hover:bg-base-btn-hover-bg': type === 'default' && buttonType === 'button' && !disabledOrLoading,
+          'text-link-btn-text hover:bg-base-btn-hover-bg bg-white': type === 'default' && buttonType === 'button' && !disabledOrLoading,
           'bg-redbtn text-white hover:bg-red-500': type === 'critical' && !disabledOrLoading,
-          '!bg-black !text-headerfooterwhite': buttonType === 'submit' && disabledOrLoading,
+          '!text-headerfooterwhite !bg-black': buttonType === 'submit' && disabledOrLoading,
           'bg-base-btn-hover-bg text-main-black': buttonType !== 'submit' && disabledOrLoading,
         },
         attrs.className,
@@ -66,7 +66,7 @@ export default function Button({
       {children}
 
       {loadingOrSubmitting && (
-        <div className="overlay flex justify-center items-center backdrop-blur-sm">
+        <div className="overlay flex items-center justify-center backdrop-blur-sm">
           <Spinner />
         </div>
       )}

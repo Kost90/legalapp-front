@@ -1,8 +1,9 @@
 import { Metadata } from 'next';
 
-import SignupPageClient from './page.client';
-import { SiteContent } from '@/types/dictionaries';
 import { getDictionary } from '@/app/[lang]/dictionaries';
+import { SiteContent } from '@/types/dictionaries';
+
+import SignupPageClient from './page.client';
 
 export const metadata: Metadata = { title: 'Signup' };
 

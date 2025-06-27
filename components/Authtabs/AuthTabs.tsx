@@ -1,10 +1,11 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { cn } from '@/utils/cn';
+
 import { useAuthTabs } from './context';
 
 const tabs = [
@@ -31,11 +32,11 @@ export default function AuthTabs({ lang }: { lang: string }) {
   const activeTab = tabs.find((tab) => tab.href === pathnameWithoutLang);
 
   return (
-    <div className="flex w-full items-center justify-between mx-auto max-w-md px-5 pt-5 border-b border-muted-text relative">
+    <div className="border-muted-text relative mx-auto flex w-full max-w-md items-center justify-between border-b px-5 pt-5">
       {tabs.map((tab, index) => {
         const isActive = tab === activeTab;
         return (
-          <div key={tab.href} className="flex-1 text-center relative">
+          <div key={tab.href} className="relative flex-1 text-center">
             <Link href={`/${lang}${tab.href}`} className="inline-block">
               <div className="flex flex-col items-center pb-2">
                 <span
@@ -50,14 +51,14 @@ export default function AuthTabs({ lang }: { lang: string }) {
                 {isActive && (
                   <motion.div
                     layoutId="underline"
-                    className="h-[2px] w-10 bg-main-black mt-1 rounded-full"
+                    className="bg-main-black mt-1 h-[2px] w-10 rounded-full"
                     transition={{ duration: 0.3 }}
                   />
                 )}
               </div>
             </Link>
 
-            {index < tabs.length - 1 && <div className="absolute top-1/2 right-0 transform -translate-y-1/2 h-6 w-px bg-muted-text" />}
+            {index < tabs.length - 1 && <div className="bg-muted-text absolute top-1/2 right-0 h-6 w-px -translate-y-1/2 transform" />}
           </div>
         );
       })}

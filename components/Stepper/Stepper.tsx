@@ -1,9 +1,11 @@
 'use client';
 
-import { cn } from '@/utils/cn';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useDevice } from '@/context/DeviceProvider';
 import { useEffect, useState } from 'react';
+
+import { useDevice } from '@/context/DeviceProvider';
+import { cn } from '@/utils/cn';
+
 import { mobileStepVariants } from './animation-variants';
 
 type Step = {
@@ -44,7 +46,7 @@ export default function Stepper({ steps, activeStep, filledStepIndex, setActiveS
         // Desctop
         <div className="relative flex items-center justify-between">
           <motion.div
-            className="absolute top-1/2 left-0 h-[2px] bg-base-btn-hover-bg"
+            className="bg-base-btn-hover-bg absolute top-1/2 left-0 h-[2px]"
             style={{ transform: 'translateY(-50%)' }}
             initial={{ width: 0 }}
             animate={{
@@ -52,7 +54,7 @@ export default function Stepper({ steps, activeStep, filledStepIndex, setActiveS
             }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
           />
-          <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-border -z-10" style={{ transform: 'translateY(-50%)' }} />
+          <div className="bg-border absolute top-1/2 right-0 left-0 -z-10 h-[2px]" style={{ transform: 'translateY(-50%)' }} />
 
           {steps.map((step, index) => {
             const isActive = index === activeIndex;
@@ -64,16 +66,16 @@ export default function Stepper({ steps, activeStep, filledStepIndex, setActiveS
                 key={step.key}
                 onClick={() => isClickable && setActiveStep?.(step.key)}
                 className={cn(
-                  'flex flex-col items-center relative z-10 group transition-colors duration-300',
-                  'min-w-[160px] md:min-w-0 text-center',
+                  'group relative z-10 flex flex-col items-center transition-colors duration-300',
+                  'min-w-[160px] text-center md:min-w-0',
                   isClickable ? 'cursor-pointer' : 'cursor-default',
                 )}
                 disabled={!isClickable}
               >
                 <motion.div
                   className={cn(
-                    'w-10 h-10 flex items-center justify-center rounded-full border-2 text-sm font-medium mb-2',
-                    'group-hover:shadow-md transition-all duration-300',
+                    'mb-2 flex h-10 w-10 items-center justify-center rounded-full border-2 text-sm font-medium',
+                    'transition-all duration-300 group-hover:shadow-md',
                   )}
                   animate={{
                     backgroundColor: activeStep === 'result' ? '#46d75a' : isActive ? '#6B8091' : isFilled ? '#46d75a' : '#FFFFFF',
@@ -100,7 +102,7 @@ export default function Stepper({ steps, activeStep, filledStepIndex, setActiveS
         </div>
       ) : (
         // Mobile screen
-        <div className="relative flex justify-center items-center">
+        <div className="relative flex items-center justify-center">
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               key={activeStep}
@@ -115,7 +117,7 @@ export default function Stepper({ steps, activeStep, filledStepIndex, setActiveS
                 <div className="flex items-center space-x-3">
                   <div
                     className={cn(
-                      'w-10 h-10 flex items-center justify-center rounded-full border-2 text-sm font-medium bg-color-footer-link-green border-transparent text-white flex-shrink-0',
+                      'bg-color-footer-link-green flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-transparent text-sm font-medium text-white',
                     )}
                   >
                     {activeIndex + 1}

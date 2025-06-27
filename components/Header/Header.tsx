@@ -1,19 +1,20 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
-
-import { useDevice } from '@/context/DeviceProvider';
-import HeaderNavItem from './HeaderNavItem/HeaderNavItem';
-import Logo from './Logo/Logo';
 import { Menu, X } from 'lucide-react';
-import { SiteContent } from '@/types/dictionaries';
-import { MenuVariants } from './animation-variants';
-import LanguageSwitcher from '../LanguagesSwitcher/LanguagesSwitcher';
-import { HEADER_NAV_VARIANTS } from './HeaderNavItem/variants';
+import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
+
+import Button from '@/components/Button/Button';
+import LanguageSwitcher from '@/components/LanguagesSwitcher/LanguagesSwitcher';
 import { useAuth } from '@/context/AuthProvider';
-import Button from '../Button/Button';
+import { useDevice } from '@/context/DeviceProvider';
+import { SiteContent } from '@/types/dictionaries';
+
+import { MenuVariants } from './animation-variants';
+import HeaderNavItem from './HeaderNavItem/HeaderNavItem';
+import { HEADER_NAV_VARIANTS } from './HeaderNavItem/variants';
+import Logo from './Logo/Logo';
 
 export type NavItemType = {
   label: string;
@@ -50,9 +51,9 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
   ];
 
   return (
-    <header className="bg-gray-800 text-headerfooterwhite shadow-lg sticky top-0 z-50">
+    <header className="text-headerfooterwhite sticky top-0 z-50 bg-gray-800 shadow-lg">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <Logo />
           </div>
@@ -78,7 +79,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
                     label={lang.header.dashboard}
                     variant={HEADER_NAV_VARIANTS.BUTTON}
                   />
-                  <Button onClick={logout} className="!px-2 !py-0 !mt-0">
+                  <Button onClick={logout} className="!mt-0 !px-2 !py-0">
                     {lang.header.logout}
                   </Button>
                 </>
@@ -92,7 +93,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
             <div className="lg:hidden">
               <button
                 onClick={toggleMobileMenu}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-none focus:ring-inset"
                 aria-controls="mobile-menu"
                 aria-expanded={isMobileMenuOpen}
                 aria-label={isMobileMenuOpen ? 'Закрити головне меню' : 'Відкрити головне меню'}
@@ -117,10 +118,10 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
             animate="visible"
             exit="exit"
             variants={MenuVariants}
-            className="lg:hidden absolute w-full bg-gray-800 shadow-lg mx-auto flex flex-col"
+            className="absolute mx-auto flex w-full flex-col bg-gray-800 shadow-lg lg:hidden"
             id="mobile-menu"
           >
-            <nav className="flex flex-col justify-center items-center gap-1 px-2 pt-2 pb-3 space-y-1 sm:px-3 mx-auto">
+            <nav className="mx-auto flex flex-col items-center justify-center gap-1 space-y-1 px-2 pt-2 pb-3 sm:px-3">
               {navItems.map((item, i) => (
                 <HeaderNavItem key={`${item.href}+${i}mob`} href={item.href} label={item.label} onClick={toggleMobileMenu} />
               ))}
@@ -140,7 +141,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
                     label={lang.header.dashboard}
                     variant={HEADER_NAV_VARIANTS.BUTTON}
                   />
-                  <Button onClick={logout} className="!px-2 !py-0 !mt-0">
+                  <Button onClick={logout} className="!mt-0 !px-2 !py-0">
                     {lang.header.logout}
                   </Button>
                 </>
