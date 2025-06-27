@@ -53,7 +53,7 @@ export function GenerateDocumentProvider({
   // TODO: Think about make form reusable
   const form = useForm<PropertyPowerOfAttorneyFormData>({
     resolver: zodResolver(getPropertyPowerOfAttorneySchema(lang)),
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
   const onSubmit = form.handleSubmit(async (e) => {
@@ -78,6 +78,18 @@ export function GenerateDocumentProvider({
 
       setGeneratedPdfUrl(fileURL);
       // TODO: Think how to make setCompletedStepIndex(3) - automated
+      // const nextStepIndex = FORM_STEPS.findIndex((s) => s.key === 'result'); // Находим индекс шага "result"
+
+      // if (nextStepIndex !== -1) {
+      //   // Устанавливаем "выполненный" индекс на шаг *перед* результатом
+      //   setCompletedStepIndex(nextStepIndex - 1);
+      //   setStep(FORM_STEPS[nextStepIndex]);
+      // } else {
+      //   // Обработка случая, если шаг 'result' не найден
+      //   // Можно просто перейти на последний шаг как запасной вариант
+      //   setCompletedStepIndex(FORM_STEPS.length - 1);
+      //   setStep(FORM_STEPS[FORM_STEPS.length - 1]);
+      // }
       setCompletedStepIndex(3);
       setStep(FORM_STEPS[4]);
       open(SuccessModal, {
@@ -86,18 +98,25 @@ export function GenerateDocumentProvider({
         lang: lang,
       });
     } catch (error: any) {
-      const parsedError = JSON.parse(error.message);
+      let parsedError;
+      try {
+        parsedError = JSON.parse(error.message);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (e: any) {
+        parsedError = { message: error.message || (lang === 'ua' ? 'Сталася невідома помилка' : 'An unknown error occurred') };
+      }
 
       if (parsedError.field) {
         form.setError(parsedError.field, { message: parsedError.message });
       }
+
       form.setError('root', { message: parsedError.message });
+
       open(ErrorModal, {
-        title: lang === 'ua' ? 'Нажаль сталась помилка' : 'Sorry error in generating',
+        title: lang === 'ua' ? 'Нажаль сталась помилка' : 'Sorry, an error occurred',
         message: lang === 'ua' ? MODALS_MESSAGES_UA.ERROR_GENERATE_DOCUMENT : MODALS_MESSAGES_EN.ERROR_GENERATE_DOCUMENT,
         lang: lang,
       });
-      // setError(parsedError.message);
     }
   });
 

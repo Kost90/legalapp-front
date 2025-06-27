@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import Button from '@/components/Button/Button';
+
 import { BaseModal } from './BaseModal';
 import { ModalProps } from './ModalProvider';
 
@@ -12,7 +14,7 @@ interface SuccessModalProps {
 export const SuccessModal: FC<SuccessModalProps & ModalProps> = ({ onClose, title, message, lang }) => {
   return (
     <BaseModal onClose={onClose} title={title}>
-      <div className="flex items-center">
+      <div className="my-10 flex items-center">
         <svg className="text-color-footer-link-green mr-4 h-10 w-10 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
           <path
             fillRule="evenodd"
@@ -20,12 +22,10 @@ export const SuccessModal: FC<SuccessModalProps & ModalProps> = ({ onClose, titl
             clipRule="evenodd"
           />
         </svg>
-        <div>
-          <p className="text-text-muted text-base">{message}</p>
-          <button onClick={onClose} className="bg-link-btn-text mt-4 rounded-md px-4 py-2 text-white transition-opacity hover:opacity-90">
-            {lang === 'ua' ? 'Вітаємо!' : 'Congratulations!'}
-          </button>
-        </div>
+        <p className="text-text-muted text-base">{message}</p>
+      </div>
+      <div className="flex justify-end">
+        <Button onClick={onClose}>{lang === 'ua' ? 'Вітаємо!' : 'Congratulations!'}</Button>
       </div>
     </BaseModal>
   );
