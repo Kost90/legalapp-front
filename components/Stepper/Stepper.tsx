@@ -14,6 +14,7 @@ type Step = {
 };
 
 interface StepperProps {
+  isErrorExist: boolean;
   steps: Step[];
   activeStep: string;
   filledStepIndex?: number;
@@ -21,7 +22,7 @@ interface StepperProps {
   className?: string;
 }
 
-export default function Stepper({ steps, activeStep, filledStepIndex, setActiveStep, className = '' }: StepperProps) {
+export default function Stepper({ isErrorExist, steps, activeStep, filledStepIndex, setActiveStep, className = '' }: StepperProps) {
   const deviceContext = useDevice();
   const [isClient, setIsClient] = useState(false);
 
@@ -78,8 +79,26 @@ export default function Stepper({ steps, activeStep, filledStepIndex, setActiveS
                     'transition-all duration-300 group-hover:shadow-md',
                   )}
                   animate={{
-                    backgroundColor: activeStep === 'result' ? '#46d75a' : isActive ? '#6B8091' : isFilled ? '#46d75a' : '#FFFFFF',
-                    borderColor: activeStep === 'result' ? '#46d75a' : isActive ? '#6B8091' : isFilled ? 'transparent' : '#E5E7EB',
+                    backgroundColor:
+                      activeStep === 'result'
+                        ? '#46d75a'
+                        : isActive && !isErrorExist
+                          ? '#6B8091'
+                          : isActive && isErrorExist
+                            ? '#ff5a5f'
+                            : isFilled
+                              ? '#46d75a'
+                              : '#FFFFFF',
+                    borderColor:
+                      activeStep === 'result'
+                        ? '#46d75a'
+                        : isActive && !isErrorExist
+                          ? '#6B8091'
+                          : isActive && isErrorExist
+                            ? '#ff5a5f'
+                            : isFilled
+                              ? 'transparent'
+                              : '#E5E7EB',
                     color: isActive || isFilled ? '#FFFFFF' : '#6B7280',
                   }}
                   whileHover={isClickable ? { scale: 1.1 } : {}}
