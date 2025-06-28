@@ -4,12 +4,12 @@ import { useFormState } from 'react-hook-form';
 import Button from '@/components/Button/Button';
 import { useGenerateDocument, useGenerateDocumentForm } from '@/context/generateStepper/GenerateDocumentStepper';
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
-import { FieldSchema } from '@/types/documents/formInput';
+import { FieldSchema } from '@/types/formInput';
 
 export default function SubmitButton({ lang, fieldsToValidate }: { lang: string; fieldsToValidate: FieldSchema[] }) {
   const form = useGenerateDocumentForm();
   const formState = useFormState({ control: form.control });
-  const { setStep, step, onSubmit, setCompletedStepIndex } = useGenerateDocument();
+  const { setStep, step, onSubmit, setCompletedStepIndex, setIsErrorExist } = useGenerateDocument();
 
   const activeIndex = FORM_STEPS.indexOf(step);
   const nextStep = FORM_STEPS[activeIndex + 1];
@@ -23,13 +23,16 @@ export default function SubmitButton({ lang, fieldsToValidate }: { lang: string;
     }
 
     // TODO: think how to make it type anotation automate
-    const isValid = await form.trigger(fieldsNames as any);
+    const isValid = await form.trigger(fieldsNames as never);
 
     if (isValid) {
+      setIsErrorExist(false);
       setStep(nextStep);
       setCompletedStepIndex(activeIndex);
+    } else {
+      setIsErrorExist(true);
     }
-  }, [fieldsNames, form, setStep, nextStep, setCompletedStepIndex, activeIndex]);
+  }, [fieldsNames, form, setStep, nextStep, setIsErrorExist, setCompletedStepIndex, activeIndex]);
 
   return (
     <div className="relative">
@@ -39,9 +42,9 @@ export default function SubmitButton({ lang, fieldsToValidate }: { lang: string;
         isInStepper={true}
         onClick={async () => {
           if (step.key === 'meta') {
-            onSubmit();
+            await onSubmit();
           } else {
-            handelNextStep();
+            await handelNextStep();
           }
         }}
       >
