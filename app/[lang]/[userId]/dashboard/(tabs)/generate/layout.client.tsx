@@ -7,7 +7,7 @@ import DocumentSelector from '@/components/DocumentSelector/DocumentSelector';
 import PageTitle from '@/components/PageTitle/PageTitle';
 import { GenerateDocumentProvider, GenerateStep } from '@/context/generateStepper/GenerateDocumentStepper';
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
-import { IGenerateDocumentsContent } from '@/types/documents/generate-documents-dictionaries';
+import { IGenerateDocumentsContent } from '@/types/generate-documents-dictionaries';
 
 export default function GenerateDocumentLayoutClient(
   props: Readonly<{ children: ReactNode; lang: string; dictionary: IGenerateDocumentsContent }>,
@@ -18,12 +18,9 @@ export default function GenerateDocumentLayoutClient(
   const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
   const [document, setDocument] = useState<string | null>(null);
 
-  const handleCategoryClick = useCallback(
-    (category: string) => {
-      setSelectedCategory(category);
-    },
-    [selectedCategory],
-  );
+  const handleCategoryClick = useCallback((category: string) => {
+    setSelectedCategory(category);
+  }, []);
 
   return (
     <GenerateDocumentProvider setStep={setStep} step={step} lang={props.lang} selectedDocument={selectedDocument ?? ''}>
@@ -35,6 +32,7 @@ export default function GenerateDocumentLayoutClient(
           />
           <div className="my-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:my-20 lg:grid-cols-2">
             {Object.entries(props.dictionary.documentsCategories)
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               .filter(([category, docs]) => category !== 'pageTitle' && category !== 'pageDescription' && category !== 'resultMessage')
               .map(([category, docs]) => (
                 <CardCategory
