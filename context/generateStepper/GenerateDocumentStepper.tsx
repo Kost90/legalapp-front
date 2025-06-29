@@ -25,8 +25,8 @@ type GenerateDocumentContext = {
   selectedDocument: string;
   completedStepIndex: number;
   setCompletedStepIndex: (value: number) => void;
-  isErrorExist: boolean;
-  setIsErrorExist: (value: boolean) => void;
+  // isErrorExist: boolean;
+  // setIsErrorExist: (value: boolean) => void;
 };
 
 const FormStateContext = createContext<GenerateDocumentContext | null>(null);
@@ -51,7 +51,6 @@ export function GenerateDocumentProvider({
   const { user } = useUser();
   const [generatedPdfUrl, setGeneratedPdfUrl] = useState('');
   const [completedStepIndex, setCompletedStepIndex] = useState(-1);
-  const [isErrorExist, setIsErrorExist] = useState<boolean>(false);
 
   // TODO: Think about make form reusable
   const form = useForm<PropertyPowerOfAttorneyFormData>({
@@ -144,8 +143,8 @@ export function GenerateDocumentProvider({
         selectedDocument,
         completedStepIndex,
         setCompletedStepIndex,
-        isErrorExist,
-        setIsErrorExist,
+        // isErrorExist,
+        // setIsErrorExist,
       }}
     >
       <FormProvider {...form}>{children}</FormProvider>

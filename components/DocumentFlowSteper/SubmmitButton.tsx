@@ -6,10 +6,18 @@ import { useGenerateDocument, useGenerateDocumentForm } from '@/context/generate
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 import { FieldSchema } from '@/types/formInput';
 
-export default function SubmitButton({ lang, fieldsToValidate }: { lang: string; fieldsToValidate: FieldSchema[] }) {
+export default function SubmitButton({
+  lang,
+  fieldsToValidate,
+  setIsErrorExist,
+}: {
+  lang: string;
+  fieldsToValidate: FieldSchema[];
+  setIsErrorExist: (value: boolean) => void;
+}) {
   const form = useGenerateDocumentForm();
   const formState = useFormState({ control: form.control });
-  const { setStep, step, onSubmit, setCompletedStepIndex, setIsErrorExist } = useGenerateDocument();
+  const { setStep, step, onSubmit, setCompletedStepIndex } = useGenerateDocument();
 
   const activeIndex = FORM_STEPS.indexOf(step);
   const nextStep = FORM_STEPS[activeIndex + 1];

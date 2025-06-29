@@ -1,4 +1,4 @@
-import DocumentFlow from '@/components/DocumentFlowSteper/DocumentFlowSteper';
+import DocumentGenerationFlow from '@/components/DocumentFlowSteper/DocumentGenerationFlow';
 import { IGenerateDocumentsContent } from '@/types/generate-documents-dictionaries';
 
 import { getGenerateDocumentsDictionary } from './generate-documents-dictionaries';
@@ -6,5 +6,5 @@ import { getGenerateDocumentsDictionary } from './generate-documents-dictionarie
 export default async function GeneratePage(props: Readonly<{ params: { lang: string } }>) {
   const { lang } = await props.params;
   const dictionary: IGenerateDocumentsContent = await getGenerateDocumentsDictionary(lang);
-  return <DocumentFlow lang={lang} dictionary={dictionary} />;
+  return <DocumentGenerationFlow lang={lang} dictionary={dictionary} />;
 }
