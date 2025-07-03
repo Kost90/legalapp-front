@@ -2,11 +2,13 @@
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { FC } from 'react';
 
+import { DocumentKey } from '@/utils/getDocumentSchema';
+
 interface DocumentSelectorProps {
   options: Record<string, string>[];
-  value: string | null;
+  value: DocumentKey | string;
   lang: string;
-  onChange: (value: string) => void;
+  onChange: (value: DocumentKey) => void;
   onNext: () => void;
   onBack: () => void;
 }
@@ -16,7 +18,7 @@ const DocumentSelector: FC<DocumentSelectorProps> = ({ options, value, lang, onC
     <div className="my-10 space-y-4 md:my-20">
       <select
         value={value ?? ''}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value as DocumentKey)}
         className="border-btn-border-color focus:ring-link-btn-text w-full rounded-md border px-4 py-2 text-sm focus:ring-2 focus:outline-none"
       >
         <option value="" disabled>

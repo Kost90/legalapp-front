@@ -5,25 +5,24 @@ import { ReactNode, useCallback, useState } from 'react';
 import CardCategory from '@/components/CardCategory/CardCategory';
 import DocumentSelector from '@/components/DocumentSelector/DocumentSelector';
 import PageTitle from '@/components/PageTitle/PageTitle';
-import { GenerateDocumentProvider, GenerateStep } from '@/context/generateStepper/GenerateDocumentStepper';
-import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
+import { GenerateDocumentProvider } from '@/context/generateStepper/GenerateDocumentStepper';
+import { DOCUMENT_KEYS } from '@/lib/documentsSchemas';
+import { DocumentKey } from '@/types/documents';
 import { IGenerateDocumentsContent } from '@/types/generate-documents-dictionaries';
 
 export default function GenerateDocumentLayoutClient(
-  props: Readonly<{ children: ReactNode; lang: string; dictionary: IGenerateDocumentsContent }>,
+  props: Readonly<{ children: ReactNode; lang: 'ua' | 'en'; dictionary: IGenerateDocumentsContent }>,
 ) {
-  // TODO: Think how to make form steps automation
-  const [step, setStep] = useState<GenerateStep>(FORM_STEPS[0]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
-  const [document, setDocument] = useState<string | null>(null);
+  const [selectedDocument, setSelectedDocument] = useState<DocumentKey | string>('');
+  const [document, setDocument] = useState<DocumentKey | string>('');
 
   const handleCategoryClick = useCallback((category: string) => {
     setSelectedCategory(category);
   }, []);
 
   return (
-    <GenerateDocumentProvider setStep={setStep} step={step} lang={props.lang} selectedDocument={selectedDocument ?? ''}>
+    <>
       {!selectedCategory && (
         <>
           <PageTitle
@@ -52,15 +51,18 @@ export default function GenerateDocumentLayoutClient(
           value={document}
           onChange={setDocument}
           onBack={() => {
-            setDocument(null);
+            setDocument('');
             setSelectedCategory(null);
           }}
           onNext={() => setSelectedDocument(document)}
           lang={props.lang}
         />
       )}
-
-      {props.children}
-    </GenerateDocumentProvider>
+      {selectedCategory && DOCUMENT_KEYS.includes(selectedDocument as DocumentKey) && (
+        <GenerateDocumentProvider lang={props.lang} selectedDocument={selectedDocument as DocumentKey}>
+          {props.children}
+        </GenerateDocumentProvider>
+      )}
+    </>
   );
 }

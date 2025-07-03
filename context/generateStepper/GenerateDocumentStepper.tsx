@@ -7,100 +7,65 @@ import { ErrorModal } from '@/components/Modals/ErrorModal';
 import { useModals } from '@/components/Modals/ModalProvider';
 import { SuccessModal } from '@/components/Modals/SuccessModal';
 import { useUser } from '@/context/user/UserProvider.client';
-import { DOCUMENT_TYPE } from '@/lib/constans';
-import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
+import { DOCUMENT_SCHEMAS } from '@/lib/documentsSchemas';
+import { FORM_STEPS, GenerateStep } from '@/lib/formsSteps/forms-steps';
 import { MODALS_MESSAGES_EN, MODALS_MESSAGES_UA } from '@/lib/modals-messages';
-import { getPropertyPowerOfAttorneySchema, PropertyPowerOfAttorneyFormData } from '@/schemas/generateDocuments/powerOfAttorneySchema';
-import { formatDateToString } from '@/schemas/utils/formatDateToString';
-import { PowerOfAttorney } from '@/types/power-of-attorney';
-import { cleanPropertyAddress } from '@/utils/cleanPropertyAddress';
+import { DocumentKey } from '@/types/documents';
+import { prepareDataByDocumentType } from '@/utils/prepareFormData';
 
 type GenerateDocumentContext = {
   step: GenerateStep;
   setStep: (value: GenerateStep) => void;
   onSubmit: ReturnType<UseFormReturn['handleSubmit']>;
-  //TODO:Add more types
-  documentDetails: PowerOfAttorney | null;
   generatedPdfUrl: string;
-  selectedDocument: string;
+  selectedDocument: DocumentKey;
   completedStepIndex: number;
   setCompletedStepIndex: (value: number) => void;
-  isErrorExist: boolean;
-  setIsErrorExist: (value: boolean) => void;
+};
+
+type GenerateDocumentProviderProps<T extends DocumentKey> = {
+  children: ReactNode;
+  lang: 'ua' | 'en';
+  selectedDocument: T;
 };
 
 const FormStateContext = createContext<GenerateDocumentContext | null>(null);
 
-export type GenerateStep = (typeof FORM_STEPS)[number];
-
-export function GenerateDocumentProvider({
-  children,
-  step,
-  setStep,
-  lang,
-  selectedDocument,
-}: {
-  children: ReactNode;
-  step: GenerateStep;
-  setStep: (value: GenerateStep) => void;
-  lang: string;
-  selectedDocument: string;
-}) {
+export function GenerateDocumentProvider<T extends DocumentKey>({ children, lang, selectedDocument }: GenerateDocumentProviderProps<T>) {
   const { open } = useModals();
-  const [documentDetails, setDocumentDetails] = useState<PowerOfAttorney | null>(null);
   const { user } = useUser();
+  const [step, setStep] = useState<GenerateStep>({ label: 'Данні особи яка надає документ', key: 'person' });
   const [generatedPdfUrl, setGeneratedPdfUrl] = useState('');
   const [completedStepIndex, setCompletedStepIndex] = useState(-1);
-  const [isErrorExist, setIsErrorExist] = useState<boolean>(false);
 
-  // TODO: Think about make form reusable
-  const form = useForm<PropertyPowerOfAttorneyFormData>({
-    resolver: zodResolver(getPropertyPowerOfAttorneySchema(lang)),
+  const schemaGetter = selectedDocument ? DOCUMENT_SCHEMAS[selectedDocument]?.schema : null;
+
+  if (!schemaGetter) {
+    throw new Error(`No schema found for document type: ${selectedDocument}`);
+  }
+
+  const form = useForm<(typeof DOCUMENT_SCHEMAS)[T]['type']>({
+    resolver: zodResolver(schemaGetter(lang)),
     mode: 'onBlur',
   });
 
   const onSubmit = form.handleSubmit(async (e) => {
     try {
-      const { propertyAddress, ...rest } = e;
+      const dataForSend = prepareDataByDocumentType(selectedDocument, e, lang, user);
 
-      const formattedData = {
-        ...rest,
-        birthDate: formatDateToString(rest.birthDate),
-        passportIssueDate: formatDateToString(rest.passportIssueDate),
-        representativeBirthDate: formatDateToString(rest.representativeBirthDate),
-        date: formatDateToString(rest.date),
-        validUntil: formatDateToString(rest.validUntil),
-        ...(cleanPropertyAddress(propertyAddress) ? { propertyAddress: cleanPropertyAddress(propertyAddress) } : {}),
-      };
-
-      const dataForSend: PowerOfAttorney = {
-        email: user.email,
-        documentLang: lang,
-        documentType: DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY,
-        isPaid: true,
-        details: formattedData,
-      };
-
-      setDocumentDetails(dataForSend);
       const documentBlob = await generatePowerOfAttorney(user.id, dataForSend);
       const fileURL = window.URL.createObjectURL(documentBlob);
 
       setGeneratedPdfUrl(fileURL);
-      // TODO: Think how to make setCompletedStepIndex(3) - automated
-      // const nextStepIndex = FORM_STEPS.findIndex((s) => s.key === 'result'); // Находим индекс шага "result"
 
-      // if (nextStepIndex !== -1) {
-      //   // Устанавливаем "выполненный" индекс на шаг *перед* результатом
-      //   setCompletedStepIndex(nextStepIndex - 1);
-      //   setStep(FORM_STEPS[nextStepIndex]);
-      // } else {
-      //   // Обработка случая, если шаг 'result' не найден
-      //   // Можно просто перейти на последний шаг как запасной вариант
-      //   setCompletedStepIndex(FORM_STEPS.length - 1);
-      //   setStep(FORM_STEPS[FORM_STEPS.length - 1]);
-      // }
-      setCompletedStepIndex(3);
-      setStep(FORM_STEPS[4]);
+      const nextStepIndex = selectedDocument ? FORM_STEPS[selectedDocument][lang].findIndex((s) => s.key === step.key) + 1 : 0;
+
+      if (selectedDocument) {
+        setStep(FORM_STEPS[selectedDocument][lang][nextStepIndex]);
+      }
+
+      setCompletedStepIndex(nextStepIndex - 1);
+
       open(SuccessModal, {
         title: lang === 'ua' ? 'Вітаємо!' : 'Congratulation!',
         message: lang === 'ua' ? MODALS_MESSAGES_UA.SUCCESSFULL_GENERATE_DOCUMENT : MODALS_MESSAGES_EN.SUCCESSFULL_GENERATE_DOCUMENT,
@@ -139,13 +104,10 @@ export function GenerateDocumentProvider({
         step,
         setStep,
         onSubmit,
-        documentDetails,
         generatedPdfUrl,
         selectedDocument,
         completedStepIndex,
         setCompletedStepIndex,
-        isErrorExist,
-        setIsErrorExist,
       }}
     >
       <FormProvider {...form}>{children}</FormProvider>
@@ -153,8 +115,8 @@ export function GenerateDocumentProvider({
   );
 }
 
-export function useGenerateDocumentForm() {
-  const form = useFormContext<PropertyPowerOfAttorneyFormData>();
+export function useGenerateDocumentForm<T extends DocumentKey>() {
+  const form = useFormContext<(typeof DOCUMENT_SCHEMAS)[T]['type']>();
 
   return form;
 }
