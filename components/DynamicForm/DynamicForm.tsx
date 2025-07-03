@@ -1,25 +1,22 @@
-import { Button } from '@headlessui/react';
 import { UseFormReturn } from 'react-hook-form';
 
+import Button from '@/components/Button/Button';
 import SubmitButton from '@/components/DocumentFlowSteper/SubmmitButton';
 import DynamicFormFields from '@/components/DynamicFormFields/DynamicFormFields';
-import { GenerateStep } from '@/context/generateStepper/GenerateDocumentStepper';
 import useDocumetFlow from '@/hooks/useDocumetFlow';
 import { FieldSchema } from '@/types/formInput';
 
 export default function DynamicForm({
   lang,
   formSchema,
-  setStep,
   setIsErrorExist,
 }: {
   handleSubmit?: ReturnType<UseFormReturn['handleSubmit']>;
-  lang: string;
+  lang: 'ua' | 'en';
   formSchema: FieldSchema[];
-  setStep: (value: GenerateStep) => void;
   setIsErrorExist: (value: boolean) => void;
 }) {
-  const { previousStep, handelFormClearErrors } = useDocumetFlow(lang);
+  const { previousStep, handelBackStep } = useDocumetFlow(lang);
 
   return (
     <form className="relative mx-auto max-w-md rounded bg-white p-4 shadow">
@@ -29,9 +26,7 @@ export default function DynamicForm({
         {previousStep && (
           <Button
             onClick={() => {
-              handelFormClearErrors();
-              setIsErrorExist(false);
-              setStep(previousStep);
+              handelBackStep();
             }}
           >
             <span>{lang === 'ua' ? 'Назад' : 'Back'}</span>

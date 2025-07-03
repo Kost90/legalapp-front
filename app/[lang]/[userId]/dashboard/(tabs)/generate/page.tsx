@@ -3,7 +3,7 @@ import { IGenerateDocumentsContent } from '@/types/generate-documents-dictionari
 
 import { getGenerateDocumentsDictionary } from './generate-documents-dictionaries';
 
-export default async function GeneratePage(props: Readonly<{ params: { lang: string } }>) {
+export default async function GeneratePage(props: Readonly<{ params: { lang: 'ua' | 'en' } }>) {
   const { lang } = await props.params;
   const dictionary: IGenerateDocumentsContent = await getGenerateDocumentsDictionary(lang);
   return <DocumentGenerationFlow lang={lang} dictionary={dictionary} />;

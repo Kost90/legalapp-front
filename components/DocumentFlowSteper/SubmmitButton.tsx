@@ -6,31 +6,24 @@ import { useGenerateDocument, useGenerateDocumentForm } from '@/context/generate
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 import { FieldSchema } from '@/types/formInput';
 
-export default function SubmitButton({
-  lang,
-  fieldsToValidate,
-  setIsErrorExist,
-}: {
-  lang: string;
+export type ISubmitButtomProps = {
+  lang: 'ua' | 'en';
   fieldsToValidate: FieldSchema[];
   setIsErrorExist: (value: boolean) => void;
-}) {
-  const form = useGenerateDocumentForm();
-  const formState = useFormState({ control: form.control });
-  const { setStep, step, onSubmit, setCompletedStepIndex } = useGenerateDocument();
+};
 
-  const activeIndex = FORM_STEPS.indexOf(step);
-  const nextStep = FORM_STEPS[activeIndex + 1];
+export default function SubmitButton({ lang, fieldsToValidate, setIsErrorExist }: ISubmitButtomProps) {
+  const { setStep, step, onSubmit, setCompletedStepIndex, selectedDocument } = useGenerateDocument();
+  const form = useGenerateDocumentForm<typeof selectedDocument>();
+  const formState = useFormState({ control: form.control });
+
+  const activeIndex = FORM_STEPS[selectedDocument][lang].indexOf(step);
+  const nextStep = FORM_STEPS[selectedDocument][lang][activeIndex + 1];
   const isLastStepBeforeResult = step.key === 'meta';
 
   const fieldsNames = fieldsToValidate.map((field) => field.name);
 
   const handelNextStep = useCallback(async () => {
-    if (!fieldsNames) {
-      setStep(nextStep);
-    }
-
-    // TODO: think how to make it type anotation automate
     const isValid = await form.trigger(fieldsNames as never);
 
     if (isValid) {

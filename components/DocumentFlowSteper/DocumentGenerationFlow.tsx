@@ -7,8 +7,8 @@ import useDocumetFlow from '@/hooks/useDocumetFlow';
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 import { IGenerateDocumentsContent } from '@/types/generate-documents-dictionaries';
 
-export default function DocumentGenerationFlow({ lang, dictionary }: { lang: string; dictionary: IGenerateDocumentsContent }) {
-  const { step, setStep, generatedPdfUrl, completedStepIndex } = useGenerateDocument();
+export default function DocumentGenerationFlow({ lang, dictionary }: { lang: 'ua' | 'en'; dictionary: IGenerateDocumentsContent }) {
+  const { step, generatedPdfUrl, completedStepIndex, selectedDocument } = useGenerateDocument();
   const { formFieldsSchema, shouldShowFormAndStepper, setIsErrorExist, isErrorExist, handleStepClick } = useDocumetFlow(lang);
 
   return (
@@ -23,7 +23,7 @@ export default function DocumentGenerationFlow({ lang, dictionary }: { lang: str
                 filledStepIndex={completedStepIndex}
                 setActiveStep={handleStepClick}
                 steps={
-                  FORM_STEPS as unknown as {
+                  FORM_STEPS[selectedDocument][lang] as unknown as {
                     label: string;
                     key: string;
                   }[]
@@ -31,7 +31,7 @@ export default function DocumentGenerationFlow({ lang, dictionary }: { lang: str
               />
             </div>
           </div>
-          <DynamicForm formSchema={formFieldsSchema} lang={lang} setStep={setStep} setIsErrorExist={setIsErrorExist} />
+          {formFieldsSchema ? <DynamicForm formSchema={formFieldsSchema} lang={lang} setIsErrorExist={setIsErrorExist} /> : null}
         </>
       )}
 

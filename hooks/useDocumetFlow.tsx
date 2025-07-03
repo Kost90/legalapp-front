@@ -5,12 +5,12 @@ import { formFieldsSchemas } from '@/lib/formsFields/powerOfAttorneyProperty';
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 import { FieldSchema } from '@/types/formInput';
 
-function useDocumetFlow(lang: string) {
-  const form = useGenerateDocumentForm();
+function useDocumetFlow(lang: 'ua' | 'en') {
   const { step, setStep, selectedDocument, setCompletedStepIndex } = useGenerateDocument();
+  const form = useGenerateDocumentForm<typeof selectedDocument>();
   const [isErrorExist, setIsErrorExist] = useState<boolean>(false);
 
-  const formFieldsSchema: FieldSchema[] = useMemo(() => {
+  const formFieldsSchema = useMemo<FieldSchema[] | null>(() => {
     if (!selectedDocument || !lang) return null;
     return formFieldsSchemas[selectedDocument]?.[lang]?.[step.key] ?? null;
   }, [selectedDocument, lang, step]);
@@ -18,18 +18,18 @@ function useDocumetFlow(lang: string) {
   const shouldShowFormAndStepper = selectedDocument && formFieldsSchema;
 
   const fieldsNames = selectedDocument && Array.isArray(formFieldsSchema) ? formFieldsSchema.map((field) => field.name) : [];
-  const activeIndex = FORM_STEPS.indexOf(step);
-  const previousStep = FORM_STEPS[activeIndex - 1];
-  const indexOfPrevStep = FORM_STEPS.indexOf(previousStep);
+  const activeIndex = FORM_STEPS[selectedDocument][lang].indexOf(step);
+  const previousStep = FORM_STEPS[selectedDocument][lang][activeIndex - 1];
+  const indexOfPrevStep = FORM_STEPS[selectedDocument][lang].indexOf(previousStep);
 
   const handleStepClick = async (newStepKey: string) => {
-    const newStepIndex = FORM_STEPS.findIndex((s) => s.key === newStepKey);
+    const newStepIndex = FORM_STEPS[selectedDocument][lang].findIndex((s) => s.key === newStepKey);
 
     if (newStepIndex > activeIndex) {
       const isValid = await form.trigger(fieldsNames as never);
       if (isValid) {
         form.clearErrors();
-        setStep(FORM_STEPS[newStepIndex]);
+        setStep(FORM_STEPS[selectedDocument][lang][newStepIndex]);
         setCompletedStepIndex(activeIndex);
       } else {
         setIsErrorExist(true);
@@ -39,13 +39,19 @@ function useDocumetFlow(lang: string) {
     if (newStepIndex === indexOfPrevStep) {
       form.clearErrors();
       setIsErrorExist(false);
-      setStep(FORM_STEPS[newStepIndex]);
+      setStep(FORM_STEPS[selectedDocument][lang][newStepIndex]);
     }
   };
 
   const handelFormClearErrors = () => {
     form.clearErrors();
     setIsErrorExist(false);
+  };
+
+  const handelBackStep = () => {
+    handelFormClearErrors();
+    setIsErrorExist(false);
+    setStep(previousStep);
   };
 
   return {
@@ -57,6 +63,7 @@ function useDocumetFlow(lang: string) {
     previousStep,
     isErrorExist,
     setIsErrorExist,
+    handelBackStep,
   };
 }
 

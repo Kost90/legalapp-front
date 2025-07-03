@@ -1,4 +1,4 @@
-import { Address } from '@/types/documents/power-of-attorney';
+import { Address } from '@/types/power-of-attorney';
 
 export const cleanPropertyAddress = (propertyAddress?: Address): Address | undefined => {
   if (!propertyAddress) return undefined;
