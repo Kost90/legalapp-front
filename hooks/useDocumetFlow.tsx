@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useFormState } from 'react-hook-form';
 
 import { useGenerateDocument, useGenerateDocumentForm } from '@/context/generateStepper/GenerateDocumentStepper';
 import { formFieldsSchemas } from '@/lib/formsFields/powerOfAttorneyProperty';
@@ -8,6 +9,7 @@ import { FieldSchema } from '@/types/formInput';
 function useDocumetFlow(lang: 'ua' | 'en') {
   const { step, setStep, selectedDocument, setCompletedStepIndex } = useGenerateDocument();
   const form = useGenerateDocumentForm<typeof selectedDocument>();
+  const formState = useFormState({ control: form.control });
   const [isErrorExist, setIsErrorExist] = useState<boolean>(false);
 
   const formFieldsSchema = useMemo<FieldSchema[] | null>(() => {
@@ -29,6 +31,7 @@ function useDocumetFlow(lang: 'ua' | 'en') {
       const isValid = await form.trigger(fieldsNames as never);
       if (isValid) {
         form.clearErrors();
+        setIsErrorExist(false);
         setStep(FORM_STEPS[selectedDocument][lang][newStepIndex]);
         setCompletedStepIndex(activeIndex);
       } else {
@@ -64,6 +67,7 @@ function useDocumetFlow(lang: 'ua' | 'en') {
     isErrorExist,
     setIsErrorExist,
     handelBackStep,
+    isSubmitted: formState.isSubmitted,
   };
 }
 

@@ -17,15 +17,13 @@ export default function SubmitButton({ lang, fieldsToValidate, setIsErrorExist }
   const form = useGenerateDocumentForm<typeof selectedDocument>();
   const formState = useFormState({ control: form.control });
 
-  const activeIndex = FORM_STEPS[selectedDocument][lang].indexOf(step);
-  const nextStep = FORM_STEPS[selectedDocument][lang][activeIndex + 1];
   const isLastStepBeforeResult = step.key === 'meta';
-
   const fieldsNames = fieldsToValidate.map((field) => field.name);
 
   const handelNextStep = useCallback(async () => {
+    const activeIndex = FORM_STEPS[selectedDocument][lang].findIndex((s) => s.key === step.key);
+    const nextStep = FORM_STEPS[selectedDocument][lang][activeIndex + 1];
     const isValid = await form.trigger(fieldsNames as never);
-
     if (isValid) {
       setIsErrorExist(false);
       setStep(nextStep);
@@ -33,7 +31,7 @@ export default function SubmitButton({ lang, fieldsToValidate, setIsErrorExist }
     } else {
       setIsErrorExist(true);
     }
-  }, [fieldsNames, form, setStep, nextStep, setIsErrorExist, setCompletedStepIndex, activeIndex]);
+  }, [selectedDocument, lang, step, form, fieldsNames, setIsErrorExist, setStep, setCompletedStepIndex]);
 
   return (
     <div className="relative">
