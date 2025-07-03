@@ -24,7 +24,8 @@ interface StepperProps {
 
 export default function Stepper({ isErrorExist, steps, activeStep, filledStepIndex, setActiveStep, className = '' }: StepperProps) {
   const deviceContext = useDevice();
-  const [isClient, setIsClient] = useState(false);
+  const [isClient, setIsClient] = useState<boolean>(false);
+  const [prevActiveIndex, setPrevActiveIndex] = useState<number | null>(null);
 
   useEffect(() => {
     setIsClient(true);
@@ -34,12 +35,11 @@ export default function Stepper({ isErrorExist, steps, activeStep, filledStepInd
 
   const activeIndex = steps.findIndex((step) => step.key === activeStep);
 
-  const [prevActiveIndex, setPrevActiveIndex] = useState(activeIndex);
-  const direction = activeIndex > prevActiveIndex ? 'right' : 'left';
-
   useEffect(() => {
     setPrevActiveIndex(activeIndex);
   }, [activeIndex]);
+
+  const direction = prevActiveIndex && activeIndex > prevActiveIndex ? 'right' : 'left';
 
   return (
     <div className={cn('relative overflow-hidden py-16', className)}>
