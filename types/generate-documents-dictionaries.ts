@@ -12,4 +12,6 @@ export interface IGenerateDocumentsContent {
   documentsCategories: IDocumentsMetadata & {
     [categoryName: string]: IDocumentCategoryItem[];
   };
+  generatedMessage: string;
+  downloadMessage: string;
 }
