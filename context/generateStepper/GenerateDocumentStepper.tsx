@@ -21,6 +21,7 @@ type GenerateDocumentContext = {
   selectedDocument: DocumentKey;
   completedStepIndex: number;
   setCompletedStepIndex: (value: number) => void;
+  isLoading: boolean;
 };
 
 type GenerateDocumentProviderProps<T extends DocumentKey> = {
@@ -37,6 +38,7 @@ export function GenerateDocumentProvider<T extends DocumentKey>({ children, lang
   const [step, setStep] = useState<GenerateStep>({ label: 'Данні особи яка надає документ', key: 'person' });
   const [generatedPdfUrl, setGeneratedPdfUrl] = useState('');
   const [completedStepIndex, setCompletedStepIndex] = useState(-1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const schemaGetter = selectedDocument ? DOCUMENT_SCHEMAS[selectedDocument]?.schema : null;
 
@@ -51,6 +53,7 @@ export function GenerateDocumentProvider<T extends DocumentKey>({ children, lang
 
   const onSubmit = form.handleSubmit(async (e) => {
     try {
+      setIsLoading(true);
       const dataForSend = prepareDataByDocumentType(selectedDocument, e, lang, user);
 
       const documentBlob = await generatePowerOfAttorney(user.id, dataForSend);
@@ -61,17 +64,18 @@ export function GenerateDocumentProvider<T extends DocumentKey>({ children, lang
       const nextStepIndex = selectedDocument ? FORM_STEPS[selectedDocument][lang].findIndex((s) => s.key === step.key) + 1 : 0;
 
       if (selectedDocument) {
+        setIsLoading(false);
         setStep(FORM_STEPS[selectedDocument][lang][nextStepIndex]);
       }
 
       setCompletedStepIndex(nextStepIndex - 1);
-
       open(SuccessModal, {
         title: lang === 'ua' ? 'Вітаємо!' : 'Congratulation!',
         message: lang === 'ua' ? MODALS_MESSAGES_UA.SUCCESSFULL_GENERATE_DOCUMENT : MODALS_MESSAGES_EN.SUCCESSFULL_GENERATE_DOCUMENT,
         lang: lang,
       });
     } catch (error: any) {
+      setIsLoading(false);
       let parsedError;
       try {
         parsedError = JSON.parse(error.message);
@@ -91,6 +95,8 @@ export function GenerateDocumentProvider<T extends DocumentKey>({ children, lang
         message: lang === 'ua' ? MODALS_MESSAGES_UA.ERROR_GENERATE_DOCUMENT : MODALS_MESSAGES_EN.ERROR_GENERATE_DOCUMENT,
         lang: lang,
       });
+    } finally {
+      setIsLoading(false);
     }
   });
 
@@ -108,6 +114,7 @@ export function GenerateDocumentProvider<T extends DocumentKey>({ children, lang
         selectedDocument,
         completedStepIndex,
         setCompletedStepIndex,
+        isLoading,
       }}
     >
       <FormProvider {...form}>{children}</FormProvider>
