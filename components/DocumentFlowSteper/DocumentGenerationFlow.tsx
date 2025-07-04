@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import DynamicForm from '@/components/DynamicForm/DynamicForm';
 import DocumentGenerationLoader from '@/components/GenerateDocumentLoader/DocumentGenerationLoader';
 import Stepper from '@/components/Stepper/Stepper';
@@ -9,10 +11,11 @@ import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 import { IGenerateDocumentsContent } from '@/types/generate-documents-dictionaries';
 
 export default function DocumentGenerationFlow({ lang, dictionary }: { lang: 'ua' | 'en'; dictionary: IGenerateDocumentsContent }) {
-  const { step, generatedPdfUrl, completedStepIndex, selectedDocument, isLoading } = useGenerateDocument();
+  const { step, generatedPdfUrl, completedStepIndex, selectedDocument, isLoading, generatedDocument } = useGenerateDocument();
   const { formFieldsSchema, shouldShowFormAndStepper, setIsErrorExist, isErrorExist, handleStepClick } = useDocumetFlow(lang);
-  let content = null;
+  const [fileUrl, setFileUrl] = useState<string>('');
 
+  let content = null;
   if (isLoading && !generatedPdfUrl) {
     content = (
       <div className="flex flex-col items-center justify-center py-16">
@@ -22,14 +25,28 @@ export default function DocumentGenerationFlow({ lang, dictionary }: { lang: 'ua
     );
   }
 
-  if (step.key === 'result' && !isLoading && generatedPdfUrl) {
+  useEffect(() => {
+    if (!generatedDocument) return;
+    const blob = new Blob([generatedDocument], { type: 'text/html' });
+    const fileURL = window.URL.createObjectURL(blob);
+
+    if (fileURL) {
+      setFileUrl(fileURL);
+    }
+    return () => {
+      URL.revokeObjectURL(fileURL);
+    };
+  }, [generatedDocument]);
+
+  if (step.key === 'result' && !isLoading && fileUrl && generatedPdfUrl) {
     content = (
       <div className="space-y-4 text-center">
         <p className="text-lg font-semibold">{dictionary.documentsCategories.resultMessage}</p>
-        <iframe title="Generated PDF preview" key={generatedPdfUrl} src={generatedPdfUrl} className="h-[80vh] w-full rounded border" />
+        <iframe title="Generated Document Preview" key={fileUrl} src={fileUrl} className="h-[80vh] w-full rounded border" />
         <a
+          target="blank"
           href={generatedPdfUrl}
-          download="generated.pdf"
+          download={`${selectedDocument}.pdf`}
           className="bg-link-btn-text inline-block rounded-md px-6 py-2 text-white hover:opacity-90"
         >
           {dictionary.downloadMessage}

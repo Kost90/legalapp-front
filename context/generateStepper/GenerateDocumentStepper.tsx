@@ -18,6 +18,7 @@ type GenerateDocumentContext = {
   setStep: (value: GenerateStep) => void;
   onSubmit: ReturnType<UseFormReturn['handleSubmit']>;
   generatedPdfUrl: string;
+  generatedDocument: string;
   selectedDocument: DocumentKey;
   completedStepIndex: number;
   setCompletedStepIndex: (value: number) => void;
@@ -36,7 +37,8 @@ export function GenerateDocumentProvider<T extends DocumentKey>({ children, lang
   const { open } = useModals();
   const { user } = useUser();
   const [step, setStep] = useState<GenerateStep>({ label: 'Данні особи яка надає документ', key: 'person' });
-  const [generatedPdfUrl, setGeneratedPdfUrl] = useState('');
+  const [generatedPdfUrl, setGeneratedPdfUrl] = useState<string>('');
+  const [generatedDocument, setgeneratedDocument] = useState<string>('');
   const [completedStepIndex, setCompletedStepIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -56,10 +58,10 @@ export function GenerateDocumentProvider<T extends DocumentKey>({ children, lang
       setIsLoading(true);
       const dataForSend = prepareDataByDocumentType(selectedDocument, e, lang, user);
 
-      const documentBlob = await generatePowerOfAttorney(user.id, dataForSend);
-      const fileURL = window.URL.createObjectURL(documentBlob);
+      const { html, url } = await generatePowerOfAttorney(user.id, dataForSend);
 
-      setGeneratedPdfUrl(fileURL);
+      setgeneratedDocument(html);
+      setGeneratedPdfUrl(url);
 
       const nextStepIndex = selectedDocument ? FORM_STEPS[selectedDocument][lang].findIndex((s) => s.key === step.key) + 1 : 0;
 
@@ -115,6 +117,7 @@ export function GenerateDocumentProvider<T extends DocumentKey>({ children, lang
         completedStepIndex,
         setCompletedStepIndex,
         isLoading,
+        generatedDocument,
       }}
     >
       <FormProvider {...form}>{children}</FormProvider>
