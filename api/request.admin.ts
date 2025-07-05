@@ -1,4 +1,4 @@
-import 'server-only';
+'use server';
 import { notFound } from 'next/navigation';
 
 import { BASE_URL } from './utils';
@@ -23,7 +23,7 @@ export const requestAdmin = async <Request, Body = any>(
 
   const json = await res.json();
 
-  if (res.status !== 200) {
+  if (!res.ok) {
     if (res.status === 404 && !options.dontThrow) {
       notFound();
     }

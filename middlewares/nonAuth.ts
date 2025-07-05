@@ -1,11 +1,13 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { getUserId } from './auth';
+
 import { clearAuth } from '@/api/auth/clearAuth';
 
+import { getUserId } from './auth';
+
 export async function handleNonAuth(request: NextRequest) {
-  let defaultLocale = 'ua';
+  const defaultLocale = 'ua';
   const cookieStore = await cookies();
   const accessToken = cookieStore.get('access_token');
 
@@ -15,7 +17,7 @@ export async function handleNonAuth(request: NextRequest) {
     const userId = await getUserId();
 
     if (!userId) {
-      clearAuth();
+      void clearAuth();
       return NextResponse.redirect(new URL(`/${lang}/auth/login`, request.url));
     }
     return NextResponse.redirect(new URL(`/${lang}/${userId}/dashboard/generate`, request.url));

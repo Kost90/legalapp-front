@@ -1,14 +1,15 @@
-import { request } from '@/api/request';
+'use server';
+import { requestAdmin } from '@/api/request.admin';
+import { buildUrl } from '@/api/utils';
 import { PowerOfAttorney } from '@/types/power-of-attorney';
 
 type PowerOfAttorneyBody = PowerOfAttorney;
 
-// TODO: Make correct error handler change body
 export const generatePowerOfAttorney = async (userId: string, body: PowerOfAttorneyBody): Promise<{ html: string; url: string }> => {
-  const { html, url } = await request<{ html: string; url: string }, PowerOfAttorneyBody>(`/user/create-power-of-attorney/${userId}`, {
+  const urlPath = buildUrl(`user/create-power-of-attorney/${userId}`, {});
+  const { html, url } = await requestAdmin<{ html: string; url: string }, PowerOfAttorneyBody>(urlPath, {
     method: 'POST',
     body,
-    responseType: 'json',
   });
 
   return { html, url };

@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { handleNonAuth } from './middlewares/nonAuth';
-import { getUserId } from './middlewares/auth';
+
 import { clearAuth } from './api/auth/clearAuth';
+import { getUserId } from './middlewares/auth';
+import { handleNonAuth } from './middlewares/nonAuth';
 
-let locales = ['ua', 'en'];
-let defaultLocale = 'ua';
+const locales = ['ua', 'en'];
+const defaultLocale = 'ua';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getLocale(request: NextRequest) {
   return defaultLocale;
 }
@@ -34,13 +36,13 @@ export async function middleware(request: NextRequest) {
       const userId = await getUserId();
 
       if (!userId) {
-        clearAuth();
+        void clearAuth();
         return NextResponse.redirect(new URL(`/${lang}/auth/login`, request.url));
       }
 
       return NextResponse.redirect(new URL(`/${lang}/${userId}/dashboard/generate`, request.url));
     } catch {
-      clearAuth();
+      void clearAuth();
       return NextResponse.redirect(new URL(`/${lang}/auth/login`, request.url));
     }
   }
