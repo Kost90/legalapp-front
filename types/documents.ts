@@ -10,7 +10,7 @@ export interface IDocument {
   isPaid: boolean;
   expiredAt: string | null;
   lang: string;
-  type: string;
+  type: string | DocumentKey;
   createdAt: string;
 }
 

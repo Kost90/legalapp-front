@@ -4,6 +4,12 @@ export type Pagination = {
   totalResult: number;
 };
 
+export type SuccessResponse = {
+  data: string;
+  message: string;
+  statusCode: number;
+};
+
 export type PersonDetails = {
   fullName: string;
   birthDate: string;

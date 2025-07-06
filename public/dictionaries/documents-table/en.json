@@ -18,7 +18,10 @@
       "download": "Download"
     }
   },
-  "documentTypes": {
+  "documentsTypes": {
     "power-of-attorney-property": "Power of Attorney for Property Registration"
-  }
+  },
+  "foundDocuments": "Documents not found",
+  "removeDocumentSuccMessage": "Document deleted!",
+  "errorMessage": "Sorry we receive an error:("
 }

@@ -1,6 +1,8 @@
 'use server';
 
+import { fetchUserDocuments, PaginatedDocumentsResponse } from '@/api/documents/fetchUserDocuments';
 import { generatePowerOfAttorney as generatePowerOfAttorneyApi } from '@/api/documents/generatePowerOfAttorney';
+import { removeUserDocument } from '@/api/documents/removeUserDocument';
 import { DocumentKey } from '@/types/documents';
 import { userInformationData } from '@/types/user';
 import { prepareDataByDocumentType } from '@/utils/prepareFormData';
@@ -52,5 +54,37 @@ export async function generateDocumentAction(
         field: parsedError.field,
       },
     };
+  }
+}
+
+export async function deleteDocument(documentId: string): Promise<PaginatedDocumentsResponse> {
+  try {
+    return await removeUserDocument(documentId);
+  } catch (error: any) {
+    let parsedError;
+    try {
+      parsedError = JSON.parse(error.message);
+      throw new Error(parsedError.message);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (e: any) {
+      parsedError = { message: error.message || 'An unknown error occurred' };
+      throw new Error(parsedError.message);
+    }
+  }
+}
+
+export async function getSortedDocuments(userId: string, sorType: 'ASC' | 'DESC', page: number) {
+  try {
+    return await fetchUserDocuments(userId, sorType, page);
+  } catch (error: any) {
+    let parsedError;
+    try {
+      parsedError = JSON.parse(error.message);
+      throw new Error(parsedError.message);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (e: any) {
+      parsedError = { message: error.message || 'An unknown error occurred' };
+      throw new Error(parsedError.message);
+    }
   }
 }

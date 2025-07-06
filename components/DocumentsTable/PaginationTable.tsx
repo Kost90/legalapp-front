@@ -1,3 +1,4 @@
+import Button from '@/components/Button/Button';
 import { DocumentPage } from '@/types/documents-table-dictionary';
 
 interface PaginationProps {
@@ -12,23 +13,15 @@ export const TablePagination: React.FC<PaginationProps> = ({ currentPage, totalP
 
   return (
     <div className="mt-6 flex items-center justify-center space-x-2">
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className="border-btn-border-color text-main-black hover:bg-base-btn-hover-bg rounded-lg border bg-white px-4 py-2 transition disabled:cursor-not-allowed disabled:opacity-50"
-      >
+      <Button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>
         {dictionary.table.tablePagination.back}
-      </button>
+      </Button>
       <span className="text-muted-text">
         {dictionary.table.tablePagination.page} {currentPage} {dictionary.table.tablePagination.from} {totalPages}
       </span>
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className="border-btn-border-color text-main-black hover:bg-base-btn-hover-bg rounded-lg border bg-white px-4 py-2 transition disabled:cursor-not-allowed disabled:opacity-50"
-      >
+      <Button onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}>
         {dictionary.table.tablePagination.continue}
-      </button>
+      </Button>
     </div>
   );
 };

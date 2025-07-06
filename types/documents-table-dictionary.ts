@@ -22,5 +22,8 @@ export interface DocumentPage {
   pageTitle: string;
   pageDescription: string;
   table: DocumentTable;
-  documentTypes: Record<DocumentKey, string>;
+  documentsTypes: Record<DocumentKey, string>;
+  foundDocuments: string;
+  removeDocumentSuccMessage: string;
+  errorMessage: string;
 }

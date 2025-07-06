@@ -8,8 +8,6 @@ interface FilterProps {
   dictionary: DocumentPage;
 }
 
-const documentType = ['power-of-attorney-property', 'all'];
-
 export const TableFilter: React.FC<FilterProps> = ({ dictionary, filterType, setFilterType, setCurrentPage }) => {
   const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilterType(e.target.value as DocumentKey | 'all');
@@ -25,14 +23,16 @@ export const TableFilter: React.FC<FilterProps> = ({ dictionary, filterType, set
         id="docTypeFilter"
         value={filterType}
         onChange={handleFilterChange}
-        className="border-btn-border-color text-main-black focus:ring-link-btn-text w-full rounded-lg border bg-white px-3 py-2 transition focus:border-transparent focus:ring-2 focus:outline-none md:w-auto"
+        className="border-btn-border-color text-main-black focus:ring-link-btn-text w-full max-w-full truncate rounded-lg border bg-white px-3 py-2 transition focus:border-transparent focus:ring-2 focus:outline-none md:w-auto"
       >
         <option value="all">{dictionary.table.filterOptionsTitle}</option>
-        {documentType.map((type) => (
-          <option key={type} value={type}>
-            {type}
-          </option>
-        ))}
+        {Object.entries(dictionary.documentsTypes).map((type, index) => {
+          return (
+            <option key={type[0] + index} value={type[0]}>
+              {type[1]}
+            </option>
+          );
+        })}
       </select>
     </div>
   );

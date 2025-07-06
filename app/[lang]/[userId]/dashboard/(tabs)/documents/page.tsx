@@ -16,7 +16,7 @@ export default async function DocumentsPage(props: Readonly<{ params: { lang: st
   return (
     <>
       <PageTitle title={dictionary.pageTitle} />
-      <DocumentsTable documents={documents} dictionary={dictionary} />
+      <DocumentsTable documents={documents} dictionary={dictionary} userId={userId} />
     </>
   );
 }
