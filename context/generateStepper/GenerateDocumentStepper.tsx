@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
 import { FormProvider, useForm, useFormContext, UseFormReturn } from 'react-hook-form';
 
-import { generatePowerOfAttorney } from '@/api/documents/generatePowerOfAttorney';
+import { generateDocumentAction } from '@/app/actions/documents';
 import { ErrorModal } from '@/components/Modals/ErrorModal';
 import { useModals } from '@/components/Modals/ModalProvider';
 import { SuccessModal } from '@/components/Modals/SuccessModal';
@@ -11,13 +11,13 @@ import { DOCUMENT_SCHEMAS } from '@/lib/documentsSchemas';
 import { FORM_STEPS, GenerateStep } from '@/lib/formsSteps/forms-steps';
 import { MODALS_MESSAGES_EN, MODALS_MESSAGES_UA } from '@/lib/modals-messages';
 import { DocumentKey } from '@/types/documents';
-import { prepareDataByDocumentType } from '@/utils/prepareFormData';
 
 type GenerateDocumentContext = {
   step: GenerateStep;
   setStep: (value: GenerateStep) => void;
   onSubmit: ReturnType<UseFormReturn['handleSubmit']>;
   generatedPdfUrl: string;
+  generatedDocument: string;
   selectedDocument: DocumentKey;
   completedStepIndex: number;
   setCompletedStepIndex: (value: number) => void;
@@ -36,7 +36,8 @@ export function GenerateDocumentProvider<T extends DocumentKey>({ children, lang
   const { open } = useModals();
   const { user } = useUser();
   const [step, setStep] = useState<GenerateStep>({ label: 'Данні особи яка надає документ', key: 'person' });
-  const [generatedPdfUrl, setGeneratedPdfUrl] = useState('');
+  const [generatedPdfUrl, setGeneratedPdfUrl] = useState<string>('');
+  const [generatedDocument, setgeneratedDocument] = useState<string>('');
   const [completedStepIndex, setCompletedStepIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -54,47 +55,43 @@ export function GenerateDocumentProvider<T extends DocumentKey>({ children, lang
   const onSubmit = form.handleSubmit(async (e) => {
     try {
       setIsLoading(true);
-      const dataForSend = prepareDataByDocumentType(selectedDocument, e, lang, user);
 
-      const documentBlob = await generatePowerOfAttorney(user.id, dataForSend);
-      const fileURL = window.URL.createObjectURL(documentBlob);
+      const res = await generateDocumentAction(selectedDocument, e, lang, user);
+      if (res.success) {
+        const { html, url } = res.data;
+        setgeneratedDocument(html);
+        setGeneratedPdfUrl(url);
 
-      setGeneratedPdfUrl(fileURL);
+        const nextStepIndex = selectedDocument ? FORM_STEPS[selectedDocument][lang].findIndex((s) => s.key === step.key) + 1 : 0;
 
-      const nextStepIndex = selectedDocument ? FORM_STEPS[selectedDocument][lang].findIndex((s) => s.key === step.key) + 1 : 0;
+        if (selectedDocument) {
+          setStep(FORM_STEPS[selectedDocument][lang][nextStepIndex]);
+        }
 
-      if (selectedDocument) {
-        setIsLoading(false);
-        setStep(FORM_STEPS[selectedDocument][lang][nextStepIndex]);
+        setCompletedStepIndex(nextStepIndex - 1);
+
+        open(SuccessModal, {
+          title: lang === 'ua' ? 'Вітаємо!' : 'Congratulation!',
+          message: lang === 'ua' ? MODALS_MESSAGES_UA.SUCCESSFULL_GENERATE_DOCUMENT : MODALS_MESSAGES_EN.SUCCESSFULL_GENERATE_DOCUMENT,
+          lang: lang,
+        });
+      } else {
+        const { error } = res;
+        if (error.field) {
+          form.setError(error.field as any, { message: error.message });
+        }
+        form.setError('root', { message: error.message });
+
+        open(ErrorModal, {
+          title: lang === 'ua' ? 'Нажаль сталась помилка' : 'Sorry, an error occurred',
+          message:
+            error.message || (lang === 'ua' ? MODALS_MESSAGES_UA.ERROR_GENERATE_DOCUMENT : MODALS_MESSAGES_EN.ERROR_GENERATE_DOCUMENT),
+          lang: lang,
+        });
       }
-
-      setCompletedStepIndex(nextStepIndex - 1);
-      open(SuccessModal, {
-        title: lang === 'ua' ? 'Вітаємо!' : 'Congratulation!',
-        message: lang === 'ua' ? MODALS_MESSAGES_UA.SUCCESSFULL_GENERATE_DOCUMENT : MODALS_MESSAGES_EN.SUCCESSFULL_GENERATE_DOCUMENT,
-        lang: lang,
-      });
-    } catch (error: any) {
-      setIsLoading(false);
-      let parsedError;
-      try {
-        parsedError = JSON.parse(error.message);
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (e: any) {
-        parsedError = { message: error.message || (lang === 'ua' ? 'Сталася невідома помилка' : 'An unknown error occurred') };
-      }
-
-      if (parsedError.field) {
-        form.setError(parsedError.field, { message: parsedError.message });
-      }
-
-      form.setError('root', { message: parsedError.message });
-
-      open(ErrorModal, {
-        title: lang === 'ua' ? 'Нажаль сталась помилка' : 'Sorry, an error occurred',
-        message: lang === 'ua' ? MODALS_MESSAGES_UA.ERROR_GENERATE_DOCUMENT : MODALS_MESSAGES_EN.ERROR_GENERATE_DOCUMENT,
-        lang: lang,
-      });
+    } catch (e) {
+      console.error('Failed to call server action:', e);
+      form.setError('root', { message: 'Failed to connect to the server.' });
     } finally {
       setIsLoading(false);
     }
@@ -115,6 +112,7 @@ export function GenerateDocumentProvider<T extends DocumentKey>({ children, lang
         completedStepIndex,
         setCompletedStepIndex,
         isLoading,
+        generatedDocument,
       }}
     >
       <FormProvider {...form}>{children}</FormProvider>

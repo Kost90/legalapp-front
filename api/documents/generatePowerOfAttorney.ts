@@ -1,15 +1,16 @@
-import { request } from '@/api/request';
-import { PowerOfAttorney } from '@/types/documents/power-of-attorney';
+'use server';
+import { requestAdmin } from '@/api/request.admin';
+import { buildUrl } from '@/api/utils';
+import { PowerOfAttorney } from '@/types/power-of-attorney';
 
-interface PowerOfAttorneyBody extends PowerOfAttorney {}
+type PowerOfAttorneyBody = PowerOfAttorney;
 
-// TODO: Make correct error handler
-export const generatePowerOfAttorney = async (userId: string, body: PowerOfAttorneyBody): Promise<Blob> => {
-  const pdfBlob = await request<Blob, PowerOfAttorneyBody>(`/user/create-power-of-attorney/${userId}`, {
+export const generatePowerOfAttorney = async (userId: string, body: PowerOfAttorneyBody): Promise<{ html: string; url: string }> => {
+  const urlPath = buildUrl(`user/create-power-of-attorney/${userId}`, {});
+  const { html, url } = await requestAdmin<{ html: string; url: string }, PowerOfAttorneyBody>(urlPath, {
     method: 'POST',
     body,
-    responseType: 'blob',
   });
 
-  return pdfBlob;
+  return { html, url };
 };

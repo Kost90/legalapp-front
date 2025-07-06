@@ -3,33 +3,28 @@ import { notFound } from 'next/navigation';
 
 import { BASE_URL } from './utils';
 
-// Make request from here when don't need jwt token on endpoint
-export const requestAdmin = async <Request, Body = any>(
+export const requestDownloadDoc = async (
   url: string,
   options: Omit<RequestInit, 'body'> & {
-    body?: Body;
     dontThrow?: boolean;
     noAdminTag?: boolean;
   },
-): Promise<Request> => {
+): Promise<Blob> => {
   const res = await fetch(`${BASE_URL}/${url}`, {
     ...options,
+    method: options.method || 'GET',
     headers: {
-      'Content-Type': options.body ? 'application/json' : '',
       'x-api-key': process.env.NEXT_API_ADMIN_KEY as string,
     },
-    body: options.body ? JSON.stringify(options.body) : undefined,
   });
-
-  const json = await res.json();
 
   if (!res.ok) {
     if (res.status === 404 && !options.dontThrow) {
       notFound();
     }
-
-    throw new Error(json.message);
+    const errorText = await res.text().catch(() => '');
+    throw new Error(errorText || 'Download failed');
   }
 
-  return json as Request;
+  return res.blob();
 };

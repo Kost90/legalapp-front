@@ -12,6 +12,7 @@ import '@/styles/globals.css';
 import { SiteContent } from '@/types/dictionaries';
 
 import { getDictionary } from './dictionaries';
+import { ToasterProvider } from '@/components/ToastProvider/ToastProvider';
 
 const roboto = Roboto({
   subsets: ['latin', 'cyrillic'],
@@ -93,6 +94,7 @@ export default async function RootLayout({
           <DeviceProvider>
             <ModalProvider>
               <AuthProvider isAuth={accessToken && refreshToken ? true : false} lang={lang}>
+                <ToasterProvider />
                 <div className="relative isolate z-[1] flex min-h-screen w-full flex-col overflow-hidden">
                   <Header lang={t} params={currentLang} />
                   {/* <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main> */}
