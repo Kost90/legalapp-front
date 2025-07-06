@@ -1,6 +1,5 @@
 export const prefixes = {
   user: 'usr_',
-  broker: 'brk_',
 } as const;
 
 export const slugify = (str: string | undefined, prefix: keyof typeof prefixes) => {

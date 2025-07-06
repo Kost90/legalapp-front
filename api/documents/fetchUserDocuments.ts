@@ -1,11 +1,19 @@
-import { cache } from 'react';
-
 import { requestAdmin } from '@/api/request.admin';
 import { buildUrl } from '@/api/utils';
-import { CurrentUserResponse } from '@/types/user';
+import { Pagination } from '@/types/common';
+import { IDocument } from '@/types/documents';
 
-export const fetchUserInfo = cache(async (userId: string) => {
-  const url = buildUrl(`user/me/${userId}`, {});
+export type PaginatedDocumentsResponse = {
+  data: {
+    items: IDocument[];
+    pagination: Pagination;
+  };
+};
 
-  return requestAdmin<CurrentUserResponse>(url, { method: 'GET' });
-});
+export const fetchUserDocuments = async (userId: string, sortType?: 'ASC' | 'DESC', page?: number) => {
+  const url = buildUrl(`user/user-documents/${userId}`, { sortType: sortType, page: page });
+
+  const { data } = await requestAdmin<PaginatedDocumentsResponse>(url, { method: 'GET' });
+
+  return data;
+};

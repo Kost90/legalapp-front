@@ -15,7 +15,7 @@ export const fetchUserIdFromCookie = async () => {
     const accessToken = cookieStore.get('access_token')?.value;
 
     if (!accessToken) {
-      clearAuth();
+      void clearAuth();
       throw new Error('No access token found');
     }
 
@@ -29,7 +29,7 @@ export const fetchUserIdFromCookie = async () => {
       const _refreshToken = cookieStore.get('refresh_token')?.value;
 
       if (!_refreshToken) {
-        clearAuth();
+        void clearAuth();
         throw new Error('No refresh token found');
       } else {
         await refreshToken({
