@@ -1,0 +1,24 @@
+{
+  "pageTitle": "Ваші документи",
+  "pageDescription": "",
+  "table": {
+    "columns": ["Номер", "Тип документу", "Назва документу", "Дата створення", "Дії"],
+    "filter": "Фільтр за типом документу",
+    "filterOptionsTitle": "Всі типи",
+    "tablePagination": {
+      "continue": "Далі",
+      "back": "Назад",
+      "page": "сторінка",
+      "from": "з"
+    },
+    "columnsForMobile": {
+      "type": "Тип документу",
+      "createdAt": "Дата створення",
+      "remove": "Видалити",
+      "download": "Завантажити"
+    }
+  },
+  "documentsTypes": {
+    "power-of-attorney-property": "Довіренність з оформлення нерухомості"
+  }
+}

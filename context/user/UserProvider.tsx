@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { fetchUserInfo } from '@/api/documents/fetchUserDocuments';
+import { fetchUserInfo } from '@/api/user/fetchUserInfo';
 
 import { UserProviderClient } from './UserProvider.client';
 

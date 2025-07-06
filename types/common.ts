@@ -1,3 +1,9 @@
+export type Pagination = {
+  currentPage: number;
+  totalPages: number;
+  totalResult: number;
+};
+
 export type PersonDetails = {
   fullName: string;
   birthDate: string;

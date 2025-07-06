@@ -1,0 +1,24 @@
+{
+  "pageTitle": "Your Documents",
+  "pageDescription": "",
+  "table": {
+    "columns": ["Number", "Document Type", "Document Name", "Creation Date", "Actions"],
+    "filter": "Filter by document type",
+    "filterOptionsTitle": "All types",
+    "tablePagination": {
+      "continue": "Continue",
+      "back": "Back",
+      "page": "Page",
+      "from": "from"
+    },
+    "columnsForMobile": {
+      "type": "Type",
+      "createdAt": "Created at",
+      "remove": "Delete",
+      "download": "Download"
+    }
+  },
+  "documentTypes": {
+    "power-of-attorney-property": "Power of Attorney for Property Registration"
+  }
+}
