@@ -3,7 +3,7 @@
 import { fetchUserDocuments, PaginatedDocumentsResponse } from '@/api/documents/fetchUserDocuments';
 import { generatePowerOfAttorney as generatePowerOfAttorneyApi } from '@/api/documents/generatePowerOfAttorney';
 import { removeUserDocument } from '@/api/documents/removeUserDocument';
-import { DocumentKey } from '@/types/documents';
+import { DOCUMENT_TYPE } from '@/lib/constans';
 import { userInformationData } from '@/types/user';
 import { prepareDataByDocumentType } from '@/utils/prepareFormData';
 
@@ -24,7 +24,7 @@ type ActionResult =
     };
 
 export async function generateDocumentAction(
-  selectedDocument: DocumentKey,
+  selectedDocument: DOCUMENT_TYPE,
   formData: any,
   lang: 'ua' | 'en',
   user: userInformationData,
@@ -73,9 +73,13 @@ export async function deleteDocument(documentId: string): Promise<PaginatedDocum
   }
 }
 
-export async function getSortedDocuments(userId: string, sorType: 'ASC' | 'DESC', page: number) {
+export async function getSortedDocuments(userId: string, sorType: 'ASC' | 'DESC', page: number, documentType?: string) {
   try {
-    return await fetchUserDocuments(userId, sorType, page);
+    if (documentType === 'all' || !documentType) {
+      return await fetchUserDocuments(userId, sorType, page);
+    } else {
+      return await fetchUserDocuments(userId, sorType, page, documentType);
+    }
   } catch (error: any) {
     let parsedError;
     try {
