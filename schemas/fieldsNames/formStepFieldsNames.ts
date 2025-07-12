@@ -13,4 +13,9 @@ export const formStepFields: Record<string, Record<string, string[]>> = {
     ],
     meta: ['city', 'date', 'validUntil'],
   },
+  [DOCUMENT_TYPE.powerOfAttorneyDocuments]: {
+    person: ['fullName', 'birthDate', 'tin', 'address', 'passport', 'passportIssueDate'],
+    representative: ['representativeName', 'representativeBirthDate', 'representativeTIN', 'representativeAddress'],
+    meta: ['city', 'date', 'validUntil'],
+  },
 };

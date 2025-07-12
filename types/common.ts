@@ -13,7 +13,7 @@ export type SuccessResponse = {
 export type PersonDetails = {
   fullName: string;
   birthDate: string;
-  tin: string;
+  taxId: string;
   address: string;
   passport: string;
   passportIssueDate: string;

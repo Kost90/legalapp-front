@@ -65,7 +65,6 @@ const DocumentsTable = ({
   const handleDelete = async (id: string) => {
     try {
       setLoading(true);
-      // TODO: maybe send back documents after deleting updated?
       const updatedDocuments = await deleteDocument(id);
       setDocumentsList(updatedDocuments.data.items);
       setCurrentPage(1);
@@ -90,11 +89,11 @@ const DocumentsTable = ({
     }
   };
 
-  const handelFetchDocuments = async (page: number) => {
+  const handelFetchDocuments = async (page: number, documentType?: string) => {
     try {
       setLoading(true);
       setCurrentPage(page);
-      const response = await getSortedDocuments(userId, sortOrder, page);
+      const response = await getSortedDocuments(userId, sortOrder, page, documentType);
       setDocumentsList(response.items);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error: any) {
@@ -110,7 +109,12 @@ const DocumentsTable = ({
   return (
     <div className="bg-bg-primary min-h-screen p-4 md:p-8">
       <div className="mx-auto max-w-6xl">
-        <TableFilter filterType={filterType} setFilterType={setFilterType} setCurrentPage={setCurrentPage} dictionary={dictionary} />
+        <TableFilter
+          filterType={filterType}
+          setFilterType={setFilterType}
+          dictionary={dictionary}
+          handelFetchDocuments={handelFetchDocuments}
+        />
 
         {loading ? (
           <div className="text-muted-text py-10 text-center">Загрузка документов...</div>
