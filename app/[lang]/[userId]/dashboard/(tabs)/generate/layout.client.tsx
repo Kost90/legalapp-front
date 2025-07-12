@@ -6,16 +6,16 @@ import CardCategory from '@/components/CardCategory/CardCategory';
 import DocumentSelector from '@/components/DocumentSelector/DocumentSelector';
 import PageTitle from '@/components/PageTitle/PageTitle';
 import { GenerateDocumentProvider } from '@/context/generateStepper/GenerateDocumentStepper';
+import { DOCUMENT_TYPE } from '@/lib/constans';
 import { DOCUMENT_KEYS } from '@/lib/documentsSchemas';
-import { DocumentKey } from '@/types/documents';
 import { IGenerateDocumentsContent } from '@/types/generate-documents-dictionaries';
 
 export default function GenerateDocumentLayoutClient(
   props: Readonly<{ children: ReactNode; lang: 'ua' | 'en'; dictionary: IGenerateDocumentsContent }>,
 ) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedDocument, setSelectedDocument] = useState<DocumentKey | string>('');
-  const [document, setDocument] = useState<DocumentKey | string>('');
+  const [selectedDocument, setSelectedDocument] = useState<DOCUMENT_TYPE | string>('');
+  const [document, setDocument] = useState<DOCUMENT_TYPE | string>('');
 
   const handleCategoryClick = useCallback((category: string) => {
     setSelectedCategory(category);
@@ -58,8 +58,8 @@ export default function GenerateDocumentLayoutClient(
           lang={props.lang}
         />
       )}
-      {selectedCategory && DOCUMENT_KEYS.includes(selectedDocument as DocumentKey) && (
-        <GenerateDocumentProvider lang={props.lang} selectedDocument={selectedDocument as DocumentKey}>
+      {selectedCategory && DOCUMENT_KEYS.includes(selectedDocument as DOCUMENT_TYPE) && (
+        <GenerateDocumentProvider lang={props.lang} selectedDocument={selectedDocument as DOCUMENT_TYPE}>
           {props.children}
         </GenerateDocumentProvider>
       )}

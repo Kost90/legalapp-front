@@ -1,5 +1,6 @@
 import { ZodTypeAny, ZodObject, ZodString, ZodNumber, ZodBoolean, ZodOptional, ZodEffects } from 'zod';
-import { FieldSchema } from '@/components/DynamicFormFields/DynamicFormFields';
+
+import { FieldSchema } from '@/types/formInput';
 
 type Lang = 'ua' | 'en';
 

@@ -1,4 +1,4 @@
-import { DocumentKey } from './documents';
+import { DOCUMENT_TYPE } from '@/lib/constans';
 
 interface DocumentTable {
   columns: string[];
@@ -22,7 +22,7 @@ export interface DocumentPage {
   pageTitle: string;
   pageDescription: string;
   table: DocumentTable;
-  documentsTypes: Record<DocumentKey, string>;
+  documentsTypes: Record<DOCUMENT_TYPE, string>;
   foundDocuments: string;
   removeDocumentSuccMessage: string;
   errorMessage: string;

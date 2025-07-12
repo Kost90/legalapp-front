@@ -10,8 +10,8 @@ export type PaginatedDocumentsResponse = {
   };
 };
 
-export const fetchUserDocuments = async (userId: string, sortType?: 'ASC' | 'DESC', page?: number) => {
-  const url = buildUrl(`user/user-documents/${userId}`, { sortType: sortType, page: page });
+export const fetchUserDocuments = async (userId: string, sortType?: 'ASC' | 'DESC', page?: number, documentType?: string) => {
+  const url = buildUrl(`user/user-documents/${userId}`, { documentType: documentType, sortType: sortType, page: page });
 
   const { data } = await requestAdmin<PaginatedDocumentsResponse>(url, { method: 'GET' });
 

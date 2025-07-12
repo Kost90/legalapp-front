@@ -1,4 +1,4 @@
-import { DocumentKey } from '@/types/documents';
+import { DOCUMENT_TYPE } from '@/lib/constans';
 
 // TODO: Сюда можно добавлять
 export type StepKey = 'person' | 'representative' | 'property' | 'meta' | 'result';
@@ -8,8 +8,8 @@ export type GenerateStep = {
   key: StepKey;
 };
 
-export const FORM_STEPS: Record<DocumentKey, Record<'ua' | 'en', GenerateStep[]>> = {
-  ['power-of-attorney-property']: {
+export const FORM_STEPS: Record<DOCUMENT_TYPE, Record<'ua' | 'en', GenerateStep[]>> = {
+  [DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY]: {
     ua: [
       { label: 'Данні особи яка надає документ', key: 'person' },
       { label: 'Данні представника (на кого надається доручення)', key: 'representative' },
@@ -21,6 +21,20 @@ export const FORM_STEPS: Record<DocumentKey, Record<'ua' | 'en', GenerateStep[]>
       { label: "Grantor's Information", key: 'person' },
       { label: "Representative's Information", key: 'representative' },
       { label: 'Property Information', key: 'property' },
+      { label: 'Place and Validity Period', key: 'meta' },
+      { label: 'Document Successfully Generated', key: 'result' },
+    ],
+  },
+  [DOCUMENT_TYPE.powerOfAttorneyDocuments]: {
+    ua: [
+      { label: 'Данні особи яка надає документ', key: 'person' },
+      { label: 'Данні представника (на кого надається доручення)', key: 'representative' },
+      { label: 'Місце складання, строк дії доручення', key: 'meta' },
+      { label: 'Документ успішно згенеровано', key: 'result' },
+    ],
+    en: [
+      { label: "Grantor's Information", key: 'person' },
+      { label: "Representative's Information", key: 'representative' },
       { label: 'Place and Validity Period', key: 'meta' },
       { label: 'Document Successfully Generated', key: 'result' },
     ],
