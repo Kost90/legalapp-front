@@ -1,6 +1,7 @@
 import { ArrowDownToLine, Trash } from 'lucide-react';
 
-import { DocumentKey, IDocument } from '@/types/documents';
+import { DOCUMENT_TYPE } from '@/lib/constans';
+import { IDocument } from '@/types/documents';
 import { DocumentPage } from '@/types/documents-table-dictionary';
 import { cn } from '@/utils/cn';
 
@@ -17,7 +18,7 @@ export const DocumentTableRow: React.FC<DocumentTableRowProps> = ({ document, in
     <tr className="border-btn-border-color hover:bg-bg-primary border-t transition-colors">
       <td className="text-muted-text p-4">{index + 1}</td>
       <td className="text-main-black p-4">
-        <span className={cn(`rounded-full px-2 py-1 text-sm`)}>{dictionary.documentsTypes[document.type as DocumentKey]}</span>
+        <span className={cn(`rounded-full px-2 py-1 text-sm`)}>{dictionary.documentsTypes[document.type as DOCUMENT_TYPE]}</span>
       </td>
       <td className="text-main-black p-4 font-medium">{document.fileKey}</td>
       <td className="text-muted-text p-4">{document.createdAt}</td>

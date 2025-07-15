@@ -19,7 +19,8 @@
     }
   },
   "documentsTypes": {
-    "power-of-attorney-property": "Довіренність з оформлення нерухомості"
+    "power-of-attorney-property": "Довіренність з оформлення нерухомості",
+    "power-of-attorney-documents": "Довіренність на отримання документів"
   },
   "foundDocuments": "Документи не знайдені",
   "removeDocumentSuccMessage": "Документ видалено!",

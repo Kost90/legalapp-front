@@ -19,7 +19,8 @@
     }
   },
   "documentsTypes": {
-    "power-of-attorney-property": "Power of Attorney for Property Registration"
+    "power-of-attorney-property": "Power of Attorney for Property Registration",
+    "power-of-attorney-documents": "Power of Attorney for receiving documents"
   },
   "foundDocuments": "Documents not found",
   "removeDocumentSuccMessage": "Document deleted!",
