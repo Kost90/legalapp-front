@@ -28,6 +28,7 @@ export const requestAdmin = async <Request, Body = any>(
       notFound();
     }
 
+    // TODO: Тут ошибка
     throw new Error(json.message);
   }
 
