@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import { deleteDocument, getSortedDocuments } from '@/app/actions/documents';
 import { downloadDocument } from '@/app/actions/documents-client';
 import { useDevice } from '@/context/DeviceProvider';
-import { DOCUMENT_TYPE } from '@/lib/constans';
+import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 import { Pagination } from '@/types/common';
 import { IDocument } from '@/types/documents';
 import { DocumentPage } from '@/types/documents-table-dictionary';

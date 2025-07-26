@@ -12,7 +12,7 @@ import Button from '@/components/Button/Button';
 import FormInput from '@/components/Input/Input';
 import PageTitle from '@/components/PageTitle/PageTitle';
 import { useAuth } from '@/context/AuthProvider';
-import { getLoginFormSchema, LoginFormSchema } from '@/schemas/loginFormSchema';
+import { getLoginFormSchema, LoginFormSchema } from '@/schemas/auth/loginFormSchema';
 
 type FormValues = {
   email: string;

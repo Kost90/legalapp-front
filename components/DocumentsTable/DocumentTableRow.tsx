@@ -1,6 +1,6 @@
 import { ArrowDownToLine, Trash } from 'lucide-react';
 
-import { DOCUMENT_TYPE } from '@/lib/constans';
+import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 import { IDocument } from '@/types/documents';
 import { DocumentPage } from '@/types/documents-table-dictionary';
 import { cn } from '@/utils/cn';

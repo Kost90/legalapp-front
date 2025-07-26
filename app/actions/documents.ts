@@ -3,7 +3,7 @@
 import { fetchUserDocuments, PaginatedDocumentsResponse } from '@/api/documents/fetchUserDocuments';
 import { generatePowerOfAttorney as generatePowerOfAttorneyApi } from '@/api/documents/generatePowerOfAttorney';
 import { removeUserDocument } from '@/api/documents/removeUserDocument';
-import { DOCUMENT_TYPE } from '@/lib/constans';
+import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 import { userInformationData } from '@/types/user';
 import { prepareDataByDocumentType } from '@/utils/prepareFormData';
 

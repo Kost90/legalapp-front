@@ -8,10 +8,10 @@ import { ErrorModal } from '@/components/Modals/ErrorModal';
 import { useModals } from '@/components/Modals/ModalProvider';
 import { SuccessModal } from '@/components/Modals/SuccessModal';
 import { useUser } from '@/context/user/UserProvider.client';
-import { DOCUMENT_TYPE } from '@/lib/constans';
-import { DOCUMENT_SCHEMAS } from '@/lib/documentsSchemas';
+import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 import { FORM_STEPS, GenerateStep } from '@/lib/formsSteps/forms-steps';
 import { MODALS_MESSAGES_EN, MODALS_MESSAGES_UA } from '@/lib/modals-messages';
+import { DOCUMENT_SCHEMAS } from '@/schemas/documentsSchemas';
 
 type GenerateDocumentContext = {
   step: GenerateStep;

@@ -2,7 +2,7 @@
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { FC } from 'react';
 
-import { DOCUMENT_TYPE } from '@/lib/constans';
+import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 
 interface DocumentSelectorProps {
   options: Record<string, string>[];

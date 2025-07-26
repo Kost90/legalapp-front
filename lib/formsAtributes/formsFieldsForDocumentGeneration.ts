@@ -1,4 +1,4 @@
-import { DOCUMENT_TYPE } from '@/lib/constans';
+import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 
 const commonFormFields: Record<string, any> = {
   ua: {
