@@ -10,7 +10,7 @@ import FormInput from '@/components/Input/Input';
 import PageTitle from '@/components/PageTitle/PageTitle';
 import PhoneNumber, { mergePhoneNumber } from '@/components/PhoneNumber/PhoneNumber';
 import VerifyYourEmail from '@/components/VerifyYourEmail/VerifyYourEmail';
-import { getSignUpFormSchema } from '@/schemas/signUpFormSchema';
+import { getSignUpFormSchema } from '@/schemas/auth/signUpFormSchema';
 import { SiteContent } from '@/types/dictionaries';
 
 type FormValues = {

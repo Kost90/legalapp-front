@@ -6,8 +6,8 @@ import CardCategory from '@/components/CardCategory/CardCategory';
 import DocumentSelector from '@/components/DocumentSelector/DocumentSelector';
 import PageTitle from '@/components/PageTitle/PageTitle';
 import { GenerateDocumentProvider } from '@/context/generateStepper/GenerateDocumentStepper';
-import { DOCUMENT_TYPE } from '@/lib/constans';
-import { DOCUMENT_KEYS } from '@/lib/documentsSchemas';
+import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
+import { DOCUMENTS_SCHEMAS_KEYS } from '@/schemas/documentsSchemas';
 import { IGenerateDocumentsContent } from '@/types/generate-documents-dictionaries';
 
 export default function GenerateDocumentLayoutClient(
@@ -58,7 +58,7 @@ export default function GenerateDocumentLayoutClient(
           lang={props.lang}
         />
       )}
-      {selectedCategory && DOCUMENT_KEYS.includes(selectedDocument as DOCUMENT_TYPE) && (
+      {selectedCategory && DOCUMENTS_SCHEMAS_KEYS.includes(selectedDocument as DOCUMENT_TYPE) && (
         <GenerateDocumentProvider lang={props.lang} selectedDocument={selectedDocument as DOCUMENT_TYPE}>
           {props.children}
         </GenerateDocumentProvider>

@@ -1,7 +1,7 @@
 'use server';
 import { notFound } from 'next/navigation';
 
-import { BASE_URL } from './utils';
+import { BASE_URL, handleError } from './utils';
 
 // Make request from here when don't need jwt token on endpoint
 export const requestAdmin = async <Request, Body = any>(
@@ -28,7 +28,7 @@ export const requestAdmin = async <Request, Body = any>(
       notFound();
     }
 
-    throw new Error(json.message);
+    handleError(json.message);
   }
 
   return json as Request;

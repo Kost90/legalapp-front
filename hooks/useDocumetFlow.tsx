@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { useFormState } from 'react-hook-form';
 
 import { useGenerateDocument, useGenerateDocumentForm } from '@/context/generateStepper/GenerateDocumentStepper';
-import { formFieldsSchemas } from '@/lib/formsFields/powerOfAttorneyProperty';
+import { formFieldsSchemas } from '@/lib/formsAtributes/formsFieldsForDocumentGeneration';
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 import { FieldSchema } from '@/types/formInput';
 

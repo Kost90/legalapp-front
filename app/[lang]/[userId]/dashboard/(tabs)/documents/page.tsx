@@ -9,8 +9,15 @@ import { getDocumentsTableDictionary } from './documents-table-dictionary';
 
 export const metadata: Metadata = { title: 'Your documents' };
 
-export default async function DocumentsPage(props: Readonly<{ params: { lang: string; userId: string } }>) {
-  const { lang, userId } = await props.params;
+type PageProps = {
+  params: {
+    lang: string;
+    userId: string;
+  };
+};
+
+export default async function DocumentsPage({ params }: PageProps) {
+  const { lang, userId } = params;
   const documents = await fetchUserDocuments(userId);
   const dictionary: DocumentPage = await getDocumentsTableDictionary(lang);
   return (

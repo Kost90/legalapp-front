@@ -1,4 +1,4 @@
-import { DOCUMENT_TYPE } from '@/lib/constans';
+import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 import { ReceiveDocumentsPowerOfAttorneyFormData } from '@/schemas/generateDocuments/powerOfAttorneyReceiveDocumentsSchema';
 import { PropertyPowerOfAttorneyFormData } from '@/schemas/generateDocuments/powerOfAttorneySchema';
 import { PowerOfAttorney } from '@/types/power-of-attorney';

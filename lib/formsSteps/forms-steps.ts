@@ -1,6 +1,5 @@
-import { DOCUMENT_TYPE } from '@/lib/constans';
+import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 
-// TODO: Сюда можно добавлять
 export type StepKey = 'person' | 'representative' | 'property' | 'meta' | 'result';
 
 export type GenerateStep = {

@@ -1,8 +1,9 @@
 'use client';
 
-import { clearAuthAndRedirect } from '@/api/auth/clearAuth';
 import { redirect } from 'next/navigation';
 import { createContext, ReactNode, useContext, useMemo, useCallback, useEffect, useState } from 'react';
+
+import { clearAuthAndRedirect } from '@/api/auth/clearAuth';
 
 type AuthContextType = {
   isAuthenticated: boolean;
