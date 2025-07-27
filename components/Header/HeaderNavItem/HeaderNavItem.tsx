@@ -25,12 +25,11 @@ export default function HeaderNavItem({ href, label, icon, onClick, className, v
       href={href}
       onClick={onClick}
       className={cn(
-        `hover:text-link-btn-text! block rounded-md px-3 py-2 text-sm font-medium transition-colors focus:ring-2 focus:outline-none lg:inline-block`,
+        `text-main-black block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-white focus:ring-2 focus:outline-none lg:inline-block`,
         className,
         {
           // 'bg-gray-900 text-white': isActive,
-          'text-link-btn-text border-btn-border-color hover:bg-base-btn-hover-bg hover:border-btn-hover-border bg-white px-3 py-1':
-            variant === HEADER_NAV_VARIANTS.BUTTON,
+          'border-btn-border-color hover:border-main-black border bg-transparent px-3 py-1': variant === HEADER_NAV_VARIANTS.BUTTON,
           'text-link-btn-text': variant === HEADER_NAV_VARIANTS.INLINE,
         },
       )}

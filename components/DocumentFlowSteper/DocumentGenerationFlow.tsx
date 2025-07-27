@@ -60,7 +60,7 @@ export default function DocumentGenerationFlow({ lang, dictionary }: { lang: 'ua
       {shouldShowFormAndStepper && (
         <>
           <div className="before:overlay before:border-border-faint z-[2] before:pointer-events-none before:border-b">
-            <div className="top-0 z-10 bg-white">
+            <div className="top-0 z-10">
               <Stepper
                 isErrorExist={isErrorExist}
                 activeStep={step.key}

@@ -5,15 +5,14 @@ import { Menu, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
+import Button from '@/components/Button/Button';
 import LanguageSwitcher from '@/components/LanguagesSwitcher/LanguagesSwitcher';
 import { useAuth } from '@/context/AuthProvider';
 import { useDevice } from '@/context/DeviceProvider';
 import { SiteContent } from '@/types/dictionaries';
 
 import { MenuVariants } from './animation-variants';
-import DashboardHeader from './DashboardHeader';
-import HeaderNavItem from './HeaderNavItem/HeaderNavItem';
-import { HEADER_NAV_VARIANTS } from './HeaderNavItem/variants';
+// import HeaderNavItem from './HeaderNavItem/HeaderNavItem';
 import Logo from './Logo/Logo';
 
 export type NavItemType = {
@@ -22,9 +21,9 @@ export type NavItemType = {
   icon?: React.ComponentType<{ className?: string }>;
 };
 
-export default function Header({ lang, params }: { lang: SiteContent; params: string }) {
+export default function DashboardHeader({ lang, params }: { lang: SiteContent; params: string }) {
   const deviceContext = useDevice();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const [isClient, setIsClient] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -44,16 +43,11 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
-  if ((pathname.includes('dashboard') && isAuthenticated) || (!pathname.includes('dashboard') && isAuthenticated)) {
-    return <DashboardHeader lang={lang} params={params} />;
-  }
-
   // TODO: Change for real and add button for changing lang
-  const navItems: NavItemType[] = [
-    { label: lang.header.button_consultation, href: `/${params}` },
-    { label: lang.header.nav_contacts, href: `/${params}` },
-    { label: lang.header.button_generate, href: `/${params}/auth/login` },
-  ];
+  //   const navItems: NavItemType[] = [
+  //     { label: lang.header.button_consultation, href: `/${params}` },
+  //     { label: lang.header.nav_contacts, href: `/${params}` },
+  //   ];
 
   return (
     <header className="text-headerfooterwhite sticky top-0 z-50">
@@ -66,16 +60,13 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
           {/* Desktop Navigation */}
           {isClient && isDesktop && (
             <nav className="hidden lg:flex lg:space-x-4">
-              {navItems.map((item, i) => (
+              {/* {navItems.map((item, i) => (
                 <HeaderNavItem key={`${item.href}+${i}`} href={item.href} label={item.label} />
-              ))}
-              {lang.header.login && !isAuthenticated && (
-                <HeaderNavItem
-                  key={`login-${params}desc`}
-                  href={`/${params}/auth/login`}
-                  label={lang.header.login}
-                  variant={HEADER_NAV_VARIANTS.BUTTON}
-                />
+              ))} */}
+              {lang.header.login && isAuthenticated && (
+                <Button onClick={logout} className="!mt-0 !px-2 !py-0" isLogoutBtn={true}>
+                  {lang.header.logout}
+                </Button>
               )}
 
               <LanguageSwitcher currentLang={params} specialKey={'desc'} />
@@ -91,6 +82,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
                 aria-expanded={isMobileMenuOpen}
                 aria-label={isMobileMenuOpen ? 'Закрити головне меню' : 'Відкрити головне меню'}
               >
+                <span className="sr-only">{isMobileMenuOpen ? 'Закрити меню' : 'Відкрити меню'}</span>
                 {isMobileMenuOpen ? (
                   <X className="block h-6 w-6" aria-hidden="true" />
                 ) : (
@@ -114,17 +106,13 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
             id="mobile-menu"
           >
             <nav className="mx-auto flex flex-col items-center justify-center gap-1 space-y-1 px-2 pt-2 pb-3 sm:px-3">
-              {navItems.map((item, i) => (
+              {/* {navItems.map((item, i) => (
                 <HeaderNavItem key={`${item.href}+${i}mob`} href={item.href} label={item.label} onClick={toggleMobileMenu} />
-              ))}
-              {lang.header.login && !isAuthenticated && (
-                <HeaderNavItem
-                  key={`login-${params}mob`}
-                  href={`/${params}/auth/login`}
-                  label={lang.header.login}
-                  variant={HEADER_NAV_VARIANTS.BUTTON}
-                  onClick={toggleMobileMenu}
-                />
+              ))} */}
+              {lang.header.login && isAuthenticated && (
+                <Button onClick={logout} className="!mt-0 !px-2 !py-0" isLogoutBtn={true}>
+                  {lang.header.logout}
+                </Button>
               )}
 
               <LanguageSwitcher currentLang={params} specialKey={'mob'} />

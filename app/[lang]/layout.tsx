@@ -5,6 +5,7 @@ import { cookies } from 'next/headers';
 
 import Header from '@/components/Header/Header';
 import { ModalProvider } from '@/components/Modals/ModalProvider';
+import { ToasterProvider } from '@/components/ToastProvider/ToastProvider';
 import { AuthProvider } from '@/context/AuthProvider';
 import DeviceProvider from '@/context/DeviceProvider';
 import QueryProvider from '@/context/QueryProvider';
@@ -12,7 +13,6 @@ import '@/styles/globals.css';
 import { SiteContent } from '@/types/dictionaries';
 
 import { getDictionary } from './dictionaries';
-import { ToasterProvider } from '@/components/ToastProvider/ToastProvider';
 
 const roboto = Roboto({
   subsets: ['latin', 'cyrillic'],

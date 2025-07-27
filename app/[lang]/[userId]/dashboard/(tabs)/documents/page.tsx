@@ -17,7 +17,7 @@ type PageProps = {
 };
 
 export default async function DocumentsPage({ params }: PageProps) {
-  const { lang, userId } = params;
+  const { lang, userId } = await params;
   const documents = await fetchUserDocuments(userId);
   const dictionary: DocumentPage = await getDocumentsTableDictionary(lang);
   return (

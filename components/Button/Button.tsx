@@ -17,6 +17,7 @@ type Props = {
   className?: string;
   fullWidth?: boolean;
   isInStepper?: boolean;
+  isLogoutBtn?: boolean;
 };
 
 export default function Button({
@@ -29,6 +30,7 @@ export default function Button({
   buttonType = 'button',
   fullWidth,
   isInStepper,
+  isLogoutBtn,
   ...attrs
 }: Props) {
   const loadingOrSubmitting = useButtonLoading({
@@ -51,9 +53,10 @@ export default function Button({
           'min-w-24 px-4 py-1 text-sm': size === 'small',
           'min-w-32 px-8 py-2 text-base': size === 'medium',
           'bg-main-black text-headerfooterwhite hover:bg-black': buttonType === 'submit' && !disabledOrLoading,
-          'text-link-btn-text hover:bg-base-btn-hover-bg bg-white': type === 'default' && buttonType === 'button' && !disabledOrLoading,
+          'text-main-black hover:border-main-black border-btn-border-color border bg-transparent':
+            type === 'default' && buttonType === 'button' && !disabledOrLoading,
           'bg-redbtn text-white hover:bg-red-500': type === 'critical' && !disabledOrLoading,
-          '!text-headerfooterwhite !bg-black': buttonType === 'submit' && disabledOrLoading,
+          '!text-headerfooterwhite !bg-black': (buttonType === 'submit' && disabledOrLoading) || isLogoutBtn,
           'bg-base-btn-hover-bg text-main-black': buttonType !== 'submit' && disabledOrLoading,
         },
         attrs.className,
