@@ -32,7 +32,7 @@ export default function DashboardTabs({ lang }: { lang: string }) {
                   <span
                     className={cn(
                       'px-2.5 text-xl font-semibold whitespace-nowrap transition-colors duration-300',
-                      isActive ? 'text-main-black' : 'text-link-btn-text',
+                      isActive ? 'text-main-black' : 'text-muted-text',
                     )}
                   >
                     {lang === 'ua' ? tab.labelUa : tab.labelEn}

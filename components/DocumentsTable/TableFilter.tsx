@@ -1,16 +1,16 @@
-import { DocumentKey } from '@/types/documents';
+import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 import { DocumentPage } from '@/types/documents-table-dictionary';
 
 interface FilterProps {
-  filterType: DocumentKey | 'all';
-  setFilterType: (type: DocumentKey | 'all') => void;
+  filterType: DOCUMENT_TYPE | 'all';
+  setFilterType: (type: DOCUMENT_TYPE | 'all') => void;
   dictionary: DocumentPage;
   handelFetchDocuments: (page: number, documentType?: string) => void;
 }
 
 export const TableFilter: React.FC<FilterProps> = ({ dictionary, filterType, setFilterType, handelFetchDocuments }) => {
   const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilterType(e.target.value as DocumentKey | 'all');
+    setFilterType(e.target.value as DOCUMENT_TYPE | 'all');
     handelFetchDocuments(1, e.target.value);
   };
 

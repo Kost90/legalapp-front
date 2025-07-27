@@ -12,6 +12,7 @@ const config = {
         current: 'currentColor',
         white: '#FFFFFF',
         black: '#000000',
+        'bg-body-main': '#f6f5f3',
         'bg-primary': '#F5F9FF',
         accent: '#FFDD00',
         redbtn: '#ff5a5f',
@@ -43,6 +44,7 @@ const config = {
           mutedcard: '#F5F9FF',
           muted: '#FFF9DC',
           redBtn: '#ff5a5f',
+          customGray: '#494846d9',
         },
         border: {
           DEFAULT: '#E5E7EB',

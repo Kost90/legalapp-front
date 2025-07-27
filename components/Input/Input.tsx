@@ -12,10 +12,10 @@ interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   description?: string;
   labelClassName?: string;
 }
-// TODO: Think how to improve type anotation in accumulator
+
 const getNestedError = (errors: FieldErrors, path: string) => {
   const pathParts = path.split('.');
-  return pathParts.reduce((acc, part) => acc && acc[part], errors as Record<string, any>);
+  return pathParts.reduce<Record<string, any>>((acc, part) => acc && acc[part], errors);
 };
 
 export default function FormInput({ name, label, description, labelClassName, ...rest }: FormInputProps) {

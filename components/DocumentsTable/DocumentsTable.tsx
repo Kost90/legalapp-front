@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import toast from 'react-hot-toast';
 
 import { deleteDocument, getSortedDocuments } from '@/app/actions/documents';
@@ -46,13 +46,14 @@ const DocumentsTable = ({
 
   const isDesktop = isClient && deviceContext.isLg === true;
 
-  const handleSort = async () => {
+  const handleSort = useCallback(async () => {
     try {
       setLoading(true);
       const newSortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
       const response = await getSortedDocuments(userId, newSortOrder, currentPage);
       setSortOrder(newSortOrder);
       setCurrentPage(1);
+      setTotalPages(response.pagination.totalPages);
       setDocumentsList(response.items);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error: any) {
@@ -61,54 +62,65 @@ const DocumentsTable = ({
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, dictionary.errorMessage, sortOrder, userId]);
 
-  const handleDelete = async (id: string) => {
-    try {
-      setLoading(true);
-      const updatedDocuments = await deleteDocument(id);
-      setDocumentsList(updatedDocuments.data.items);
-      setCurrentPage(1);
-      setTotalPages(updatedDocuments.data.pagination.totalPages);
-      setLoading(false);
-      toast.success(dictionary.removeDocumentSuccMessage);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error: any) {
-      setLoading(false);
-      toast.error(dictionary.errorMessage);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handleDelete = useCallback(
+    async (id: string) => {
+      try {
+        setLoading(true);
+        await deleteDocument(id);
+        setDocumentsList((prev: IDocument[]) => prev.filter((doc) => doc.id !== id));
+        const newSortOrder = sortOrder === 'ASC' ? 'DESC' : 'ASC';
+        const response = await getSortedDocuments(userId, newSortOrder, currentPage);
+        setCurrentPage(1);
+        setTotalPages(response.pagination.totalPages);
+        setLoading(false);
+        toast.success(dictionary.removeDocumentSuccMessage);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (error: any) {
+        setLoading(false);
+        toast.error(dictionary.errorMessage);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [currentPage, dictionary.errorMessage, dictionary.removeDocumentSuccMessage, sortOrder, userId],
+  );
 
-  const handleDownload = async (documentId: string) => {
-    try {
-      await downloadDocument(documentId, userId);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error: any) {
-      toast.error(dictionary.errorMessage);
-    }
-  };
+  const handleDownload = useCallback(
+    async (documentId: string) => {
+      try {
+        await downloadDocument(documentId, userId);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (error: any) {
+        toast.error(dictionary.errorMessage);
+      }
+    },
+    [dictionary.errorMessage, userId],
+  );
 
-  const handelFetchDocuments = async (page: number, documentType?: string) => {
-    try {
-      setLoading(true);
-      setCurrentPage(page);
-      const response = await getSortedDocuments(userId, sortOrder, page, documentType);
-      setDocumentsList(response.items);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error: any) {
-      setLoading(false);
-      toast.error(dictionary.errorMessage);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handelFetchDocuments = useCallback(
+    async (page: number, documentType?: string) => {
+      try {
+        setLoading(true);
+        setCurrentPage(page);
+        const response = await getSortedDocuments(userId, sortOrder, page, documentType);
+        setDocumentsList(response.items);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (error: any) {
+        setLoading(false);
+        toast.error(dictionary.errorMessage);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [dictionary.errorMessage, sortOrder, userId],
+  );
 
   const startIndex = (currentPage - 1) * DOCUMENTS_PER_PAGE;
 
   return (
-    <div className="bg-bg-primary min-h-screen p-4 md:p-8">
+    <div className="min-h-screen p-4 md:p-8">
       <div className="mx-auto max-w-6xl">
         <TableFilter
           filterType={filterType}

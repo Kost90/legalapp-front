@@ -1,6 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+// eslint-disable-next-line no-restricted-imports
 import React from 'react';
 
 import HeaderNavItem from '@/components/Header/HeaderNavItem/HeaderNavItem';
@@ -35,7 +36,7 @@ export default function LanguageSwitcher({ currentLang, specialKey }: LanguageSw
           <HeaderNavItem
             href={getLocalizedPath(lang.code)}
             label={lang.label}
-            className={currentLang === lang.code ? 'text-color-footer-link-yellow-brt font-semibold' : 'text-gray-300 hover:text-white'}
+            className={currentLang === lang.code ? 'text-color-footer-link-blue-brt! font-semibold' : 'text-gray-300 hover:text-black'}
           />
           {index < supportedLanguages.length - 1 && <div className="mx-1 h-4 w-[1px] bg-gray-400" />}
         </React.Fragment>
