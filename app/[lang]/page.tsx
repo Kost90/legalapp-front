@@ -1,6 +1,9 @@
-// TODO: Here will be home page
+import HeroSection from '@/components/Home/HeroSection';
+
 export default function Home() {
   return (
-    <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20"></div>
+    <div className="flex min-h-screen items-center justify-center px-4 py-10 sm:px-8">
+      <HeroSection />
+    </div>
   );
 }

@@ -4,6 +4,21 @@ const config = {
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      keyframes: {
+        glow: {
+          '0%, 100%': {
+            transform: 'scale(1) rotate(0deg)',
+            opacity: '0.4',
+          },
+          '50%': {
+            transform: 'scale(1.1) rotate(5deg)',
+            opacity: '0.5',
+          },
+        },
+      },
+      animation: {
+        glow: 'glow 15s ease-in-out infinite',
+      },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
@@ -12,7 +27,6 @@ const config = {
         current: 'currentColor',
         white: '#FFFFFF',
         black: '#000000',
-        'bg-body-main': '#f6f5f3',
         'bg-primary': '#F5F9FF',
         accent: '#FFDD00',
         redbtn: '#ff5a5f',
@@ -39,8 +53,8 @@ const config = {
           muted: '#6B7280',
         },
         background: {
+          'bg-body-main': '#D2E0F2',
           DEFAULT: '#FFFFFF',
-          // muted: '#F5F7FA',
           mutedcard: '#F5F9FF',
           muted: '#FFF9DC',
           redBtn: '#ff5a5f',
