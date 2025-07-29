@@ -89,7 +89,7 @@ export default async function RootLayout({
 
   return (
     <html lang={currentLang} className="h-full">
-      <body className={clsx(roboto.className, 'text-main-black min-h-screen w-full bg-gray-100 antialiased')}>
+      <body className={clsx(roboto.className, 'text-main-black bg-bg-body-main min-h-screen w-full antialiased')}>
         <QueryProvider>
           <DeviceProvider>
             <ModalProvider>
