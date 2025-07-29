@@ -74,7 +74,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
                   key={`login-${params}desc`}
                   href={`/${params}/auth/login`}
                   label={lang.header.login}
-                  variant={HEADER_NAV_VARIANTS.BUTTON}
+                  variant={HEADER_NAV_VARIANTS.BLACKBUTTON}
                 />
               )}
 

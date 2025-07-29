@@ -7,7 +7,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import { cn } from '@/utils/cn';
 
 type Props = {
-  type?: 'default' | 'critical' | 'ghost';
+  type?: 'default' | 'black' | 'danger' | 'blue';
   size?: 'small' | 'medium';
   buttonType?: 'button' | 'submit';
   onClick?: () => void;
@@ -52,10 +52,10 @@ export default function Button({
           'w-full': fullWidth,
           'min-w-24 px-4 py-1 text-sm': size === 'small',
           'min-w-32 px-8 py-2 text-base': size === 'medium',
-          'bg-main-black text-headerfooterwhite hover:bg-black': buttonType === 'submit' && !disabledOrLoading,
+          'bg-main-black text-headerfooterwhite hover:bg-black': (buttonType === 'submit' && !disabledOrLoading) || type === 'black',
           'text-main-black hover:border-main-black border-btn-border-color border bg-transparent':
             type === 'default' && buttonType === 'button' && !disabledOrLoading,
-          'bg-redbtn text-white hover:bg-red-500': type === 'critical' && !disabledOrLoading,
+          'bg-redbtn text-white hover:bg-red-500': type === 'danger' && !disabledOrLoading,
           '!text-headerfooterwhite !bg-black': (buttonType === 'submit' && disabledOrLoading) || isLogoutBtn,
           'bg-base-btn-hover-bg text-main-black': buttonType !== 'submit' && disabledOrLoading,
         },
