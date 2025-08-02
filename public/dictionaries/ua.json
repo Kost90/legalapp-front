@@ -1,8 +1,8 @@
 {
   "header": {
     "login": "Увійти",
-    "logout":"Вийти",
-    "dashboard":"Кабінет",
+    "logout": "Вийти",
+    "dashboard": "Кабінет",
     "nav_contacts": "Контакти",
     "button_generate": "Згенерувати документ",
     "button_consultation": "Консультація",
@@ -34,6 +34,14 @@
     ],
     "closing_statement": "UDocument — ваш надійний юридичний партнер, що поєднує досвід та сучасні технології.",
     "cta_button": "Отримати консультацію юриста"
+  },
+  "trustSection": {
+    "title": "З нами — ",
+    "bluetext": "просто",
+    "greentext": "безпечно",
+    "redtext": "професійно",
+    "description": "Коли на кону юридична точність, важливо обирати надійного партнера.",
+    "descriptionStrong": "UDocument — вибір тих, хто цінує час, якість і інновації."
   },
   "why_choose_us": {
     "title": "Чому обирають UDocument?",

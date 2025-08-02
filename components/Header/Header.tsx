@@ -74,7 +74,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
                   key={`login-${params}desc`}
                   href={`/${params}/auth/login`}
                   label={lang.header.login}
-                  variant={HEADER_NAV_VARIANTS.BUTTON}
+                  variant={HEADER_NAV_VARIANTS.BLACKBUTTON}
                 />
               )}
 
@@ -110,7 +110,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
             animate="visible"
             exit="exit"
             variants={MenuVariants}
-            className="bg-bg-body-main absolute mx-auto flex w-full flex-col lg:hidden"
+            className="bg-bg-primary absolute mx-auto flex w-full flex-col border-b-2 py-8 lg:hidden"
             id="mobile-menu"
           >
             <nav className="mx-auto flex flex-col items-center justify-center gap-1 space-y-1 px-2 pt-2 pb-3 sm:px-3">

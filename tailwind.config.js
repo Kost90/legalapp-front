@@ -27,7 +27,7 @@ const config = {
         current: 'currentColor',
         white: '#FFFFFF',
         black: '#000000',
-        'bg-primary': '#F5F9FF',
+        'bg-primary': '#f6f5f3',
         accent: '#FFDD00',
         redbtn: '#ff5a5f',
         headerfooterwhite: '#fff',
@@ -53,7 +53,7 @@ const config = {
           muted: '#6B7280',
         },
         background: {
-          'bg-body-main': '#D2E0F2',
+          'bg-body-main': '#f6f5f3',
           DEFAULT: '#FFFFFF',
           mutedcard: '#F5F9FF',
           muted: '#FFF9DC',

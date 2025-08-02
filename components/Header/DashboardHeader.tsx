@@ -64,7 +64,7 @@ export default function DashboardHeader({ lang, params }: { lang: SiteContent; p
                 <HeaderNavItem key={`${item.href}+${i}`} href={item.href} label={item.label} />
               ))} */}
               {lang.header.login && isAuthenticated && (
-                <Button onClick={logout} className="!mt-0 !px-2 !py-0" isLogoutBtn={true}>
+                <Button onClick={logout} type="black">
                   {lang.header.logout}
                 </Button>
               )}
@@ -102,7 +102,7 @@ export default function DashboardHeader({ lang, params }: { lang: SiteContent; p
             animate="visible"
             exit="exit"
             variants={MenuVariants}
-            className="bg-bg-body-main absolute mx-auto flex w-full flex-col lg:hidden"
+            className="bg-bg-primary absolute mx-auto flex w-full flex-col border-b-2 py-8 lg:hidden"
             id="mobile-menu"
           >
             <nav className="mx-auto flex flex-col items-center justify-center gap-1 space-y-1 px-2 pt-2 pb-3 sm:px-3">
@@ -110,7 +110,7 @@ export default function DashboardHeader({ lang, params }: { lang: SiteContent; p
                 <HeaderNavItem key={`${item.href}+${i}mob`} href={item.href} label={item.label} onClick={toggleMobileMenu} />
               ))} */}
               {lang.header.login && isAuthenticated && (
-                <Button onClick={logout} className="!mt-0 !px-2 !py-0" isLogoutBtn={true}>
+                <Button onClick={logout} type="black">
                   {lang.header.logout}
                 </Button>
               )}

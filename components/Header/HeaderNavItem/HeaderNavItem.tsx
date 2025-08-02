@@ -30,6 +30,7 @@ export default function HeaderNavItem({ href, label, icon, onClick, className, v
         {
           // 'bg-gray-900 text-white': isActive,
           'border-btn-border-color hover:border-main-black border bg-transparent px-3 py-1': variant === HEADER_NAV_VARIANTS.BUTTON,
+          '!text-headerfooterwhite bg-main-black hover:!bg-black': variant === HEADER_NAV_VARIANTS.BLACKBUTTON,
           'text-link-btn-text': variant === HEADER_NAV_VARIANTS.INLINE,
         },
       )}

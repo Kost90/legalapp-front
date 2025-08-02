@@ -62,7 +62,6 @@ export default function LoginForm({ lang }: { lang: string }) {
         <Button buttonType="submit" loading={methods.formState.isSubmitting || methods.formState.isSubmitSuccessful}>
           {lang === 'ua' ? 'Увійти' : 'Submit'}
         </Button>
-        {/* {methods.formState.errors.root?.message && <p className="text-red-500 mt-2 text-center">{methods.formState.errors.root.message}</p>} */}
       </form>
     </FormProvider>
   );

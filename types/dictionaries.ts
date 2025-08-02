@@ -20,6 +20,15 @@ interface HeroData {
   cta_button: string;
 }
 
+interface TrustSectionData {
+  title: string;
+  bluetext: string;
+  greentext: string;
+  redtext: string;
+  description: string;
+  descriptionStrong: string;
+}
+
 interface AdvantageItem {
   title: string;
   text: string;
@@ -111,6 +120,7 @@ export interface SiteContent {
   header: HeaderData;
   verify_email: IVerifyEmail;
   hero: HeroData;
+  trustSection: TrustSectionData;
   why_choose_us: WhyChooseUsData;
   legal_support: LegalSupportData;
   real_estate_services: RealEstateServicesData;
