@@ -64,7 +64,7 @@ export default function DashboardHeader({ lang, params }: { lang: SiteContent; p
                 <HeaderNavItem key={`${item.href}+${i}`} href={item.href} label={item.label} />
               ))} */}
               {lang.header.login && isAuthenticated && (
-                <Button onClick={logout} className="!mt-0 !px-2 !py-0" isLogoutBtn={true}>
+                <Button onClick={logout} type="black">
                   {lang.header.logout}
                 </Button>
               )}
@@ -110,7 +110,7 @@ export default function DashboardHeader({ lang, params }: { lang: SiteContent; p
                 <HeaderNavItem key={`${item.href}+${i}mob`} href={item.href} label={item.label} onClick={toggleMobileMenu} />
               ))} */}
               {lang.header.login && isAuthenticated && (
-                <Button onClick={logout} className="!mt-0 !px-2 !py-0" isLogoutBtn={true}>
+                <Button onClick={logout} type="black">
                   {lang.header.logout}
                 </Button>
               )}

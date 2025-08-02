@@ -3,7 +3,9 @@ type PageProps = {
     lang: string;
   };
 };
+import PageContainer from '@/components/Container/PageContainer';
 import HeroSection from '@/components/Home/HeroSection';
+import TrustSection from '@/components/Home/TrustSection';
 import { SiteContent } from '@/types/dictionaries';
 
 import { getDictionary } from './dictionaries';
@@ -13,8 +15,9 @@ export default async function Home({ params }: PageProps) {
   const dictionary: SiteContent = await getDictionary(lang);
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4 py-10 sm:px-8">
+    <PageContainer>
       <HeroSection dictionary={dictionary} lang={lang} />
-    </div>
+      <TrustSection dictionary={dictionary} lang={lang} />
+    </PageContainer>
   );
 }

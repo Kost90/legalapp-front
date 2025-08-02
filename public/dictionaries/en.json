@@ -1,8 +1,8 @@
 {
   "header": {
     "login": "Login",
-    "logout":"Log out",
-    "dashboard":"Dashboard",
+    "logout": "Log out",
+    "dashboard": "Dashboard",
     "nav_contacts": "Contacts",
     "button_generate": "Generate Document",
     "button_consultation": "Get Consultation",
@@ -34,6 +34,14 @@
     ],
     "closing_statement": "UDocument — your reliable legal partner, combining experience and modern technologies.",
     "cta_button": "Get a Lawyer's Consultation"
+  },
+  "trustSection": {
+    "title": "With us — it's",
+    "bluetext": "simple",
+    "greentext": "secure",
+    "redtext": "professional",
+    "description": "When legal accuracy matters, choosing the right partner is essential. ",
+    "descriptionStrong": "UDocument is the choice for those who value time, quality, and innovation."
   },
   "why_choose_us": {
     "title": "Why Choose UDocument?",
