@@ -5,6 +5,7 @@ type PageProps = {
 };
 import PageContainer from '@/components/Container/PageContainer';
 import HeroSection from '@/components/Home/HeroSection';
+import OurBenefitsSection from '@/components/Home/OurBenefitsSection';
 import TrustSection from '@/components/Home/TrustSection';
 import { SiteContent } from '@/types/dictionaries';
 
@@ -18,6 +19,7 @@ export default async function Home({ params }: PageProps) {
     <PageContainer>
       <HeroSection dictionary={dictionary} lang={lang} />
       <TrustSection dictionary={dictionary} lang={lang} />
+      <OurBenefitsSection />
     </PageContainer>
   );
 }
