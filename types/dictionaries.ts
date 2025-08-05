@@ -1,8 +1,3 @@
-// --- Існуючі інтерфейси (без змін, якщо вони вас влаштовують) ---
-interface BenefitItem {
-  text: string;
-}
-
 interface IVerifyEmail {
   title: string;
   subtitle: string;
@@ -13,11 +8,6 @@ interface IVerifyEmail {
 interface HeroData {
   title: string;
   subtitle_line1: string;
-  feature_highlight: string; // Містить HTML (<strong>)
-  benefits_intro: string;
-  benefits: BenefitItem[];
-  closing_statement: string;
-  cta_button: string;
 }
 
 interface TrustSectionData {
@@ -27,6 +17,16 @@ interface TrustSectionData {
   redtext: string;
   description: string;
   descriptionStrong: string;
+}
+
+export interface OurBenefitsSection {
+  title: string;
+  features: {
+    lawDef: string;
+    structure: string;
+    contracts: string;
+    notaryServices: string;
+  };
 }
 
 interface AdvantageItem {
@@ -121,6 +121,7 @@ export interface SiteContent {
   verify_email: IVerifyEmail;
   hero: HeroData;
   trustSection: TrustSectionData;
+  ourBenefitsSection: OurBenefitsSection;
   why_choose_us: WhyChooseUsData;
   legal_support: LegalSupportData;
   real_estate_services: RealEstateServicesData;

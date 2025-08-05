@@ -23,17 +23,7 @@
   },
   "hero": {
     "title": "UDocument — New Generation Legal Services",
-    "subtitle_line1": "Over 8 years of experience in real estate, corporate, and contract law, as well as in document certification in the UK (notary, apostille, translation). UDocument is a team of lawyers and attorneys combining expertise with innovation.",
-    "feature_highlight": "Our specialty — <strong>AI-powered online legal document generation</strong>: professional documents quickly, conveniently, and with high legal accuracy.",
-    "benefits_intro": "With UDocument you get:",
-    "benefits": [
-      { "text": "Legal security for real estate transactions." },
-      { "text": "A transparent business structure." },
-      { "text": "Flawless contract drafting." },
-      { "text": "Document certification in the UK (notary, apostille, translation)." }
-    ],
-    "closing_statement": "UDocument — your reliable legal partner, combining experience and modern technologies.",
-    "cta_button": "Get a Lawyer's Consultation"
+    "subtitle_line1": "8+ years of experience in real estate, corporate and contract law, as well as in the field of document certification in the United Kingdom. A team of lawyers combining legal expertise with AI to quickly and accurately generate legal documents online."
   },
   "trustSection": {
     "title": "With us — it's",
@@ -42,6 +32,15 @@
     "redtext": "professional",
     "description": "When legal accuracy matters, choosing the right partner is essential. ",
     "descriptionStrong": "UDocument is the choice for those who value time, quality, and innovation."
+  },
+  "ourBenefitsSection": {
+    "title": "With UDocument you get:",
+    "features": {
+      "lawDef": "Legal security of real estate transactions.",
+      "structure": "Transparent business structure.",
+      "contracts": "Flawless contract documentation.",
+      "notaryServices": "Document certification in the UK (notary, apostille, translation)."
+    }
   },
   "why_choose_us": {
     "title": "Why Choose UDocument?",

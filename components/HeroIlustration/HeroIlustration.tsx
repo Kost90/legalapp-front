@@ -55,7 +55,7 @@ const HeroIllustration = (props: React.SVGProps<SVGSVGElement>) => {
       variants={svgVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ amount: 0.8 }}
+      viewport={{ once: true, amount: 0.8 }}
       {...props}
     >
       {/* Defs и фон без изменений */}

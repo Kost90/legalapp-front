@@ -1,9 +1,15 @@
 import FlexSectionWrapper from '@/components/Container/FlexSectionWrapper';
 import DocumentTemplateIllustration from '@/components/DocumentTemplateIllustration/DocumentTemplateIllustration';
+import { SiteContent } from '@/types/dictionaries';
 
 import FeatureList from './FeatureList';
 
-function OurBenefitsSection() {
+interface IOurBenefitsSection {
+  dictionary: SiteContent;
+  lang: string;
+}
+
+function OurBenefitsSection({ ...props }: IOurBenefitsSection) {
   return (
     <FlexSectionWrapper className="mx-auto">
       <div className="flex w-full flex-col items-center justify-center gap-32 md:flex-row">
@@ -15,8 +21,8 @@ function OurBenefitsSection() {
           <DocumentTemplateIllustration />
         </div>
         <div className="flex w-full max-w-[500px] flex-1 flex-col items-center gap-5 md:items-start">
-          <h3 className="text-main-black text-2xl font-bold tracking-tight">З UDocument ви отримуєте:</h3>
-          <FeatureList />
+          <h3 className="text-main-black text-2xl font-bold tracking-tight">{props.dictionary.ourBenefitsSection.title}</h3>
+          <FeatureList dictionary={props.dictionary.ourBenefitsSection} />
         </div>
       </div>
     </FlexSectionWrapper>
