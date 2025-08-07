@@ -4,10 +4,10 @@ import { OurBenefitsSection } from '@/types/dictionaries';
 
 const FeatureList = ({ dictionary }: { dictionary: OurBenefitsSection }) => {
   return (
-    <div className="text-text space-y-4 text-[16px]">
+    <div className="text-text-grey-muted space-y-4 text-[16px]">
       <div className="flex items-center gap-3">
         <span className="rounded-md bg-orange-100 p-2">
-          <ShieldCheck className="h-5 w-5 text-orange-500" />
+          <ShieldCheck className="text-orange h-5 w-5" />
         </span>
         <span>{dictionary.features.lawDef}</span>
       </div>
@@ -21,7 +21,7 @@ const FeatureList = ({ dictionary }: { dictionary: OurBenefitsSection }) => {
 
       <div className="flex items-center gap-3">
         <span className="rounded-md bg-sky-100 p-2">
-          <FileSignature className="h-5 w-5 text-sky-600" />
+          <FileSignature className="text-blue h-5 w-5" />
         </span>
         <span>{dictionary.features.contracts}</span>
       </div>

@@ -46,17 +46,17 @@ export default function Button({
     <button
       {...attrs}
       className={cn(
-        'mt-3 flex items-center justify-center gap-1 rounded-md border border-gray-200 text-center',
+        'border-border-border-grey mt-3 flex items-center justify-center gap-1 rounded-md border text-center',
         {
           'w-full': fullWidth,
           'min-w-24 px-4 py-1 text-sm': size === 'small',
           'min-w-32 px-8 py-2 text-base': size === 'medium',
-          'bg-main-black text-headerfooterwhite hover:bg-black': (buttonType === 'submit' && !disabledOrLoading) || type === 'black',
-          'text-main-black border-btn-border-color border bg-transparent hover:border-black':
+          'bg-main-black text-white hover:bg-black': (buttonType === 'submit' && !disabledOrLoading) || type === 'black',
+          'border-border-border-grey bg-background-blue-lighter border text-white hover:bg-blue-500':
             type === 'default' && !disabledOrLoading && buttonType !== 'submit',
           'bg-redbtn text-white hover:bg-red-500': type === 'danger' && !disabledOrLoading,
-          '!text-headerfooterwhite !bg-black': buttonType === 'submit' && disabledOrLoading,
-          'border-b-btn-border-color text-main-black': buttonType !== 'submit' && disabledOrLoading,
+          '!bg-black !text-white': buttonType === 'submit' && disabledOrLoading,
+          'border-border-border-grey text-text-main-black': buttonType !== 'submit' && disabledOrLoading,
         },
         attrs.className,
       )}

@@ -48,7 +48,23 @@ const config = {
         'color-footer-link-red-brt': '#fa5801',
         'color-footer-link-ligth-green': '#70e3d3',
         'color-footer-link-green': '#46d75a',
+        // New colors:
+        blue: '#72A9FB',
+        yellow: '#FDBF32',
+        orange: '#FD801C',
         text: {
+          // new text colors will only
+          mainBlack: '#061121',
+          greyMuted: 'rgba(6, 17, 33, 0.6)',
+          // This color on card with extra light grey bg
+          grey: '#999B9D',
+          // this color text footer on card with blue bg
+          blueExtraLigth: '#C7DDFD',
+          // this color text footer on yellow bg
+          blueDark: '#44556C',
+          // this color text footer on blue bg
+          blueDarkFooter: '#39495F',
+          // ---------
           DEFAULT: '#1A1A1A',
           muted: '#6B7280',
         },
@@ -59,9 +75,16 @@ const config = {
           muted: '#FFF9DC',
           redBtn: '#ff5a5f',
           customGray: '#494846d9',
+          // New colors:
+          greyExtraLigth: '#F7F9FB',
+          yellowLigthter: '#FED773',
+          blueLighter: '#72A9FB',
+          mainBody: '#F7F9FB',
         },
         border: {
           DEFAULT: '#E5E7EB',
+          //new color
+          borderGrey: '#E9E9E9',
         },
       },
       fontSize: {
@@ -106,6 +129,8 @@ const config = {
         md: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
         lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
         xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+        'custom-inset': 'inset 15px 20px 20px 0px #0C2A531A',
+        'custom-soft': '-1px 2px 34px -10px rgba(82,75,75,0.75)',
       },
     },
   },

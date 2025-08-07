@@ -12,7 +12,7 @@ const DocumentTemplateIllustration = (props: React.SVGProps<SVGSVGElement>) => {
       {...props}
     >
       {/* Документ */}
-      <g stroke="#087dc1" strokeWidth="2">
+      <g stroke="#72A9FB" strokeWidth="2">
         <path d="M20 20 H80 L110 50 V160 H20 Z" fill="#ffffff" />
         <path d="M80 20 V50 H110" fill="none" />
         <rect x="35" y="70" width="60" height="6" rx="3" fill="#dbe5ea" />
@@ -21,7 +21,7 @@ const DocumentTemplateIllustration = (props: React.SVGProps<SVGSVGElement>) => {
       </g>
 
       {/* Шестерёнка — поднята, уменьшена и серая */}
-      <g transform="translate(45, 135) scale(4) translate(-6, -14)" stroke="#94a3b8">
+      <g transform="translate(45, 135) scale(4) translate(-6, -14)" stroke="#E9E9E9">
         <path d="m2.305 15.53.923-.382" />
         <path d="m3.228 12.852-.924-.383" />
         <path d="m4.852 11.228-.383-.923" />

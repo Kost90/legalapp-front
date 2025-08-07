@@ -7,6 +7,7 @@ interface IVerifyEmail {
 
 interface HeroData {
   title: string;
+  titleBluePArt: string;
   subtitle_line1: string;
 }
 
@@ -20,7 +21,7 @@ interface TrustSectionData {
 }
 
 export interface OurBenefitsSection {
-  title: string;
+  titel: string;
   features: {
     lawDef: string;
     structure: string;

@@ -56,7 +56,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
   ];
 
   return (
-    <header className="text-headerfooterwhite sticky top-0 z-50">
+    <header className="sticky top-0 z-50 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
@@ -86,7 +86,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
             <div className="lg:hidden">
               <button
                 onClick={toggleMobileMenu}
-                className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-none focus:ring-inset"
+                className="text-text-main-black inline-flex items-center justify-center rounded-md p-2 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-none focus:ring-inset"
                 aria-controls="mobile-menu"
                 aria-expanded={isMobileMenuOpen}
                 aria-label={isMobileMenuOpen ? 'Закрити головне меню' : 'Відкрити головне меню'}
@@ -110,7 +110,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
             animate="visible"
             exit="exit"
             variants={MenuVariants}
-            className="bg-bg-primary absolute mx-auto flex w-full flex-col border-b-2 py-8 lg:hidden"
+            className="bg-background-main-body absolute mx-auto flex w-full flex-col border-b-2 py-8 lg:hidden"
             id="mobile-menu"
           >
             <nav className="mx-auto flex flex-col items-center justify-center gap-1 space-y-1 px-2 pt-2 pb-3 sm:px-3">

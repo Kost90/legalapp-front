@@ -22,7 +22,8 @@
     "back_button": "Back"
   },
   "hero": {
-    "title": "UDocument — New Generation Legal Services",
+    "title": "UDocument — New Generation",
+    "titleBluePArt": "Legal Services",
     "subtitle_line1": "8+ years of experience in real estate, corporate and contract law, as well as in the field of document certification in the United Kingdom. A team of lawyers combining legal expertise with AI to quickly and accurately generate legal documents online."
   },
   "trustSection": {

@@ -8,6 +8,7 @@ import AboutServices from '@/components/Home/AboutServices';
 import HeroSection from '@/components/Home/HeroSection';
 import OurBenefitsSection from '@/components/Home/OurBenefitsSection';
 import TrustSection from '@/components/Home/TrustSection';
+import WhyChooseSection from '@/components/Home/WhyChooseSection';
 import { SiteContent } from '@/types/dictionaries';
 
 import { getDictionary } from './dictionaries';
@@ -21,7 +22,8 @@ export default async function Home({ params }: PageProps) {
       <HeroSection dictionary={dictionary} lang={lang} />
       <TrustSection dictionary={dictionary} lang={lang} />
       <OurBenefitsSection dictionary={dictionary} lang={lang} />
-      <AboutServices />
+      <AboutServices lang={lang as 'ua' | 'en'} />
+      <WhyChooseSection />
     </PageContainer>
   );
 }
