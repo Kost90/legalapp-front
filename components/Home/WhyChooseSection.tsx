@@ -4,11 +4,8 @@ import { motion } from 'framer-motion';
 import { BadgeCheck, BrainCircuit, FileText, Building2, Users, Home, Globe } from 'lucide-react';
 import { ReactNode } from 'react';
 
-// Wrapper component from your original code
 import FlexSectionWrapper from '@/components/Container/FlexSectionWrapper';
 
-// --- Data ---
-// Benefit items data is moved here for clarity.
 const benefits = [
   {
     icon: <BadgeCheck size={40} />,
@@ -30,14 +27,10 @@ const benefits = [
     title: 'Працюємо онлайн по всій Україні',
     description: 'Доступність і зручність для фізичних та юридичних осіб.',
   },
-  {
-    icon: <Users size={40} />,
-    title: 'Індивідуальний підхід',
-    description: 'Ваш запит — наше унікальне рішення.',
-  },
+  { icon: <Users size={40} />, title: 'Індивідуальний підхід', description: 'Ваш запит — наше унікальне рішення.' },
   {
     icon: <Building2 size={40} />,
-    title: 'Юридичний супровід для бізнесу та фізичних осіб',
+    title: 'Юридичний супровід для бізнесу',
     description: 'Всі юридичні потреби в одному місці: консультації, документи, супровід.',
   },
   {
@@ -47,91 +40,120 @@ const benefits = [
   },
 ];
 
-// Color schemes for the cards to cycle through
-const colorSchemes = [
-  { bg: 'bg-sky-50', iconBg: 'bg-sky-100', text: 'text-sky-700' },
-  { bg: 'bg-amber-50', iconBg: 'bg-amber-100', text: 'text-amber-700' },
-  { bg: 'bg-emerald-50', iconBg: 'bg-emerald-100', text: 'text-emerald-700' },
-  { bg: 'bg-rose-50', iconBg: 'bg-rose-100', text: 'text-rose-700' },
-];
+const yellowLighter = '#FED773';
+const blueLighter = '#72A9FB';
+const greyExtraLigth = '#F7F9FB';
 
-// --- Sub-components for better structure ---
-
-type BenefitCardProps = {
+type CardProps = {
   icon: ReactNode;
   title: string;
   description: string;
-  colors: (typeof colorSchemes)[0];
+  bgColor?: string;
+  small?: boolean;
+  delay?: number;
 };
 
-/**
- * A card component that flips on hover to reveal more details.
- * It uses framer-motion for the animation.
- */
-const BenefitCard = ({ icon, title, description, colors }: BenefitCardProps) => {
-  const cardVariants = {
+const FlipCard = ({ icon, title, description, bgColor, small, delay = 0 }: CardProps) => {
+  const flipVariants = {
     initial: { rotateY: 0 },
-    hover: {
-      rotateY: 180,
-      transition: { duration: 0.6, ease: 'easeInOut' },
+    hover: { rotateY: 180, transition: { duration: 0.6, ease: 'easeInOut' } },
+  };
+
+  const appearVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.3, delay, ease: 'easeOut' },
     },
   };
 
   return (
-    // This outer div creates the 3D perspective for the flip effect.
-    <div className="h-64 w-full [perspective:1000px]">
+    <motion.div
+      className={`[perspective:1000px] ${small ? 'h-[215px] w-[205px]' : 'w-full'} flex-shrink-0 cursor-pointer`}
+      variants={appearVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+    >
       <motion.div
-        className="relative h-full w-full [transform-style:preserve-3d]"
-        variants={cardVariants}
+        className="relative h-full w-full rounded-xl [transform-style:preserve-3d]"
+        variants={flipVariants}
         initial="initial"
         whileHover="hover"
-        whileFocus="hover" // Added for accessibility (keyboard navigation)
       >
-        {/* Front of the card */}
         <div
-          className={`absolute flex h-full w-full flex-col items-center justify-center rounded-xl p-6 text-center [backface-visibility:hidden] ${colors.bg}`}
+          className="absolute flex h-full w-full flex-col items-center justify-center rounded-xl p-4 text-center [backface-visibility:hidden]"
+          style={{ backgroundColor: bgColor }}
         >
-          <div className={`mb-4 rounded-full p-4 ${colors.iconBg} ${colors.text}`}>{icon}</div>
-          <h3 className="text-xl font-bold text-gray-800">{title}</h3>
+          <div className="mb-2">{icon}</div>
+          <h3 className="text-base font-bold text-gray-800">{title}</h3>
         </div>
 
-        {/* Back of the card */}
         <div
-          className={`absolute flex h-full w-full [transform:rotateY(180deg)] flex-col items-center justify-center rounded-xl p-6 text-center [backface-visibility:hidden] ${colors.bg}`}
+          className="absolute flex h-full w-full flex-col items-center justify-center rounded-xl p-4 text-center [backface-visibility:hidden]"
+          style={{ backgroundColor: bgColor, transform: 'rotateY(180deg)' }}
         >
-          <h3 className="mb-2 text-lg font-bold text-gray-800">{title}</h3>
-          <p className="text-gray-600">{description}</p>
+          <p className="text-sm text-gray-700">{description}</p>
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
-// --- Main Component ---
+const StaticCard = ({ icon, title, description }: CardProps) => (
+  <motion.div
+    className="flex h-full flex-col justify-center rounded-xl p-6 shadow-lg"
+    style={{ backgroundColor: greyExtraLigth }}
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true, amount: 0.3 }}
+  >
+    <div className="mb-4">{icon}</div>
+    <h3 className="text-xl font-bold text-gray-800">{title}</h3>
+    <p className="mt-2 text-gray-600">{description}</p>
+  </motion.div>
+);
 
-const WhyChooseSection = () => {
+export default function WhyChooseSection() {
   return (
     <FlexSectionWrapper id="why-udocument">
-      {' '}
       <div className="mb-16 text-center">
         <h2 className="text-text-main-black text-3xl font-bold md:text-4xl">Чому обирають UDocument?</h2>
         <p className="text-text-grey-muted mt-2 text-lg">Ваш надійний партнер у юридичних питаннях</p>
-      </div>{' '}
-      <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {' '}
-        {benefits.map((item, idx) => (
-          <BenefitCard
-            key={item.title}
-            icon={item.icon}
-            title={item.title}
-            description={item.description}
-            // Cycle through the color schemes
-            colors={colorSchemes[idx % colorSchemes.length]}
-          />
-        ))}{' '}
-      </div>{' '}
+      </div>
+
+      <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-4 lg:flex-row">
+          <div className="flex gap-4">
+            <FlipCard {...benefits[0]} bgColor={yellowLighter} small delay={0} />
+            <FlipCard {...benefits[1]} bgColor={blueLighter} small delay={0.15} />
+          </div>
+          <div className="flex-1">
+            <StaticCard {...benefits[2]} />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 lg:flex-row">
+          <div className="flex-1">
+            <StaticCard {...benefits[3]} />
+          </div>
+          <div className="flex gap-4">
+            <FlipCard {...benefits[4]} bgColor={yellowLighter} small delay={0} />
+            <FlipCard {...benefits[5]} bgColor={blueLighter} small delay={0.15} />
+          </div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <StaticCard {...benefits[6]} />
+        </motion.div>
+      </div>
     </FlexSectionWrapper>
   );
-};
-
-export default WhyChooseSection;
+}

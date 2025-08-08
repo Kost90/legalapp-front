@@ -20,3 +20,30 @@ export const itemVariants = {
     },
   },
 };
+
+export const phoneVariants = {
+  hidden: { opacity: 0, y: 50, rotate: -5 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotate: 0,
+    transition: {
+      duration: 0.8,
+      type: 'spring',
+      stiffness: 70,
+    },
+  },
+};
+
+export const textBlockVariants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.8,
+      delay: 0.2,
+      ease: 'easeOut',
+    },
+  },
+};
