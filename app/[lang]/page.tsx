@@ -5,6 +5,7 @@ type PageProps = {
 };
 import PageContainer from '@/components/Container/PageContainer';
 import AboutServices from '@/components/Home/AboutServices';
+import FAQSection from '@/components/Home/FaqSection';
 import HeroSection from '@/components/Home/HeroSection';
 import OurBenefitsSection from '@/components/Home/OurBenefitsSection';
 import TrustSection from '@/components/Home/TrustSection';
@@ -23,7 +24,8 @@ export default async function Home({ params }: PageProps) {
       <TrustSection dictionary={dictionary} lang={lang} />
       <OurBenefitsSection dictionary={dictionary} lang={lang} />
       <AboutServices lang={lang as 'ua' | 'en'} />
-      <WhyChooseSection />
+      <WhyChooseSection dictionary={dictionary} />
+      <FAQSection dictionary={dictionary} lang={lang} />
     </PageContainer>
   );
 }

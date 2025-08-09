@@ -37,7 +37,13 @@ interface AdvantageItem {
 
 interface WhyChooseUsData {
   title: string;
+  subtitle?: string;
   advantages: AdvantageItem[];
+}
+
+interface IFaq {
+  question: string;
+  answer: string;
 }
 
 interface LegalSupportServiceItem {
@@ -124,6 +130,7 @@ export interface SiteContent {
   trustSection: TrustSectionData;
   ourBenefitsSection: OurBenefitsSection;
   why_choose_us: WhyChooseUsData;
+  faq: IFaq[];
   legal_support: LegalSupportData;
   real_estate_services: RealEstateServicesData;
   online_generation: OnlineGenerationData;

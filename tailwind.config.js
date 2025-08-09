@@ -59,11 +59,12 @@ const config = {
           // This color on card with extra light grey bg
           grey: '#999B9D',
           // this color text footer on card with blue bg
-          blueExtraLigth: '#C7DDFD',
+          blueExtraLigth: '#0F2C4F',
           // this color text footer on yellow bg
           blueDark: '#44556C',
           // this color text footer on blue bg
           blueDarkFooter: '#39495F',
+          blueCard: 'rgb(255 255 255 / 0.8)',
           // ---------
           DEFAULT: '#1A1A1A',
           muted: '#6B7280',

@@ -45,29 +45,60 @@
   },
   "why_choose_us": {
     "title": "Why Choose UDocument?",
+    "subtitle": "Your trusted partner in legal matters",
     "advantages": [
       {
         "title": "Experience + AI Innovations",
-        "text": "8+ years of legal practice and advanced AI technologies for reliable, fast, and modern solutions."
+        "text": "8+ years of practice and artificial intelligence technologies for fast and secure solutions."
       },
       {
         "title": "Accurate Online Document Generation",
-        "text": "Create legally sound documents online. Developed by lawyers, optimized by AI. Compliant with legislation, tailored to your needs."
+        "text": "Legally correct documents online. Created by lawyers, adapted by AI in accordance with Ukrainian legislation."
       },
       {
         "title": "Comprehensive Approach",
-        "text": "A-to-Z support: real estate, corporate, contract law, document processing in the UK. One partner for all your legal tasks."
+        "text": "Legal support: real estate, contracts, companies, services in the United Kingdom."
       },
       {
-        "title": "We Work Online Everywhere",
-        "text": "Services available throughout Ukraine and for foreign clients. Saving your time without compromising on quality."
+        "title": "We Work Online Across Ukraine",
+        "text": "Accessibility and convenience for individuals and legal entities."
       },
       {
         "title": "Individual Approach",
-        "text": "Every solution is a personal response to your specific request."
+        "text": "Your request — our unique solution."
+      },
+      {
+        "title": "Legal Support for Business",
+        "text": "All legal needs in one place: consultations, documents, support."
+      },
+      {
+        "title": "Real Estate Services",
+        "text": "Registration, support, verification — full cycle for residential and commercial real estate."
       }
     ]
   },
+  "faq": [
+    {
+      "question": "Register",
+      "answer": "To register, you need to have an email address that you have access to."
+    },
+    {
+      "question": "Confirm your email",
+      "answer": "A verification email with a confirmation button will be sent to your email."
+    },
+    {
+      "question": "Choose a document",
+      "answer": "After logging into your personal account, you can select a document from the list."
+    },
+    {
+      "question": "Enter your data",
+      "answer": "After choosing a document, you need to answer a few short questions. In most cases, you will need your passport, tax ID, and other documents depending on the selected document for generation."
+    },
+    {
+      "question": "Get your PDF file",
+      "answer": "After answering all questions, click generate to receive your document."
+    }
+  ],
   "legal_support": {
     "title": "Legal Support for Businesses and Individuals",
     "intro_text": "Full range of legal services. Real solutions and support at all stages.",
