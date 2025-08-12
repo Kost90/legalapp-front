@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, Zap, ChevronDown } from 'lucide-react';
+import { ShieldCheck, Globe, ChevronDown } from 'lucide-react';
 import { useState, useRef } from 'react';
 
 import FlexSectionWrapper from '@/components/Container/FlexSectionWrapper';
@@ -11,24 +11,24 @@ const accordionData = [
     id: 1,
     icon: ShieldCheck,
     title: {
-      ua: 'Експертиза та інновації',
-      en: 'Expertise and Innovation',
+      ua: 'Експертиза та інновації: наш подвійний контроль',
+      en: 'Expertise and Innovation: Our Dual Control',
     },
     content: {
-      ua: 'Документи, створені за допомогою UDocument, розроблені кваліфікованими юристами та адвокатами з багаторічним досвідом. Ми поєднуємо юридичну експертизу з передовими технологіями, щоб надати вам точні, легальні та професійні документи без зайвих клопотів.',
-      en: 'Documents created with UDocument are developed by qualified lawyers and attorneys with years of experience. We combine legal expertise with advanced technologies to provide you with accurate, legal, and professional documents without unnecessary hassle.',
+      ua: 'В основі кожного документа UDocument лежить подвійний контроль: юридична експертиза досвідчених юристів та точність наших технологій. Це наш стандарт, який гарантує, що ви отримуєте не просто шаблон, а надійний правовий інструмент, що відповідає найвищим стандартам якості та чинному законодавству.',
+      en: 'At the core of every UDocument lies dual control: the legal expertise of experienced lawyers and the precision of our technology. This is our standard, ensuring you receive not just a template, but a reliable legal instrument that meets the highest quality standards and current legislation.',
     },
   },
   {
     id: 2,
-    icon: Zap,
+    icon: Globe,
     title: {
-      ua: 'Як працює UDocument',
-      en: 'How UDocument Works',
+      ua: 'Комплексні рішення: від України до Великої Британії',
+      en: 'Comprehensive Solutions: From Ukraine to Great Britain',
     },
     content: {
-      ua: 'Забудьте про пошук знайомих юристів, складні погодження чи черги в офісах. UDocument дозволяє створити юридично коректний документ онлайн — без завантаження особистих даних, без втрати часу. Просто введіть необхідну інформацію та отримаєте документ, який можна використовувати у державних установах України, як на її території, так і за кордоном.',
-      en: 'Forget about finding familiar lawyers, complicated approvals, or queues at offices. UDocument allows you to create a legally compliant document online — without uploading personal data or wasting time. Simply enter the necessary information and receive a document that can be used in Ukrainian government institutions, both domestically and abroad.',
+      ua: 'UDocument — це більше, ніж генератор документів. Це ваша єдина точка доступу до повного спектру юридичних послуг. Наприклад, ви можете створити договір для бізнесу в Україні, а потім звернутися до наших юристів для супроводу угоди. Або ж оформити довіреність у Великій Британії, а ми забезпечимо її нотаріальне засвідчення, апостиль та повну готовність до використання в Україні. Ми поєднуємо онлайн-сервіси та класичну юриспруденцію для вирішення ваших завдань.',
+      en: 'UDocument is more than a document generator. It is your single point of access to a full spectrum of legal services. For example, you can create a contract for your business in Ukraine and then turn to our lawyers for full transaction support. Alternatively, you can issue a power of attorney in Great Britain, and we will handle its notarization, apostille, and ensure it is fully ready for use in Ukraine. We combine online services with traditional legal practice to solve your tasks.',
     },
   },
 ];
@@ -38,7 +38,7 @@ const AboutServices = ({ lang }: { lang: 'ua' | 'en' }) => {
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   return (
-    <div className="bg-background-blue-lighter w-full rounded-xl">
+    <div className="bg-main-black w-full rounded-xl">
       <FlexSectionWrapper>
         <div className="flex w-full max-w-6xl flex-col gap-4 md:flex-row md:items-start">
           {accordionData.map((item, i) => {
@@ -59,10 +59,10 @@ const AboutServices = ({ lang }: { lang: 'ua' | 'en' }) => {
                   layout="position"
                   initial={false}
                   onClick={() => setExpanded(isOpen ? null : i)}
-                  className="flex w-full cursor-pointer items-center justify-between gap-4 p-5 text-left"
+                  className="flex min-h-32 w-full cursor-pointer items-center justify-between gap-4 p-5 text-left"
                 >
                   <div className="flex items-center gap-4">
-                    <IconComponent size={24} className={isOpen ? 'text-blue' : 'text-muted-text'} />
+                    <IconComponent size={24} className={isOpen ? 'text-blue shrink-0' : 'text-muted-text shrink-0'} />
                     <h3
                       className={`text-text-main-black text-lg font-semibold transition ${isOpen ? `bg-background-yellow-ligthter rounded-md p-2` : ''}`}
                     >

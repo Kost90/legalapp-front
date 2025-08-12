@@ -14,7 +14,7 @@ interface ITrustSectionProps {
 
 export default function TrustSection({ ...props }: ITrustSectionProps) {
   return (
-    <div className="bg-main-black w-full rounded-xl py-8">
+    <div className="bg-main-black w-full rounded-xl py-10">
       <FlexSectionWrapper className="mx-auto">
         <motion.div
           className="text-headerfooterwhite text-center"
@@ -29,7 +29,7 @@ export default function TrustSection({ ...props }: ITrustSectionProps) {
             {props.lang === 'ua' ? 'і' : 'and'} <span className="text-orange">{props.dictionary.trustSection.redtext}</span>.
           </p>
 
-          <p className="text-text-blue-extra-ligth mt-6 text-lg leading-7 sm:text-xl sm:leading-8">
+          <p className="text-text-grey mt-6 text-lg leading-7 sm:text-xl sm:leading-8">
             {props.dictionary.trustSection.description}
             <br />
             <span className="flex flex-col items-center justify-center gap-2 font-medium text-white md:flex-row">

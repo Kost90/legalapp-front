@@ -1,4 +1,6 @@
-export const containerVariants = {
+import { Variants } from 'framer-motion';
+
+export const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -9,7 +11,7 @@ export const containerVariants = {
   },
 };
 
-export const itemVariants = {
+export const itemVariants: Variants = {
   hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
@@ -21,12 +23,11 @@ export const itemVariants = {
   },
 };
 
-export const phoneVariants = {
-  hidden: { opacity: 0, y: 50, rotate: -5 },
+export const phoneVariants: Variants = {
+  hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
-    rotate: 0,
     transition: {
       duration: 0.8,
       type: 'spring',
@@ -35,7 +36,7 @@ export const phoneVariants = {
   },
 };
 
-export const textBlockVariants = {
+export const textBlockVariants: Variants = {
   hidden: { opacity: 0, x: 50 },
   visible: {
     opacity: 1,
@@ -43,6 +44,18 @@ export const textBlockVariants = {
     transition: {
       duration: 0.8,
       delay: 0.2,
+      ease: 'easeOut',
+    },
+  },
+};
+
+export const containerVariantsPromptSection: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
       ease: 'easeOut',
     },
   },

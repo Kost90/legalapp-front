@@ -23,13 +23,13 @@ export default function WhyChooseSection({ dictionary }: { dictionary: SiteConte
   const { title, subtitle, advantages } = dictionary.why_choose_us;
 
   const icons = [
-    <BadgeCheck key="badge" size={40} className="text-text-blue-dark" />,
-    <FileText key="file" size={40} className="text-text-blue-extra-ligth" />,
-    <BrainCircuit key="brain" size={40} className="text-text-main-black" />,
-    <Globe key="globe" size={40} className="text-text-main-black" />,
-    <Users key="users" size={40} className="text-text-blue-dark" />,
-    <Building2 key="building" size={40} className="text-text-blue-extra-ligth" />,
-    <Home key="home" size={40} className="text-text-main-black" />,
+    <BadgeCheck key="badge" size={35} className="text-text-blue-dark shrink-0" />,
+    <FileText key="file" size={35} className="text-text-blue-extra-ligth shrink-0" />,
+    <BrainCircuit key="brain" size={35} className="text-text-main-black shrink-0" />,
+    <Globe key="globe" size={35} className="text-text-main-black shrink-0" />,
+    <Users key="users" size={35} className="text-text-blue-dark shrink-0" />,
+    <Building2 key="building" size={35} className="text-text-blue-extra-ligth shrink-0" />,
+    <Home key="home" size={35} className="text-text-main-black shrink-0" />,
   ];
 
   const benefits = advantages.map((adv, idx) => ({
@@ -47,9 +47,9 @@ export default function WhyChooseSection({ dictionary }: { dictionary: SiteConte
 
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-4 lg:flex-row">
-          <div className="flex gap-4">
-            <FlipCard {...benefits[0]} bgColor={colors.yellow} textColor={flipCardsTextColors.yellowBackGround} small delay={0} />
-            <FlipCard {...benefits[1]} bgColor={colors.blue} textColor={flipCardsTextColors.blueBackGround} small delay={0.15} />
+          <div className="flex justify-center gap-4">
+            <FlipCard {...benefits[0]} bgColor={colors.yellow} textColor={flipCardsTextColors.yellowBackGround} delay={0} />
+            <FlipCard {...benefits[1]} bgColor={colors.blue} textColor={flipCardsTextColors.blueBackGround} delay={0.15} />
           </div>
           <div className="flex-1">
             <StaticCard {...benefits[2]} bgColor={colors.grey} />
@@ -60,9 +60,9 @@ export default function WhyChooseSection({ dictionary }: { dictionary: SiteConte
           <div className="flex-1">
             <StaticCard {...benefits[3]} />
           </div>
-          <div className="flex gap-4">
-            <FlipCard {...benefits[4]} bgColor={colors.yellow} textColor={flipCardsTextColors.yellowBackGround} small delay={0} />
-            <FlipCard {...benefits[5]} bgColor={colors.blue} textColor={flipCardsTextColors.blueBackGround} small delay={0.15} />
+          <div className="flex justify-center gap-4">
+            <FlipCard {...benefits[4]} bgColor={colors.yellow} textColor={flipCardsTextColors.yellowBackGround} delay={0} />
+            <FlipCard {...benefits[5]} bgColor={colors.blue} textColor={flipCardsTextColors.blueBackGround} delay={0.15} />
           </div>
         </div>
 

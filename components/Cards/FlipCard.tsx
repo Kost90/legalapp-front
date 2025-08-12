@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { flipCardAppear, flipCardRotate } from '@/lib/constants/cardsAnimationsVariants';
 import { CardProps } from '@/types/cards';
 
-const FlipCard = ({ icon, title, description, bgColor, small, textColor, delay = 0 }: CardProps) => {
+const FlipCard = ({ icon, title, description, bgColor, textColor, delay = 0 }: CardProps) => {
   return (
     <motion.div
-      className={`[perspective:1000px] ${small ? 'h-[215px] w-[205px]' : 'w-full'} flex-shrink-0 cursor-pointer`}
+      className={`h-[215px] w-[180px] flex-shrink-0 cursor-pointer [perspective:1000px] md:w-[205px]`}
       variants={flipCardAppear(delay)}
       initial="hidden"
       whileInView="visible"

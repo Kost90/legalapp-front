@@ -7,17 +7,13 @@ import { DocumentPage } from '@/types/documents-table-dictionary';
 
 import { getDocumentsTableDictionary } from './documents-table-dictionary';
 
+import { PageProps } from '@/.next/types/app/[lang]/[userId]/dashboard/(tabs)/documents/page';
+
 export const metadata: Metadata = { title: 'Your documents' };
 
-type PageProps = {
-  params: {
-    lang: string;
-    userId: string;
-  };
-};
-
 export default async function DocumentsPage({ params }: PageProps) {
-  const { lang, userId } = await params;
+  const resolvedParams = await params;
+  const { lang, userId } = resolvedParams!;
   const documents = await fetchUserDocuments(userId);
   const dictionary: DocumentPage = await getDocumentsTableDictionary(lang);
   return (

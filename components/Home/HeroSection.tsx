@@ -36,7 +36,7 @@ export default function HeroSection({ dictionary, lang }: { dictionary: SiteCont
             className="animate-glow absolute top-1/2 left-1/2 -z-10 h-[130%] w-[115%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-[#FDBF32] to-[#72A9FB] blur-lg"
           />
 
-          <HeroIllustration className="h-auto w-full" />
+          <HeroIllustration />
         </motion.div>
       </motion.div>
     </FlexSectionWrapper>

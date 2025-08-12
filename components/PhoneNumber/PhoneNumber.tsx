@@ -31,6 +31,7 @@ export const splitPhoneNumber = (number: string) => {
   };
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function PhoneNumber({ occupyErrorSpace = true }: { occupyErrorSpace?: boolean }) {
   const form = useFormContext();
 

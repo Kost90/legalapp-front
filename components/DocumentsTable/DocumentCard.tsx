@@ -1,6 +1,7 @@
 import { ArrowDownToLine, Trash } from 'lucide-react';
 
-import { DocumentKey, IDocument } from '@/types/documents';
+import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
+import { IDocument } from '@/types/documents';
 import { DocumentPage } from '@/types/documents-table-dictionary';
 
 interface DocumentCardProps {
@@ -20,7 +21,7 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({ document, index, onD
       </div>
       <div className="text-muted-text mb-3 text-sm">
         <p>
-          <strong>{dictionary.table.columnsForMobile.type}</strong> {dictionary.documentsTypes[document.type as DocumentKey]}
+          <strong>{dictionary.table.columnsForMobile.type}</strong> {dictionary.documentsTypes[document.type as DOCUMENT_TYPE]}
         </p>
         <p>
           <strong>{dictionary.table.columnsForMobile.createdAt}</strong> {document.createdAt}

@@ -42,8 +42,8 @@ interface WhyChooseUsData {
 }
 
 interface IFaq {
-  question: string;
-  answer: string;
+  title: string;
+  description: string;
 }
 
 interface LegalSupportServiceItem {
@@ -123,6 +123,25 @@ interface MetaData {
   appleWebAppTitle?: string;
 }
 
+interface IFooterData {
+  contacts_heading: string;
+  email: string;
+  phone: string;
+  legal_heading: string;
+  privacy_policy: string;
+  follow_us_heading: string;
+  follow_us_text: string;
+  copyright: string;
+}
+
+interface IContactPromptData {
+  title: string;
+  subtitle: string;
+  description: string;
+  phone_cta: string;
+  email_cta: string;
+}
+
 export interface SiteContent {
   header: HeaderData;
   verify_email: IVerifyEmail;
@@ -135,4 +154,6 @@ export interface SiteContent {
   real_estate_services: RealEstateServicesData;
   online_generation: OnlineGenerationData;
   meta: MetaData;
+  contactPrompt: IContactPromptData;
+  footer: IFooterData;
 }

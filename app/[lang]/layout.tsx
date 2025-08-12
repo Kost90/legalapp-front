@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import { Roboto } from 'next/font/google';
 import { cookies } from 'next/headers';
 
+import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
 import { ModalProvider } from '@/components/Modals/ModalProvider';
 import { ToasterProvider } from '@/components/ToastProvider/ToastProvider';
@@ -98,6 +99,7 @@ export default async function RootLayout({
                 <div className="relative isolate z-[1] flex min-h-screen w-full flex-col overflow-hidden">
                   <Header lang={t} params={currentLang} />
                   <main className="w-full flex-grow">{children}</main>
+                  <Footer lang={lang} dictionary={t} />
                 </div>
               </AuthProvider>
             </ModalProvider>

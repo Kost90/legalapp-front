@@ -46,17 +46,15 @@ const fadeInVariants: Variants = {
   },
 };
 
-const HeroIllustration = (props: React.SVGProps<SVGSVGElement>) => {
+const HeroIllustration = () => {
   return (
     <motion.svg
       viewBox="0 0 450 300"
-      xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       variants={svgVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.8 }}
-      {...props}
     >
       {/* Defs и фон без изменений */}
       <defs>

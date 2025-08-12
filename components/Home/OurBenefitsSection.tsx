@@ -36,7 +36,7 @@ function OurBenefitsSection({ dictionary }: IOurBenefitsSection) {
         </motion.div>
 
         <motion.div
-          className="bg-background-grey-extra-ligth shadow-custom-soft flex w-full max-w-[500px] flex-1 flex-col items-center gap-5 rounded-lg p-5 md:items-start"
+          className="bg-background-grey-extra-ligth flex w-full max-w-[500px] flex-1 flex-col items-center gap-6 rounded-xl p-6 shadow-lg md:items-start"
           variants={textBlockVariants}
           initial="hidden"
           whileInView="visible"
