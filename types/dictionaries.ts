@@ -1,8 +1,3 @@
-// --- Існуючі інтерфейси (без змін, якщо вони вас влаштовують) ---
-interface BenefitItem {
-  text: string;
-}
-
 interface IVerifyEmail {
   title: string;
   subtitle: string;
@@ -12,12 +7,8 @@ interface IVerifyEmail {
 
 interface HeroData {
   title: string;
+  titleBluePArt: string;
   subtitle_line1: string;
-  feature_highlight: string; // Містить HTML (<strong>)
-  benefits_intro: string;
-  benefits: BenefitItem[];
-  closing_statement: string;
-  cta_button: string;
 }
 
 interface TrustSectionData {
@@ -29,6 +20,16 @@ interface TrustSectionData {
   descriptionStrong: string;
 }
 
+export interface OurBenefitsSection {
+  titel: string;
+  features: {
+    lawDef: string;
+    structure: string;
+    contracts: string;
+    notaryServices: string;
+  };
+}
+
 interface AdvantageItem {
   title: string;
   text: string;
@@ -36,7 +37,13 @@ interface AdvantageItem {
 
 interface WhyChooseUsData {
   title: string;
+  subtitle?: string;
   advantages: AdvantageItem[];
+}
+
+interface IFaq {
+  title: string;
+  description: string;
 }
 
 interface LegalSupportServiceItem {
@@ -116,14 +123,37 @@ interface MetaData {
   appleWebAppTitle?: string;
 }
 
+interface IFooterData {
+  contacts_heading: string;
+  email: string;
+  phone: string;
+  legal_heading: string;
+  privacy_policy: string;
+  follow_us_heading: string;
+  follow_us_text: string;
+  copyright: string;
+}
+
+interface IContactPromptData {
+  title: string;
+  subtitle: string;
+  description: string;
+  phone_cta: string;
+  email_cta: string;
+}
+
 export interface SiteContent {
   header: HeaderData;
   verify_email: IVerifyEmail;
   hero: HeroData;
   trustSection: TrustSectionData;
+  ourBenefitsSection: OurBenefitsSection;
   why_choose_us: WhyChooseUsData;
+  faq: IFaq[];
   legal_support: LegalSupportData;
   real_estate_services: RealEstateServicesData;
   online_generation: OnlineGenerationData;
   meta: MetaData;
+  contactPrompt: IContactPromptData;
+  footer: IFooterData;
 }

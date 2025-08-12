@@ -3,8 +3,11 @@ import { IGenerateDocumentsContent } from '@/types/generate-documents-dictionari
 
 import { getGenerateDocumentsDictionary } from './generate-documents-dictionaries';
 
-export default async function GeneratePage(props: Readonly<{ params: { lang: 'ua' | 'en' } }>) {
-  const { lang } = await props.params;
+import { PageProps } from '@/.next/types/app/[lang]/[userId]/dashboard/(tabs)/generate/page';
+
+export default async function GeneratePage({ params }: PageProps) {
+  const resolvedParams = await params;
+  const { lang } = resolvedParams!;
   const dictionary: IGenerateDocumentsContent = await getGenerateDocumentsDictionary(lang);
   return <DocumentGenerationFlow lang={lang} dictionary={dictionary} />;
 }

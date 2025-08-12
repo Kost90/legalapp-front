@@ -7,11 +7,10 @@ type PathOptions = {
   segments?: string[];
 };
 
-export const buildUserPath = ({ lang, userId, brokerId, segments = [] }: PathOptions): string => {
+export const buildUserPath = ({ lang, userId, segments = [] }: PathOptions): string => {
   let path = `/${lang}`;
 
   if (userId) path += `/${slugify(userId, 'user')}`;
-  if (brokerId) path += `/${slugify(brokerId, 'broker')}`;
 
   if (segments.length > 0) {
     path += '/' + segments.map(encodeURIComponent).join('/');

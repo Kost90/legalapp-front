@@ -1,5 +1,6 @@
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const commonFormFields: Record<string, any> = {
   ua: {
     person: [
@@ -59,6 +60,7 @@ const filteredEnPerson = enPerson.filter(
   (field: { name: string; lable: string; type: string; required: boolean }) => field.name !== 'passportIssueAuthority',
 );
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const formFieldsSchemas: Record<string, Record<string, any>> = {
   [DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY]: {
     ua: {

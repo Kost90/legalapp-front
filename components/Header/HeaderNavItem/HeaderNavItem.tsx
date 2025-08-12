@@ -25,13 +25,12 @@ export default function HeaderNavItem({ href, label, icon, onClick, className, v
       href={href}
       onClick={onClick}
       className={cn(
-        `text-main-black block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-white focus:ring-2 focus:outline-none lg:inline-block`,
+        `text-text-main-black hover:bg-background-blue-lighter hover:text-text-blue-extra-ligth block rounded-md px-3 py-2 text-sm font-medium transition-colors focus:ring-2 focus:outline-none lg:inline-block`,
         className,
         {
-          // 'bg-gray-900 text-white': isActive,
-          'border-btn-border-color hover:border-main-black border bg-transparent px-3 py-1': variant === HEADER_NAV_VARIANTS.BUTTON,
-          '!text-headerfooterwhite bg-main-black hover:!bg-black': variant === HEADER_NAV_VARIANTS.BLACKBUTTON,
-          'text-link-btn-text': variant === HEADER_NAV_VARIANTS.INLINE,
+          'border-border-border-grey hover:border-main-black border bg-transparent px-3 py-1': variant === HEADER_NAV_VARIANTS.BUTTON,
+          'bg-main-black !text-white hover:!bg-black': variant === HEADER_NAV_VARIANTS.BLACKBUTTON,
+          'text-blue': variant === HEADER_NAV_VARIANTS.INLINE,
         },
       )}
       aria-current={isActive ? 'page' : undefined}

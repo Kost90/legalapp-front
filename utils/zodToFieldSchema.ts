@@ -5,7 +5,7 @@ import { FieldSchema } from '@/types/formInput';
 type Lang = 'ua' | 'en';
 
 export const zodToFieldSchema = (schema: ZodObject<any>, lang: Lang): FieldSchema[] => {
-  const shape = schema.shape;
+  const shape = schema.shape as Record<string, ZodTypeAny>;
 
   return Object.entries(shape).map(([key, value]) => {
     const field = unwrapEffects(value);

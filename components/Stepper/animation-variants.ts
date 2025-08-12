@@ -1,4 +1,6 @@
-export const mobileStepVariants = {
+import { Variants } from 'motion/react';
+
+export const mobileStepVariants: Variants = {
   enter: (direction: 'left' | 'right') => ({
     x: direction === 'right' ? '100%' : '-100%',
     opacity: 0,

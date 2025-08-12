@@ -9,7 +9,7 @@ interface PageTitleProps extends HTMLAttributes<HTMLDivElement> {
   index?: number;
 }
 
-export default function PageTitle({ title, description, index, className, ...props }: PageTitleProps) {
+export default function PageTitle({ title, description, className, ...props }: PageTitleProps) {
   return (
     <div className={cn('pt-10 pb-5', className)} {...props}>
       <div className="flex flex-col gap-4 sm:items-start sm:justify-between">

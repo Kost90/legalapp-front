@@ -22,52 +22,83 @@
     "back_button": "Back"
   },
   "hero": {
-    "title": "UDocument — New Generation Legal Services",
-    "subtitle_line1": "Over 8 years of experience in real estate, corporate, and contract law, as well as in document certification in the UK (notary, apostille, translation). UDocument is a team of lawyers and attorneys combining expertise with innovation.",
-    "feature_highlight": "Our specialty — <strong>AI-powered online legal document generation</strong>: professional documents quickly, conveniently, and with high legal accuracy.",
-    "benefits_intro": "With UDocument you get:",
-    "benefits": [
-      { "text": "Legal security for real estate transactions." },
-      { "text": "A transparent business structure." },
-      { "text": "Flawless contract drafting." },
-      { "text": "Document certification in the UK (notary, apostille, translation)." }
-    ],
-    "closing_statement": "UDocument — your reliable legal partner, combining experience and modern technologies.",
-    "cta_button": "Get a Lawyer's Consultation"
+    "title": "UDocument: 8+ years of legal practice –",
+    "titleBluePArt": "in a modern format",
+    "subtitle_line1": "Professional support for real estate transactions and corporate law in Ukraine. Assistance with notarized documents and apostilles in Great Britain. Our unique technology allows you to generate necessary documents online — quickly, accurately, and under the supervision of experienced lawyers."
   },
   "trustSection": {
-    "title": "With us — it's",
+    "title": "With us it's — ",
     "bluetext": "simple",
     "greentext": "secure",
     "redtext": "professional",
-    "description": "When legal accuracy matters, choosing the right partner is essential. ",
-    "descriptionStrong": "UDocument is the choice for those who value time, quality, and innovation."
+    "description": "We have combined 8 years of legal experience with our unique technology to guarantee the legal accuracy of every document.",
+    "descriptionStrong": "UDocument is a modern approach to law where your time, security, and quality are the top priority."
+  },
+  "ourBenefitsSection": {
+    "title": "The result you get with UDocument:",
+    "features": {
+      "lawDef": "Full legal support and security for real estate transactions in Ukraine.",
+      "structure": "A clear business structure and expert guidance in corporate law.",
+      "contracts": "Instant generation of legally accurate documents online with expert review.",
+      "notaryServices": "Fast processing of notarial documents, translations, and apostilles in Great Britain."
+    }
   },
   "why_choose_us": {
     "title": "Why Choose UDocument?",
+    "subtitle": "We have transformed complex legal processes into simple and reliable solutions.",
     "advantages": [
       {
-        "title": "Experience + AI Innovations",
-        "text": "8+ years of legal practice and advanced AI technologies for reliable, fast, and modern solutions."
+        "title": "Experience, Amplified by AI",
+        "text": "Our 8+ years of legal practice are combined with AI technologies to solve your tasks faster and more efficiently."
       },
       {
-        "title": "Accurate Online Document Generation",
-        "text": "Create legally sound documents online. Developed by lawyers, optimized by AI. Compliant with legislation, tailored to your needs."
+        "title": "Instant Online Generation",
+        "text": "Create legally sound documents in minutes. Our assistant will guide you through the process step-by-step."
       },
       {
-        "title": "Comprehensive Approach",
-        "text": "A-to-Z support: real estate, corporate, contract law, document processing in the UK. One partner for all your legal tasks."
+        "title": "Legal Accuracy and Relevance",
+        "text": "All our documents and consultations comply with the current legislation of Ukraine. This is guaranteed by our 'dual control': lawyer and technology."
       },
       {
-        "title": "We Work Online Everywhere",
-        "text": "Services available throughout Ukraine and for foreign clients. Saving your time without compromising on quality."
+        "title": "Comprehensive Business Support",
+        "text": "From company registration to ongoing legal support. We cover all your business's legal needs in one place."
       },
       {
-        "title": "Individual Approach",
-        "text": "Every solution is a personal response to your specific request."
+        "title": "Security in Real Estate Transactions",
+        "text": "We protect your interests at every stage: from property verification to the final agreement. Your investment is securely protected."
+      },
+      {
+        "title": "Service Between Ukraine and Britain",
+        "text": "We build a legal bridge between the two countries: from apostilles and document notarization in Great Britain to their use in Ukraine."
+      },
+      {
+        "title": "Transparency and Confidentiality",
+        "text": "We operate with clear pricing without hidden fees. Your data and cases are kept under strict protection and are completely confidential."
       }
     ]
   },
+  "faq": [
+    {
+      "title": "Step 1: Account Registration",
+      "description": "Create a personal account using your email address. This is your secure space for working with documents."
+    },
+    {
+      "title": "Step 2: Email Confirmation",
+      "description": "We will send you a verification email. Simply click the link within it to activate and secure your account."
+    },
+    {
+      "title": "Step 3: Document Selection",
+      "description": "In your personal account, you will find a catalog of available legal documents. Choose the one that meets your needs."
+    },
+    {
+      "title": "Step 4: Data Entry",
+      "description": "Our online assistant will ask you a few simple questions. Prepare the necessary data (e.g., passport and tax ID number) to make the process even faster."
+    },
+    {
+      "title": "Step 5: Generation and Download",
+      "description": "Click the 'Generate' button. Your document will be created instantly and available for download in PDF format, fully ready for printing and use."
+    }
+  ],
   "legal_support": {
     "title": "Legal Support for Businesses and Individuals",
     "intro_text": "Full range of legal services. Real solutions and support at all stages.",
@@ -177,5 +208,22 @@
     "twitterTitle": "UDocument: New Generation Legal Solutions",
     "twitterDescription": "Generate documents, get consultations. UDocument – your reliable legal partner.",
     "appleWebAppTitle": "UDocument"
+  },
+  "contactPrompt": {
+    "title": "Still have questions?",
+    "subtitle": "Our team of lawyers is ready to help.",
+    "description": "For individual consultations or complex inquiries, please contact us in a way that is convenient for you:",
+    "phone_cta": "Call Us",
+    "email_cta": "Email Us"
+  },
+  "footer": {
+    "contacts_heading": "Contact",
+    "email": "contact@udocument.com",
+    "phone": "(+380) 00 000-00-00",
+    "legal_heading": "Legal",
+    "privacy_policy": "Privacy Policy",
+    "follow_us_heading": "Follow Us",
+    "follow_us_text": "News and useful tips on our social media.",
+    "copyright": "All rights reserved."
   }
 }

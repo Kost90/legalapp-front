@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { ReactNode } from 'react';
 
 export const metadata: Metadata = { title: 'Generate Doocument' };
 
@@ -8,12 +7,15 @@ import { IGenerateDocumentsContent } from '@/types/generate-documents-dictionari
 import { getGenerateDocumentsDictionary } from './generate-documents-dictionaries';
 import GenerateDocumentLayoutClient from './layout.client';
 
-export default async function GenerateDocumentLayout(props: Readonly<{ children: ReactNode; params: { lang: 'ua' | 'en' } }>) {
-  const { lang } = await props.params;
+import { LayoutProps } from '@/.next/types/app/[lang]/[userId]/dashboard/(tabs)/generate/layout';
+
+export default async function GenerateDocumentLayout({ children, params }: LayoutProps) {
+  const resolvedParams = await params;
+  const { lang } = resolvedParams!;
   const dictionary: IGenerateDocumentsContent = await getGenerateDocumentsDictionary(lang);
   return (
     <GenerateDocumentLayoutClient lang={lang} dictionary={dictionary}>
-      {props.children}
+      {children}
     </GenerateDocumentLayoutClient>
   );
 }
