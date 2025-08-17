@@ -207,4 +207,4 @@ export const buildUrl = (url: string, params: Record<string, string | number | (
   return `${url}${queryString ? `?${queryString}` : ''}`;
 };
 
-export const BASE_URL = process.env.NEXT_PUBLIC_API_DOMAIN || '/api';
+export const BASE_URL = process.env.NEXT_PUBLIC_API_DOMAIN;
