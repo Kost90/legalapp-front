@@ -79,7 +79,6 @@ export const makeRequest = async ({
   if (accessToken) {
     headers.set('Authorization', `Bearer ${accessToken}`);
   }
-  console.log(`${BASE_URL}${url}`);
 
   const res = await fetch(`${BASE_URL}${url}`, {
     headers,
