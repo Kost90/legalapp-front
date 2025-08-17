@@ -1,9 +1,6 @@
-import getConfig from 'next/config';
 import { redirect } from 'next/navigation';
 
 import { clearAuth } from './auth/clearAuth';
-
-const { publicRuntimeConfig } = getConfig();
 
 export const handleError = (
   error: {
@@ -210,4 +207,4 @@ export const buildUrl = (url: string, params: Record<string, string | number | (
   return `${url}${queryString ? `?${queryString}` : ''}`;
 };
 
-export const BASE_URL = publicRuntimeConfig.apiDomain;
+export const BASE_URL = process.env.NEXT_PUBLIC_API_DOMAIN;
