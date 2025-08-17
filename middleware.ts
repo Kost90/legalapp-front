@@ -7,7 +7,6 @@ import { handleNonAuth } from './middlewares/nonAuth';
 const locales = ['ua', 'en'];
 const defaultLocale = 'ua';
 
-// Получение локали
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getLocale(request: NextRequest) {
   return defaultLocale;
@@ -20,9 +19,8 @@ export async function middleware(request: NextRequest) {
 
   if (!pathnameHasLocale) {
     const locale = getLocale(request);
-    const redirectUrl = request.nextUrl.clone();
-    redirectUrl.pathname = `/${locale}${pathname}`;
-    return NextResponse.redirect(redirectUrl);
+    request.nextUrl.pathname = `/${locale}${pathname}`;
+    return NextResponse.redirect(request.nextUrl);
   }
 
   const lang = pathname.split('/')[1] || defaultLocale;
@@ -39,17 +37,15 @@ export async function middleware(request: NextRequest) {
 
       if (!userId) {
         void clearAuth();
-        return NextResponse.redirect(new URL(`/${lang}/auth/login`, request.nextUrl.origin));
+        return NextResponse.redirect(new URL(`/${lang}/auth/login`, request.url));
       }
 
-      return NextResponse.redirect(new URL(`/${lang}/${userId}/dashboard/generate`, request.nextUrl.origin));
+      return NextResponse.redirect(new URL(`/${lang}/${userId}/dashboard/generate`, request.url));
     } catch {
       void clearAuth();
-      return NextResponse.redirect(new URL(`/${lang}/auth/login`, request.nextUrl.origin));
+      return NextResponse.redirect(new URL(`/${lang}/auth/login`, request.url));
     }
   }
-
-  return NextResponse.next();
 }
 
 export const config = {
