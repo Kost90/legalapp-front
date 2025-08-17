@@ -79,7 +79,7 @@ export const makeRequest = async ({
   if (accessToken) {
     headers.set('Authorization', `Bearer ${accessToken}`);
   }
-  console.log(`${BASE_URL}${url}`);
+
   const res = await fetch(`${BASE_URL}${url}`, {
     headers,
     ...options,
@@ -207,4 +207,4 @@ export const buildUrl = (url: string, params: Record<string, string | number | (
   return `${url}${queryString ? `?${queryString}` : ''}`;
 };
 
-export const BASE_URL = process.env.NEXT_PUBLIC_API_DOMAIN;
+export const BASE_URL = process.env.NEXT_PUBLIC_API_DOMAIN || '/api';
