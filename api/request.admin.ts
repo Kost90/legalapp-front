@@ -1,7 +1,7 @@
 'use server';
 import { notFound } from 'next/navigation';
 
-import { BASE_URL, handleError } from './utils';
+import { handleError } from './utils';
 
 // Make request from here when don't need jwt token on endpoint
 export const requestAdmin = async <Request, Body = any>(
@@ -12,7 +12,8 @@ export const requestAdmin = async <Request, Body = any>(
     noAdminTag?: boolean;
   },
 ): Promise<Request> => {
-  const res = await fetch(`${BASE_URL}/${url}`, {
+  // TODO: Remove than when buy domain
+  const res = await fetch(`http://134.209.224.92/api/${url}`, {
     ...options,
     headers: {
       'Content-Type': options.body ? 'application/json' : '',
