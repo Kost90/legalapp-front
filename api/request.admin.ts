@@ -12,10 +12,9 @@ export const requestAdmin = async <Request, Body = any>(
     noAdminTag?: boolean;
   },
 ): Promise<Request> => {
-  // TODO: Remove than when buy domain, make automation changing url by env propd
-  const prodUrl = 'http://backend:3030';
-  // const devUrl = 'http://localhost:3030';
-  const res = await fetch(`${prodUrl}/api/${url}`, {
+  const apiUrl = process.env.PUBLIC_API_DOMAIN || 'http://localhost:3030';
+  console.log({ apiUrl, options });
+  const res = await fetch(`${apiUrl}/api/${url}`, {
     ...options,
     headers: {
       'Content-Type': options.body ? 'application/json' : '',
