@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { BASE_URL } from '@/api/utils';
+// import { BASE_URL } from '@/api/utils';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -11,7 +11,7 @@ export async function GET(request: Request) {
   }
 
   try {
-    const response = await fetch(`${BASE_URL}/auth/verify-email`, {
+    const response = await fetch('http://134.209.224.92/api/auth/verify-email', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: token }),
