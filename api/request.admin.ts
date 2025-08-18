@@ -12,9 +12,10 @@ export const requestAdmin = async <Request, Body = any>(
     noAdminTag?: boolean;
   },
 ): Promise<Request> => {
-  // TODO: Remove than when buy domain
-  console.log(`http://134.209.224.92/api/${url}`);
-  const res = await fetch(`http://134.209.224.92/api/${url}`, {
+  // TODO: Remove than when buy domain, make automation changing url by env propd
+  const prodUrl = 'http://backend:3030';
+  // const devUrl = 'http://localhost:3030';
+  const res = await fetch(`${prodUrl}/api/${url}`, {
     ...options,
     headers: {
       'Content-Type': options.body ? 'application/json' : '',
@@ -22,8 +23,6 @@ export const requestAdmin = async <Request, Body = any>(
     },
     body: options.body ? JSON.stringify(options.body) : undefined,
   });
-
-  console.log(res);
 
   const json = await res.json();
 
