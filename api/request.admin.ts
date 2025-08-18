@@ -13,6 +13,7 @@ export const requestAdmin = async <Request, Body = any>(
   },
 ): Promise<Request> => {
   // TODO: Remove than when buy domain
+  console.log(`http://134.209.224.92/api/${url}`);
   const res = await fetch(`http://134.209.224.92/api/${url}`, {
     ...options,
     headers: {
@@ -21,6 +22,8 @@ export const requestAdmin = async <Request, Body = any>(
     },
     body: options.body ? JSON.stringify(options.body) : undefined,
   });
+
+  console.log(res);
 
   const json = await res.json();
 
