@@ -25,7 +25,7 @@ export async function GET(request: Request) {
     // return NextResponse.redirect(new URL('/auth/login', request.url));
     // TODO: Change for env
     // PRROD:
-    return NextResponse.redirect(`http://134.209.224.92/auth/login`);
+    return NextResponse.redirect('/auth/login');
   } catch (error) {
     console.error(error);
 
