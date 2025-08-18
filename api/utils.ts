@@ -80,7 +80,7 @@ export const makeRequest = async ({
     headers.set('Authorization', `Bearer ${accessToken}`);
   }
 
-  const res = await fetch(`${BASE_URL}${url}`, {
+  const res = await fetch(typeof window === 'undefined' ? url : `${BASE_URL}${url}`, {
     headers,
     ...options,
     body,
