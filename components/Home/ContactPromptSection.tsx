@@ -16,7 +16,7 @@ const ContactPromptSection = ({ dictionary }: ContactPromptProps) => {
   const { contactPrompt, footer } = dictionary;
 
   return (
-    <FlexSectionWrapper className="py-20">
+    <FlexSectionWrapper dataSectionTheme={'dark'} className="py-20">
       <motion.div
         className="flex w-full flex-col items-center text-center"
         variants={containerVariantsPromptSection}

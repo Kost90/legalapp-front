@@ -15,7 +15,7 @@ interface ITrustSectionProps {
 export default function TrustSection({ ...props }: ITrustSectionProps) {
   return (
     <div className="bg-main-black w-full rounded-xl py-10">
-      <FlexSectionWrapper className="mx-auto">
+      <FlexSectionWrapper className="mx-auto" dataSectionTheme={'dark'}>
         <motion.div
           className="text-headerfooterwhite text-center"
           initial="hidden"

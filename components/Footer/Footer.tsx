@@ -33,7 +33,7 @@ const Footer = ({ lang, dictionary }: IFooterProps) => {
             <h4 className="text-base font-semibold tracking-wider text-white uppercase">{dictionary.footer.legal_heading}</h4>
             <ul className="space-y-2">
               <li>
-                <Link href={`${lang}/privacy-policy`} className="transition-colors hover:text-white">
+                <Link href={`${lang}/privacy`} className="transition-colors hover:text-white">
                   {dictionary.footer.privacy_policy}
                 </Link>
               </li>

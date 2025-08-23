@@ -216,6 +216,60 @@
     "phone_cta": "Call Us",
     "email_cta": "Email Us"
   },
+  "privacy_policy": {
+    "meta_title": "Privacy Policy - UDocument",
+    "meta_description": "Official Privacy Policy of UDocument. Learn how we collect, use, and protect your personal data in accordance with Ukrainian law.",
+    "title": "Privacy Policy",
+    "last_updated": "Last updated: August 24, 2025",
+    "introduction_title": "1. Introduction",
+    "introduction_text": "Welcome to UDocument! This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and services. We are committed to protecting your privacy and ensuring the security of your personal data in accordance with the Law of Ukraine 'On Personal Data Protection' and generally accepted international standards.",
+    "data_collection_title": "2. What Data We Collect?",
+    "data_collection_text": "We may collect the following categories of personal data:",
+    "data_collection_list": [
+      "Personal Identification Information: name, surname, patronymic, email address, phone number, passport details, identification number (RNOKPP), which you provide during registration or document generation.",
+      "Data for Documents: any information you enter into forms to create legal documents (e.g., real estate details, information about the parties to an agreement, etc.).",
+      "Technical Information: IP address, browser type, operating system, visit data (including URLs), and cookies to improve the service."
+    ],
+    "data_usage_title": "3. How We Use Your Data?",
+    "data_usage_text": "Your data is used exclusively for the following purposes:",
+    "data_usage_list": [
+      "Providing and Improving Services: to create and manage your account, generate legal documents, provide consultations, and offer technical support.",
+      "Communication: to send service notifications, registration confirmations, respond to your inquiries, and inform you about updates to our services.",
+      "Security: to protect our platform from fraud and abuse.",
+      "Analytics: to analyze service usage for its improvement and optimization (data is used in an anonymous, aggregated form)."
+    ],
+    "data_commitment_title": "4. Our Commitment",
+    "data_commitment_text": "We guarantee that your personal data will NOT be sold, rented, or used for any commercial purposes not related to the provision of UDocument services.",
+    "data_protection_title": "5. Data Protection and Storage",
+    "data_protection_text": "We implement modern technical and organizational security measures to protect your data from unauthorized access, alteration, disclosure, or destruction. Data is stored on secure servers. We retain your data only as long as necessary to fulfill the purposes for which it was collected, or as required by law.",
+    "user_rights_title": "6. Your Rights",
+    "user_rights_text": "In accordance with the legislation of Ukraine, you have the right to:",
+    "user_rights_list": [
+      "Know the sources of collection, the location of your personal data, and the purpose of its processing.",
+      "Access your personal data.",
+      "Request the correction of inaccurate data or the deletion of your data.",
+      "Withdraw consent for the processing of personal data.",
+      "Lodge complaints regarding the processing of your data with the Ukrainian Parliament Commissioner for Human Rights or in court."
+    ],
+    "cookies_title": "7. Use of Cookies",
+    "cookies_text": "We use cookies to ensure the functionality of the site and improve your experience. These are small text files stored on your device. You can manage cookie settings in your browser.",
+    "changes_title": "8. Changes to the Privacy Policy",
+    "changes_text": "We may update this Policy from time to time. All changes will become effective upon their publication on this page. We recommend that you review it regularly to stay informed of the current version.",
+    "contact_us_title": "9. Contact Us",
+    "contact_us_text": "If you have any questions about this Privacy Policy, please contact us by email:",
+    "contact_us_email": "privacy@udocument.com"
+  },
+  "auth": {
+    "login": {
+      "meta_title": "Login to your Account"
+    },
+    "signup": {
+      "meta_title": "Sign Up for a New Account"
+    }
+  },
+  "generate_documents": {
+    "meta_title": "Generate a New Document"
+  },
   "footer": {
     "contacts_heading": "Contact",
     "email": "contact@udocument.com",

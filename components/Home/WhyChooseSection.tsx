@@ -39,7 +39,7 @@ export default function WhyChooseSection({ dictionary }: { dictionary: SiteConte
   }));
 
   return (
-    <FlexSectionWrapper id="why-udocument">
+    <FlexSectionWrapper dataSectionTheme={'light'} id="why-udocument">
       <div className="mb-16 text-center">
         <h2 className="text-text-main-black text-3xl font-bold md:text-4xl">{title}</h2>
         {subtitle && <p className="text-text-grey-muted mt-2 text-lg">{subtitle}</p>}

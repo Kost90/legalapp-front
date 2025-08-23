@@ -92,7 +92,6 @@ interface OnlineGenerationData {
   strong_cta_button: string;
 }
 
-// --- Оновлені та нові інтерфейси ---
 interface HeaderData {
   login: string;
   logout: string;
@@ -100,12 +99,10 @@ interface HeaderData {
   nav_contacts: string;
   button_generate: string;
   button_consultation: string;
-  // Ключі для навігаційних посилань
   nav_main: string;
   nav_about_us: string;
   nav_services_page: string;
-  nav_contact_us_page: string; // Для пункту меню, що веде на сторінку контактів
-  // Ключі для ARIA атрибутів та sr-only текстів (опціонально, але рекомендовано)
+  nav_contact_us_page: string;
   aria_close_menu?: string;
   aria_open_menu?: string;
   sr_close_menu?: string;
@@ -142,6 +139,35 @@ interface IContactPromptData {
   email_cta: string;
 }
 
+interface IPrivacyPolicy {
+  meta_title: string;
+  meta_description: string;
+  title: string;
+  last_updated: string;
+  introduction_title: string;
+  introduction_text: string;
+  data_collection_title: string;
+  data_collection_text: string;
+  data_collection_list: string[];
+  data_usage_title: string;
+  data_usage_text: string;
+  data_usage_list: string[];
+  data_commitment_title: string;
+  data_commitment_text: string;
+  data_protection_title: string;
+  data_protection_text: string;
+  user_rights_title: string;
+  user_rights_text: string;
+  user_rights_list: string[];
+  cookies_title: string;
+  cookies_text: string;
+  changes_title: string;
+  changes_text: string;
+  contact_us_title: string;
+  contact_us_text: string;
+  contact_us_email: string;
+}
+
 export interface SiteContent {
   header: HeaderData;
   verify_email: IVerifyEmail;
@@ -156,4 +182,5 @@ export interface SiteContent {
   meta: MetaData;
   contactPrompt: IContactPromptData;
   footer: IFooterData;
+  privacy_policy: IPrivacyPolicy;
 }

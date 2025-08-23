@@ -16,7 +16,7 @@ interface IOurBenefitsSection {
 
 function OurBenefitsSection({ dictionary }: IOurBenefitsSection) {
   return (
-    <FlexSectionWrapper className="mx-auto">
+    <FlexSectionWrapper dataSectionTheme={'light'} className="mx-auto">
       <div className="flex w-full flex-col items-center justify-center gap-14 md:flex-row md:gap-32">
         <motion.div
           className="relative flex w-full max-w-[500px] flex-1 shrink-0 justify-center"
