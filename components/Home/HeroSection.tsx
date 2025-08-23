@@ -11,7 +11,7 @@ import { containerVariants, itemVariants } from './animations';
 
 export default function HeroSection({ dictionary, lang }: { dictionary: SiteContent; lang: string }) {
   return (
-    <FlexSectionWrapper className="relative mt-16 md:mt-40">
+    <FlexSectionWrapper dataSectionTheme={'none'} className="relative mt-16 md:mt-40">
       <motion.div
         className="mx-auto flex flex-col items-center gap-12 text-center sm:gap-20 lg:flex-row lg:text-left"
         initial="hidden"

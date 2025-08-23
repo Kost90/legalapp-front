@@ -6,7 +6,7 @@ import { CardProps } from '@/types/cards';
 const FlipCard = ({ icon, title, description, bgColor, textColor, delay = 0 }: CardProps) => {
   return (
     <motion.div
-      className={`h-[215px] w-[180px] flex-shrink-0 cursor-pointer [perspective:1000px] md:w-[205px]`}
+      className={`h-[215px] w-[170px] flex-shrink-0 cursor-pointer [perspective:1000px] md:w-[205px]`}
       variants={flipCardAppear(delay)}
       initial="hidden"
       whileInView="visible"

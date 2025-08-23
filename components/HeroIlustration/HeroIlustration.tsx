@@ -2,41 +2,37 @@
 
 import { motion, Variants } from 'framer-motion';
 
-// Контейнер SVG управляет последовательностью основных этапов
 const svgVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.8,
+      staggerChildren: 0.5,
     },
   },
 };
 
-// "Отрисовка" прямоугольников
 const drawRectVariants = (width: number): Variants => ({
   hidden: { width: 0, opacity: 0 },
   visible: {
     width: width,
     opacity: 1,
-    transition: { duration: 0.6, ease: 'easeOut' },
+    transition: { duration: 0.5, ease: 'easeOut' },
   },
 });
 
-// "Отрисовка" контура (для стрелки и галочки)
 const drawPathVariants: Variants = {
   hidden: { pathLength: 0, opacity: 0 },
   visible: {
     pathLength: 1,
     opacity: 1,
     transition: {
-      duration: 0.7,
+      duration: 0.5,
       ease: 'easeInOut',
     },
   },
 };
 
-// Плавное появление (для наконечника и документа)
 const fadeInVariants: Variants = {
   hidden: { opacity: 0, scale: 0.8 },
   visible: {

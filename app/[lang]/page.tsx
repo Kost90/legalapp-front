@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+
 import PageContainer from '@/components/Container/PageContainer';
 import AboutServices from '@/components/Home/AboutServices';
 import ContactPromptSection from '@/components/Home/ContactPromptSection';
@@ -11,6 +13,22 @@ import { SiteContent } from '@/types/dictionaries';
 import { getDictionary } from './dictionaries';
 
 import { PageProps } from '@/.next/types/app/[lang]/page';
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const dictionary = await getDictionary(lang);
+  const meta = dictionary.meta;
+
+  return {
+    title: meta.title,
+    description: meta.description,
+
+    openGraph: {
+      title: meta.ogTitle,
+      description: meta.ogDescription,
+    },
+  };
+}
 
 export default async function Home({ params }: PageProps) {
   const { lang } = await params;

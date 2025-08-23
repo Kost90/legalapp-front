@@ -39,7 +39,7 @@ const AboutServices = ({ lang }: { lang: 'ua' | 'en' }) => {
 
   return (
     <div className="bg-main-black w-full rounded-xl">
-      <FlexSectionWrapper>
+      <FlexSectionWrapper dataSectionTheme={'dark'}>
         <div className="flex w-full max-w-6xl flex-col gap-4 md:flex-row md:items-start">
           {accordionData.map((item, i) => {
             const isOpen = i === expanded;

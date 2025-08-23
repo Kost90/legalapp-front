@@ -9,7 +9,18 @@ import { getDocumentsTableDictionary } from './documents-table-dictionary';
 
 import { PageProps } from '@/.next/types/app/[lang]/[userId]/dashboard/(tabs)/documents/page';
 
-export const metadata: Metadata = { title: 'Your documents' };
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const dictionary: DocumentPage = await getDocumentsTableDictionary(lang);
+
+  return {
+    title: dictionary.pageTitle,
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
+}
 
 export default async function DocumentsPage({ params }: PageProps) {
   const resolvedParams = await params;

@@ -1,13 +1,16 @@
 'use client';
 
+import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, RefObject } from 'react';
 
 import LanguageSwitcher from '@/components/LanguagesSwitcher/LanguagesSwitcher';
 import { useAuth } from '@/context/AuthProvider';
 import { useDevice } from '@/context/DeviceProvider';
+import { useHeaderTheme } from '@/hooks/useHeaderTheme';
+import { useScrollPosition } from '@/hooks/useScrollPosition.ts';
 import { SiteContent } from '@/types/dictionaries';
 
 import { MenuVariants } from './animation-variants';
@@ -25,6 +28,11 @@ export type NavItemType = {
 export default function Header({ lang, params }: { lang: SiteContent; params: string }) {
   const deviceContext = useDevice();
   const { isAuthenticated } = useAuth();
+  const isScrolled = useScrollPosition();
+  const headerRef = useRef<HTMLElement>(null);
+
+  useHeaderTheme(headerRef as RefObject<HTMLElement>);
+
   const [isClient, setIsClient] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -52,8 +60,23 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
   const navItems: NavItemType[] = [{ label: lang.header.button_generate, href: `/${params}/auth/login` }];
 
   return (
-    <header className="sticky top-0 z-50 text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <header
+      ref={headerRef}
+      data-theme="light"
+      className={clsx(
+        'sticky top-0 z-50 transition-all duration-300 ease-in-out',
+        isScrolled ? 'shadow-md backdrop-blur-sm' : '',
+        'data-[theme=light]:text-text-main-black data-[theme=light]:bg-white/80',
+        'data-[theme=dark]:bg-gray-900/80 data-[theme=dark]:text-white',
+        !isScrolled && 'bg-transparent',
+      )}
+    >
+      <div
+        className={clsx(
+          'container mx-auto transition-all duration-300 ease-in-out',
+          isDesktop && isScrolled ? 'px-8 lg:px-16' : 'px-4 sm:px-6 lg:px-8',
+        )}
+      >
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <Logo />
@@ -61,7 +84,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
 
           {/* Desktop Navigation */}
           {isClient && isDesktop && (
-            <nav className="hidden lg:flex lg:space-x-4">
+            <nav className="hidden items-center lg:flex lg:space-x-4">
               {navItems.map((item, i) => (
                 <HeaderNavItem key={`${item.href}+${i}`} href={item.href} label={item.label} />
               ))}
@@ -73,11 +96,11 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
                   variant={HEADER_NAV_VARIANTS.BLACKBUTTON}
                 />
               )}
-
               <LanguageSwitcher currentLang={params} specialKey={'desc'} />
             </nav>
           )}
 
+          {/* Mobile Menu Button */}
           {isClient && !isDesktop && (
             <div className="lg:hidden">
               <button
@@ -85,7 +108,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
                 className="text-text-main-black inline-flex items-center justify-center rounded-md p-2 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-none focus:ring-inset"
                 aria-controls="mobile-menu"
                 aria-expanded={isMobileMenuOpen}
-                aria-label={isMobileMenuOpen ? 'Закрити головне меню' : 'Відкрити головне меню'}
+                aria-label={isMobileMenuOpen ? lang.header.aria_close_menu : lang.header.aria_open_menu}
               >
                 {isMobileMenuOpen ? (
                   <X className="block h-6 w-6" aria-hidden="true" />
@@ -122,7 +145,6 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
                   onClick={toggleMobileMenu}
                 />
               )}
-
               <LanguageSwitcher currentLang={params} specialKey={'mob'} />
             </nav>
           </motion.div>

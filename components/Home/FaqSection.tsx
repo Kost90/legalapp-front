@@ -10,7 +10,7 @@ export default function FAQSection({ dictionary, lang }: { dictionary: SiteConte
   const { faq } = dictionary;
 
   return (
-    <FlexSectionWrapper id="faq">
+    <FlexSectionWrapper dataSectionTheme={'dark'} id="faq">
       <div className="container mx-auto max-w-4xl px-4">
         <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 md:text-4xl">
           {lang === 'ua' ? (

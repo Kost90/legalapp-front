@@ -15,50 +15,61 @@ import { SiteContent } from '@/types/dictionaries';
 
 import { getDictionary } from './dictionaries';
 
+import { PageProps } from '@/.next/types/app/[lang]/page';
+
 const roboto = Roboto({
   subsets: ['latin', 'cyrillic'],
   weight: ['400', '500', '700'],
   display: 'swap',
 });
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params;
   const t: SiteContent = await getDictionary(lang);
 
+  // TODO: Заменить как будет доменное имя
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const pageTitle = t.meta?.title || 'UDocument - Юридичні послуги';
   const pageDescription = t.meta?.description || 'Генерація юридичних документів та консультації.';
 
   return {
-    title: pageTitle,
+    title: {
+      template: '%s | UDocument',
+      default: pageTitle,
+    },
     description: pageDescription,
     keywords: t.meta?.keywords || ['юридичні документи', 'адвокат', 'консультація'],
-    authors: [{ name: 'UDocument', url: process.env.NEXT_PUBLIC_SITE_URL }],
+    authors: [{ name: 'UDocument', url: baseUrl }],
+
     openGraph: {
       title: t.meta?.ogTitle || pageTitle,
       description: t.meta?.ogDescription || pageDescription,
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}`,
+      url: `${baseUrl}/${lang}`,
       siteName: 'UDocument',
       images: [
         {
-          url: '/Logo_udocument.png',
+          url: `${baseUrl}/Logo_udocument.png`,
           width: 1200,
           height: 630,
           alt: 'UDocument Open Graph Image',
         },
       ],
-      locale: lang.replace('-', '_'),
+      locale: lang === 'ua' ? 'uk_UA' : 'en_GB',
       type: 'website',
     },
+
     appleWebApp: {
       title: 'UDocument',
     },
-    // alternates: {
-    //   canonical: `/${params.lang}`,
-    //   languages: {
-    //     'uk-UA': `/uk`,
-    //     'en-US': `/en`,
-    //   },
-    // },
+
+    alternates: {
+      canonical: `${baseUrl}/${lang}`,
+      languages: {
+        'uk-UA': `${baseUrl}/ua`,
+        'en-GB': `${baseUrl}/en`,
+        'x-default': `${baseUrl}/ua`,
+      },
+    },
   };
 }
 
@@ -96,9 +107,9 @@ export default async function RootLayout({
             <ModalProvider>
               <AuthProvider isAuth={accessToken && refreshToken ? true : false} lang={lang}>
                 <ToasterProvider />
-                <div className="relative isolate z-[1] flex min-h-screen w-full flex-col overflow-hidden">
+                <div className="relative isolate z-[1] flex min-h-screen w-full flex-col">
                   <Header lang={t} params={currentLang} />
-                  <main className="w-full flex-grow">{children}</main>
+                  <main className="w-full flex-grow overflow-x-hidden">{children}</main>
                   <Footer lang={lang} dictionary={t} />
                 </div>
               </AuthProvider>
