@@ -50,7 +50,7 @@ export default function Button({
         {
           'w-full': fullWidth,
           'min-w-24 px-4 py-1 text-sm': size === 'small',
-          'min-w-32 px-8 py-2 text-base': size === 'medium',
+          'min-w-28 px-8 py-2 text-base': size === 'medium',
           'bg-main-black text-white hover:bg-black': (buttonType === 'submit' && !disabledOrLoading) || type === 'black',
           'border-border-border-grey bg-background-blue-lighter border text-white hover:bg-blue-500':
             type === 'default' && !disabledOrLoading && buttonType !== 'submit',

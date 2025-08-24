@@ -1,14 +1,17 @@
 'use client';
 
+import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, RefObject } from 'react';
 
 import Button from '@/components/Button/Button';
 import LanguageSwitcher from '@/components/LanguagesSwitcher/LanguagesSwitcher';
 import { useAuth } from '@/context/AuthProvider';
 import { useDevice } from '@/context/DeviceProvider';
+import { useHeaderTheme } from '@/hooks/useHeaderTheme';
+import { useScrollPosition } from '@/hooks/useScrollPosition.ts';
 import { SiteContent } from '@/types/dictionaries';
 
 import { MenuVariants } from './animation-variants';
@@ -24,8 +27,12 @@ export type NavItemType = {
 export default function DashboardHeader({ lang, params }: { lang: SiteContent; params: string }) {
   const deviceContext = useDevice();
   const { isAuthenticated, logout } = useAuth();
+  const isScrolled = useScrollPosition();
+  const headerRef = useRef<HTMLElement>(null);
   const [isClient, setIsClient] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useHeaderTheme(headerRef as RefObject<HTMLElement>);
 
   useEffect(() => {
     setIsClient(true);
@@ -50,8 +57,23 @@ export default function DashboardHeader({ lang, params }: { lang: SiteContent; p
   //   ];
 
   return (
-    <header className="text-headerfooterwhite sticky top-0 z-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <header
+      ref={headerRef}
+      data-theme="light"
+      className={clsx(
+        'sticky top-0 z-50 transition-all duration-300 ease-in-out',
+        isScrolled ? 'shadow-md backdrop-blur-sm' : '',
+        'data-[theme=light]:text-text-main-black data-[theme=light]:bg-white/80',
+        'data-[theme=dark]:bg-gray-900/80 data-[theme=dark]:text-white',
+        !isScrolled && 'bg-transparent',
+      )}
+    >
+      <div
+        className={clsx(
+          'container mx-auto transition-all duration-300 ease-in-out',
+          isDesktop && isScrolled ? 'px-8 lg:px-16' : 'px-4 sm:px-6 lg:px-8',
+        )}
+      >
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <Logo />
