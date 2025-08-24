@@ -10,7 +10,7 @@ type IFooterProps = {
 
 const Footer = ({ lang, dictionary }: IFooterProps) => {
   const currentYear = new Date().getFullYear();
-
+  console.log(lang);
   return (
     <footer className="bg-main-black text-text-grey mt-10 w-full md:mt-20">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -33,7 +33,7 @@ const Footer = ({ lang, dictionary }: IFooterProps) => {
             <h4 className="text-base font-semibold tracking-wider text-white uppercase">{dictionary.footer.legal_heading}</h4>
             <ul className="space-y-2">
               <li>
-                <Link href={`${lang}/privacy`} className="transition-colors hover:text-white">
+                <Link href={`/${lang}/privacy`} className="transition-colors hover:text-white">
                   {dictionary.footer.privacy_policy}
                 </Link>
               </li>

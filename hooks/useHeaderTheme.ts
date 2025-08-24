@@ -1,8 +1,10 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { useEffect, RefObject } from 'react';
 
 export const useHeaderTheme = (headerRef: RefObject<HTMLElement>) => {
+  const pathname = usePathname();
   useEffect(() => {
     const headerEl = headerRef.current;
     if (!headerEl) return;
@@ -30,5 +32,5 @@ export const useHeaderTheme = (headerRef: RefObject<HTMLElement>) => {
     sections.forEach((section) => observer.observe(section));
 
     return () => sections.forEach((section) => observer.unobserve(section));
-  }, [headerRef]);
+  }, [headerRef, pathname]);
 };

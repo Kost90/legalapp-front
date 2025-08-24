@@ -1,8 +1,6 @@
 'use server';
 import { notFound } from 'next/navigation';
 
-import { BASE_URL } from './utils';
-
 export const requestDownloadDoc = async (
   url: string,
   options: Omit<RequestInit, 'body'> & {
@@ -10,7 +8,9 @@ export const requestDownloadDoc = async (
     noAdminTag?: boolean;
   },
 ): Promise<Blob> => {
-  const res = await fetch(`${BASE_URL}/${url}`, {
+  const apiUrl = process.env.PUBLIC_API_DOMAIN || 'http://localhost:3030';
+  const fullUrl = `${apiUrl}/api${url}`;
+  const res = await fetch(fullUrl, {
     ...options,
     method: options.method || 'GET',
     headers: {
