@@ -168,10 +168,24 @@ interface IPrivacyPolicy {
   contact_us_email: string;
 }
 
+interface IPopularDocument {
+  title: string;
+  description: string;
+  tag: string;
+  icon: string;
+}
+
+interface IPopularDocumentsSection {
+  title: string;
+  subtitle: string;
+  documents: IPopularDocument[];
+}
+
 export interface SiteContent {
   header: HeaderData;
   verify_email: IVerifyEmail;
   hero: HeroData;
+  popularDocuments: IPopularDocumentsSection;
   trustSection: TrustSectionData;
   ourBenefitsSection: OurBenefitsSection;
   why_choose_us: WhyChooseUsData;

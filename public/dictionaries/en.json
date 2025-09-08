@@ -22,9 +22,45 @@
     "back_button": "Back"
   },
   "hero": {
-    "title": "UDocument: 8+ years of legal practice –",
-    "titleBluePArt": "in a modern format",
-    "subtitle_line1": "Professional support for real estate transactions and corporate law in Ukraine. Assistance with notarized documents and apostilles in Great Britain. Our unique technology allows you to generate necessary documents online — quickly, accurately, and under the supervision of experienced lawyers."
+    "title": "UDocument: Online Legal Document Builder",
+    "titleBluePArt": "#1 in Ukraine",
+    "subtitle_line1": "Create contracts, powers of attorney, claims, and applications in 5 minutes. Fast, reliable, and error-free."
+  },
+  "popularDocuments": {
+    "title": "Most Popular Documents",
+    "subtitle": "Which document do you need today?",
+    "documents": [
+      {
+        "title": "Apartment Lease Agreement",
+        "description": "Clearly defined terms for tenancy and payment.",
+        "tag": "Popular",
+        "icon": "FileText"
+      },
+      {
+        "title": "Power of Attorney for a Vehicle",
+        "description": "Legal representation of the driver's/owner's interests.",
+        "tag": "Popular",
+        "icon": "Car"
+      },
+      {
+        "title": "LLC Registration",
+        "description": "A complete package of documents for online submission.",
+        "tag": "Popular",
+        "icon": "Briefcase"
+      },
+      {
+        "title": "Debt Collection Lawsuit",
+        "description": "Prepared in accordance with procedural requirements.",
+        "tag": "Popular",
+        "icon": "Gavel"
+      },
+      {
+        "title": "Petition for Divorce",
+        "description": "A civilized solution for family matters.",
+        "tag": "Popular",
+        "icon": "Users"
+      }
+    ]
   },
   "trustSection": {
     "title": "With us it's — ",
