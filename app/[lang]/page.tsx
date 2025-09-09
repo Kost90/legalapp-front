@@ -38,7 +38,7 @@ export default async function Home({ params }: PageProps) {
   return (
     <PageContainer>
       <HeroSection dictionary={dictionary} lang={lang} />
-      <PopularDocumentsSection dictionary={dictionary} />
+      <PopularDocumentsSection dictionary={dictionary} lang={lang} />
       <TrustSection dictionary={dictionary} lang={lang} />
       <OurBenefitsSection dictionary={dictionary} lang={lang} />
       <AboutServices lang={lang as 'ua' | 'en'} />

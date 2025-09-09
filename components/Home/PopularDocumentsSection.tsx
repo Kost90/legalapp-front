@@ -1,9 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 import PopularDocumentCard from '@/components/Cards/PopularDocumentCard';
 import FlexSectionWrapper from '@/components/Container/FlexSectionWrapper';
+import { LANG_VARIANTS } from '@/lib/constants/lang-variants';
 import { SiteContent } from '@/types/dictionaries';
 
 const containerVariants = {
@@ -16,7 +18,7 @@ const containerVariants = {
   },
 };
 
-export default function PopularDocumentsSection({ dictionary }: { dictionary: SiteContent }) {
+export default function PopularDocumentsSection({ dictionary, lang }: { dictionary: SiteContent; lang: LANG_VARIANTS }) {
   const { title, subtitle, documents } = dictionary.popularDocuments;
 
   return (
@@ -40,14 +42,9 @@ export default function PopularDocumentsSection({ dictionary }: { dictionary: Si
         viewport={{ once: true, amount: 0.2 }}
       >
         {documents.map((doc, index) => (
-          <PopularDocumentCard
-            key={doc.title}
-            icon={doc.icon}
-            title={doc.title}
-            description={doc.description}
-            tag={doc.tag}
-            delay={index}
-          />
+          <Link href={`/${lang}/documents-types/${doc.url}`} key={doc.title}>
+            <PopularDocumentCard icon={doc.icon} title={doc.title} description={doc.description} tag={doc.tag} delay={index} />
+          </Link>
         ))}
       </motion.div>
     </FlexSectionWrapper>

@@ -34,33 +34,257 @@
         "title": "Apartment Lease Agreement",
         "description": "Clearly defined terms for tenancy and payment.",
         "tag": "Popular",
-        "icon": "FileText"
+        "icon": "FileText",
+        "url": "apartment-lease-agreement"
       },
       {
         "title": "Power of Attorney for a Vehicle",
         "description": "Legal representation of the driver's/owner's interests.",
         "tag": "Popular",
-        "icon": "Car"
+        "icon": "Car",
+        "url": "power-of-attorney-vehicle"
       },
       {
         "title": "LLC Registration",
         "description": "A complete package of documents for online submission.",
         "tag": "Popular",
-        "icon": "Briefcase"
+        "icon": "Briefcase",
+        "url": "llc-registration"
       },
       {
         "title": "Debt Collection Lawsuit",
         "description": "Prepared in accordance with procedural requirements.",
         "tag": "Popular",
-        "icon": "Gavel"
+        "icon": "Gavel",
+        "url": "debt-collection-lawsuit"
       },
       {
         "title": "Petition for Divorce",
         "description": "A civilized solution for family matters.",
         "tag": "Popular",
-        "icon": "Users"
+        "icon": "Users",
+        "url": "petition-for-divorce"
       }
     ]
+  },
+  "documentPages": {
+    "apartment-lease-agreement": {
+      "metaTitle": "Create Apartment Lease Agreement Online | UDocument",
+      "metaDescription": "Generate a legally sound residential lease agreement in 7 minutes. Our template protects the rights of both landlord and tenant in accordance with Ukrainian law.",
+      "h1": "Create an apartment lease agreement online in 7 minutes",
+      "description": "Form a legally competent residential lease agreement that reliably protects the rights of both the landlord and the tenant in Ukraine. Our template considers all essential terms provided by the Civil Code: lease term, rent amount and payment procedure, rights and obligations of the parties, liability for property damage, conditions for early termination, and the apartment handover certificate.",
+      "whenNeededTitle": "When is this document needed?",
+      "whenNeededList": [
+        "When renting out an apartment, house, or room for a long term.",
+        "To formally record agreements and avoid disputes.",
+        "To protect against dishonest tenants or landlords.",
+        "As a basis for obtaining temporary registration of residence."
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faqItems": [
+        {
+          "question": "Is it necessary to notarize the agreement?",
+          "answer": "No, for a residential lease agreement concluded for up to 3 years, notarization is not mandatory. However, it can be done at the parties' request."
+        },
+        {
+          "question": "What if I want to make changes to the template?",
+          "answer": "After generation, you can download the document in Word format (.docx) and freely edit it, adding or changing clauses according to your agreements."
+        }
+      ],
+      "priceDetailsTitle": "Price and Time",
+      "price": "199",
+      "priceCurrency": "UAH",
+      "avgTime": "Average completion time: ~7 minutes",
+      "ctaButtonText": "Create Lease Agreement",
+      "sampleTitle": "Document Sample",
+      "sampleImageUrl": "/images/samples/apartment-lease-agreement-sample.png"
+    },
+    "power-of-attorney-vehicle": {
+      "metaTitle": "General Power of Attorney for a Vehicle Online | UDocument",
+      "metaDescription": "Create a power of attorney for a car for selling, driving, or representing in service centers. Fast, reliable, and compliant with legislation.",
+      "h1": "Issue a power of attorney for a vehicle in 5 minutes",
+      "description": "Form a legally correct power of attorney to grant authority to another person regarding your vehicle. The document allows representing interests in the service centers of the Ministry of Internal Affairs, selling the car, undergoing technical inspection, and performing other actions clearly defined in the text.",
+      "whenNeededTitle": "When is this document needed?",
+      "whenNeededList": [
+        "When selling a car without the owner's presence.",
+        "To grant the right to drive a vehicle to a family member or another person.",
+        "For representing interests in insurance companies or service centers.",
+        "For driving the car abroad."
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faqItems": [
+        {
+          "question": "Is it mandatory to notarize a power of attorney for a car?",
+          "answer": "Yes, a power of attorney related to the disposal of a vehicle (sale, gift) is subject to mandatory notarization for its validity."
+        },
+        {
+          "question": "What is the maximum term for such a power of attorney?",
+          "answer": "The term of the power of attorney is set by the principal and can be any duration. If the term is not specified, the power of attorney remains valid until it is revoked by the principal."
+        }
+      ],
+      "priceDetailsTitle": "Price and Time",
+      "price": "149",
+      "priceCurrency": "UAH",
+      "avgTime": "Average completion time: ~5 minutes",
+      "ctaButtonText": "Create Power of Attorney for Vehicle",
+      "sampleTitle": "Document Sample",
+      "sampleImageUrl": "/images/samples/power-of-attorney-vehicle-sample.png"
+    },
+    "llc-registration": {
+      "metaTitle": "LLC Registration Online - Document Package | UDocument",
+      "metaDescription": "Prepare a complete package of documents for registering a Limited Liability Company (LLC) in Ukraine. Charter, minutes, application - all ready for submission.",
+      "h1": "Prepare documents for LLC registration in 15 minutes",
+      "description": "Forget about complex legal templates. Our service will help you quickly and without errors form the entire necessary package of documents for the state registration of an LLC: the charter (including a model one), the minutes of the founders' general meeting, and the registration application. Everything complies with current legal requirements.",
+      "whenNeededTitle": "When is this service needed?",
+      "whenNeededList": [
+        "When you decide to start your own business in the form of an LLC.",
+        "For quick preparation of documents without involving a lawyer.",
+        "To avoid errors in the charter or minutes that could lead to a registration denial.",
+        "If you are creating a company with several partners."
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faqItems": [
+        {
+          "question": "Can I use a model charter?",
+          "answer": "Yes, our builder allows you to choose between developing an individual charter and using a model charter approved by the Cabinet of Ministers of Ukraine."
+        },
+        {
+          "question": "How do I submit the generated documents?",
+          "answer": "You can submit the documents to the state registrar (at an Administrative Services Center) in person or online through the 'Diia' portal by signing them with an electronic digital signature (QES)."
+        }
+      ],
+      "priceDetailsTitle": "Price and Time",
+      "price": "499",
+      "priceCurrency": "UAH",
+      "avgTime": "Average completion time: ~15 minutes",
+      "ctaButtonText": "Prepare Documents for LLC",
+      "sampleTitle": "Document Sample",
+      "sampleImageUrl": "/images/samples/llc-registration-sample.png"
+    },
+    "debt-collection-lawsuit": {
+      "metaTitle": "Debt Collection Lawsuit Claim - Template | UDocument",
+      "metaDescription": "Form a legally sound statement of claim for debt collection under a loan agreement or promissory note. A ready-to-file court document.",
+      "h1": "Create a debt collection lawsuit online",
+      "description": "If a debtor fails to repay funds, going to court is an effective way to protect your rights. Our builder will help you draft a statement of claim that meets all the requirements of the Civil Procedure Code of Ukraine. The document will include the justification for the claims, calculation of the debt amount, and necessary attachments.",
+      "whenNeededTitle": "When is this document needed?",
+      "whenNeededList": [
+        "If a person fails to repay a debt under a promissory note or loan agreement.",
+        "To officially initiate the legal process of debt collection.",
+        "To avoid errors that could cause the court to leave the claim without action.",
+        "When pre-trial dispute resolution methods have failed."
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faqItems": [
+        {
+          "question": "Do I need to pay a court fee?",
+          "answer": "Yes, filing a property-related claim involves paying a court fee, the amount of which depends on the claim amount. A receipt of payment is attached to the claim."
+        },
+        {
+          "question": "What should I do after filing the lawsuit?",
+          "answer": "After filing the claim, the court opens proceedings and schedules a hearing date, notifying the parties. You will need to attend the hearings to support your claims."
+        }
+      ],
+      "priceDetailsTitle": "Price and Time",
+      "price": "349",
+      "priceCurrency": "UAH",
+      "avgTime": "Average completion time: ~12 minutes",
+      "ctaButtonText": "Create Statement of Claim",
+      "sampleTitle": "Document Sample",
+      "sampleImageUrl": "/images/samples/debt-collection-lawsuit-sample.png"
+    },
+    "petition-for-divorce": {
+      "metaTitle": "Petition for Divorce Online | UDocument",
+      "metaDescription": "Prepare a divorce petition for filing with the court. A simple and civilized way to resolve family matters.",
+      "h1": "Prepare a petition for divorce",
+      "description": "Divorce through the court is necessary if the spouses have minor children or if one spouse does not consent to the divorce. Our service will help you draft a legally competent petition that contains all the necessary information for the court and complies with the requirements of the Family Code of Ukraine.",
+      "whenNeededTitle": "When is this document needed?",
+      "whenNeededList": [
+        "If the spouses have common minor children.",
+        "When one of the spouses objects to the divorce.",
+        "To officially terminate the marital relationship through the court.",
+        "If you wish to resolve the matter in a civilized and lawful manner."
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faqItems": [
+        {
+          "question": "Can property division issues be resolved in this petition?",
+          "answer": "This template is specifically for divorce. Claims for property division or alimony can be filed as a separate lawsuit or included in this one, which will complicate and prolong the process. It is recommended to resolve these issues separately."
+        },
+        {
+          "question": "To which court should the petition be filed?",
+          "answer": "A divorce petition is filed with the court at the place of residence of the respondent (the other spouse). Exceptions are possible if minor children live with the petitioner."
+        }
+      ],
+      "priceDetailsTitle": "Price and Time",
+      "price": "299",
+      "priceCurrency": "UAH",
+      "avgTime": "Average completion time: ~10 minutes",
+      "ctaButtonText": "Create Divorce Petition",
+      "sampleTitle": "Document Sample",
+      "sampleImageUrl": "/images/samples/petition-for-divorce-sample.png"
+    },
+    "power-of-attorney-property": {
+      "metaTitle": "Power of Attorney for Real Estate Transactions | UDocument",
+      "metaDescription": "Create a power of attorney to sell, buy, or manage real estate (apartment, house, land plot). Full legal protection.",
+      "h1": "Create a power of attorney for real estate",
+      "description": "Grant authority to a trusted person to carry out transactions with your real estate. This document allows them to sell, buy, rent out, and represent your interests in government bodies and before third parties regarding a specific real estate object. The template includes all requirements for notarization.",
+      "whenNeededTitle": "When is this document needed?",
+      "whenNeededList": [
+        "When buying or selling real estate if you cannot be present in person.",
+        "To manage your property (e.g., renting it out) when you are in another city or country.",
+        "To collect necessary documents and certificates for a transaction.",
+        "To authorize a professional (realtor, lawyer) to represent your interests."
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faqItems": [
+        {
+          "question": "Is notarization of such a power of attorney mandatory?",
+          "answer": "Yes, a power of attorney for the disposal of real estate is subject to mandatory notarization and registration in the Unified Register of Powers of Attorney."
+        },
+        {
+          "question": "Can a power of attorney be issued to several people?",
+          "answer": "Yes, you can specify one or more authorized persons who can act either jointly or independently of each other, depending on how it is stated in the text of the power of attorney."
+        }
+      ],
+      "priceDetailsTitle": "Price and Time",
+      "price": "249",
+      "priceCurrency": "UAH",
+      "avgTime": "Average completion time: ~8 minutes",
+      "ctaButtonText": "Create Power of Attorney",
+      "sampleTitle": "Document Sample",
+      "sampleImageUrl": "/images/samples/power-of-attorney-property-sample.png"
+    },
+    "power-of-attorney-documents": {
+      "metaTitle": "Power of Attorney for Representation and Document Collection | UDocument",
+      "metaDescription": "Form a power of attorney to represent your interests in authorities, courts, banks, and to receive documents on your behalf.",
+      "h1": "Issue a power of attorney for representation",
+      "description": "This power of attorney grants your representative the right to submit and receive documents, sign, and represent your interests in any institutions, enterprises, and organizations, including courts, tax authorities, Administrative Service Centers, banks, etc. You can clearly define the scope of authority.",
+      "whenNeededTitle": "When is this document needed?",
+      "whenNeededList": [
+        "When you need a representative in court or another government body.",
+        "To receive a pension, mail, or other payments.",
+        "To authorize someone to submit documents on your behalf to any institution.",
+        "To conduct business on your behalf when you are busy or far away."
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faqItems": [
+        {
+          "question": "Does such a power of attorney need to be notarized?",
+          "answer": "It depends on the institution where the power of attorney will be used. For representation in court, banks, and for real estate transactions, notarization is mandatory. For receiving mail, a simple written form may be sufficient."
+        },
+        {
+          "question": "Can I revoke the power of attorney?",
+          "answer": "Yes, the principal can revoke the power of attorney at any time by notifying the representative and the third parties for whom it was issued. A notarized power of attorney is revoked through a notary."
+        }
+      ],
+      "priceDetailsTitle": "Price and Time",
+      "price": "149",
+      "priceCurrency": "UAH",
+      "avgTime": "Average completion time: ~6 minutes",
+      "ctaButtonText": "Create Power of Attorney",
+      "sampleTitle": "Document Sample",
+      "sampleImageUrl": "/images/samples/power-of-attorney-documents-sample.png"
+    }
   },
   "trustSection": {
     "title": "With us it's — ",

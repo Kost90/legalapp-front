@@ -1,3 +1,5 @@
+import { DOCUMENT_TYPE, DOCUMENT_TYPE_FOR_LINK } from '@/lib/constants/common-documents';
+
 interface IVerifyEmail {
   title: string;
   subtitle: string;
@@ -173,6 +175,7 @@ interface IPopularDocument {
   description: string;
   tag: string;
   icon: string;
+  url: DOCUMENT_TYPE;
 }
 
 interface IPopularDocumentsSection {
@@ -180,6 +183,33 @@ interface IPopularDocumentsSection {
   subtitle: string;
   documents: IPopularDocument[];
 }
+
+interface IDocumentFaqItem {
+  question: string;
+  answer: string;
+}
+
+interface IDocumentPageContent {
+  metaTitle: string;
+  metaDescription: string;
+  h1: string;
+  description: string;
+  whenNeededTitle: string;
+  whenNeededList: string[];
+  faqTitle: string;
+  faqItems: IDocumentFaqItem[];
+  priceDetailsTitle: string;
+  price: string;
+  priceCurrency: string;
+  avgTime: string;
+  ctaButtonText: string;
+  sampleTitle: string;
+  sampleImageUrl: string;
+}
+
+type DocumentPages = {
+  [key in DOCUMENT_TYPE_FOR_LINK]: IDocumentPageContent;
+};
 
 export interface SiteContent {
   header: HeaderData;
@@ -197,4 +227,5 @@ export interface SiteContent {
   contactPrompt: IContactPromptData;
   footer: IFooterData;
   privacy_policy: IPrivacyPolicy;
+  documentPages: DocumentPages;
 }
