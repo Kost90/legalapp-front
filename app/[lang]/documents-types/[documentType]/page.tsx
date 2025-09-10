@@ -4,9 +4,10 @@ import Image from 'next/image';
 
 import { getDictionary } from '@/app/[lang]/dictionaries';
 import FaqAccordion from '@/components/FaqAccordion/FaqAccordion';
+import Heading from '@/components/Heading/Heading';
 import LinkButton from '@/components/LinkButton/LinkButton';
 import { DOCUMENT_TYPE_FOR_LINK } from '@/lib/constants/common-documents';
-import { documentsImagesMap } from '@/lib/imageMap';
+import { AllowedDocumentsTypes, documentsImagesMap } from '@/lib/imageMap';
 import { SiteContent } from '@/types/dictionaries';
 
 import { PageProps } from '@/.next/types/app/[lang]/documents-types/[documentType]/page';
@@ -43,18 +44,18 @@ export default async function DocumentPage({ params }: PageProps) {
     );
   }
 
-  const content = dictionary.documentPages[documentType as DOCUMENT_TYPE_FOR_LINK];
-  const staticImage = documentsImagesMap[documentType as DOCUMENT_TYPE_FOR_LINK];
+  const content = dictionary.documentPages[documentType as AllowedDocumentsTypes];
+  const staticImage = documentsImagesMap[documentType as AllowedDocumentsTypes];
 
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-10 md:py-16">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-16">
         <div className="lg:col-span-2">
-          <h1 className="text-text-mainBlack text-3xl font-bold md:text-4xl">{content.h1}</h1>
+          <Heading level="h1">{content.h1}</Heading>
           <p className="text-text-greyMuted mt-4 text-lg">{content.description}</p>
 
           <div className="mt-8">
-            <h3 className="text-text-mainBlack text-2xl font-bold">{content.whenNeededTitle}</h3>
+            <Heading level="h3">{content.whenNeededTitle}</Heading>
             <ul className="mt-4 space-y-3">
               {content.whenNeededList.map((item, index) => (
                 <li key={index} className="flex items-start">
@@ -70,7 +71,7 @@ export default async function DocumentPage({ params }: PageProps) {
 
         <div className="lg:col-span-1">
           <div className="bg-background-mutedcard sticky top-24 rounded-lg p-6 shadow-md">
-            <h3 className="text-text-mainBlack text-xl font-bold">{content.priceDetailsTitle}</h3>
+            <Heading level="h3">{content.priceDetailsTitle}</Heading>
 
             <div className="my-4 text-center">
               <span className="text-blue text-5xl font-bold">{content.price}</span>
@@ -89,7 +90,7 @@ export default async function DocumentPage({ params }: PageProps) {
             </div>
 
             <div className="mt-8">
-              <h4 className="text-text-mainBlack text-center font-semibold">{content.sampleTitle}</h4>
+              <Heading level="h4">{content.sampleTitle}</Heading>
               <div className="border-border-borderGrey relative mt-2 h-64 w-full overflow-hidden rounded-md border">
                 <Image src={staticImage} alt={`Зразок документа: ${content.h1}`} fill className="object-cover object-top" quality={80} />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white"></div>

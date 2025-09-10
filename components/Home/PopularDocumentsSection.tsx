@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 import PopularDocumentCard from '@/components/Cards/PopularDocumentCard';
 import FlexSectionWrapper from '@/components/Container/FlexSectionWrapper';
+import Heading from '@/components/Heading/Heading';
 import { LANG_VARIANTS } from '@/lib/constants/lang-variants';
 import { SiteContent } from '@/types/dictionaries';
 
@@ -30,7 +31,7 @@ export default function PopularDocumentsSection({ dictionary, lang }: { dictiona
         transition={{ duration: 0.6 }}
         className="mb-12 text-center"
       >
-        <h2 className="text-text-mainBlack text-3xl font-bold md:text-4xl">{title}</h2>
+        <Heading level="h2">{title}</Heading>
         <p className="text-text-greyMuted mt-2 text-lg">{subtitle}</p>
       </motion.div>
 

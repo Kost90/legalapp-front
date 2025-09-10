@@ -33,6 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const pageDescription = t.meta?.description || 'Генерація юридичних документів та консультації.';
 
   return {
+    metadataBase: new URL(baseUrl),
     title: {
       template: '%s | UDocument',
       default: pageTitle,
@@ -40,6 +41,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: pageDescription,
     keywords: t.meta?.keywords || ['юридичні документи', 'адвокат', 'консультація'],
     authors: [{ name: 'UDocument', url: baseUrl }],
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
 
     openGraph: {
       title: t.meta?.ogTitle || pageTitle,
@@ -48,7 +60,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: 'UDocument',
       images: [
         {
-          url: `${baseUrl}/Logo_udocument.png`,
+          url: `/Logo_udocument.png`,
           width: 1200,
           height: 630,
           alt: 'UDocument Open Graph Image',
@@ -98,9 +110,49 @@ export default async function RootLayout({
 
   const refreshToken = cookieStore.get('refresh_token')?.value;
   const accessToken = cookieStore.get('access_token')?.value;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        name: 'UDocument',
+        url: baseUrl,
+        logo: `${baseUrl}/Logo_udocument.png`,
+        sameAs: [
+          // "https://www.facebook.com/udocument",
+          // "https://www.instagram.com/udocument"
+        ],
+      },
+      {
+        '@type': 'WebSite',
+        url: baseUrl,
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: `${baseUrl}/${lang}/search?q={search_term_string}`,
+          'query-input': 'required name=search_term_string',
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: t.faq.map((item) => ({
+          '@type': 'Question',
+          name: item.title,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: item.description,
+          },
+        })),
+      },
+    ],
+  };
 
   return (
     <html lang={currentLang} className="h-full">
+      <head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      </head>
       <body className={clsx(roboto.className, 'text-main-black min-h-screen w-full text-base antialiased md:text-lg')}>
         <QueryProvider>
           <DeviceProvider>

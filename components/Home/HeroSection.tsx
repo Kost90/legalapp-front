@@ -3,6 +3,7 @@
 import { motion } from 'motion/react';
 
 import FlexSectionWrapper from '@/components/Container/FlexSectionWrapper';
+import Heading from '@/components/Heading/Heading';
 import HeroIllustration from '@/components/HeroIlustration/HeroIlustration';
 import LinkButton from '@/components/LinkButton/LinkButton';
 import { SiteContent } from '@/types/dictionaries';
@@ -20,9 +21,9 @@ export default function HeroSection({ dictionary, lang }: { dictionary: SiteCont
       >
         <motion.div className="flex flex-col items-center justify-center sm:items-start" variants={itemVariants}>
           <div className="flex items-center gap-4">
-            <h1 className="text-text-main-black text-4xl font-bold tracking-tight">
+            <Heading level="h1" className="tracking-tight">
               {dictionary.hero.title} <span className="text-blue">{dictionary.hero.titleBluePArt}</span>
-            </h1>
+            </Heading>
           </div>
           <p className="text-text-grey-muted my-6 text-base leading-7 sm:text-lg sm:leading-8">{dictionary.hero.subtitle_line1}</p>
           <LinkButton lang={lang} type="black">

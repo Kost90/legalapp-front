@@ -31,39 +31,39 @@
     "subtitle": "Which document do you need today?",
     "documents": [
       {
-        "title": "Apartment Lease Agreement",
-        "description": "Clearly defined terms for tenancy and payment.",
-        "tag": "Popular",
-        "icon": "FileText",
-        "url": "apartment-lease-agreement"
-      },
-      {
-        "title": "Power of Attorney for a Vehicle",
+        "title": "Power of Attorney for Vehicle",
         "description": "Legal representation of the driver's/owner's interests.",
         "tag": "Popular",
         "icon": "Car",
         "url": "power-of-attorney-vehicle"
       },
       {
-        "title": "LLC Registration",
-        "description": "A complete package of documents for online submission.",
+        "title": "Power of Attorney for Real Estate Management",
+        "description": "Sale, purchase, or lease of your property by a trusted person.",
         "tag": "Popular",
-        "icon": "Briefcase",
-        "url": "llc-registration"
+        "icon": "Home",
+        "url": "power-of-attorney-property"
       },
       {
-        "title": "Debt Collection Lawsuit",
-        "description": "Prepared in accordance with procedural requirements.",
-        "tag": "Popular",
-        "icon": "Gavel",
-        "url": "debt-collection-lawsuit"
+        "title": "Spousal Consent for Property Sale",
+        "description": "A mandatory document for transactions with joint property.",
+        "tag": "Important",
+        "icon": "HeartHandshake",
+        "url": "spousal-consent-for-property-sale"
       },
       {
-        "title": "Petition for Divorce",
-        "description": "A civilized solution for family matters.",
+        "title": "Power of Attorney for Document Collection",
+        "description": "Representation of interests in state institutions and organizations.",
         "tag": "Popular",
-        "icon": "Users",
-        "url": "petition-for-divorce"
+        "icon": "FileArchive",
+        "url": "power-of-attorney-documents"
+      },
+      {
+        "title": "Consent for a Child to Travel Abroad",
+        "description": "Notarized consent for minors' travel.",
+        "tag": "Important",
+        "icon": "Plane",
+        "url": "consent-for-minor-to-travel-abroad"
       }
     ]
   },
@@ -284,6 +284,66 @@
       "ctaButtonText": "Create Power of Attorney",
       "sampleTitle": "Document Sample",
       "sampleImageUrl": "/images/samples/power-of-attorney-documents-sample.png"
+    },
+    "spousal-consent-for-property-sale": {
+      "metaTitle": "Spousal Consent for Property Sale Statement | UDocument",
+      "metaDescription": "Form a notarized statement of consent from a spouse for the disposal of joint property (sale, gift, mortgage). Mandatory for real estate transactions.",
+      "h1": "Create a spousal consent statement for real estate sale",
+      "description": "For the sale, gift, or mortgaging of property that is the joint common property of spouses, a written, notarized consent of the other spouse is required. Our service will help prepare the text of such a statement that complies with the requirements of the Family Code of Ukraine and notarial practice.",
+      "whenNeededTitle": "When is this document needed?",
+      "whenNeededList": [
+        "When selling an apartment, house, or land plot acquired during the marriage.",
+        "For concluding a mortgage agreement regarding joint property.",
+        "When gifting joint real estate or a vehicle.",
+        "For any transactions requiring notarization that concern joint property."
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faqItems": [
+        {
+          "question": "Is such consent needed if the property is registered only in my name?",
+          "answer": "Yes, if the property was acquired by you during a registered marriage with joint funds, it is considered joint common property, and the consent of the other spouse is mandatory, regardless of who is listed as the owner in the registry."
+        },
+        {
+          "question": "What if one of the spouses is abroad?",
+          "answer": "He/she can issue such a statement at a consular office of Ukraine abroad or with a foreign notary. In the latter case, the document must be apostilled (or legalized) and translated into Ukrainian."
+        }
+      ],
+      "priceDetailsTitle": "Price and Time",
+      "price": "129",
+      "priceCurrency": "UAH",
+      "avgTime": "Average completion time: ~5 minutes",
+      "ctaButtonText": "Create Consent Statement",
+      "sampleTitle": "Document Sample"
+    },
+    "consent-for-minor-to-travel-abroad": {
+      "metaTitle": "Consent for a Minor to Travel Abroad Online | UDocument",
+      "metaDescription": "Issue a notarized statement of consent for the temporary travel of a minor child abroad, accompanied by one parent or a third party.",
+      "h1": "Issue consent for a child to travel abroad",
+      "description": "If a minor child (under 16) travels outside of Ukraine with one parent or with an authorized person (grandmother, coach), the notarized consent of the other parent (or both) is required. Our service will help prepare the text of the statement, which will clearly indicate the country (or countries) of travel, the time frame, and the details of the accompanying person.",
+      "whenNeededTitle": "When is this document needed?",
+      "whenNeededList": [
+        "When a child goes on vacation or to a competition abroad with one parent.",
+        "If the child is traveling with a grandmother, grandfather, aunt, or other relatives.",
+        "For organized trips as part of tourist or sports groups (e.g., with a coach or teacher).",
+        "For crossing the border for any purpose, if the child is not accompanied by both parents."
+      ],
+      "faqTitle": "Frequently Asked Questions",
+      "faqItems": [
+        {
+          "question": "For what period can such consent be issued?",
+          "answer": "Usually, consent is issued for a specific trip, indicating the exact dates and destination country. It is possible to issue consent for a longer period (e.g., for 3 months or a year) for multiple trips, but this should be agreed upon with a notary."
+        },
+        {
+          "question": "Is consent required if the father/mother is a foreigner?",
+          "answer": "Yes, if one parent is a citizen of Ukraine and the other is a foreigner, the consent of the Ukrainian parent for the child's departure is still required. Exceptions are provided for by law (e.g., alimony arrears)."
+        }
+      ],
+      "priceDetailsTitle": "Price and Time",
+      "price": "179",
+      "priceCurrency": "UAH",
+      "avgTime": "Average completion time: ~6 minutes",
+      "ctaButtonText": "Create Travel Consent",
+      "sampleTitle": "Document Sample"
     }
   },
   "trustSection": {
@@ -293,6 +353,26 @@
     "redtext": "professional",
     "description": "We have combined 8 years of legal experience with our unique technology to guarantee the legal accuracy of every document.",
     "descriptionStrong": "UDocument is a modern approach to law where your time, security, and quality are the top priority."
+  },
+  "howItWorks": {
+    "title": "Three simple steps to a finished document",
+    "steps": [
+      {
+        "icon": "FileSearch",
+        "title": "Choose a template",
+        "description": "Find the document you need in our database, developed by lawyers and constantly updated."
+      },
+      {
+        "icon": "FilePenLine",
+        "title": "Fill out the form",
+        "description": "Answer simple questions in Ukrainian. Our system will automatically generate legally correct text."
+      },
+      {
+        "icon": "Download",
+        "title": "Download and use",
+        "description": "Get the finished document in Word and PDF formats. Print, sign, and be confident in its legality."
+      }
+    ]
   },
   "ourBenefitsSection": {
     "title": "The result you get with UDocument:",
@@ -334,6 +414,31 @@
       {
         "title": "Transparency and Confidentiality",
         "text": "We operate with clear pricing without hidden fees. Your data and cases are kept under strict protection and are completely confidential."
+      }
+    ]
+  },
+  "serviceAdvantages": {
+    "title": "Why do thousands of Ukrainians choose our service?",
+    "advantages": [
+      {
+        "icon": "CalendarCheck2",
+        "title": "Up-to-date for 2025",
+        "description": "All templates comply with the current legislation of Ukraine. We monitor changes daily so you can be confident in every letter."
+      },
+      {
+        "icon": "PiggyBank",
+        "title": "Save Time and Money",
+        "description": "The cost of a document is tens of times lower than a lawyer's services, and creation takes minutes instead of days of waiting."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Security and Confidentiality",
+        "description": "Your personal data is protected by modern encryption protocols. We guarantee complete anonymity."
+      },
+      {
+        "icon": "Smartphone",
+        "title": "Convenience and Accessibility",
+        "description": "Create and store documents in your personal account. They are available to you 24/7 from any device: computer or smartphone."
       }
     ]
   },
@@ -470,11 +575,11 @@
     "appleWebAppTitle": "UDocument"
   },
   "contactPrompt": {
-    "title": "Still have questions?",
-    "subtitle": "Our team of lawyers is ready to help.",
-    "description": "For individual consultations or complex inquiries, please contact us in a way that is convenient for you:",
-    "phone_cta": "Call Us",
-    "email_cta": "Email Us"
+    "title": "Ready to solve your legal issues?",
+    "subtitle": "Don't postpone important matters. Create your first document now or contact us for a consultation.",
+    "signup_cta": "Sign Up and Get Started",
+    "phone_cta": "Consult by Phone",
+    "email_cta": "Email a Lawyer"
   },
   "privacy_policy": {
     "meta_title": "Privacy Policy - UDocument",

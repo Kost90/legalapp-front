@@ -136,7 +136,7 @@ interface IFooterData {
 interface IContactPromptData {
   title: string;
   subtitle: string;
-  description: string;
+  signup_cta: string;
   phone_cta: string;
   email_cta: string;
 }
@@ -211,14 +211,38 @@ type DocumentPages = {
   [key in DOCUMENT_TYPE_FOR_LINK]: IDocumentPageContent;
 };
 
+interface IHowItWorksStep {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface IHowItWorksSection {
+  title: string;
+  steps: IHowItWorksStep[];
+}
+
+interface IServiceAdvantage {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface IServiceAdvantagesSection {
+  title: string;
+  advantages: IServiceAdvantage[];
+}
+
 export interface SiteContent {
   header: HeaderData;
   verify_email: IVerifyEmail;
   hero: HeroData;
   popularDocuments: IPopularDocumentsSection;
   trustSection: TrustSectionData;
+  howItWorks: IHowItWorksSection;
   ourBenefitsSection: OurBenefitsSection;
   why_choose_us: WhyChooseUsData;
+  serviceAdvantages: IServiceAdvantagesSection;
   faq: IFaq[];
   legal_support: LegalSupportData;
   real_estate_services: RealEstateServicesData;
