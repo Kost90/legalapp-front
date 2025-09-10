@@ -1,17 +1,17 @@
 import { NextResponse } from 'next/server';
 
-// import { BASE_URL } from '@/api/utils';
-
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const token = searchParams.get('token');
+
+  const apiUrl = process.env.PUBLIC_API_DOMAIN || 'http://localhost:3030';
 
   if (!token) {
     return NextResponse.json({ error: 'Token is required' }, { status: 400 });
   }
 
   try {
-    const response = await fetch('http://134.209.224.92/api/auth/verify-email', {
+    const response = await fetch(`${apiUrl}/api/auth/verify-email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: token }),
@@ -23,8 +23,8 @@ export async function GET(request: Request) {
 
     // DEV:
     // return NextResponse.redirect(new URL('/auth/login', request.url));
-    // TODO: Change for env
-    // PRROD:
+
+    // PROD:
     return NextResponse.redirect('/auth/login');
   } catch (error) {
     console.error(error);

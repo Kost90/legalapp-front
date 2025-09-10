@@ -31,6 +31,8 @@ export default function SignupPageClient({ lang, dictionary }: { lang: string; d
 
   const onSubmit = async (data: FormValues) => {
     try {
+      setError('');
+      form.clearErrors();
       await signUp({
         firstName: data.firstName,
         lastName: data.lastName,
