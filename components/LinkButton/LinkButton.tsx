@@ -4,14 +4,15 @@ import Button, { IButtonProps } from '@/components/Button/Button';
 
 interface ILinkButtonProps extends Partial<IButtonProps> {
   lang: string;
+  signUp?: boolean;
 }
 
-function LinkButton({ ...props }: ILinkButtonProps) {
+function LinkButton({ lang, signUp, ...restProps }: ILinkButtonProps) {
   return (
     <div>
-      <Link href={`/${props.lang}/auth/login`}>
-        <Button key={`login-${props.lang}desc`} type={props.type} {...props}>
-          {props.children}
+      <Link href={`/${lang}/auth/${signUp ? 'signup' : 'login'}`}>
+        <Button key={`login-${lang}desc`} type={restProps.type} {...restProps}>
+          {restProps.children}
         </Button>
       </Link>
     </div>

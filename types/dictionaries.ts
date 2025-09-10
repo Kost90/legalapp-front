@@ -1,3 +1,5 @@
+import { DOCUMENT_TYPE, DOCUMENT_TYPE_FOR_LINK } from '@/lib/constants/common-documents';
+
 interface IVerifyEmail {
   title: string;
   subtitle: string;
@@ -134,7 +136,7 @@ interface IFooterData {
 interface IContactPromptData {
   title: string;
   subtitle: string;
-  description: string;
+  signup_cta: string;
   phone_cta: string;
   email_cta: string;
 }
@@ -168,13 +170,79 @@ interface IPrivacyPolicy {
   contact_us_email: string;
 }
 
+interface IPopularDocument {
+  title: string;
+  description: string;
+  tag: string;
+  icon: string;
+  url: DOCUMENT_TYPE;
+}
+
+interface IPopularDocumentsSection {
+  title: string;
+  subtitle: string;
+  documents: IPopularDocument[];
+}
+
+interface IDocumentFaqItem {
+  question: string;
+  answer: string;
+}
+
+interface IDocumentPageContent {
+  metaTitle: string;
+  metaDescription: string;
+  h1: string;
+  description: string;
+  whenNeededTitle: string;
+  whenNeededList: string[];
+  faqTitle: string;
+  faqItems: IDocumentFaqItem[];
+  priceDetailsTitle: string;
+  price: string;
+  priceCurrency: string;
+  avgTime: string;
+  ctaButtonText: string;
+  sampleTitle: string;
+  sampleImageUrl: string;
+}
+
+type DocumentPages = {
+  [key in DOCUMENT_TYPE_FOR_LINK]: IDocumentPageContent;
+};
+
+interface IHowItWorksStep {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface IHowItWorksSection {
+  title: string;
+  steps: IHowItWorksStep[];
+}
+
+interface IServiceAdvantage {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface IServiceAdvantagesSection {
+  title: string;
+  advantages: IServiceAdvantage[];
+}
+
 export interface SiteContent {
   header: HeaderData;
   verify_email: IVerifyEmail;
   hero: HeroData;
+  popularDocuments: IPopularDocumentsSection;
   trustSection: TrustSectionData;
+  howItWorks: IHowItWorksSection;
   ourBenefitsSection: OurBenefitsSection;
   why_choose_us: WhyChooseUsData;
+  serviceAdvantages: IServiceAdvantagesSection;
   faq: IFaq[];
   legal_support: LegalSupportData;
   real_estate_services: RealEstateServicesData;
@@ -183,4 +251,5 @@ export interface SiteContent {
   contactPrompt: IContactPromptData;
   footer: IFooterData;
   privacy_policy: IPrivacyPolicy;
+  documentPages: DocumentPages;
 }

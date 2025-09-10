@@ -6,7 +6,7 @@ type PageContainerProps = {
 };
 
 const PageContainer = ({ children, className = '' }: PageContainerProps) => {
-  return <div className={`mx-auto flex min-h-screen w-full flex-col items-center gap-10 md:gap-20 ${className}`}>{children}</div>;
+  return <div className={`mx-auto flex min-h-screen w-full flex-col items-center gap-14 md:gap-28 ${className}`}>{children}</div>;
 };
 
 export default PageContainer;
