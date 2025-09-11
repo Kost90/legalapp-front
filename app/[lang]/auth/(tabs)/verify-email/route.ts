@@ -23,7 +23,11 @@ export async function GET(request: Request) {
       throw new Error('Verification failed');
     }
 
-    return NextResponse.redirect(new URL('/auth/login', request.url));
+    const proto = request.headers.get('x-forwarded-proto') || 'http';
+    const host = request.headers.get('host') || 'localhost:3000';
+    const redirectUrl = `${proto}://${host}/auth/login`;
+
+    return NextResponse.redirect(redirectUrl);
   } catch (error) {
     console.error(error);
 
