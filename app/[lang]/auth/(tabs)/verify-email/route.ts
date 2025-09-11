@@ -23,11 +23,7 @@ export async function GET(request: Request) {
       throw new Error('Verification failed');
     }
 
-    // DEV:
-    // return NextResponse.redirect(new URL('/auth/login', request.url));
-
-    // PROD:
-    return NextResponse.redirect('/auth/login');
+    return NextResponse.redirect(new URL('/auth/login', request.url));
   } catch (error) {
     console.error(error);
 
