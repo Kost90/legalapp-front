@@ -11,7 +11,7 @@ type SignUpBody = {
 
 export const signUp = async (body: SignUpBody) =>
   await requestPublic<{ data: User }, SignUpBody>(
-    '/auth/register',
+    'auth/register',
     {
       method: 'POST',
       body,
