@@ -1,4 +1,5 @@
 import { requestClient } from './request.client';
+import { BASE_SERVER_URL } from './utils';
 
 //! Make request from here when you need token
 export const request = async <TResult, TBody = undefined>(...params: Parameters<typeof requestClient<TResult, TBody>>) => {
@@ -6,8 +7,7 @@ export const request = async <TResult, TBody = undefined>(...params: Parameters<
     const imp = await import('./request.server');
     const [url, options, errorMatchers] = params;
 
-    const apiUrl = process.env.NEXT_SERVER_API_DOMAIN || '/api';
-    const fullUrl = `${apiUrl}/api${url}`;
+    const fullUrl = `${BASE_SERVER_URL}/${url}`;
 
     return await imp.requestServer<TResult, TBody>(fullUrl, options, errorMatchers);
   }

@@ -1,17 +1,19 @@
 import { NextResponse } from 'next/server';
 
+import { BASE_SERVER_URL } from '@/api/utils';
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const token = searchParams.get('token');
 
-  const apiUrl = process.env.PUBLIC_API_DOMAIN || 'http://localhost:3030';
+  const apiUrl = `${BASE_SERVER_URL}/auth/verify-email`;
 
   if (!token) {
     return NextResponse.json({ error: 'Token is required' }, { status: 400 });
   }
 
   try {
-    const response = await fetch(`${apiUrl}/api/auth/verify-email`, {
+    const response = await fetch(apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: token }),
