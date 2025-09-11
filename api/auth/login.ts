@@ -9,7 +9,7 @@ type LoginBody = {
 
 export const login = async (body: LoginBody) =>
   await request<{ data: Tokens }, LoginBody>(
-    '/auth/login',
+    'auth/login',
     {
       method: 'POST',
       body: body,

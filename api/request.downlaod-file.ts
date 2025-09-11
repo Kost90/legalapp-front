@@ -8,9 +8,7 @@ export const requestDownloadDoc = async (
     noAdminTag?: boolean;
   },
 ): Promise<Blob> => {
-  const apiUrl = process.env.PUBLIC_API_DOMAIN || 'http://localhost:3030';
-  const fullUrl = `${apiUrl}/api${url}`;
-  const res = await fetch(fullUrl, {
+  const res = await fetch(url, {
     ...options,
     method: options.method || 'GET',
     headers: {

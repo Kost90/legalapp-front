@@ -1,7 +1,7 @@
 'use server';
 import { notFound } from 'next/navigation';
 
-import { handleError } from './utils';
+import { BASE_SERVER_URL, handleError } from './utils';
 
 // Make request from here when don't need jwt token on endpoint
 export const requestAdmin = async <Request, Body = any>(
@@ -12,8 +12,8 @@ export const requestAdmin = async <Request, Body = any>(
     noAdminTag?: boolean;
   },
 ): Promise<Request> => {
-  const apiUrl = process.env.PUBLIC_API_DOMAIN || 'http://localhost:3030';
-  const res = await fetch(`${apiUrl}/api/${url}`, {
+  const fullUrl = `${BASE_SERVER_URL}/${url}`;
+  const res = await fetch(fullUrl, {
     ...options,
     headers: {
       'Content-Type': options.body ? 'application/json' : '',

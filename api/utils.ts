@@ -80,7 +80,7 @@ export const makeRequest = async ({
     headers.set('Authorization', `Bearer ${accessToken}`);
   }
 
-  const res = await fetch(typeof window === 'undefined' ? url : `${BASE_URL}${url}`, {
+  const res = await fetch(typeof window === 'undefined' ? url : `${BASE_URL}/${url}`, {
     headers,
     ...options,
     body,
@@ -208,3 +208,4 @@ export const buildUrl = (url: string, params: Record<string, string | number | (
 };
 
 export const BASE_URL = process.env.NEXT_PUBLIC_API_DOMAIN || '/api';
+export const BASE_SERVER_URL = process.env.NEXT_SERVER_API_DOMAIN || 'http://localhost:3030';

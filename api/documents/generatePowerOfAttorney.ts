@@ -8,6 +8,7 @@ type GenerateDocumentBody = PowerOfAttorney | PowerOfAttorneyReceiveDocuments;
 
 export const generatePowerOfAttorney = async (userId: string, body: GenerateDocumentBody): Promise<{ html: string; url: string }> => {
   const urlPath = buildUrl(`user/generate-document/${userId}`, {});
+
   const { html, url } = await requestAdmin<{ html: string; url: string }, GenerateDocumentBody>(urlPath, {
     method: 'POST',
     body,
