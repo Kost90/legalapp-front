@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import { BASE_SERVER_URL } from '@/api/utils';
+import { getAbsoluteUrl } from '@/utils/getAbsoluteUrl';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -23,10 +24,7 @@ export async function GET(request: Request) {
       throw new Error('Verification failed');
     }
 
-    const proto = request.headers.get('x-forwarded-proto') ?? 'http';
-    const host = request.headers.get('host') ?? 'localhost:3000';
-
-    return NextResponse.redirect(`${proto}://${host}/auth/login`);
+    return NextResponse.redirect(getAbsoluteUrl(request, '/auth/login'));
   } catch (error) {
     console.error(error);
 
