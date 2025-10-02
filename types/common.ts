@@ -17,6 +17,7 @@ export type PersonDetails = {
   address: string;
   passport: string;
   passportIssueDate: string;
+  passportIssueAuthority: string;
 };
 
 export type RepresentativeDetails = {

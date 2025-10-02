@@ -11,7 +11,7 @@ import { formatDateToString } from './formatDateToString';
 export function preparePropertyPowerOfAttorneyData(
   raw: PropertyPowerOfAttorneyFormData,
   lang: string,
-  user: userInformationData,
+  user: userInformationData | undefined | null,
 ): PowerOfAttorney {
   const { propertyAddress, ...rest } = raw;
 
@@ -25,6 +25,15 @@ export function preparePropertyPowerOfAttorneyData(
     ...(cleanPropertyAddress(propertyAddress) ? { propertyAddress: cleanPropertyAddress(propertyAddress) } : {}),
   };
 
+  if (!user) {
+    return {
+      documentLang: lang,
+      documentType: DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY,
+      isPaid: true,
+      details: formatted,
+    };
+  }
+
   return {
     email: user.email,
     documentLang: lang,
@@ -37,7 +46,7 @@ export function preparePropertyPowerOfAttorneyData(
 export function preparePowerOfAttorneyReceiveDocumentsData(
   raw: ReceiveDocumentsPowerOfAttorneyFormData,
   lang: string,
-  user: userInformationData,
+  user: userInformationData | undefined | null,
 ): PowerOfAttorneyReceiveDocuments {
   const formatted = {
     ...raw,
@@ -48,6 +57,15 @@ export function preparePowerOfAttorneyReceiveDocumentsData(
     validUntil: formatDateToString(raw.validUntil),
   };
 
+  if (!user) {
+    return {
+      documentLang: lang,
+      documentType: DOCUMENT_TYPE.powerOfAttorneyDocuments,
+      isPaid: true,
+      details: formatted,
+    };
+  }
+
   return {
     email: user.email,
     documentLang: lang,
@@ -57,7 +75,12 @@ export function preparePowerOfAttorneyReceiveDocumentsData(
   };
 }
 
-export function prepareDataByDocumentType(documentType: DOCUMENT_TYPE, data: any, lang: string, user: any) {
+export function prepareDataByDocumentType(
+  documentType: DOCUMENT_TYPE,
+  data: any,
+  lang: string,
+  user: userInformationData | undefined | null = null,
+) {
   switch (documentType) {
     case DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY:
       return preparePropertyPowerOfAttorneyData(data, lang, user);

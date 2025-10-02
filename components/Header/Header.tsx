@@ -57,7 +57,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
   }
 
   // TODO: Change for real and add button for changing lang
-  const navItems: NavItemType[] = [{ label: lang.header.button_generate, href: `/${params}/auth/login` }];
+  const navItems: NavItemType[] = [{ label: lang.header.button_generate, href: `/${params}/generate` }];
 
   return (
     <header

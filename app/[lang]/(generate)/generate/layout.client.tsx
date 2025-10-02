@@ -21,7 +21,7 @@ export default function GenerateDocumentLayoutClient(
   const handleCategoryClick = useCallback((category: string) => {
     setSelectedCategory(category);
   }, []);
-  // TODO: Edit category, added new documents to categories in dictionary
+
   return (
     <>
       {!selectedCategory && (

@@ -10,7 +10,6 @@ type IFooterProps = {
 
 const Footer = ({ lang, dictionary }: IFooterProps) => {
   const currentYear = new Date().getFullYear();
-  console.log(lang);
   return (
     <footer className="bg-main-black text-text-grey mt-10 w-full md:mt-20">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">

@@ -7,5 +7,5 @@ import { CurrentUserResponse } from '@/types/user';
 export const fetchUserInfo = cache(async (userId: string) => {
   const url = buildUrl(`user/me/${userId}`, {});
 
-  return requestAdmin<CurrentUserResponse>(url, { method: 'GET' });
+  return requestAdmin<CurrentUserResponse>(url, { method: 'GET', headers: { 'Content-Type': 'application/json' } });
 });

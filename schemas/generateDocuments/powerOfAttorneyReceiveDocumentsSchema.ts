@@ -46,6 +46,7 @@ export const getReceiveDocumentsPowerOfAttorneySchema = (lang: string) =>
       required_error: lang === 'ua' ? 'Будь ласка, виберіть дату' : 'Please select a date',
       invalid_type_error: lang === 'ua' ? 'Некоректна дата' : 'Invalid date',
     }),
+    userEmail: z.string().email(lang === 'ua' ? 'Невірний формат email' : 'Invalid email format'),
   });
 
 export type ReceiveDocumentsPowerOfAttorneyFormData = z.infer<ReturnType<typeof getReceiveDocumentsPowerOfAttorneySchema>>;

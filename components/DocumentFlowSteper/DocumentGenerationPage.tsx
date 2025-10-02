@@ -5,14 +5,14 @@ import { useEffect, useState } from 'react';
 import DynamicForm from '@/components/DynamicForm/DynamicForm';
 import DocumentGenerationLoader from '@/components/GenerateDocumentLoader/DocumentGenerationLoader';
 import Stepper from '@/components/Stepper/Stepper';
-import { useGenerateDocument } from '@/context/generateStepper/GenerateDocumentStepper';
-import useDocumetFlow from '@/hooks/useDocumetFlow';
+import { useGenerateDocument } from '@/context/generateDocument/GenerateDocumentProvider';
+import useGenerateDocumetStepper from '@/hooks/useDocumetsStepper';
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 import { IGenerateDocumentsContent } from '@/types/generate-documents-dictionaries';
 
-export default function DocumentGenerationFlow({ lang, dictionary }: { lang: 'ua' | 'en'; dictionary: IGenerateDocumentsContent }) {
+export default function DocumentGenerationPage({ lang, dictionary }: { lang: 'ua' | 'en'; dictionary: IGenerateDocumentsContent }) {
   const { step, generatedPdfUrl, completedStepIndex, selectedDocument, isLoading, generatedDocument } = useGenerateDocument();
-  const { formFieldsSchema, shouldShowFormAndStepper, setIsErrorExist, isErrorExist, handleStepClick } = useDocumetFlow(lang);
+  const { formFieldsSchema, shouldShowFormAndStepper, setIsErrorExist, isErrorExist, handleStepClick } = useGenerateDocumetStepper(lang);
   const [fileUrl, setFileUrl] = useState<string>('');
 
   let content = null;
