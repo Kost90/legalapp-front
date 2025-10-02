@@ -3,11 +3,11 @@ import { ReactNode, createContext, useContext, useEffect, useState } from 'react
 import { FormProvider, useForm, useFormContext, UseFormReturn } from 'react-hook-form';
 import z from 'zod';
 
-import { generateDocumentAction } from '@/app/actions/documents';
+import { generateDocumentAction, generateDocumentPublicAction } from '@/app/actions/documents';
 import { ErrorModal } from '@/components/Modals/ErrorModal';
 import { useModals } from '@/components/Modals/ModalProvider';
 import { SuccessModal } from '@/components/Modals/SuccessModal';
-import { useUser } from '@/context/user/UserProvider.client';
+import { useUserUnsafe } from '@/context/user/UserProvider.client';
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 import { FORM_STEPS, GenerateStep } from '@/lib/formsSteps/forms-steps';
 import { MODALS_MESSAGES_EN, MODALS_MESSAGES_UA } from '@/lib/modals-messages';
@@ -25,27 +25,29 @@ type GenerateDocumentContext = {
   isLoading: boolean;
 };
 
-type GenerateDocumentProviderProps<T extends DOCUMENT_TYPE> = {
+type GenerateDocumentProviderProps = {
   children: ReactNode;
   lang: 'ua' | 'en';
-  selectedDocument: T;
+  selectedDocument: DOCUMENT_TYPE;
+  documentLang: 'ua' | 'en';
 };
 
-type SchemaType<T extends DOCUMENT_TYPE> = ReturnType<(typeof DOCUMENT_SCHEMAS)[T]['schema']>;
+export type SchemaType<T extends DOCUMENT_TYPE> = ReturnType<(typeof DOCUMENT_SCHEMAS)[T]['schema']>;
 
 const FormStateContext = createContext<GenerateDocumentContext | null>(null);
 
-export function GenerateDocumentProvider<T extends DOCUMENT_TYPE>({ children, lang, selectedDocument }: GenerateDocumentProviderProps<T>) {
+export function GenerateDocumentProvider({ children, lang, selectedDocument, documentLang }: GenerateDocumentProviderProps) {
   const { open } = useModals();
-  const { user } = useUser();
+  const userContext = useUserUnsafe();
+  const user = userContext?.user;
   const [step, setStep] = useState<GenerateStep>({ label: 'Данні особи яка надає документ', key: 'person' });
   const [generatedPdfUrl, setGeneratedPdfUrl] = useState<string>('');
   const [generatedDocument, setgeneratedDocument] = useState<string>('');
   const [completedStepIndex, setCompletedStepIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  type FormData = z.infer<SchemaType<T>>;
-  const schema = DOCUMENT_SCHEMAS[selectedDocument].schema(lang) as z.ZodType<FormData>;
+  type FormData = z.infer<SchemaType<DOCUMENT_TYPE>>;
+  const schema = DOCUMENT_SCHEMAS[selectedDocument].schema(documentLang) as z.ZodType<FormData>;
 
   if (!schema) {
     throw new Error(`No schema found for document type: ${selectedDocument}`);
@@ -56,15 +58,21 @@ export function GenerateDocumentProvider<T extends DOCUMENT_TYPE>({ children, la
     mode: 'onBlur',
   });
 
-  const onSubmit = form.handleSubmit(async (e) => {
+  const onSubmit = form.handleSubmit(async (formData) => {
     try {
       setIsLoading(true);
+      let res;
 
-      const res = await generateDocumentAction(selectedDocument, e, lang, user);
-      if (res.success) {
+      if (user) {
+        res = await generateDocumentAction(selectedDocument, formData, documentLang, user);
+      } else {
+        res = await generateDocumentPublicAction(selectedDocument, formData, documentLang);
+      }
+
+      if (res?.success) {
         const { html, url } = res.data;
         setgeneratedDocument(html);
-        setGeneratedPdfUrl(url);
+        setGeneratedPdfUrl(url ?? '');
 
         const nextStepIndex = selectedDocument ? FORM_STEPS[selectedDocument][lang].findIndex((s) => s.key === step.key) + 1 : 0;
 

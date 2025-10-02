@@ -3,7 +3,7 @@ import { UseFormReturn } from 'react-hook-form';
 import Button from '@/components/Button/Button';
 import SubmitButton from '@/components/DocumentFlowSteper/SubmmitButton';
 import DynamicFormFields from '@/components/DynamicFormFields/DynamicFormFields';
-import useDocumetFlow from '@/hooks/useDocumetFlow';
+import useGenerateDocumetFlow from '@/hooks/useDocumetsStepper';
 import { FieldSchema } from '@/types/formInput';
 
 export default function DynamicForm({
@@ -16,7 +16,7 @@ export default function DynamicForm({
   formSchema: FieldSchema[];
   setIsErrorExist: (value: boolean) => void;
 }) {
-  const { previousStep, handelBackStep } = useDocumetFlow(lang);
+  const { previousStep, handelBackStep } = useGenerateDocumetFlow(lang);
 
   return (
     <form className="relative mx-auto max-w-md rounded bg-white p-4 shadow">

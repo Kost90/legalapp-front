@@ -7,6 +7,8 @@ export type GenerateStep = {
   key: StepKey;
 };
 
+// TODO: Add new documents
+
 export const FORM_STEPS: Record<DOCUMENT_TYPE, Record<'ua' | 'en', GenerateStep[]>> = {
   [DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY]: {
     ua: [
