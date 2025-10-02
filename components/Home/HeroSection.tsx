@@ -26,7 +26,7 @@ export default function HeroSection({ dictionary, lang }: { dictionary: SiteCont
             </Heading>
           </div>
           <p className="text-text-grey-muted my-6 text-base leading-7 sm:text-lg sm:leading-8">{dictionary.hero.subtitle_line1}</p>
-          <LinkButton lang={lang} type="black">
+          <LinkButton lang={lang} type="black" href={`${lang}/generate`}>
             {dictionary.header.button_generate}
           </LinkButton>
         </motion.div>

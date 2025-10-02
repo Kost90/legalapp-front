@@ -8,14 +8,25 @@ interface DocumentSelectorProps {
   options: Record<string, string>[];
   value: DOCUMENT_TYPE | string;
   lang: string;
+  documentLang: 'ua' | 'en';
   onChange: (value: DOCUMENT_TYPE) => void;
   onNext: () => void;
   onBack: () => void;
+  handelChangeDocumentLang: (value: 'ua' | 'en') => void;
 }
 
-const DocumentSelector: FC<DocumentSelectorProps> = ({ options, value, lang, onChange, onNext, onBack }) => {
+const DocumentSelector: FC<DocumentSelectorProps> = ({
+  options,
+  value,
+  lang,
+  documentLang,
+  onChange,
+  onNext,
+  onBack,
+  handelChangeDocumentLang,
+}) => {
   return (
-    <div className="my-10 space-y-4 md:my-20">
+    <div className="my-10 space-y-6 md:my-20">
       <select
         value={value ?? ''}
         onChange={(e) => onChange(e.target.value as DOCUMENT_TYPE)}
@@ -36,7 +47,49 @@ const DocumentSelector: FC<DocumentSelectorProps> = ({ options, value, lang, onC
           );
         })}
       </select>
+      <div className="space-y-3 rounded-md border border-gray-200 p-4">
+        <h3 className="text-sm font-medium text-gray-900">{lang === 'ua' ? 'Оберіть мову документу' : 'Choose document language'}</h3>
 
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2">
+            <input
+              type="radio"
+              id="lang-ua"
+              name="document-language"
+              value="ua"
+              checked={documentLang === 'ua'}
+              onChange={() => handelChangeDocumentLang('ua')}
+              className="focus:ring-link-btn-text text-link-btn-text h-4 w-4 border-gray-300"
+            />
+
+            <label htmlFor="lang-ua" className="cursor-pointer text-sm font-medium text-gray-700">
+              UA
+            </label>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <input
+              type="radio"
+              id="lang-en"
+              name="document-language"
+              value="en"
+              checked={documentLang === 'en'}
+              onChange={() => handelChangeDocumentLang('en')}
+              className="focus:ring-link-btn-text text-link-btn-text h-4 w-4 border-gray-300"
+            />
+
+            <label htmlFor="lang-en" className="cursor-pointer text-sm font-medium text-gray-700">
+              EN
+            </label>
+          </div>
+        </div>
+
+        <p className="text-xs text-gray-500">
+          {lang === 'ua'
+            ? 'Якщо ви обрали EN, документ буде створено на двох мовах одразу, англійскій та українській.'
+            : 'If you choose EN, document will generate on two languages Ukrainian and English.'}
+        </p>
+      </div>
       <div className="flex justify-between">
         <button
           onClick={onBack}
@@ -44,7 +97,6 @@ const DocumentSelector: FC<DocumentSelectorProps> = ({ options, value, lang, onC
         >
           <ChevronLeft size={16} /> {lang === 'ua' ? 'Назад' : 'Back'}
         </button>
-
         <button
           onClick={onNext}
           disabled={!value}

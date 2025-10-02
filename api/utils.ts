@@ -207,5 +207,5 @@ export const buildUrl = (url: string, params: Record<string, string | number | (
   return `${url}${queryString ? `?${queryString}` : ''}`;
 };
 
-export const BASE_URL = process.env.NEXT_PUBLIC_API_DOMAIN || '/api';
-export const BASE_SERVER_URL = process.env.NEXT_SERVER_API_DOMAIN || 'http://localhost:3030';
+export const BASE_URL = process.env.NEXT_PUBLIC_API_DOMAIN || 'http://localhost:3030/api';
+export const BASE_SERVER_URL = process.env.NEXT_SERVER_API_DOMAIN || 'http://localhost:3030/api';

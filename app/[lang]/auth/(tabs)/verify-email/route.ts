@@ -24,7 +24,7 @@ export async function GET(request: Request) {
       throw new Error('Verification failed');
     }
 
-    return NextResponse.redirect(getAbsoluteUrl(request, '/auth/login'));
+    return NextResponse.redirect(getAbsoluteUrl(request, '/'));
   } catch (error) {
     console.error(error);
 

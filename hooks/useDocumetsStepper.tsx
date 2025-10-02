@@ -1,12 +1,13 @@
 import { useMemo, useState } from 'react';
 import { useFormState } from 'react-hook-form';
 
-import { useGenerateDocument, useGenerateDocumentForm } from '@/context/generateStepper/GenerateDocumentStepper';
+import { useGenerateDocument, useGenerateDocumentForm } from '@/context/generateDocument/GenerateDocumentProvider';
 import { formFieldsSchemas } from '@/lib/formsAtributes/formsFieldsForDocumentGeneration';
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 import { FieldSchema } from '@/types/formInput';
 
-function useDocumetFlow(lang: 'ua' | 'en') {
+// This hook have logic for changinc step of form, generating fields for for by choosing document, clear form errors
+function useGenerateDocumetStepper(lang: 'ua' | 'en') {
   const { step, setStep, selectedDocument, setCompletedStepIndex } = useGenerateDocument();
   const form = useGenerateDocumentForm<typeof selectedDocument>();
   const formState = useFormState({ control: form.control });
@@ -71,4 +72,4 @@ function useDocumetFlow(lang: 'ua' | 'en') {
   };
 }
 
-export default useDocumetFlow;
+export default useGenerateDocumetStepper;

@@ -17,7 +17,7 @@ type DocumentDetails = PersonDetails &
   };
 
 export type PowerOfAttorney = {
-  email: string;
+  email?: string;
   isPaid: boolean;
   documentType: string;
   documentLang: string;

@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import { useUser } from '@/context/user/UserProvider.client';
 import { cn } from '@/utils/cn';
 
+// TODO: Change for non sign in flow
 const tabs = [
   { labelEn: 'Generate documents', labelUa: 'Згенерувати документ', href: '/dashboard/generate' },
   { labelEn: 'Your documents', labelUa: 'Ваші документи', href: '/dashboard/documents' },

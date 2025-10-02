@@ -27,7 +27,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { lang } = await params;
   const t: SiteContent = await getDictionary(lang);
 
-  // TODO: Заменить как будет доменное имя
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const pageTitle = t.meta?.title || 'UDocument - Юридичні послуги';
   const pageDescription = t.meta?.description || 'Генерація юридичних документів та консультації.';
@@ -39,7 +38,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       default: pageTitle,
     },
     description: pageDescription,
-    keywords: t.meta?.keywords || ['юридичні документи', 'адвокат', 'консультація'],
+    keywords: t.meta?.keywords || [
+      'юридичні документи',
+      'адвокат',
+      'консультація',
+      'оформлення нерухомості',
+      'оформлення довернність',
+      'нотаріальні послуги',
+    ],
     authors: [{ name: 'UDocument', url: baseUrl }],
     robots: {
       index: true,

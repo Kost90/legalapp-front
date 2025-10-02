@@ -18,6 +18,14 @@ export const getPropertyPowerOfAttorneySchema = (lang: string) =>
       required_error: lang === 'ua' ? 'Будь ласка, виберіть дату' : 'Please select a date',
       invalid_type_error: lang === 'ua' ? 'Некоректна дата' : 'Invalid date',
     }),
+    passportIssueAuthority: z
+      .string()
+      .min(
+        6,
+        lang === 'ua'
+          ? 'Введіть назву органу, який видав паспор, мінільна кількість 6'
+          : 'Passport authority, that gave passport at least must be 6 characters',
+      ),
 
     representativeName: z.string().min(3, lang === 'ua' ? 'Введіть імʼя представника' : 'Representative name is required'),
     representativeBirthDate: z.date({
@@ -49,6 +57,7 @@ export const getPropertyPowerOfAttorneySchema = (lang: string) =>
       required_error: lang === 'ua' ? 'Будь ласка, виберіть дату' : 'Please select a date',
       invalid_type_error: lang === 'ua' ? 'Некоректна дата' : 'Invalid date',
     }),
+    userEmail: z.string().email(lang === 'ua' ? 'Невірний формат email' : 'Invalid email format'),
   });
 
 export type PropertyPowerOfAttorneyFormData = z.infer<ReturnType<typeof getPropertyPowerOfAttorneySchema>>;

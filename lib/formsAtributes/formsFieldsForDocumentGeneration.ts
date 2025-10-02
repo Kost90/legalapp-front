@@ -22,6 +22,7 @@ const commonFormFields: Record<string, any> = {
       { name: 'city', label: 'Місто', type: 'text', required: true },
       { name: 'date', label: 'Дата оформлення', type: 'date', required: true },
       { name: 'validUntil', label: 'Дійсна до', type: 'date', required: true },
+      { name: 'userEmail', label: 'Пошта для відправки згенерованного документа', type: 'email', required: true },
     ],
   },
 
@@ -33,7 +34,7 @@ const commonFormFields: Record<string, any> = {
       { name: 'address', label: 'Address', type: 'text', required: true },
       { name: 'passport', label: 'Passport', type: 'text', required: true },
       { name: 'passportIssueDate', label: 'Passport Issue Date', type: 'date', required: true },
-      { name: 'passportIssueAuthority', label: 'Whom give you tthis passport', type: 'text', required: true },
+      { name: 'passportIssueAuthority', label: 'Whom give you this passport', type: 'text', required: true },
     ],
     representative: [
       { name: 'representativeName', label: 'Representative Name', type: 'text', required: true },
@@ -45,27 +46,16 @@ const commonFormFields: Record<string, any> = {
       { name: 'city', label: 'City', type: 'text', required: true },
       { name: 'date', label: 'Date of Document', type: 'date', required: true },
       { name: 'validUntil', label: 'Valid Until', type: 'date', required: true },
+      { name: 'userEmail', label: 'Email for send generated document', type: 'email', required: true },
     ],
   },
 };
-
-// TODO: Remove it when updated documents template!
-const { person: uaPerson, ...restUaFields } = commonFormFields.ua;
-const filteredUaPerson = uaPerson.filter(
-  (field: { name: string; lable: string; type: string; required: boolean }) => field.name !== 'passportIssueAuthority',
-);
-
-const { person: enPerson, ...restEnFields } = commonFormFields.en;
-const filteredEnPerson = enPerson.filter(
-  (field: { name: string; lable: string; type: string; required: boolean }) => field.name !== 'passportIssueAuthority',
-);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const formFieldsSchemas: Record<string, Record<string, any>> = {
   [DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY]: {
     ua: {
-      person: filteredUaPerson,
-      ...restUaFields,
+      ...commonFormFields.ua,
       property: [
         { name: 'propertyAddress.city', label: 'Місто нерухомості', type: 'text', required: false },
         { name: 'propertyAddress.street', label: 'Вулиця', type: 'text', required: false },
@@ -75,8 +65,7 @@ export const formFieldsSchemas: Record<string, Record<string, any>> = {
       ],
     },
     en: {
-      person: filteredEnPerson,
-      ...restEnFields,
+      ...commonFormFields.en,
       property: [
         { name: 'propertyAddress.city', label: 'City of property', type: 'text', required: false },
         { name: 'propertyAddress.street', label: 'Street', type: 'text', required: false },
