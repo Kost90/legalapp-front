@@ -42,6 +42,7 @@ const ContactPromptSection = ({ dictionary, lang }: ContactPromptProps) => {
             {contactPrompt.title}
           </Heading>
           <p className="text-text-greyMuted mt-4 max-w-2xl text-lg leading-8">{contactPrompt.subtitle}</p>
+          <p className="text-text-greyMuted mt-4 max-w-2xl text-base leading-7">{contactPrompt.registration_benefit}</p>
 
           <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row sm:gap-6">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

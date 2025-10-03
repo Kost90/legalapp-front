@@ -22,4 +22,5 @@ export type PowerOfAttorney = {
   documentType: string;
   documentLang: string;
   details: DocumentDetails;
+  textLang: 'ua' | 'en';
 };

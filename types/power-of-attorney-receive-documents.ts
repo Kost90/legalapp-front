@@ -13,4 +13,5 @@ export type PowerOfAttorneyReceiveDocuments = {
   documentType: string;
   documentLang: string;
   details: DocumentDetails;
+  textLang: 'ua' | 'en';
 };

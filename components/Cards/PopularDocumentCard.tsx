@@ -17,7 +17,6 @@ interface PopularDocumentCardProps {
   title: string;
   description: string;
   tag: string;
-  delay: number;
 }
 
 const cardVariants = {
@@ -27,18 +26,13 @@ const cardVariants = {
   },
 };
 
-const PopularDocumentCard = ({ icon, title, description, tag, delay }: PopularDocumentCardProps) => {
+const PopularDocumentCard = ({ icon, title, description, tag }: PopularDocumentCardProps) => {
   const IconComponent = iconMap[icon] || FileText;
 
   return (
     <motion.div
       variants={cardVariants}
-      transition={{
-        duration: 0.5,
-        delay: delay * 0.15,
-        ease: 'easeOut',
-      }}
-      className="bg-background-mutedcard group hover:border-blue relative flex h-full min-h-52 w-full transform cursor-pointer flex-col rounded-lg border border-transparent p-6 shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg md:w-80"
+      className="bg-background-mutedcard group hover:border-blue relative flex h-full min-h-52 w-full transform cursor-pointer flex-col rounded-lg border border-transparent p-6 shadow-sm transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg md:w-80"
     >
       <div className="bg-yellow text-text-blue-dark absolute top-4 right-4 rounded-full px-3 py-1 text-xs font-bold transition-transform duration-300 group-hover:scale-105">
         {tag}

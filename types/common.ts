@@ -23,6 +23,6 @@ export type PersonDetails = {
 export type RepresentativeDetails = {
   representativeName: string;
   representativeBirthDate: string;
-  representativeTIN: string;
+  representativeTaxId: string;
   representativeAddress: string;
 };

@@ -139,6 +139,7 @@ interface IContactPromptData {
   signup_cta: string;
   phone_cta: string;
   email_cta: string;
+  registration_benefit: string;
 }
 
 interface IPrivacyPolicy {

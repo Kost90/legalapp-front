@@ -1,5 +1,5 @@
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
-import { DOCUMENT_SCHEMAS } from '@/schemas/documentsSchemas';
+import { DOCUMENT_SCHEMAS } from '@/schemas/generateDocuments/documentsSchemas';
 
 export type DocumentFormData<T extends DOCUMENT_TYPE> = (typeof DOCUMENT_SCHEMAS)[T]['type'];
 
