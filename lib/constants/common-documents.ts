@@ -2,6 +2,7 @@
 export enum DOCUMENT_TYPE {
   PAWER_OF_ATTORNEY_PROPERTY = 'power-of-attorney-property',
   powerOfAttorneyDocuments = 'power-of-attorney-documents',
+  powerAttorneyVehicle = 'power-of-attorney-vehicle',
 }
 
 export enum DOCUMENT_TYPE_FOR_LINK {
