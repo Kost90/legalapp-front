@@ -9,6 +9,9 @@
       },
       {
         "power-of-attorney-documents": "Power of Attorney for receiving documents"
+      },
+      {
+        "power-of-attorney-vehicle": "Power of attorney for the disposal of a vehicle"
       }
     ]
   },
