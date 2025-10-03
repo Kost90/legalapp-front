@@ -7,7 +7,7 @@ import DocumentSelector from '@/components/DocumentSelector/DocumentSelector';
 import PageTitle from '@/components/PageTitle/PageTitle';
 import { GenerateDocumentProvider } from '@/context/generateDocument/GenerateDocumentProvider';
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
-import { DOCUMENTS_SCHEMAS_KEYS } from '@/schemas/documentsSchemas';
+import { DOCUMENTS_SCHEMAS_KEYS } from '@/schemas/generateDocuments/documentsSchemas';
 import { IGenerateDocumentsContent } from '@/types/generate-documents-dictionaries';
 
 export default function GenerateDocumentLayoutClient(

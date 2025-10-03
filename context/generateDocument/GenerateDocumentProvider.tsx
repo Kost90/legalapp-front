@@ -11,7 +11,7 @@ import { useUserUnsafe } from '@/context/user/UserProvider.client';
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 import { FORM_STEPS, GenerateStep } from '@/lib/formsSteps/forms-steps';
 import { MODALS_MESSAGES_EN, MODALS_MESSAGES_UA } from '@/lib/modals-messages';
-import { DOCUMENT_SCHEMAS } from '@/schemas/documentsSchemas';
+import { DOCUMENT_SCHEMAS } from '@/schemas/generateDocuments/documentsSchemas';
 
 type GenerateDocumentContext = {
   step: GenerateStep;
@@ -47,7 +47,7 @@ export function GenerateDocumentProvider({ children, lang, selectedDocument, doc
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   type FormData = z.infer<SchemaType<DOCUMENT_TYPE>>;
-  const schema = DOCUMENT_SCHEMAS[selectedDocument].schema(documentLang) as z.ZodType<FormData>;
+  const schema = DOCUMENT_SCHEMAS[selectedDocument].schema(lang) as z.ZodType<FormData>;
 
   if (!schema) {
     throw new Error(`No schema found for document type: ${selectedDocument}`);
@@ -64,9 +64,9 @@ export function GenerateDocumentProvider({ children, lang, selectedDocument, doc
       let res;
 
       if (user) {
-        res = await generateDocumentAction(selectedDocument, formData, documentLang, user);
+        res = await generateDocumentAction(selectedDocument, formData, documentLang, user, lang);
       } else {
-        res = await generateDocumentPublicAction(selectedDocument, formData, documentLang);
+        res = await generateDocumentPublicAction(selectedDocument, formData, documentLang, lang);
       }
 
       if (res?.success) {

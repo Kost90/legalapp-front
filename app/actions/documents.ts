@@ -32,11 +32,12 @@ type FormData = z.infer<SchemaType<DOCUMENT_TYPE>>;
 export async function generateDocumentAction(
   selectedDocument: DOCUMENT_TYPE,
   formData: FormData,
-  lang: 'ua' | 'en',
+  documentLang: 'ua' | 'en',
   user: userInformationData,
+  textLang: 'ua' | 'en',
 ): Promise<ActionResult> {
   try {
-    const dataForSend = prepareDataByDocumentType(selectedDocument, formData, lang, user);
+    const dataForSend = prepareDataByDocumentType(selectedDocument, formData, documentLang, user, textLang);
 
     const { html, url } = await generatePowerOfAttorneyApi(user.id, dataForSend);
 
@@ -66,10 +67,12 @@ export async function generateDocumentAction(
 export async function generateDocumentPublicAction(
   selectedDocument: DOCUMENT_TYPE,
   formData: FormData,
-  lang: 'ua' | 'en',
+  documentLang: 'ua' | 'en',
+  textLang: 'ua' | 'en',
 ): Promise<ActionResult> {
   try {
-    const dataForSend = prepareDataByDocumentType(selectedDocument, formData, lang);
+    const user = null;
+    const dataForSend = prepareDataByDocumentType(selectedDocument, formData, documentLang, user, textLang);
 
     const { html, url } = await generatePowerOfAttorneyPublic(dataForSend);
 
