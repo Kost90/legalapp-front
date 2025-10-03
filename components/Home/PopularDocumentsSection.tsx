@@ -42,9 +42,9 @@ export default function PopularDocumentsSection({ dictionary, lang }: { dictiona
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        {documents.map((doc, index) => (
+        {documents.map((doc) => (
           <Link href={`/${lang}/documents-types/${doc.url}`} key={doc.title}>
-            <PopularDocumentCard icon={doc.icon} title={doc.title} description={doc.description} tag={doc.tag} delay={index} />
+            <PopularDocumentCard icon={doc.icon} title={doc.title} description={doc.description} tag={doc.tag} />
           </Link>
         ))}
       </motion.div>

@@ -1,6 +1,6 @@
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
-import { ReceiveDocumentsPowerOfAttorneyFormData } from '@/schemas/generateDocuments/powerOfAttorneyReceiveDocumentsSchema';
-import { PropertyPowerOfAttorneyFormData } from '@/schemas/generateDocuments/powerOfAttorneySchema';
+import { ReceiveDocumentsPowerOfAttorneyFormData } from '@/schemas/generateDocuments/notary/powerOfAttorneyReceiveDocumentsSchema';
+import { PropertyPowerOfAttorneyFormData } from '@/schemas/generateDocuments/notary/powerOfAttorneySchema';
 import { PowerOfAttorney } from '@/types/power-of-attorney';
 import { PowerOfAttorneyReceiveDocuments } from '@/types/power-of-attorney-receive-documents';
 import { userInformationData } from '@/types/user';
@@ -12,6 +12,7 @@ export function preparePropertyPowerOfAttorneyData(
   raw: PropertyPowerOfAttorneyFormData,
   lang: string,
   user: userInformationData | undefined | null,
+  textLang: 'ua' | 'en',
 ): PowerOfAttorney {
   const { propertyAddress, ...rest } = raw;
 
@@ -31,6 +32,7 @@ export function preparePropertyPowerOfAttorneyData(
       documentType: DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY,
       isPaid: true,
       details: formatted,
+      textLang: textLang,
     };
   }
 
@@ -40,6 +42,7 @@ export function preparePropertyPowerOfAttorneyData(
     documentType: DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY,
     isPaid: true,
     details: formatted,
+    textLang: textLang,
   };
 }
 
@@ -47,6 +50,7 @@ export function preparePowerOfAttorneyReceiveDocumentsData(
   raw: ReceiveDocumentsPowerOfAttorneyFormData,
   lang: string,
   user: userInformationData | undefined | null,
+  textLang: 'ua' | 'en',
 ): PowerOfAttorneyReceiveDocuments {
   const formatted = {
     ...raw,
@@ -63,6 +67,7 @@ export function preparePowerOfAttorneyReceiveDocumentsData(
       documentType: DOCUMENT_TYPE.powerOfAttorneyDocuments,
       isPaid: true,
       details: formatted,
+      textLang: textLang,
     };
   }
 
@@ -72,6 +77,7 @@ export function preparePowerOfAttorneyReceiveDocumentsData(
     documentType: DOCUMENT_TYPE.powerOfAttorneyDocuments,
     isPaid: true,
     details: formatted,
+    textLang: textLang,
   };
 }
 
@@ -80,13 +86,14 @@ export function prepareDataByDocumentType(
   data: any,
   lang: string,
   user: userInformationData | undefined | null = null,
+  textLang: 'ua' | 'en',
 ) {
   switch (documentType) {
     case DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY:
-      return preparePropertyPowerOfAttorneyData(data, lang, user);
+      return preparePropertyPowerOfAttorneyData(data, lang, user, textLang);
 
     case DOCUMENT_TYPE.powerOfAttorneyDocuments:
-      return preparePowerOfAttorneyReceiveDocumentsData(data, lang, user);
+      return preparePowerOfAttorneyReceiveDocumentsData(data, lang, user, textLang);
 
     default:
       throw new Error(`No prepare function found for document type: ${documentType}`);

@@ -15,7 +15,7 @@ const commonFormFields: Record<string, any> = {
     representative: [
       { name: 'representativeName', label: 'ПІБ представника', type: 'text', required: true },
       { name: 'representativeBirthDate', label: 'Дата народження представника', type: 'date', required: true },
-      { name: 'representativeTIN', label: 'ІПН представника', type: 'text', required: true },
+      { name: 'representativeTaxId', label: 'ІПН представника', type: 'text', required: true },
       { name: 'representativeAddress', label: 'Адреса представника', type: 'text', required: true },
     ],
     meta: [
@@ -30,7 +30,7 @@ const commonFormFields: Record<string, any> = {
     person: [
       { name: 'fullName', label: 'Full Name', type: 'text', required: true },
       { name: 'birthDate', label: 'Birth Date', type: 'date', required: true },
-      { name: 'tin', label: 'TIN', type: 'text', required: true },
+      { name: 'taxId', label: 'Tax identification number', type: 'text', required: true },
       { name: 'address', label: 'Address', type: 'text', required: true },
       { name: 'passport', label: 'Passport', type: 'text', required: true },
       { name: 'passportIssueDate', label: 'Passport Issue Date', type: 'date', required: true },
@@ -39,7 +39,7 @@ const commonFormFields: Record<string, any> = {
     representative: [
       { name: 'representativeName', label: 'Representative Name', type: 'text', required: true },
       { name: 'representativeBirthDate', label: 'Representative Birth Date', type: 'date', required: true },
-      { name: 'representativeTIN', label: 'Representative TIN', type: 'text', required: true },
+      { name: 'representativeTaxId', label: 'Representative TIN', type: 'text', required: true },
       { name: 'representativeAddress', label: 'Representative Address', type: 'text', required: true },
     ],
     meta: [

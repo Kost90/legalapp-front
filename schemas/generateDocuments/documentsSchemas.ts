@@ -2,8 +2,11 @@ import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 import {
   getReceiveDocumentsPowerOfAttorneySchema,
   ReceiveDocumentsPowerOfAttorneyFormData,
-} from '@/schemas/generateDocuments/powerOfAttorneyReceiveDocumentsSchema';
-import { getPropertyPowerOfAttorneySchema, PropertyPowerOfAttorneyFormData } from '@/schemas/generateDocuments/powerOfAttorneySchema';
+} from '@/schemas/generateDocuments/notary/powerOfAttorneyReceiveDocumentsSchema';
+import {
+  getPropertyPowerOfAttorneySchema,
+  PropertyPowerOfAttorneyFormData,
+} from '@/schemas/generateDocuments/notary/powerOfAttorneySchema';
 
 export const DOCUMENT_SCHEMAS = {
   [DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY]: {
