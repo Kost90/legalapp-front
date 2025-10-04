@@ -22,6 +22,6 @@ const getVehicleSchema = (lang: string) =>
   });
 
 export const getVehiclePowerOfAttorneySchema = (lang: string) =>
-  getBaseVehiclePowerOfAttorneySchema(lang).extend(getVehicleSchema(lang).shape);
+  getBaseVehiclePowerOfAttorneySchema(lang).extend({ car: getVehicleSchema(lang) });
 
 export type VehiclePowerOfAttorneyFormData = z.infer<ReturnType<typeof getVehiclePowerOfAttorneySchema>>;

@@ -72,7 +72,7 @@ export const getVehiclePoAMetaSchema = (lang: string) =>
   z.object({
     city: z.string().min(2, lang === 'ua' ? 'Введіть місто' : 'City is required'),
     date: z.date({ required_error: lang === 'ua' ? 'Будь ласка, виберіть дату' : 'Please select a date' }),
-    validUntil: z.date({ required_error: lang === 'ua' ? 'Будь ласка, виберіть дату' : 'Please select a date' }),
+    validUntil: z.string({ required_error: lang === 'ua' ? 'Будь ласка, виберіть дату' : 'Please select a date' }),
     userEmail: z.string().email(lang === 'ua' ? 'Невірний формат email' : 'Invalid email format'),
   });
 

@@ -64,6 +64,7 @@ export function GenerateDocumentProvider({ children, lang, selectedDocument, doc
       let res;
 
       if (user) {
+        // If user sign in
         res = await generateDocumentAction(selectedDocument, formData, documentLang, user, lang);
       } else {
         res = await generateDocumentPublicAction(selectedDocument, formData, documentLang, lang);
