@@ -1,13 +1,12 @@
 'use server';
 import { requestAdmin } from '@/api/request.admin';
 import { buildUrl } from '@/api/utils';
-import { PowerOfAttorney } from '@/types/power-of-attorney';
-import { PowerOfAttorneyReceiveDocuments } from '@/types/power-of-attorney-receive-documents';
+import { PowerOfAttorney, PowerOfAttorneyReceiveDocuments, PowerOfAttorneyVehicle } from '@/types/power-of-attorney';
 
-type GenerateDocumentBody = PowerOfAttorney | PowerOfAttorneyReceiveDocuments;
+type GenerateDocumentBody = PowerOfAttorney | PowerOfAttorneyReceiveDocuments | PowerOfAttorneyVehicle;
 
 export const generatePowerOfAttorneyPublic = async (body: GenerateDocumentBody): Promise<{ html: string; url: string }> => {
-  const urlPath = buildUrl(`user/generate-document`, {});
+  const urlPath = buildUrl(`documents/generate-public-document`, {});
 
   const { html, url } = await requestAdmin<{ html: string; url: string }, GenerateDocumentBody>(urlPath, {
     method: 'POST',
