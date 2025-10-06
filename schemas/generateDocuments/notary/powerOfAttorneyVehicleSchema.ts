@@ -16,8 +16,8 @@ const getVehicleSchema = (lang: string) =>
     vehicleType: z.string().min(5, lang === 'ua' ? 'Введіть тип ТЗ' : 'Vehicle type is required'),
     vehicleRegistrationCertificate: z
       .string()
-      .min(6, lang === 'ua' ? 'Введіть номер свідоцтва' : 'Registration certificate number is required'),
-    vehicleRegistrationAuthority: z.string().min(5, lang === 'ua' ? 'Введіть, ким видано свідоцтво' : 'Issuing authority is required'),
+      .min(5, lang === 'ua' ? 'Введіть номер свідоцтва' : 'Registration certificate number is required'),
+    vehicleRegistrationAuthority: z.string().min(3, lang === 'ua' ? 'Введіть, ким видано свідоцтво' : 'Issuing authority is required'),
     vehicleRegistrationDate: z.date({ required_error: lang === 'ua' ? 'Вкажіть дату реєстрації' : 'Please select registration date' }),
   });
 
