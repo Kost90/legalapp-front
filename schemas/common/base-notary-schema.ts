@@ -46,7 +46,7 @@ export const getCommonDocumentSchema = (lang: string) =>
       required_error: lang === 'ua' ? 'Будь ласка, виберіть дату' : 'Please select a date',
       invalid_type_error: lang === 'ua' ? 'Некоректна дата' : 'Invalid date',
     }),
-    validUntil: z.date({
+    validUntil: z.string({
       required_error: lang === 'ua' ? 'Будь ласка, виберіть дату' : 'Please select a date',
       invalid_type_error: lang === 'ua' ? 'Некоректна дата' : 'Invalid date',
     }),

@@ -1,6 +1,6 @@
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 
-export type StepKey = 'person' | 'representative' | 'property' | 'meta' | 'result';
+export type StepKey = 'person' | 'representative' | 'property' | 'vehicle' | 'meta' | 'result';
 
 export type GenerateStep = {
   label: string;
@@ -36,6 +36,22 @@ export const FORM_STEPS: Record<DOCUMENT_TYPE, Record<'ua' | 'en', GenerateStep[
     en: [
       { label: "Grantor's Information", key: 'person' },
       { label: "Representative's Information", key: 'representative' },
+      { label: 'Place and Validity Period', key: 'meta' },
+      { label: 'Document Successfully Generated', key: 'result' },
+    ],
+  },
+  [DOCUMENT_TYPE.powerAttorneyVehicle]: {
+    ua: [
+      { label: 'Дані особи, яка надає довіреність', key: 'person' },
+      { label: 'Дані представника (на кого довіреність)', key: 'representative' },
+      { label: 'Дані транспортного засобу', key: 'vehicle' },
+      { label: 'Місце та строк дії довіреності', key: 'meta' },
+      { label: 'Документ успішно згенеровано', key: 'result' },
+    ],
+    en: [
+      { label: "Grantor's Information", key: 'person' },
+      { label: "Representative's Information", key: 'representative' },
+      { label: 'Vehicle Information', key: 'vehicle' },
       { label: 'Place and Validity Period', key: 'meta' },
       { label: 'Document Successfully Generated', key: 'result' },
     ],

@@ -9,7 +9,7 @@ import { removeUserDocument } from '@/api/documents/removeUserDocument';
 import { SchemaType } from '@/context/generateDocument/GenerateDocumentProvider';
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 import { userInformationData } from '@/types/user';
-import { prepareDataByDocumentType } from '@/utils/prepareFormData';
+import { prepareDataByDocumentType } from '@/utils/prepareDataByDocType';
 
 export type ActionResult =
   | {
@@ -38,7 +38,6 @@ export async function generateDocumentAction(
 ): Promise<ActionResult> {
   try {
     const dataForSend = prepareDataByDocumentType(selectedDocument, formData, documentLang, user, textLang);
-
     const { html, url } = await generatePowerOfAttorneyApi(user.id, dataForSend);
 
     return {

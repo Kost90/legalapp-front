@@ -5,24 +5,24 @@ export type Pagination = {
 };
 
 export type SuccessResponse = {
-  data: string;
+  data: Date;
   message: string;
   statusCode: number;
 };
 
 export type PersonDetails = {
   fullName: string;
-  birthDate: string;
+  birthDate: Date;
   taxId: string;
   address: string;
   passport: string;
-  passportIssueDate: string;
+  passportIssueDate: Date;
   passportIssueAuthority: string;
 };
 
 export type RepresentativeDetails = {
   representativeName: string;
-  representativeBirthDate: string;
+  representativeBirthDate: Date;
   representativeTaxId: string;
   representativeAddress: string;
 };
