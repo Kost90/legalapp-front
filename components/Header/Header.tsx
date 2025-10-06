@@ -2,11 +2,12 @@
 
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { LogIn } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef, RefObject } from 'react';
 
 import LanguageSwitcher from '@/components/LanguagesSwitcher/LanguagesSwitcher';
+import LinkButton from '@/components/LinkButton/LinkButton';
 import { useAuth } from '@/context/AuthProvider';
 import { useDevice } from '@/context/DeviceProvider';
 import { useHeaderTheme } from '@/hooks/useHeaderTheme';
@@ -103,7 +104,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
           {/* Mobile Menu Button */}
           {isClient && !isDesktop && (
             <div className="lg:hidden">
-              <button
+              {/* <button
                 onClick={toggleMobileMenu}
                 className="text-text-main-black inline-flex items-center justify-center rounded-md p-2 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-none focus:ring-inset"
                 aria-controls="mobile-menu"
@@ -115,12 +116,21 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
                 ) : (
                   <Menu className="block h-6 w-6" aria-hidden="true" />
                 )}
-              </button>
+              </button> */}
+              <nav className="mx-auto flex items-center justify-center gap-2 space-y-1 px-2 pt-2 pb-3 sm:px-3">
+                {lang.header.login && !isAuthenticated && (
+                  <LinkButton href={`/${params}/auth/login`} lang={params} size="small" type="black" className="mt-0! min-w-16!">
+                    <LogIn className="block h-6 w-6" aria-hidden="true" />
+                  </LinkButton>
+                )}
+                <LanguageSwitcher currentLang={params} specialKey={'mob'} />
+              </nav>
             </div>
           )}
         </div>
       </div>
 
+      {/* TODO: This part for mobile menu */}
       <AnimatePresence>
         {!isDesktop && isClient && isMobileMenuOpen && (
           <motion.div
@@ -144,6 +154,9 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
                   variant={HEADER_NAV_VARIANTS.BUTTON}
                   onClick={toggleMobileMenu}
                 />
+                // <LinkButton href={`/${params}/auth/login`} lang={params}>
+                //   <LogIn className="block h-6 w-6" aria-hidden="true" />
+                // </LinkButton>
               )}
               <LanguageSwitcher currentLang={params} specialKey={'mob'} />
             </nav>
