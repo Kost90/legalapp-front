@@ -5,12 +5,14 @@ import {
   preparePropertyPowerOfAttorneyData,
   preparePowerOfAttorneyReceiveDocumentsData,
   preparePowerOfAttorneyVehicleData,
+  prepareConsentForMinorToTravelAboardData,
 } from './prepareNotaryDocumentsData';
 
 const prepareHandlers = {
   [DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY]: preparePropertyPowerOfAttorneyData,
   [DOCUMENT_TYPE.powerOfAttorneyDocuments]: preparePowerOfAttorneyReceiveDocumentsData,
   [DOCUMENT_TYPE.powerAttorneyVehicle]: preparePowerOfAttorneyVehicleData,
+  [DOCUMENT_TYPE.consentForMinorToTravelAboard]: prepareConsentForMinorToTravelAboardData,
 } as const;
 
 export function prepareDataByDocumentType(

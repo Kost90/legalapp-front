@@ -1,4 +1,4 @@
-export enum COMMON_FILED_NOTARY {
+export enum DATES_FILED_NOTARY {
   birthDate = 'birthDate',
   passportIssueDate = 'passportIssueDate',
   representativeBirthDate = 'representativeBirthDate',
@@ -7,4 +7,12 @@ export enum COMMON_FILED_NOTARY {
   representativePassportIssueDate = 'representativePassportIssueDate',
   internationalPassportIssueDate = 'internationalPassportIssueDate',
   vehicleRegistrationDate = 'vehicleRegistrationDate',
+  parentOneBirthDate = 'parentOneBirthDate',
+  passportOneIssueDate = 'passportOneIssueDate',
+  parentTwoBirthDate = 'parentTwoBirthDate',
+  passportTwoIssueDate = 'passportTwoIssueDate',
+  chaperoneBirthDate = 'chaperoneBirthDate',
+  minorBirthDate = 'minorBirthDate',
+  travelStartDate = 'travelStartDate',
+  travelEndDate = 'travelEndDate',
 }

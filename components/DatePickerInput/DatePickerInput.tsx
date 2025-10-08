@@ -44,7 +44,7 @@ export default function DatePickerInput({ name, label, lang, placeholder = 'ДД
             onBlur={field.onBlur}
             locale={lang === 'ua' ? 'uk' : 'en-US'}
             dateFormat="dd.MM.yyyy"
-            placeholderText={placeholder}
+            placeholderText={lang === 'ua' ? placeholder : 'dd.mm.yyyy'}
             autoComplete="off"
             showYearDropdown
             showMonthDropdown

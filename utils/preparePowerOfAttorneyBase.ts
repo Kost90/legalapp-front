@@ -1,4 +1,5 @@
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
+import { ConsentForMinorToTravelAboard, ConsentForMinorToTravelAboardDetails } from '@/types/consent-for-minor-to-travel-aboard';
 import {
   DocumentDetailsCar,
   DocumentDetailsProperty,
@@ -16,12 +17,14 @@ type PreparedMap = {
   [DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY]: PowerOfAttorney;
   [DOCUMENT_TYPE.powerOfAttorneyDocuments]: PowerOfAttorneyReceiveDocuments;
   [DOCUMENT_TYPE.powerAttorneyVehicle]: PowerOfAttorneyVehicle;
+  [DOCUMENT_TYPE.consentForMinorToTravelAboard]: ConsentForMinorToTravelAboard;
 };
 
 type RawDetailsMap = {
   [DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY]: DocumentDetailsProperty;
   [DOCUMENT_TYPE.powerOfAttorneyDocuments]: DocumentDetailsReceiveDocuments;
   [DOCUMENT_TYPE.powerAttorneyVehicle]: DocumentDetailsCar;
+  [DOCUMENT_TYPE.consentForMinorToTravelAboard]: ConsentForMinorToTravelAboardDetails;
 };
 
 type PrepareOptions = {
