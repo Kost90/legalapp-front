@@ -1,4 +1,5 @@
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
+import { getParentFields, getMinorFields, getChaperoneFields, getTravelDateFields, getMetaFields } from '@/utils/getCommonFormFields';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const commonFormFields: Record<string, any> = {
@@ -191,6 +192,22 @@ export const formFieldsSchemas: Record<string, Record<string, any>> = {
         { name: 'validUntil', label: 'Valid period', type: 'radio', required: true },
         { name: 'userEmail', label: 'Your Email to Receive the Document', type: 'email', required: true },
       ],
+    },
+  },
+  [DOCUMENT_TYPE.consentForMinorToTravelAboard]: {
+    ua: {
+      person: [...getParentFields('ua')],
+      representative: [...getChaperoneFields('ua', 'chaperone')],
+      minor: [...getMinorFields('ua'), ...getTravelDateFields('ua')],
+      // parentTwo: getParentFields('ua', 'parentTwo', true),
+      meta: [...getMetaFields('ua')],
+    },
+    en: {
+      person: [...getParentFields('en')],
+      representative: [...getChaperoneFields('ua', 'chaperone')],
+      minor: [...getMinorFields('en'), ...getTravelDateFields('en')],
+      // parentTwo: getParentFields('ua', 'parentTwo', true),
+      meta: [...getMetaFields('en')],
     },
   },
 };

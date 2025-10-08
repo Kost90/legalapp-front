@@ -1,13 +1,11 @@
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 
-export type StepKey = 'person' | 'representative' | 'property' | 'vehicle' | 'meta' | 'result';
+export type StepKey = 'person' | 'representative' | 'property' | 'vehicle' | 'meta' | 'result' | 'minor';
 
 export type GenerateStep = {
   label: string;
   key: StepKey;
 };
-
-// TODO: Add new documents
 
 export const FORM_STEPS: Record<DOCUMENT_TYPE, Record<'ua' | 'en', GenerateStep[]>> = {
   [DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY]: {
@@ -52,6 +50,22 @@ export const FORM_STEPS: Record<DOCUMENT_TYPE, Record<'ua' | 'en', GenerateStep[
       { label: "Grantor's Information", key: 'person' },
       { label: "Representative's Information", key: 'representative' },
       { label: 'Vehicle Information', key: 'vehicle' },
+      { label: 'Place and Validity Period', key: 'meta' },
+      { label: 'Document Successfully Generated', key: 'result' },
+    ],
+  },
+  [DOCUMENT_TYPE.consentForMinorToTravelAboard]: {
+    ua: [
+      { label: 'Дані особи, яка надає заяву', key: 'person' },
+      { label: 'Дані представника (на кого надається дозвіл)', key: 'representative' },
+      { label: 'Дані неповнолітньої особи', key: 'minor' },
+      { label: 'Місце та дата складання заяви', key: 'meta' },
+      { label: 'Документ успішно згенеровано', key: 'result' },
+    ],
+    en: [
+      { label: "Grantor's Information", key: 'person' },
+      { label: "Representative's Information", key: 'representative' },
+      { label: 'Information of minor', key: 'minor' },
       { label: 'Place and Validity Period', key: 'meta' },
       { label: 'Document Successfully Generated', key: 'result' },
     ],
