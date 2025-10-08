@@ -8,6 +8,7 @@ import {
   PropertyPowerOfAttorneyFormData,
 } from '@/schemas/generateDocuments/notary/powerOfAttorneySchema';
 
+import { getConsentForMinorToTravelAboardSchema, ConsentForMinorFormData } from './notary/consentForMinorToTravelAboardSchema';
 import { getVehiclePowerOfAttorneySchema, VehiclePowerOfAttorneyFormData } from './notary/powerOfAttorneyVehicleSchema';
 
 export const DOCUMENT_SCHEMAS = {
@@ -23,10 +24,15 @@ export const DOCUMENT_SCHEMAS = {
     schema: getVehiclePowerOfAttorneySchema,
     type: {} as VehiclePowerOfAttorneyFormData,
   },
+  [DOCUMENT_TYPE.consentForMinorToTravelAboard]: {
+    schema: getConsentForMinorToTravelAboardSchema,
+    type: {} as ConsentForMinorFormData,
+  },
 };
 
 export const DOCUMENTS_SCHEMAS_KEYS = [
   DOCUMENT_TYPE.PAWER_OF_ATTORNEY_PROPERTY,
   DOCUMENT_TYPE.powerOfAttorneyDocuments,
   DOCUMENT_TYPE.powerAttorneyVehicle,
+  DOCUMENT_TYPE.consentForMinorToTravelAboard,
 ] as const;

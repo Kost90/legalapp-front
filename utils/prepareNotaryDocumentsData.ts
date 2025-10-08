@@ -1,7 +1,9 @@
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
+import { ConsentForMinorFormData } from '@/schemas/generateDocuments/notary/consentForMinorToTravelAboardSchema';
 import { ReceiveDocumentsPowerOfAttorneyFormData } from '@/schemas/generateDocuments/notary/powerOfAttorneyReceiveDocumentsSchema';
 import { PropertyPowerOfAttorneyFormData } from '@/schemas/generateDocuments/notary/powerOfAttorneySchema';
 import { VehiclePowerOfAttorneyFormData } from '@/schemas/generateDocuments/notary/powerOfAttorneyVehicleSchema';
+import { ConsentForMinorToTravelAboard } from '@/types/consent-for-minor-to-travel-aboard';
 import { PowerOfAttorney, PowerOfAttorneyReceiveDocuments, PowerOfAttorneyVehicle } from '@/types/power-of-attorney';
 import { userInformationData } from '@/types/user';
 
@@ -54,4 +56,23 @@ export function preparePowerOfAttorneyVehicleData(
     user,
     textLang,
   }) as PowerOfAttorneyVehicle;
+}
+
+export function prepareConsentForMinorToTravelAboardData(
+  raw: ConsentForMinorFormData,
+  lang: string,
+  user: userInformationData | null,
+  textLang: 'ua' | 'en',
+): ConsentForMinorToTravelAboard {
+  const finalData = {
+    ...raw,
+    statementChildAbroad: true,
+  };
+
+  return preparePowerOfAttorneyBase(finalData, {
+    documentType: DOCUMENT_TYPE.consentForMinorToTravelAboard,
+    lang,
+    user,
+    textLang,
+  }) as ConsentForMinorToTravelAboard;
 }

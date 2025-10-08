@@ -30,6 +30,7 @@ function PeriodValidRadioSelector({ label, name, required, lang }: { label: stri
   };
 
   const errorObject = getNestedError(errors, name);
+
   const error = errorObject?.message as string | undefined;
 
   return (
