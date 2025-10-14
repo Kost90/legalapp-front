@@ -22,7 +22,6 @@ export const zodToFieldSchema = (schema: ZodObject<any>, lang: Lang): FieldSchem
   });
 };
 
-// Вытаскивает внутренний тип, если обёрнут в .refine или .optional
 const unwrapEffects = (zod: ZodTypeAny): ZodTypeAny => {
   if (zod instanceof ZodEffects) return unwrapEffects(zod.innerType());
   return zod;
@@ -30,7 +29,6 @@ const unwrapEffects = (zod: ZodTypeAny): ZodTypeAny => {
 
 const isOptional = (zod: ZodTypeAny): boolean => zod instanceof ZodOptional;
 
-// Определяет тип поля
 const resolveType = (zod: ZodTypeAny): FieldSchema['type'] => {
   if (zod instanceof ZodString) return 'text';
   if (zod instanceof ZodNumber) return 'number';
@@ -38,7 +36,6 @@ const resolveType = (zod: ZodTypeAny): FieldSchema['type'] => {
   return 'text';
 };
 
-// Можно использовать i18n или словарь
 const getLabel = (fieldName: string, lang: Lang): string => {
   const labels: Record<string, Record<string, string>> = {
     fullName: {
@@ -51,7 +48,6 @@ const getLabel = (fieldName: string, lang: Lang): string => {
       ru: 'Электронная почта',
       en: 'Email',
     },
-    // добавляй поля по мере необходимости
   };
 
   return labels[fieldName]?.[lang] ?? fieldName;

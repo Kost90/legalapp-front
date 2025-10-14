@@ -70,4 +70,20 @@ export const FORM_STEPS: Record<DOCUMENT_TYPE, Record<'ua' | 'en', GenerateStep[
       { label: 'Document Successfully Generated', key: 'result' },
     ],
   },
+  [DOCUMENT_TYPE.consentToSellProperty]: {
+    ua: [
+      { label: 'Дані особи, яка надає заяву/згоду', key: 'person' },
+      { label: 'Дані представника (на кого надається дозвіл) та дані про шлюб', key: 'representative' },
+      { label: 'Дані нерухомості на яку надається згода', key: 'property' },
+      { label: 'Дата складання заяви', key: 'meta' },
+      { label: 'Документ успішно згенеровано', key: 'result' },
+    ],
+    en: [
+      { label: "Applicant's / Grantor's Information", key: 'person' },
+      { label: "Representative's Information and Marriage Details", key: 'representative' },
+      { label: 'Property Information for Which Consent Is Granted', key: 'property' },
+      { label: 'Date of Application', key: 'meta' },
+      { label: 'Document Successfully Generated', key: 'result' },
+    ],
+  },
 };

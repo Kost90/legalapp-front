@@ -1,5 +1,7 @@
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
+import { ConsentForSellPropertyFormData } from '@/schemas/generateDocuments/notary/consentForSellPropertySchema';
 import { ConsentForMinorToTravelAboard, ConsentForMinorToTravelAboardDetails } from '@/types/consent-for-minor-to-travel-aboard';
+import { CreateConsentForSellPropertyPayload } from '@/types/consent-for-sell-property';
 import {
   DocumentDetailsCar,
   DocumentDetailsProperty,
@@ -18,6 +20,7 @@ type PreparedMap = {
   [DOCUMENT_TYPE.powerOfAttorneyDocuments]: PowerOfAttorneyReceiveDocuments;
   [DOCUMENT_TYPE.powerAttorneyVehicle]: PowerOfAttorneyVehicle;
   [DOCUMENT_TYPE.consentForMinorToTravelAboard]: ConsentForMinorToTravelAboard;
+  [DOCUMENT_TYPE.consentToSellProperty]: CreateConsentForSellPropertyPayload;
 };
 
 type RawDetailsMap = {
@@ -25,6 +28,7 @@ type RawDetailsMap = {
   [DOCUMENT_TYPE.powerOfAttorneyDocuments]: DocumentDetailsReceiveDocuments;
   [DOCUMENT_TYPE.powerAttorneyVehicle]: DocumentDetailsCar;
   [DOCUMENT_TYPE.consentForMinorToTravelAboard]: ConsentForMinorToTravelAboardDetails;
+  [DOCUMENT_TYPE.consentToSellProperty]: ConsentForSellPropertyFormData;
 };
 
 type PrepareOptions = {

@@ -15,4 +15,6 @@ export enum DATES_FILED_NOTARY {
   minorBirthDate = 'minorBirthDate',
   travelStartDate = 'travelStartDate',
   travelEndDate = 'travelEndDate',
+  passportExpiryDate = 'passportExpiryDate',
+  marriageCertDate = 'marriageCertDate',
 }
