@@ -24,7 +24,7 @@
   "hero": {
     "title": "UDocument: Online Legal Document Builder",
     "titleBluePArt": "#1 in Ukraine",
-    "subtitle_line1": "Create contracts, powers of attorney, claims, and applications in 5 minutes. Fast, reliable, and error-free."
+    "subtitle_line1": "Create contracts, powers of attorney, claims, and applications in 5 minutes on english and ukrainian languages. Fast, reliable, and error-free."
   },
   "popularDocuments": {
     "title": "Most Popular Documents",
@@ -122,7 +122,7 @@
         }
       ],
       "priceDetailsTitle": "Price and time",
-      "price": "249",
+      "price": "349",
       "priceCurrency": "UAH",
       "avgTime": "Average completion time: ~5 minutes",
       "ctaButtonText": "Create power of attorney for car",
@@ -272,7 +272,7 @@
         }
       ],
       "priceDetailsTitle": "Price and time",
-      "price": "249",
+      "price": "349",
       "priceCurrency": "UAH",
       "avgTime": "Average completion time: ~6 minutes",
       "ctaButtonText": "Create power of attorney",
@@ -302,7 +302,7 @@
         }
       ],
       "priceDetailsTitle": "Price and time",
-      "price": "249",
+      "price": "349",
       "priceCurrency": "UAH",
       "avgTime": "Average completion time: ~5 minutes",
       "ctaButtonText": "Create consent statement",
@@ -332,7 +332,7 @@
         }
       ],
       "priceDetailsTitle": "Price and time",
-      "price": "249",
+      "price": "349",
       "priceCurrency": "UAH",
       "avgTime": "Average completion time: ~6 minutes",
       "ctaButtonText": "Create travel consent",

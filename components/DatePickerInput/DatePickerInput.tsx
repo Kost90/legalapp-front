@@ -8,6 +8,7 @@ import FormGroup from '@/components/FormGroup/FormGroup';
 import { cn } from '@/utils/cn';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import styles from './index.module.css';
 
 registerLocale('uk', uk);
 
@@ -49,6 +50,7 @@ export default function DatePickerInput({ name, label, lang, placeholder = 'ДД
             showYearDropdown
             showMonthDropdown
             dropdownMode="select"
+            popperClassName={styles.popperIndex}
             className={cn(
               'border-btn-border-color focus:ring-link-btn-text focus:border-link-btn-text mt-1 block w-full rounded-md border bg-white px-3 py-2 focus:outline-none sm:text-sm',
               { 'border-red-500': error },
