@@ -4,6 +4,7 @@ export enum DOCUMENT_TYPE {
   powerOfAttorneyDocuments = 'power-of-attorney-documents',
   powerAttorneyVehicle = 'power-of-attorney-vehicle',
   consentForMinorToTravelAboard = 'consent-for-minor-to-travel-abroad',
+  consentToSellProperty = 'consent-to-the-sale-of-real-estate',
 }
 
 export enum DOCUMENT_TYPE_FOR_LINK {
