@@ -9,6 +9,7 @@ import {
 } from '@/schemas/generateDocuments/notary/powerOfAttorneySchema';
 
 import { getConsentForMinorToTravelAboardSchema, ConsentForMinorFormData } from './notary/consentForMinorToTravelAboardSchema';
+import { ConsentForSellPropertyFormData, getConsentForSellPropertySchema } from './notary/consentForSellPropertySchema';
 import { getVehiclePowerOfAttorneySchema, VehiclePowerOfAttorneyFormData } from './notary/powerOfAttorneyVehicleSchema';
 
 export const DOCUMENT_SCHEMAS = {
@@ -28,6 +29,10 @@ export const DOCUMENT_SCHEMAS = {
     schema: getConsentForMinorToTravelAboardSchema,
     type: {} as ConsentForMinorFormData,
   },
+  [DOCUMENT_TYPE.consentToSellProperty]: {
+    schema: getConsentForSellPropertySchema,
+    type: {} as ConsentForSellPropertyFormData,
+  },
 };
 
 export const DOCUMENTS_SCHEMAS_KEYS = [
@@ -35,4 +40,5 @@ export const DOCUMENTS_SCHEMAS_KEYS = [
   DOCUMENT_TYPE.powerOfAttorneyDocuments,
   DOCUMENT_TYPE.powerAttorneyVehicle,
   DOCUMENT_TYPE.consentForMinorToTravelAboard,
+  DOCUMENT_TYPE.consentToSellProperty,
 ] as const;
