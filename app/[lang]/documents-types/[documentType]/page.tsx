@@ -39,7 +39,7 @@ export default async function DocumentPage({ params }: PageProps) {
   if (!dictionary.documentPages[documentType as DOCUMENT_TYPE_FOR_LINK]) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center">
-        <h1 className="text-2xl">404 - Документ не знайдено</h1>
+        <h1 className="text-2xl">Документ не знайдено</h1>
       </div>
     );
   }
@@ -98,8 +98,9 @@ export default async function DocumentPage({ params }: PageProps) {
               <Heading level="h3">{content.priceDetailsTitle}</Heading>
 
               <div className="my-4 text-center">
-                <span className="text-blue text-5xl font-bold">{content.price}</span>
+                <span className="text-blue text-5xl font-bold line-through">{content.price}</span>
                 <span className="text-blue ml-1 text-xl font-semibold">{content.priceCurrency}</span>
+                <p className="text-text-greyMuted mt-4 text-lg font-semibold">{lang === 'ua' ? 'Безкоштовно' : 'Free'}</p>
               </div>
 
               <div className="text-text-greyMuted mb-6 flex items-center justify-center">
