@@ -80,7 +80,7 @@ export default function Header({ lang, params }: { lang: SiteContent; params: st
       >
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <Logo />
+            <Logo lang={params} />
           </div>
 
           {/* Desktop Navigation */}
