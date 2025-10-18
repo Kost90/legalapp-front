@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import DynamicForm from '@/components/DynamicForm/DynamicForm';
 import DocumentGenerationLoader from '@/components/GenerateDocumentLoader/DocumentGenerationLoader';
@@ -14,6 +14,7 @@ export default function DocumentGenerationPage({ lang, dictionary }: { lang: 'ua
   const { step, generatedPdfUrl, completedStepIndex, selectedDocument, isLoading, generatedDocument } = useGenerateDocument();
   const { formFieldsSchema, shouldShowFormAndStepper, setIsErrorExist, isErrorExist, handleStepClick } = useGenerateDocumetStepper(lang);
   const [fileUrl, setFileUrl] = useState<string>('');
+  const stepperRef = useRef<HTMLDivElement>(null);
 
   let content = null;
   if (isLoading && !generatedPdfUrl) {
@@ -38,6 +39,13 @@ export default function DocumentGenerationPage({ lang, dictionary }: { lang: 'ua
     };
   }, [generatedDocument]);
 
+  const handleScrollToStepper = useCallback(() => {
+    stepperRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }, []);
+
   if (step.key === 'result' && !isLoading && fileUrl && generatedPdfUrl) {
     content = (
       <div className="space-y-4 text-center">
@@ -60,7 +68,7 @@ export default function DocumentGenerationPage({ lang, dictionary }: { lang: 'ua
       {shouldShowFormAndStepper && (
         <>
           <div className="before:overlay before:border-border-faint z-[2] before:pointer-events-none before:border-b">
-            <div className="top-0 z-10">
+            <div ref={stepperRef} className="top-0 z-10">
               <Stepper
                 isErrorExist={isErrorExist}
                 activeStep={step.key}
@@ -76,7 +84,7 @@ export default function DocumentGenerationPage({ lang, dictionary }: { lang: 'ua
             </div>
           </div>
           {formFieldsSchema && !isLoading ? (
-            <DynamicForm formSchema={formFieldsSchema} lang={lang} setIsErrorExist={setIsErrorExist} />
+            <DynamicForm formSchema={formFieldsSchema} lang={lang} setIsErrorExist={setIsErrorExist} onStepChange={handleScrollToStepper} />
           ) : null}
         </>
       )}

@@ -10,9 +10,10 @@ export type ISubmitButtomProps = {
   lang: 'ua' | 'en';
   fieldsToValidate: FieldSchema[];
   setIsErrorExist: (value: boolean) => void;
+  onStepChange: () => void;
 };
 
-export default function SubmitButton({ lang, fieldsToValidate, setIsErrorExist }: ISubmitButtomProps) {
+export default function SubmitButton({ lang, fieldsToValidate, setIsErrorExist, onStepChange }: ISubmitButtomProps) {
   const { setStep, step, onSubmit, setCompletedStepIndex, selectedDocument } = useGenerateDocument();
   const form = useGenerateDocumentForm<typeof selectedDocument>();
   const formState = useFormState({ control: form.control });
@@ -43,6 +44,7 @@ export default function SubmitButton({ lang, fieldsToValidate, setIsErrorExist }
           if (step.key === 'meta') {
             await onSubmit();
           } else {
+            onStepChange();
             await handelNextStep();
           }
         }}

@@ -15,6 +15,6 @@ export enum DOCUMENT_TYPE_FOR_LINK {
   llcRegistration = 'llc-registration',
   debtCollectionLawsuit = 'debt-collection-lawsuit',
   petitionForDiverc = 'petition-for-divorce',
-  spousalConsentForPropertyySale = 'spousal-consent-for-property-sale',
+  spousalConsentForPropertyySale = 'consent-to-the-sale-of-real-estate',
   consentForMinorToTravelAboard = 'consent-for-minor-to-travel-abroad',
 }

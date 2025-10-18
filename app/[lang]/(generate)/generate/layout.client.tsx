@@ -1,17 +1,25 @@
 'use client';
 
+import { AnimatePresence } from 'framer-motion';
 import { ReactNode, useCallback, useState } from 'react';
 
 import CardCategory from '@/components/CardCategory/CardCategory';
+import DocumentExplanation from '@/components/DocumentExplanation/DocumentExplanation';
 import DocumentSelector from '@/components/DocumentSelector/DocumentSelector';
 import PageTitle from '@/components/PageTitle/PageTitle';
 import { GenerateDocumentProvider } from '@/context/generateDocument/GenerateDocumentProvider';
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 import { DOCUMENTS_SCHEMAS_KEYS } from '@/schemas/generateDocuments/documentsSchemas';
+import { SiteContent } from '@/types/dictionaries';
 import { IGenerateDocumentsContent } from '@/types/generate-documents-dictionaries';
 
 export default function GenerateDocumentLayoutClient(
-  props: Readonly<{ children: ReactNode; lang: 'ua' | 'en'; dictionary: IGenerateDocumentsContent }>,
+  props: Readonly<{
+    children: ReactNode;
+    lang: 'ua' | 'en';
+    dictionary: IGenerateDocumentsContent;
+    documentsExplanationDictionary: SiteContent;
+  }>,
 ) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedDocument, setSelectedDocument] = useState<DOCUMENT_TYPE | string>('');
@@ -55,11 +63,24 @@ export default function GenerateDocumentLayoutClient(
             setDocument('');
             setSelectedCategory(null);
           }}
-          onNext={() => setSelectedDocument(document)}
+          onNext={() => {
+            setSelectedDocument(document);
+            setDocument('');
+          }}
           lang={props.lang}
           documentLang={documentLang}
           handelChangeDocumentLang={setDocumentLang}
         />
+      )}
+      {document && (
+        <AnimatePresence mode="wait">
+          <DocumentExplanation
+            key={document}
+            lang={props.lang}
+            documentType={document as DOCUMENT_TYPE}
+            dictionary={props.documentsExplanationDictionary}
+          />
+        </AnimatePresence>
       )}
       {selectedCategory && DOCUMENTS_SCHEMAS_KEYS.includes(selectedDocument as DOCUMENT_TYPE) && (
         <GenerateDocumentProvider lang={props.lang} selectedDocument={selectedDocument as DOCUMENT_TYPE} documentLang={documentLang}>

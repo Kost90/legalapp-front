@@ -26,7 +26,7 @@ const DocumentSelector: FC<DocumentSelectorProps> = ({
   handelChangeDocumentLang,
 }) => {
   return (
-    <div className="my-10 space-y-6 md:my-20">
+    <div className="my-10 space-y-6 md:mt-20 md:mb-10">
       <select
         value={value ?? ''}
         onChange={(e) => onChange(e.target.value as DOCUMENT_TYPE)}

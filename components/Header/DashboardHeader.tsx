@@ -76,7 +76,7 @@ export default function DashboardHeader({ lang, params }: { lang: SiteContent; p
       >
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <Logo />
+            <Logo lang={params} />
           </div>
 
           {/* Desktop Navigation */}
