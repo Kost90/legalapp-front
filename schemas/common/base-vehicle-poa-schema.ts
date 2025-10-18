@@ -14,17 +14,17 @@ export const getVehiclePoAPrincipalSchema = (lang: string) =>
       .max(2),
     passportNumber: z
       .string()
-      .regex(/^\d{6,9}$/, lang === 'ua' ? 'Номер паспорта має складатись з 6-9 цифр' : 'Passport number must be 6-9 digits'),
+      .regex(/^\d{3,9}$/, lang === 'ua' ? 'Номер паспорта має складатись з 3-9 цифр' : 'Passport number must be 3-9 digits'),
     passportIssueDate: z.date({ required_error: lang === 'ua' ? 'Вкажіть дату видачі' : 'Please select an issue date' }),
-    passportIssueAuthority: z.string().min(5, lang === 'ua' ? 'Вкажіть, ким виданий паспорт' : 'Please enter the issuing authority'),
+    passportIssueAuthority: z.string().min(3, lang === 'ua' ? 'Вкажіть, ким виданий паспорт' : 'Please enter the issuing authority'),
 
     internationalPassportSeries: z
       .string()
-      .min(2, lang === 'ua' ? 'Серія паспорта - 2 літери' : 'Passport series requires 2 letters')
-      .max(2),
+      .min(2, lang === 'ua' ? 'Серія паспорта - 2-5 літери' : 'Passport series requires 2-5 letters')
+      .max(5),
     internationalPassportNumber: z
       .string()
-      .regex(/^\d{6,9}$/, lang === 'ua' ? 'Номер паспорта має складатися з 6-9 цифр' : 'Passport number must be 6-9 digits'),
+      .regex(/^\d{3,9}$/, lang === 'ua' ? 'Номер паспорта має складатися з 3-9 цифр' : 'Passport number must be 3-9 digits'),
     internationalPassportIssueDate: z.date({ required_error: lang === 'ua' ? 'Вкажіть дату видачі' : 'Please select an issue date' }),
     internationalPassportIssueAuthority: z
       .string()
@@ -44,14 +44,14 @@ export const getVehiclePoARepresentativeSchema = (lang: string) =>
     representativePassportSeries: z
       .string()
       .min(2, lang === 'ua' ? 'Серія паспорта - 2 літери' : 'Passport series requires 2 letters')
-      .max(2),
+      .max(6),
     representativePassportNumber: z
       .string()
-      .regex(/^\d{6,9}$/, lang === 'ua' ? 'Номер паспорта має складатися з 6-9 цифр' : 'Passport number must be 6-9 digits'),
+      .regex(/^\d{3,9}$/, lang === 'ua' ? 'Номер паспорта має складатися з 3-9 цифр' : 'Passport number must be 3-9 digits'),
     representativePassportIssueDate: z.date({ required_error: lang === 'ua' ? 'Вкажіть дату видачі' : 'Please select an issue date' }),
     representativePassportIssueAuthority: z
       .string()
-      .min(5, lang === 'ua' ? 'Вкажіть, ким виданий паспорт' : 'Please enter the issuing authority'),
+      .min(3, lang === 'ua' ? 'Вкажіть, ким виданий паспорт' : 'Please enter the issuing authority'),
 
     representativeInternationalPassportSeries: z
       .string()
@@ -59,7 +59,7 @@ export const getVehiclePoARepresentativeSchema = (lang: string) =>
       .max(2),
     representativeInternationalPassportNumber: z
       .string()
-      .regex(/^\d{6,9}$/, lang === 'ua' ? 'Номер паспорта має складатися з 6-9 цифр' : 'Passport number must be 6-9 digits'),
+      .regex(/^\d{3,9}$/, lang === 'ua' ? 'Номер паспорта має складатися з 3-9 цифр' : 'Passport number must be 3-9 digits'),
     representativeInternationalPassportIssueDate: z.date({
       required_error: lang === 'ua' ? 'Вкажіть дату видачі' : 'Please select an issue date',
     }),

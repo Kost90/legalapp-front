@@ -94,7 +94,6 @@ export function prepareConsentForSellPropertyData(
         isHouse: true,
         isApartment: false,
         isNonResidential: false,
-        includeLand: true,
         consentToSellProperty: true,
       };
       break;

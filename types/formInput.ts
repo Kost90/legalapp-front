@@ -9,4 +9,10 @@ export type FieldSchema = {
   type: string;
   required: boolean;
   options?: Options[];
+  isPeriod?: boolean;
+  isWatchingCheckbox?: boolean;
+  watchingField: string;
+  watchingValue: string;
+  singleCheckboxLabel?: string;
+  conditionalOn?: 'includeLand';
 };
