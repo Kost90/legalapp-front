@@ -50,7 +50,7 @@ export const getConsentForSellPropertySchema = (lang: string) =>
       propertyArea: z.string().min(1, { message: lang === 'ua' ? 'Введіть площу' : 'Area is required' }),
       propertyAddressForSell: z.string().min(10, { message: lang === 'ua' ? 'Введіть адресу нерухомості' : 'Enter the property address' }),
 
-      includeLand: z.boolean().optional(),
+      includeLand: z.boolean(),
       landArea: z.string().optional(),
       landCadastralNumber: z.string().optional(),
 

@@ -40,17 +40,31 @@ export const getMinorFields = (lang: 'ua' | 'en') => {
       fullName: 'ПІБ дитини',
       birthDate: 'Дата народження дитини',
       relationship: 'Ким доводиться (син/донька)',
+      options: [
+        { label: 'донька', value: 'донька' },
+        { label: 'син', value: 'син' },
+      ],
     },
     en: {
       fullName: "Child's Full Name",
       birthDate: "Child's Date of Birth",
       relationship: 'Relationship (son/daughter)',
+      options: [
+        { label: 'daughter', value: 'донька' },
+        { label: 'son', value: 'син' },
+      ],
     },
   };
   return [
     { name: 'minorFullName', label: t[lang].fullName, type: 'text', required: true },
     { name: 'minorBirthDate', label: t[lang].birthDate, type: 'date', required: true },
-    { name: 'minorRelationship', label: t[lang].relationship, type: 'text', required: true },
+    {
+      name: 'minorRelationship',
+      label: t[lang].relationship,
+      type: 'radio',
+      required: true,
+      options: t[lang].options,
+    },
   ];
 };
 
