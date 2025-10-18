@@ -10,11 +10,13 @@ export default function DynamicForm({
   lang,
   formSchema,
   setIsErrorExist,
+  onStepChange,
 }: {
   handleSubmit?: ReturnType<UseFormReturn['handleSubmit']>;
   lang: 'ua' | 'en';
   formSchema: FieldSchema[];
   setIsErrorExist: (value: boolean) => void;
+  onStepChange: () => void;
 }) {
   const { previousStep, handelBackStep } = useGenerateDocumetFlow(lang);
 
@@ -26,6 +28,7 @@ export default function DynamicForm({
         {previousStep && (
           <Button
             onClick={() => {
+              onStepChange();
               handelBackStep();
             }}
           >
@@ -33,7 +36,7 @@ export default function DynamicForm({
           </Button>
         )}
 
-        <SubmitButton lang={lang} fieldsToValidate={formSchema} setIsErrorExist={setIsErrorExist} />
+        <SubmitButton lang={lang} fieldsToValidate={formSchema} setIsErrorExist={setIsErrorExist} onStepChange={onStepChange} />
       </div>
     </form>
   );

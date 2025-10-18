@@ -49,7 +49,7 @@
         "description": "A mandatory document for transactions with joint property.",
         "tag": "Important",
         "icon": "HeartHandshake",
-        "url": "spousal-consent-for-property-sale"
+        "url": "consent-to-the-sale-of-real-estate"
       },
       {
         "title": "Power of Attorney to Receive Documents (sample, template)",
@@ -278,7 +278,7 @@
       "ctaButtonText": "Create power of attorney",
       "sampleTitle": "Document Sample"
     },
-    "spousal-consent-for-property-sale": {
+    "consent-to-the-sale-of-real-estate": {
       "metaTitle": "Spousal Consent Statement for Property Sale (sample, template) | UDocument",
       "metaDescription": "Form a notarial consent statement from a spouse for the disposal of joint property (sale, gift, mortgage). Mandatory for real estate transactions.",
       "h1": "Spousal consent statement for the sale of real estate (sample, template).",
