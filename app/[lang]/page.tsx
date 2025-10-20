@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 
+import ContactPromptSection from '@/app/[lang]/_components/ContactPromptSection';
+import HeroSection from '@/app/[lang]/_components/HeroSection';
+import HowItWorksSection from '@/app/[lang]/_components/HowItWorksSection';
+import PopularDocumentsSection from '@/app/[lang]/_components/PopularDocumentsSection';
+import ServiceAdvantagesSection from '@/app/[lang]/_components/ServiceAdvantagesSection';
+import TrustSection from '@/app/[lang]/_components/TrustSection';
 import PageContainer from '@/components/Container/PageContainer';
-import ContactPromptSection from '@/components/Home/ContactPromptSection';
-import HeroSection from '@/components/Home/HeroSection';
-import HowItWorksSection from '@/components/Home/HowItWorksSection';
-import PopularDocumentsSection from '@/components/Home/PopularDocumentsSection';
-import ServiceAdvantagesSection from '@/components/Home/ServiceAdvantagesSection';
-import TrustSection from '@/components/Home/TrustSection';
 import { SiteContent } from '@/types/dictionaries';
 
 import { getDictionary } from './dictionaries';

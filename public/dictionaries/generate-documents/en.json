@@ -15,9 +15,12 @@
       },
       {
         "consent-to-the-sale-of-real-estate": "Consent for selling property"
+      },
+      {
+        "consent-for-minor-to-travel-abroad": "Allowed the departure of a minor child from his father or mother"
       }
     ]
   },
   "generatedMessage": "Generating your document...",
-  "downloadMessage": "Завантажити"
+  "downloadMessage": "Download"
 }

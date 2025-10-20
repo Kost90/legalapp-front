@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef, RefObject } from 'react';
 
 import LanguageSwitcher from '@/components/LanguagesSwitcher/LanguagesSwitcher';
-import LinkButton from '@/components/LinkButton/LinkButton';
+import LinkButton from '@/components/ui/LinkButton/LinkButton';
 import { useAuth } from '@/context/AuthProvider';
 import { useDevice } from '@/context/DeviceProvider';
 import { useHeaderTheme } from '@/hooks/useHeaderTheme';

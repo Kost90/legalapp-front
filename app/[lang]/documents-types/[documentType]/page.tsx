@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { getDictionary } from '@/app/[lang]/dictionaries';
 import FaqAccordion from '@/components/FaqAccordion/FaqAccordion';
 import Heading from '@/components/Heading/Heading';
-import LinkButton from '@/components/LinkButton/LinkButton';
+import LinkButton from '@/components/ui/LinkButton/LinkButton';
 import { DOCUMENT_TYPE_FOR_LINK } from '@/lib/constants/common-documents';
 import { AllowedDocumentsTypes, documentsImagesMap } from '@/lib/imageMap';
 import { SiteContent } from '@/types/dictionaries';

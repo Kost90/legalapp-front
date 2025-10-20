@@ -8,9 +8,9 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { login } from '@/api/auth/login';
 import { useAuthError } from '@/app/[lang]/auth/auth-error-context';
 import { useAuthTabs } from '@/components/Authtabs/context';
-import Button from '@/components/Button/Button';
-import FormInput from '@/components/Input/Input';
 import PageTitle from '@/components/PageTitle/PageTitle';
+import Button from '@/components/ui/button/Button';
+import FormInput from '@/components/ui/Input/Input';
 import { useAuth } from '@/context/AuthProvider';
 import { getLoginFormSchema, LoginFormSchema } from '@/schemas/auth/loginFormSchema';
 

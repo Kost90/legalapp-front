@@ -2,18 +2,9 @@
   "header": {
     "login": "Login",
     "logout": "Log out",
-    "dashboard": "Dashboard",
     "nav_contacts": "Contacts",
     "button_generate": "Generate Document",
-    "button_consultation": "Get Consultation",
-    "nav_main": "Home",
-    "nav_about_us": "About Us",
-    "nav_services_page": "Services",
-    "nav_contact_us_page": "Contact Us",
-    "aria_close_menu": "Close main menu",
-    "aria_open_menu": "Open main menu",
-    "sr_close_menu": "Close menu",
-    "sr_open_menu": "Open menu"
+    "nav_about_us": "About Us"
   },
   "verify_email": {
     "title": "Thank you for registering!",

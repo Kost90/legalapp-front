@@ -2,13 +2,12 @@
 
 import { motion } from 'motion/react';
 
+import { containerVariants, itemVariants } from '@/app/[lang]/_components/animations';
 import FlexSectionWrapper from '@/components/Container/FlexSectionWrapper';
 import Heading from '@/components/Heading/Heading';
 import HeroIllustration from '@/components/HeroIlustration/HeroIlustration';
-import LinkButton from '@/components/LinkButton/LinkButton';
+import LinkButton from '@/components/ui/LinkButton/LinkButton';
 import { SiteContent } from '@/types/dictionaries';
-
-import { containerVariants, itemVariants } from './animations';
 
 export default function HeroSection({ dictionary, lang }: { dictionary: SiteContent; lang: string }) {
   return (

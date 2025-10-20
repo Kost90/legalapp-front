@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import { getDictionary } from '@/app/[lang]/dictionaries';
-import { PrivacyClientPage } from '@/components/ClientPrivacyPolicyPage/ClientPrivacyPolicyPage';
+import { PrivacyClientPage } from '@/app/[lang]/privacy/_components/ClientPrivacyPolicyPage';
 import { SiteContent } from '@/types/dictionaries';
 
 import { PageProps } from '@/.next/types/app/[lang]/privacy/page';

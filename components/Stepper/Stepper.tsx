@@ -45,7 +45,7 @@ export default function Stepper({ isErrorExist, steps, activeStep, filledStepInd
     <div className={cn('relative overflow-hidden py-16', className)}>
       {isLargeScreen ? (
         // Desctop
-        <div className="relative flex items-center justify-between">
+        <div className="relative flex items-start justify-between">
           <motion.div
             className="bg-base-btn-hover-bg absolute top-1/2 left-0 h-[2px]"
             style={{ transform: 'translateY(-50%)' }}
@@ -55,7 +55,7 @@ export default function Stepper({ isErrorExist, steps, activeStep, filledStepInd
             }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
           />
-          <div className="bg-border absolute top-1/2 right-0 left-0 -z-10 h-[2px]" style={{ transform: 'translateY(-50%)' }} />
+          <div className="bg-border absolute top-[38%] right-0 left-0 -z-10 h-[2px]" style={{ transform: 'translateY(-50%)' }} />
 
           {steps.map((step, index) => {
             const isActive = index === activeIndex;
@@ -67,7 +67,7 @@ export default function Stepper({ isErrorExist, steps, activeStep, filledStepInd
                 key={step.key}
                 onClick={() => isClickable && setActiveStep?.(step.key)}
                 className={cn(
-                  'group relative z-10 flex flex-col items-center transition-colors duration-300',
+                  'group relative z-10 flex max-w-36 flex-col items-center transition-colors duration-300',
                   'min-w-[160px] text-center md:min-w-0',
                   isClickable ? 'cursor-pointer' : 'cursor-default',
                 )}

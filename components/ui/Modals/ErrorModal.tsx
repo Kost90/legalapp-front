@@ -1,7 +1,7 @@
 import { Ban } from 'lucide-react';
 import { FC } from 'react';
 
-import Button from '@/components/Button/Button';
+import Button from '@/components/ui/button/Button';
 
 import { BaseModal } from './BaseModal';
 import { ModalProps } from './ModalProvider';
