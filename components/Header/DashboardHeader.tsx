@@ -6,8 +6,8 @@ import { Menu, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef, RefObject } from 'react';
 
-import Button from '@/components/Button/Button';
 import LanguageSwitcher from '@/components/LanguagesSwitcher/LanguagesSwitcher';
+import Button from '@/components/ui/button/Button';
 import { useAuth } from '@/context/AuthProvider';
 import { useDevice } from '@/context/DeviceProvider';
 import { useHeaderTheme } from '@/hooks/useHeaderTheme';

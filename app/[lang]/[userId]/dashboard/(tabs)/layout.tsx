@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import DashboardTabs from '@/components/DashboardTabs/DashboardTabs';
+import DashboardTabs from '@/app/[lang]/[userId]/dashboard/_components/DashboardTabs/DashboardTabs';
 
 export default async function AuthLayout(props: Readonly<{ children: ReactNode; params: { lang: string } }>) {
   const { lang } = await props.params;

@@ -1,8 +1,8 @@
 import { UseFormReturn } from 'react-hook-form';
 
-import Button from '@/components/Button/Button';
 import SubmitButton from '@/components/DocumentFlowSteper/SubmmitButton';
 import DynamicFormFields from '@/components/DynamicFormFields/DynamicFormFields';
+import Button from '@/components/ui/button/Button';
 import useGenerateDocumetFlow from '@/hooks/useDocumetsStepper';
 import { FieldSchema } from '@/types/formInput';
 

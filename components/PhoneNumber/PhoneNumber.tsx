@@ -3,7 +3,7 @@ import { useFormContext, useWatch } from 'react-hook-form';
 
 import Dropdown from '@/components/Dropdown/Dropdown';
 import Flag from '@/components/Flag/Flag';
-import FormInput from '@/components/Input/Input';
+import FormInput from '@/components/ui/Input/Input';
 
 import countryCallingCodes from './countryCallingCodes.json';
 

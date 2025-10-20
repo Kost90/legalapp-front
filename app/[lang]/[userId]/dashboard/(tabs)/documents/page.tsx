@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import { fetchUserDocuments } from '@/api/documents/fetchUserDocuments';
-import DocumentsTable from '@/components/DocumentsTable/DocumentsTable';
+import DocumentsTable from '@/app/[lang]/[userId]/dashboard/(tabs)/documents/_components/DocumentsTable';
 import PageTitle from '@/components/PageTitle/PageTitle';
 import { DocumentPage } from '@/types/documents-table-dictionary';
 

@@ -5,11 +5,11 @@ import { useFormContext } from 'react-hook-form';
 
 import CHeckboxWithWatchingFormField from '@/components/CHeckboxWithWatchingFormField/CHeckboxWithWatchingFormField';
 import DatePickerInput from '@/components/DatePickerInput/DatePickerInput';
-import FormInput from '@/components/Input/Input';
 import PeriodValidRadioSelector from '@/components/RadioSelector/RadioSelector';
-import FormSelect from '@/components/Select/Select';
 import Checkbox from '@/components/ui/checkbox/CheckBox';
+import FormInput from '@/components/ui/Input/Input';
 import RadioButtons from '@/components/ui/radio-buttons/RadioButtons';
+import FormSelect from '@/components/ui/Select/Select';
 import { FieldSchema, Options } from '@/types/formInput';
 
 export default function DynamicFormFields({ schema, lang }: { schema: FieldSchema[]; lang: string }) {

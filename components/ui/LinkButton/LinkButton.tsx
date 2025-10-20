@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import Button, { IButtonProps } from '@/components/Button/Button';
+import Button, { IButtonProps } from '@/components/ui/button/Button';
 
 interface ILinkButtonProps extends Partial<IButtonProps> {
   lang: string;

@@ -4,9 +4,9 @@ import { FormProvider, useForm, useFormContext, UseFormReturn } from 'react-hook
 import z from 'zod';
 
 import { generateDocumentAction, generateDocumentPublicAction } from '@/app/actions/documents';
-import { ErrorModal } from '@/components/Modals/ErrorModal';
-import { useModals } from '@/components/Modals/ModalProvider';
-import { SuccessModal } from '@/components/Modals/SuccessModal';
+import { ErrorModal } from '@/components/ui/Modals/ErrorModal';
+import { useModals } from '@/components/ui/Modals/ModalProvider';
+import { SuccessModal } from '@/components/ui/Modals/SuccessModal';
 import { useUserUnsafe } from '@/context/user/UserProvider.client';
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 import { FORM_STEPS, GenerateStep } from '@/lib/formsSteps/forms-steps';

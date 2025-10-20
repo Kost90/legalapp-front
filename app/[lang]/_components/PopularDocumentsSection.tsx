@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-import PopularDocumentCard from '@/components/Cards/PopularDocumentCard';
+import PopularDocumentCard from '@/app/[lang]/_components/PopularDocumentCard';
 import FlexSectionWrapper from '@/components/Container/FlexSectionWrapper';
 import Heading from '@/components/Heading/Heading';
 import { LANG_VARIANTS } from '@/lib/constants/lang-variants';
