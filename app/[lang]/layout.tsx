@@ -5,8 +5,8 @@ import { cookies } from 'next/headers';
 
 import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
-import { ModalProvider } from '@/components/Modals/ModalProvider';
 import { ToasterProvider } from '@/components/ToastProvider/ToastProvider';
+import { ModalProvider } from '@/components/ui/Modals/ModalProvider';
 import { AuthProvider } from '@/context/AuthProvider';
 import DeviceProvider from '@/context/DeviceProvider';
 import QueryProvider from '@/context/QueryProvider';

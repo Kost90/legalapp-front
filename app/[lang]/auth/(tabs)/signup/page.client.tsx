@@ -5,10 +5,10 @@ import { FormProvider, useForm, UseFormReturn, useFormState } from 'react-hook-f
 import { signUp } from '@/api/auth/signUp';
 import { useAuthError } from '@/app/[lang]/auth/auth-error-context';
 import { useAuthTabs } from '@/components/Authtabs/context';
-import Button from '@/components/Button/Button';
-import FormInput from '@/components/Input/Input';
 import PageTitle from '@/components/PageTitle/PageTitle';
 import PhoneNumber, { mergePhoneNumber } from '@/components/PhoneNumber/PhoneNumber';
+import Button from '@/components/ui/button/Button';
+import FormInput from '@/components/ui/Input/Input';
 import VerifyYourEmail from '@/components/VerifyYourEmail/VerifyYourEmail';
 import { getSignUpFormSchema } from '@/schemas/auth/signUpFormSchema';
 import { SiteContent } from '@/types/dictionaries';

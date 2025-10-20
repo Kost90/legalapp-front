@@ -5,7 +5,7 @@ import { Mail, Phone, UserPlus } from 'lucide-react';
 
 import FlexSectionWrapper from '@/components/Container/FlexSectionWrapper';
 import Heading from '@/components/Heading/Heading';
-import LinkButton from '@/components/LinkButton/LinkButton';
+import LinkButton from '@/components/ui/LinkButton/LinkButton';
 import { SiteContent } from '@/types/dictionaries';
 
 type ContactPromptProps = {

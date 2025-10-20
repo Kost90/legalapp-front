@@ -3,7 +3,7 @@
 import { ReactNode, useRef } from 'react';
 import { useFormState } from 'react-hook-form';
 
-import Spinner from '@/components/Spinner/Spinner';
+import Spinner from '@/components/ui/Spinner/Spinner';
 import { cn } from '@/utils/cn';
 
 export type IButtonProps = {

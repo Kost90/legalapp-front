@@ -1,4 +1,4 @@
-import Button from '@/components/Button/Button';
+import Button from '@/components/ui/button/Button';
 import { DocumentPage } from '@/types/documents-table-dictionary';
 
 interface PaginationProps {

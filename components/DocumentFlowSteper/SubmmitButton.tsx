@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useFormState } from 'react-hook-form';
 
-import Button from '@/components/Button/Button';
+import Button from '@/components/ui/button/Button';
 import { useGenerateDocument, useGenerateDocumentForm } from '@/context/generateDocument/GenerateDocumentProvider';
 import { FORM_STEPS } from '@/lib/formsSteps/forms-steps';
 import { FieldSchema } from '@/types/formInput';
