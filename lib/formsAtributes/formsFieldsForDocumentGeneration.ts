@@ -142,6 +142,7 @@ export const formFieldsSchemas: Record<string, Record<string, any>> = {
       meta: [
         { name: 'city', label: 'Місто складання довіреності', type: 'text', required: true },
         { name: 'date', label: 'Дата складання', type: 'date', required: true },
+        { name: 'validUntil', label: 'Термін дії', type: 'radio', required: true, isPeriod: true },
         { name: 'userEmail', label: 'Ваша пошта для отримання документа', type: 'email', required: true },
       ],
     },
@@ -188,6 +189,7 @@ export const formFieldsSchemas: Record<string, Record<string, any>> = {
       meta: [
         { name: 'city', label: 'City of Signing', type: 'text', required: true },
         { name: 'date', label: 'Date of Signing', type: 'date', required: true },
+        { name: 'validUntil', label: 'Validity Period', type: 'radio', required: true, isPeriod: true },
         { name: 'userEmail', label: 'Your Email to Receive the Document', type: 'email', required: true },
       ],
     },
