@@ -8,16 +8,11 @@ export const getConsentForMinorToTravelAboardSchema = (lang: string) =>
     passport: z
       .string()
       .min(3, lang === 'ua' ? 'Введіть серію та номер паспорта, або тільки номер якщо ID картка.' : 'Passport number is required'),
-    // passportOneSeries: z.string().min(2, lang === 'ua' ? 'Введіть серію паспорта' : 'Passport series is required'),
-    // passportOneNumber: z
-    //   .string()
-    //   .min(
-    //     3,
-    //     lang === 'ua' ? 'Введіть номер паспорта, має складатися мінімум з 3 цифр' : 'Passport number is required must be at least 3 digits',
-    //   ),
     passportOneIssueDate: z.date({ required_error: lang === 'ua' ? 'Оберіть дату видачі паспорту' : 'Please select a date of passport' }),
     passportOneIssueAuthority: z.string().min(3, lang === 'ua' ? 'Введіть орган, що видав паспорт' : 'Issuing authority is required'),
-    parentOneAddress: z.string().min(10, lang === 'ua' ? 'Введіть адресу реєстрації, місця проживання, мінімальна кількість 10' : 'Type address of registration'),
+    parentOneAddress: z
+      .string()
+      .min(10, lang === 'ua' ? 'Введіть адресу реєстрації, місця проживання, мінімальна кількість 10' : 'Type address of registration'),
     minorFullName: z.string().min(3, lang === 'ua' ? 'Введіть повне імʼя дитини' : "Child's full name is required"),
     minorBirthDate: z.date({ required_error: lang === 'ua' ? 'Оберіть дату народження дитини' : "Please select child's date of birth" }),
     minorRelationship: z.string().min(3, lang === 'ua' ? 'Вкажіть, ким доводиться дитина' : 'Relationship is required'),

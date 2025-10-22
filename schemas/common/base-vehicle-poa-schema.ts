@@ -10,24 +10,16 @@ export const getVehiclePoAPrincipalSchema = (lang: string) =>
     passport: z
       .string()
       .min(3, lang === 'ua' ? 'Введіть серію та номер паспорта, або тільки номер якщо ID картка.' : 'Passport number is required'),
-    // passportSeries: z
-    //   .string()
-    //   .min(2, lang === 'ua' ? 'Серія паспорта - 2 літери' : 'Passport series requires 2 letters')
-    //   .max(2),
-    // passportNumber: z
-    //   .string()
-    //   .regex(/^\d{3,9}$/, lang === 'ua' ? 'Номер паспорта має складатись з 3-9 цифр' : 'Passport number must be 3-9 digits'),
     passportIssueDate: z.date({ required_error: lang === 'ua' ? 'Вкажіть дату видачі паспорта' : 'Please select an issue date' }),
     passportIssueAuthority: z.string().min(3, lang === 'ua' ? 'Вкажіть, ким виданий паспорт' : 'Please enter the issuing authority'),
 
-    internationalPassportSeries: z
+    internationalPassport: z
       .string()
-      .min(2, lang === 'ua' ? 'Серія паспорта - 2-5 літери' : 'Passport series requires 2-5 letters')
-      .max(5),
-    internationalPassportNumber: z
-      .string()
-      .regex(/^\d{3,9}$/, lang === 'ua' ? 'Номер паспорта має складатися з 3-9 цифр' : 'Passport number must be 3-9 digits'),
-    internationalPassportIssueDate: z.date({ required_error: lang === 'ua' ? 'Вкажіть дату видачі закордонного паспорта' : 'Please select an issue date' }),
+      .min(2, lang === 'ua' ? 'Дані закордонного паспорта' : 'Passport info series and number')
+      .max(6),
+    internationalPassportIssueDate: z.date({
+      required_error: lang === 'ua' ? 'Вкажіть дату видачі закордонного паспорта' : 'Please select an issue date',
+    }),
     internationalPassportIssueAuthority: z
       .string()
       .min(3, lang === 'ua' ? 'Вкажіть орган, що видав паспорт закордонний паспорт' : 'Please enter the issuing authority code'),
@@ -42,17 +34,12 @@ export const getVehiclePoARepresentativeSchema = (lang: string) =>
     representativeTaxId: z
       .string()
       .regex(/^\d{10}$/, lang === 'ua' ? 'ІПН представника має складатися з 10 цифр' : 'Representative Tax ID must be 10 digits'),
-    passport: z
+    representativePassport: z
       .string()
       .min(3, lang === 'ua' ? 'Введіть серію та номер паспорта, або тільки номер якщо ID картка.' : 'Passport number is required'),
-    // representativePassportSeries: z
-    //   .string()
-    //   .min(2, lang === 'ua' ? 'Серія паспорта - 2 літери' : 'Passport series requires 2 letters')
-    //   .max(6),
-    // representativePassportNumber: z
-    //   .string()
-    //   .regex(/^\d{3,9}$/, lang === 'ua' ? 'Номер паспорта має складатися з 3-9 цифр' : 'Passport number must be 3-9 digits'),
-    representativePassportIssueDate: z.date({ required_error: lang === 'ua' ? 'Вкажіть дату видачі паспорта' : 'Please select an issue date' }),
+    representativePassportIssueDate: z.date({
+      required_error: lang === 'ua' ? 'Вкажіть дату видачі паспорта' : 'Please select an issue date',
+    }),
     representativePassportIssueAuthority: z
       .string()
       .min(3, lang === 'ua' ? 'Вкажіть, ким виданий паспорт' : 'Please enter the issuing authority'),

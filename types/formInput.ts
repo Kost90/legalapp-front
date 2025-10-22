@@ -14,5 +14,5 @@ export type FieldSchema = {
   watchingField: string;
   watchingValue: string;
   singleCheckboxLabel?: string;
-  conditionalOn?: 'includeLand';
+  conditionalOn?: 'includeLand' | 'apartment';
 };

@@ -1,32 +1,25 @@
 import { z } from 'zod';
 
-export const passportTypes = ['paperBook','plasticCard'] as const
+export const passportTypes = ['paperBook', 'plasticCard'] as const;
 
 export const getPrincipalSchema = (lang: string) =>
   z.object({
-    fullName: z
-      .string()
-      .min(3, lang === 'ua' ? 'Введіть повне імʼя' : 'Full name is required'),
-    birthDate: z
-      .date({
-        required_error: lang === 'ua' ? 'Будь ласка, виберіть дату' : 'Please select a date',
-        invalid_type_error: lang === 'ua' ? 'Некоректна дата' : 'Invalid date',
-      }),
-    taxId: z
-      .string()
-      .regex(/^\d{10}$/, lang === 'ua' ? 'ІПН має складатися з 10 цифр' : 'TIN must be 10 digits'),
+    fullName: z.string().min(3, lang === 'ua' ? 'Введіть повне імʼя' : 'Full name is required'),
+    birthDate: z.date({
+      required_error: lang === 'ua' ? 'Будь ласка, виберіть дату' : 'Please select a date',
+      invalid_type_error: lang === 'ua' ? 'Некоректна дата' : 'Invalid date',
+    }),
+    taxId: z.string().regex(/^\d{10}$/, lang === 'ua' ? 'ІПН має складатися з 10 цифр' : 'TIN must be 10 digits'),
     address: z
       .string()
       .min(5, lang === 'ua' ? 'Введіть повну адресу, мінільна кількість 5' : 'Address is required, at least must be 5 characters'),
-    // passportType:z.enum(passportTypes,{required_error: lang === 'ua' ? 'Оберіть тип паспорту' : 'Select the passport type',}),
     passport: z
       .string()
       .min(3, lang === 'ua' ? 'Введіть серію та номер паспорта, або тільки номер якщо ID картка.' : 'Passport number is required'),
-    passportIssueDate: z
-      .date({
-        required_error: lang === 'ua' ? 'Будь ласка, виберіть дату видачі паспорту' : 'Please select a date of passport',
-        invalid_type_error: lang === 'ua' ? 'Некоректна дата' : 'Invalid date',
-      }),
+    passportIssueDate: z.date({
+      required_error: lang === 'ua' ? 'Будь ласка, виберіть дату видачі паспорту' : 'Please select a date of passport',
+      invalid_type_error: lang === 'ua' ? 'Некоректна дата' : 'Invalid date',
+    }),
     passportIssueAuthority: z
       .string()
       .min(
@@ -39,20 +32,15 @@ export const getPrincipalSchema = (lang: string) =>
 
 export const getRepresentativeSchema = (lang: string) =>
   z.object({
-    representativeName: z
-      .string()
-      .min(3, lang === 'ua' ? 'Введіть імʼя представника' : 'Representative name is required'),
-    representativeBirthDate: z
-      .date({
-        required_error: lang === 'ua' ? 'Будь ласка, виберіть дату' : 'Please select a date',
-        invalid_type_error: lang === 'ua' ? 'Некоректна дата' : 'Invalid date',
-      }),
+    representativeName: z.string().min(3, lang === 'ua' ? 'Введіть імʼя представника' : 'Representative name is required'),
+    representativeBirthDate: z.date({
+      required_error: lang === 'ua' ? 'Будь ласка, виберіть дату' : 'Please select a date',
+      invalid_type_error: lang === 'ua' ? 'Некоректна дата' : 'Invalid date',
+    }),
     representativeTaxId: z
       .string()
       .regex(/^\d{10}$/, lang === 'ua' ? 'ІПН представника має складатися з 10 цифр' : 'Representative TIN must be 10 digits'),
-    representativeAddress: z
-      .string()
-      .min(1, lang === 'ua' ? 'Введіть адресу представника' : 'Representative address is required'),
+    representativeAddress: z.string().min(1, lang === 'ua' ? 'Введіть адресу представника' : 'Representative address is required'),
   });
 
 export const getCommonDocumentSchema = (lang: string) =>
