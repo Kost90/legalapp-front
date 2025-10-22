@@ -6,6 +6,7 @@ export type Address = {
   buildNumber: string;
   apartment?: string;
   postCode?: string;
+  propertyType?: string;
 };
 
 export type Car = {
@@ -58,12 +59,10 @@ export type PowerOfAttorneyReceiveDocuments = {
 export type PersonDetailCar = {
   fullName: string;
   taxId: string;
-  passportSeries: string;
-  passportNumber: string;
+  passport: string;
   passportIssueDate: Date;
   passportIssueAuthority: string;
-  internationalPassportSeries: string;
-  internationalPassportNumber: string;
+  internationalPassport: string;
   internationalPassportIssueDate: Date;
   internationalPassportIssueAuthority: string;
 };
@@ -72,8 +71,7 @@ export type RepresentiveDetailsCar = {
   representativeName: string;
   representativeBirthDate: Date;
   representativeTaxId: string;
-  representativePassportSeries: string;
-  representativePassportNumber: string;
+  representativePassport: string;
   representativePassportIssueDate: Date;
   representativePassportIssueAuthority: string;
   representativeInternationalPassportSeries: string;
