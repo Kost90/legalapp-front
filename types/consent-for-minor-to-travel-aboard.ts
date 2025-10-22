@@ -7,8 +7,7 @@ interface ParentData {
   parentOneFullName: string;
   parentOneBirthDate: Date;
   parentOneTaxId: string;
-  passportOneSeries: string;
-  passportOneNumber: string;
+  passport: string;
   passportOneIssueDate: Date;
   passportOneIssueAuthority: string;
   parentOneAddress: string;
