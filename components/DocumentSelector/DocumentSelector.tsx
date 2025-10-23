@@ -2,6 +2,7 @@
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { FC } from 'react';
 
+import EmptyExampleForm from '@/components/EmptyExampleForm/EmptyExampleForm';
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
 
 interface DocumentSelectorProps {
@@ -13,6 +14,7 @@ interface DocumentSelectorProps {
   onNext: () => void;
   onBack: () => void;
   handelChangeDocumentLang: (value: 'ua' | 'en') => void;
+  handelGetEmptyExample?: (documentType: DOCUMENT_TYPE, email: string, textLang: 'ua' | 'en') => void;
 }
 
 const DocumentSelector: FC<DocumentSelectorProps> = ({
@@ -24,6 +26,7 @@ const DocumentSelector: FC<DocumentSelectorProps> = ({
   onNext,
   onBack,
   handelChangeDocumentLang,
+  handelGetEmptyExample,
 }) => {
   return (
     <div className="my-10 space-y-6 md:mt-20 md:mb-10">
@@ -89,6 +92,10 @@ const DocumentSelector: FC<DocumentSelectorProps> = ({
             ? 'Якщо ви обрали EN, документ буде створено на двох мовах одразу, англійскій та українській.'
             : 'If you choose EN, document will generate on two languages Ukrainian and English.'}
         </p>
+
+        {value && handelGetEmptyExample && (
+          <EmptyExampleForm lang={lang as 'ua' | 'en'} documentType={value} onGetEmptyExample={handelGetEmptyExample} />
+        )}
       </div>
       <div className="flex justify-between">
         <button
