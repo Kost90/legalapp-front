@@ -9,9 +9,20 @@ interface SuccessModalProps {
   title: string;
   message: string;
   lang: string;
+  downlaodBtn?: boolean;
+  generatedPdfUrl?: string;
+  selectedDocument?: string;
 }
 
-export const SuccessModal: FC<SuccessModalProps & ModalProps> = ({ onClose, title, message, lang }) => {
+export const SuccessModal: FC<SuccessModalProps & ModalProps> = ({
+  onClose,
+  title,
+  message,
+  lang,
+  downlaodBtn = false,
+  generatedPdfUrl,
+  selectedDocument,
+}) => {
   return (
     <BaseModal onClose={onClose} title={title}>
       <div className="my-10 flex items-center">
@@ -24,9 +35,29 @@ export const SuccessModal: FC<SuccessModalProps & ModalProps> = ({ onClose, titl
         </svg>
         <p className="text-text-muted text-base">{message}</p>
       </div>
-      <div className="flex justify-end">
-        <Button onClick={onClose}>{lang === 'ua' ? 'Вітаємо!' : 'Congratulations!'}</Button>
-      </div>
+
+      {downlaodBtn && (
+        <div className="mb-2 flex flex-col items-start justify-start gap-4">
+          <p className="text-text-muted text-base">
+            {lang === 'ua'
+              ? 'Документ було надіслано на надану Вами пошту, якщо Ви не побачете документ, перевірте папку "спам".'
+              : 'Document was sent to provided email, check spam folder'}
+          </p>
+          <a
+            target="blank"
+            href={generatedPdfUrl}
+            download={`${selectedDocument}.pdf`}
+            className="bg-link-btn-text inline-block w-full justify-center rounded-md px-6 py-2 text-center text-white hover:opacity-90"
+          >
+            {lang === 'ua' ? 'Завантажити документ' : 'Download document'}
+          </a>
+        </div>
+      )}
+      {!downlaodBtn && (
+        <div className="flex justify-end">
+          <Button onClick={onClose}>{lang === 'ua' ? 'Вітаємо!' : 'Congratulations!'}</Button>
+        </div>
+      )}
     </BaseModal>
   );
 };

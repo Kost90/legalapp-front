@@ -1,8 +1,10 @@
 'use client';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 
+import Button from '@/components/ui/button/Button';
 import { DOCUMENT_TYPE } from '@/lib/constants/common-documents';
+import { cn } from '@/utils/cn';
 
 interface DocumentSelectorProps {
   options: Record<string, string>[];
@@ -13,7 +15,13 @@ interface DocumentSelectorProps {
   onNext: () => void;
   onBack: () => void;
   handelChangeDocumentLang: (value: 'ua' | 'en') => void;
+  handelGetEmptyExample?: (documentType: DOCUMENT_TYPE, email: string, textLang: 'ua' | 'en') => void;
 }
+
+const isValidEmail = (email: string) => {
+  const emailRegex = /\S+@\S+\.\S+/;
+  return emailRegex.test(email);
+};
 
 const DocumentSelector: FC<DocumentSelectorProps> = ({
   options,
@@ -24,7 +32,25 @@ const DocumentSelector: FC<DocumentSelectorProps> = ({
   onNext,
   onBack,
   handelChangeDocumentLang,
+  handelGetEmptyExample,
 }) => {
+  const [email, setEmail] = useState<string>('');
+  const [isError, setIsError] = useState<boolean>(false);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      if (email === '') {
+        setIsError(false);
+      } else {
+        setIsError(!isValidEmail(email));
+      }
+    }, 300);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [email]);
+
   return (
     <div className="my-10 space-y-6 md:mt-20 md:mb-10">
       <select
@@ -89,6 +115,44 @@ const DocumentSelector: FC<DocumentSelectorProps> = ({
             ? 'Якщо ви обрали EN, документ буде створено на двох мовах одразу, англійскій та українській.'
             : 'If you choose EN, document will generate on two languages Ukrainian and English.'}
         </p>
+
+        {value && (
+          <div className="mt-4">
+            <p className="text-xs text-gray-500">
+              {lang === 'ua' ? 'Ви можете замовити пустий шаблон документу.' : 'You can choose empty example of document.'}
+            </p>
+            <label className={'text-main-black mb-1 block text-sm font-medium'}>
+              {lang === 'ua' ? 'Введіть email, для відправки пустого шаблону' : 'Enter email, for sending empty example'}
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => {
+                e.preventDefault();
+                setEmail(e.currentTarget.value);
+              }}
+              className={cn(
+                'border-btn-border-color focus:ring-link-btn-text focus:border-link-btn-text mt-1 block w-full max-w-xs rounded-md border bg-white px-3 py-2 pr-10 focus:outline-none sm:text-sm',
+                {
+                  'border-red-500': isError,
+                },
+              )}
+            />
+            {isError && <p className="mt-1 text-sm text-red-600">{lang === 'ua' ? 'введіть валідний email' : 'enter valid email'}</p>}
+            {!isError && email && (
+              <Button
+                onClick={() => {
+                  if (handelGetEmptyExample) {
+                    handelGetEmptyExample(value as DOCUMENT_TYPE, email, lang as 'ua' | 'en');
+                  }
+                  setEmail('');
+                }}
+              >
+                {lang === 'ua' ? 'Згенерувати пустий шаблон' : 'Generat empty example'}
+              </Button>
+            )}
+          </div>
+        )}
       </div>
       <div className="flex justify-between">
         <button
