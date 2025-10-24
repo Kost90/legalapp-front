@@ -36,10 +36,10 @@ export default function GenerateDocumentLayoutClient(
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handelGetEmptyExample = useCallback(
-    async (documentType: DOCUMENT_TYPE, email: string, textLang: 'ua' | 'en') => {
+    async (documentType: DOCUMENT_TYPE, email: string, textLang: 'ua' | 'en', documentLang: 'ua' | 'en') => {
       setIsLoading(true);
       try {
-        const { url } = await getEmptyDocumentExample(documentType, email, textLang);
+        const { url } = await getEmptyDocumentExample(documentType, email, textLang, documentLang);
 
         if (url) {
           setGeneratedPdfUrl(url);
