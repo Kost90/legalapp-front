@@ -14,7 +14,7 @@ interface DocumentSelectorProps {
   onNext: () => void;
   onBack: () => void;
   handelChangeDocumentLang: (value: 'ua' | 'en') => void;
-  handelGetEmptyExample?: (documentType: DOCUMENT_TYPE, email: string, textLang: 'ua' | 'en') => void;
+  handelGetEmptyExample?: (documentType: DOCUMENT_TYPE, email: string, textLang: 'ua' | 'en', documentLang: 'ua' | 'en') => void;
 }
 
 const DocumentSelector: FC<DocumentSelectorProps> = ({
@@ -94,7 +94,12 @@ const DocumentSelector: FC<DocumentSelectorProps> = ({
         </p>
 
         {value && handelGetEmptyExample && (
-          <EmptyExampleForm lang={lang as 'ua' | 'en'} documentType={value} onGetEmptyExample={handelGetEmptyExample} />
+          <EmptyExampleForm
+            lang={lang as 'ua' | 'en'}
+            documentType={value}
+            onGetEmptyExample={handelGetEmptyExample}
+            documentLang={documentLang}
+          />
         )}
       </div>
       <div className="flex justify-between">

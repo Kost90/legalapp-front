@@ -8,7 +8,8 @@ import { cn } from '@/utils/cn';
 interface EmptyExampleFormProps {
   lang: 'ua' | 'en';
   documentType: DOCUMENT_TYPE | string;
-  onGetEmptyExample: (documentType: DOCUMENT_TYPE, email: string, textLang: 'ua' | 'en') => void;
+  onGetEmptyExample: (documentType: DOCUMENT_TYPE, email: string, textLang: 'ua' | 'en', documentLang: 'ua' | 'en') => void;
+  documentLang: 'ua' | 'en';
 }
 
 const isValidEmail = (email: string) => {
@@ -16,7 +17,7 @@ const isValidEmail = (email: string) => {
   return emailRegex.test(email);
 };
 
-const EmptyExampleForm: FC<EmptyExampleFormProps> = ({ lang, documentType, onGetEmptyExample }) => {
+const EmptyExampleForm: FC<EmptyExampleFormProps> = ({ lang, documentType, onGetEmptyExample, documentLang }) => {
   const [email, setEmail] = useState<string>('');
   const [isError, setIsError] = useState<boolean>(false);
 
@@ -37,7 +38,7 @@ const EmptyExampleForm: FC<EmptyExampleFormProps> = ({ lang, documentType, onGet
   const handleSubmit = () => {
     if (isError || !email) return;
 
-    onGetEmptyExample(documentType as DOCUMENT_TYPE, email, lang);
+    onGetEmptyExample(documentType as DOCUMENT_TYPE, email, lang, documentLang);
     setEmail('');
   };
 
