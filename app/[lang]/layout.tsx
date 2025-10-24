@@ -135,17 +135,17 @@ export default async function RootLayout({
           'query-input': 'required name=search_term_string',
         },
       },
-      {
-        '@type': 'FAQPage',
-        mainEntity: t.faq.map((item) => ({
-          '@type': 'Question',
-          name: item.title,
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: item.description,
-          },
-        })),
-      },
+      // {
+      //   '@type': 'FAQPage',
+      //   mainEntity: t.faq.map((item) => ({
+      //     '@type': 'Question',
+      //     name: item.title,
+      //     acceptedAnswer: {
+      //       '@type': 'Answer',
+      //       text: item.description,
+      //     },
+      //   })),
+      // },
     ],
   };
 

@@ -197,6 +197,8 @@ interface IDocumentPageContent {
   description: string;
   whenNeededTitle: string;
   whenNeededList: string[];
+  requiredDocsTitle: string;
+  requiredDocsList: string[];
   faqTitle: string;
   faqItems: IDocumentFaqItem[];
   priceDetailsTitle: string;
@@ -206,6 +208,7 @@ interface IDocumentPageContent {
   ctaButtonText: string;
   sampleTitle: string;
   sampleImageUrl: string;
+  relatedDocs: string[];
 }
 
 type DocumentPages = {
