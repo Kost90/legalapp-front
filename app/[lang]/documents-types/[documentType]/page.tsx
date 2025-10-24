@@ -12,6 +12,8 @@ import { SiteContent } from '@/types/dictionaries';
 
 import { PageProps } from '@/.next/types/app/[lang]/documents-types/[documentType]/page';
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang, documentType } = await params;
   const dictionary: SiteContent = await getDictionary(lang);
@@ -28,6 +30,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: pageContent.metaTitle,
       description: pageContent.metaDescription,
+    },
+    alternates: {
+      canonical: `${baseUrl}/${lang}/documents-types/${documentType}`,
+      languages: {
+        'uk-UA': `${baseUrl}/ua/documents-types/${documentType}`,
+        'en-GB': `${baseUrl}/en/documents-types/${documentType}`,
+        'x-default': `${baseUrl}/ua/documents-types/${documentType}`,
+      },
     },
   };
 }
@@ -52,21 +62,31 @@ export default async function DocumentPage({ params }: PageProps) {
 
   const productJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: content.h1,
-    description: content.description,
-    image: `${baseUrl}${staticImage.src}`,
-    brand: {
-      '@type': 'Brand',
-      name: 'UDocument',
-    },
-    offers: {
-      '@type': 'Offer',
-      price: content.price,
-      priceCurrency: 'UAH',
-      url: pageUrl,
-      availability: 'https://schema.org/OnlineOnly',
-    },
+    '@graph': [
+      {
+        '@type': 'Service',
+        name: content.h1,
+        offers: {
+          '@type': 'Offer',
+          // TODO: Thank change to content.price
+          price: '0',
+          priceCurrency: 'UAH',
+          url: pageUrl,
+          availability: 'https://schema.org/OnlineOnly',
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: content.faqItems.map((item: { question: string; answer: string }) => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: item.answer,
+          },
+        })),
+      },
+    ],
   };
 
   return (
