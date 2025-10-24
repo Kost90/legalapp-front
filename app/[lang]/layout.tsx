@@ -94,7 +94,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
     { media: '(prefers-color-scheme: dark)', color: '#1a202c' },
@@ -126,10 +125,6 @@ export default async function RootLayout({
         name: 'UDocument',
         url: baseUrl,
         logo: `${baseUrl}/Logo_udocument.png`,
-        sameAs: [
-          // "https://www.facebook.com/udocument",
-          // "https://www.instagram.com/udocument"
-        ],
       },
       {
         '@type': 'WebSite',
